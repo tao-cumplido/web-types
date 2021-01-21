@@ -1,0 +1,26 @@
+{
+	"name": "tslib",
+	"private": "true",
+	"workspaces": {
+		"packages": [
+			"packages/*"
+		]
+	},
+	"volta": {
+		"node": "14.15.4",
+		"yarn": "1.22.10"
+	},
+	"scripts": {
+		"lint": "eslint **/*.{js,ts}"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "4.13.0",
+		"@typescript-eslint/parser": "4.13.0",
+		"@whatwg/dom": "https://github.com/whatwg/dom#57ddc0f",
+		"eslint": "7.17.0",
+		"eslint-config-prettier": "7.1.0",
+		"eslint-plugin-style": "0.1.1",
+		"prettier": "2.2.1",
+		"typescript": "4.1.3"
+	}
+}
