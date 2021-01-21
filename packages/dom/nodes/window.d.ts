@@ -1,7 +1,13 @@
-import type { Event } from '../event';
-import { EventTarget } from '../event';
+import type { Event, EventTarget } from '../event';
+import type { EventTargetConstructor } from '../event/event-target';
 
-export declare abstract class Window extends EventTarget {
+export interface Window extends EventTarget {
 	/** @deprecated */
 	readonly event?: Event;
+}
+
+export interface WindowConstructor extends EventTargetConstructor {
+	prototype: Window;
+	/** @abstract */
+	new (): Window;
 }

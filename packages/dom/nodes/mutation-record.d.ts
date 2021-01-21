@@ -4,7 +4,7 @@ import type { CharacterData } from './character-data';
 import type { Node } from './node';
 import type { NodeList } from './node-list';
 
-export declare class MutationRecord {
+export interface MutationRecordBase {
 	readonly type: 'attributes' | 'characterData' | 'childList';
 	readonly target: Node;
 	readonly addedNodes: NodeList;
@@ -16,9 +16,15 @@ export declare class MutationRecord {
 	readonly oldValue: string | null;
 }
 
-type ConstrainedMutationRecord = MutationRecord &
+export type MutationRecord = MutationRecordBase &
 	(
 		| { type: 'attributes'; oldValue: string }
 		| { type: 'characterData'; target: CharacterData; oldValue: string }
 		| { type: 'childList'; oldValue: null }
 	);
+
+export interface MutationRecordConstructor extends Function {
+	prototype: MutationRecordBase;
+	/** @abstract */
+	new (): MutationRecordBase;
+}

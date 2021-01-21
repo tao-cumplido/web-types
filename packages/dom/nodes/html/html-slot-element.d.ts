@@ -1,3 +1,9 @@
-import { HTMLElement } from './html-element';
+import type { HTMLElement, HTMLElementConstructor } from './html-element';
 
-export declare abstract class HTMLSlotElement extends HTMLElement {}
+export interface HTMLSlotElement extends HTMLElement {}
+
+export interface HTMLSlotElementConstructor extends HTMLElementConstructor {
+	prototype: HTMLSlotElement;
+	/** @abstract */
+	new (): HTMLSlotElement;
+}

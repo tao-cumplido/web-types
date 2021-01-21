@@ -1,13 +1,13 @@
 /** @Window */
 
+import type { EventTarget } from '../event';
 import type { Document } from './document';
 import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
 import type { NodeList } from './node-list';
 import type { ShadowRoot } from './shadow-root';
-import { EventTarget } from '../event';
 
-export declare interface NodeTypes {
+export interface NodeTypes {
 	readonly ELEMENT_NODE: 1;
 	readonly ATTRIBUTE_NODE: 2;
 	readonly TEXT_NODE: 3;
@@ -25,17 +25,15 @@ export declare interface NodeTypes {
 	readonly NOTATION_NODE: 12;
 }
 
-export declare interface GetRootNodeOptions {
+export interface GetRootNodeOptions {
 	composed?: boolean;
 }
 
 type NodeParents = Element | Document | DocumentFragment | null;
 
-export declare interface Node extends NodeTypes {}
-export declare abstract class Node<
-	Parent extends NodeParents = NodeParents,
-	Owner extends Document | null = Document
-> extends EventTarget {
+export interface Node<Parent extends NodeParents = NodeParents, Owner extends Document | null = Document>
+	extends EventTarget,
+		NodeTypes {
 	readonly nodeType: NodeTypes[keyof NodeTypes];
 	readonly nodeName: string;
 	readonly baseURI: string;
@@ -49,4 +47,10 @@ export declare abstract class Node<
 
 	getRootNode(options: { composed: true }): Document;
 	getRootNode(options?: GetRootNodeOptions): Document | ShadowRoot;
+}
+
+export interface NodeConstructor extends Function, NodeTypes {
+	prototype: Node<NodeParents, Document | null>;
+	/** @abstract */
+	new <Parent extends NodeParents = NodeParents, Owner extends Document | null = Document | null>(): Node<Parent, Owner>;
 }

@@ -23,9 +23,7 @@ export type MutationObserverInit =
    ({ attributes?: true; attributeFilter: readonly string[] } | { attributes?: false; attributeFilter?: undefined }) &
    ({ characterData?: true; characterDataOldValue?: true } | { characterData?: false; characterDataOldValue?: false });
 
-export class MutationObserver {
-	constructor(callback: MutationCallback);
-
+export interface MutationObserver {
 	/**
 	 * @throws {TypeError} The options object must set at least one of 'attributes', 'characterData', or 'childList' to true.
 	 * @throws {TypeError} The options object may only set 'attributeOldValue' to true when 'attributes' is true or not present.
@@ -35,4 +33,9 @@ export class MutationObserver {
 	observe(target: Node, options: MutationObserverInit): void;
 	disconnect(): void;
 	takeRecords(): MutationRecord[];
+}
+
+export interface MutationObserverConstructor extends Function {
+	prototype: MutationObserver;
+	new (callback: MutationCallback): MutationObserver;
 }

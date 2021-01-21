@@ -2,23 +2,24 @@
 
 import type { EventTarget } from './event-target';
 
-export declare interface EventPhases {
+export interface EventPhases {
 	readonly NONE: 0;
 	readonly CAPTURING_PHASE: 1;
 	readonly AT_TARGET: 2;
 	readonly BUBBLING_PHASE: 3;
 }
 
-export declare interface EventInit {
+export interface EventInit {
 	bubbles?: boolean;
 	cancelable?: boolean;
 	composed?: boolean;
 }
 
-export declare interface Event extends EventPhases {}
-export declare class Event<CurrentTarget extends EventTarget | null = EventTarget | null> {
+type Target = EventTarget | null;
+
+export interface Event<CurrentTarget extends Target = Target> extends EventPhases {
 	readonly type: string;
-	readonly target: EventTarget | null;
+	readonly target: Target;
 	readonly eventPhase: EventPhases[keyof EventPhases];
 	readonly currentTarget: CurrentTarget;
 	readonly bubbles: boolean;
@@ -29,13 +30,11 @@ export declare class Event<CurrentTarget extends EventTarget | null = EventTarge
 	readonly timeStamp: number;
 
 	/** @deprecated */
-	readonly srcElement: EventTarget | null;
+	readonly srcElement: Target;
 	/** @deprecated */
 	readonly returnValue: boolean;
 	/** @deprecated */
 	cancelBubble: boolean;
-
-	constructor(type: string, eventInitDict?: EventInit);
 
 	composedPath(): EventTarget[];
 	stopPropagation(): void;
@@ -44,4 +43,9 @@ export declare class Event<CurrentTarget extends EventTarget | null = EventTarge
 
 	/** @deprecated */
 	initEvent(type: string, bubbles?: boolean, cancelable?: boolean): void;
+}
+
+export interface EventConstructor extends Function, EventPhases {
+	prototype: Event;
+	new <CurrentTarget extends Target = Target>(type: string, eventInitDict?: EventInit): Event<CurrentTarget>;
 }

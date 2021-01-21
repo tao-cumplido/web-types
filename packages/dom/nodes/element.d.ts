@@ -1,7 +1,12 @@
 import type { ChildNode, NonDocumentTypeChildNode, ParentNode, Slottable } from './mixins';
-import { Node } from './node';
+import type { Node, NodeConstructor } from './node';
 
-export declare interface Element extends ParentNode, NonDocumentTypeChildNode, ChildNode, Slottable {}
-export declare abstract class Element extends Node {
+export interface Element extends Node, ParentNode, NonDocumentTypeChildNode, ChildNode, Slottable {
 	readonly tagName: string;
+}
+
+export interface ElementConstructor extends NodeConstructor {
+	prototype: Element;
+	/** @abstract */
+	new (): Element;
 }

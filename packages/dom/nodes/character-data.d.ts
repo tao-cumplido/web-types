@@ -1,5 +1,10 @@
 import type { ChildNode, NonDocumentTypeChildNode } from './mixins';
-import { Node } from './node';
+import type { Node, NodeConstructor } from './node';
 
-export declare interface CharacterData extends NonDocumentTypeChildNode, ChildNode {}
-export declare class CharacterData extends Node {}
+export interface CharacterData extends Node, NonDocumentTypeChildNode, ChildNode {}
+
+export interface CharacterDataConstructor extends NodeConstructor {
+	prototype: CharacterData;
+	/** @abstract */
+	new (): CharacterData;
+}

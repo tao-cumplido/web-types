@@ -1,9 +1,15 @@
 /** @Window @Worker */
 
-import type { EventHandler } from '../event';
-import { EventTarget } from '../event';
+import type { EventHandler, EventTarget } from '../event';
+import type { EventTargetConstructor } from '../event/event-target';
 
-export declare abstract class AbortSignal extends EventTarget {
+export interface AbortSignal extends EventTarget {
 	readonly aborted: boolean;
 	onabort: EventHandler<this> | null;
+}
+
+export interface AbortSignalConstructor extends EventTargetConstructor {
+	prototype: AbortSignal;
+	/** @abstract */
+	new (): AbortSignal;
 }

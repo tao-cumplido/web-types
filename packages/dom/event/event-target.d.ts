@@ -3,25 +3,21 @@
 import type { AbortSignal } from '../abort';
 import type { Event } from './event';
 
-export declare type EventHandler<
+export type EventHandler<
 	CurrentTarget extends EventTarget | null = EventTarget | null,
 	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
 > = (this: CurrentTarget, event: AbstractEvent) => void;
 
-export declare type EventListener<
+export type EventListener<
 	CurrentTarget extends EventTarget | null = EventTarget | null,
 	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
-> =
-	| EventHandler<CurrentTarget, AbstractEvent>
-	| {
-			handleEvent: EventHandler<CurrentTarget, AbstractEvent>;
-	  };
+> = EventHandler<CurrentTarget, AbstractEvent> | { handleEvent: EventHandler<CurrentTarget, AbstractEvent> };
 
-export declare interface EventListenerOptions {
+export interface EventListenerOptions {
 	capture?: boolean;
 }
 
-export declare interface AddEventListenerOptions extends EventListenerOptions {
+export interface AddEventListenerOptions extends EventListenerOptions {
 	passive?: boolean;
 	once?: boolean;
 	signal?: AbortSignal | null;
@@ -43,14 +39,12 @@ type HandlerToListener<T> = NonNullable<T> extends EventHandler<infer CurrentTar
 
 type ExtractEventType<T> = T extends never ? string : T;
 
-export declare class EventTarget {
+export interface EventTarget {
 	addEventListener<E extends ExtractEvents<this>>(
 		type: E,
 		callback?: HandlerToListener<this[`on${E}`]>,
 		options?: AddEventListenerOptions | boolean,
 	): void;
-
-	addEventListener(type: string, callback?: EventListener<this>, options?: AddEventListenerOptions | boolean): void;
 
 	removeEventListener<E extends ExtractEvents<this>>(
 		type: E,
@@ -58,7 +52,10 @@ export declare class EventTarget {
 		options?: EventListenerOptions | boolean,
 	): void;
 
-	removeEventListener(type: string, callback?: EventListener<this>, options?: EventListenerOptions | boolean): void;
-
 	dispatchEvent(event: Event<this>): boolean;
+}
+
+export interface EventTargetConstructor extends Function {
+	prototype: EventTarget;
+	new (): EventTarget;
 }

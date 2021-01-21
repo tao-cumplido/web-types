@@ -1,5 +1,10 @@
 import type { ChildNode } from './mixins';
-import { Node } from './node';
+import type { Node, NodeConstructor } from './node';
 
-export declare interface DocumentType extends ChildNode {}
-export declare abstract class DocumentType extends Node {}
+export interface DocumentType extends Node, ChildNode {}
+
+export interface DocumentTypeConstructor extends NodeConstructor {
+	prototype: DocumentType;
+	/** @abstract */
+	new (): DocumentType;
+}

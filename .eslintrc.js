@@ -205,7 +205,7 @@ module.exports = {
 						],
 					},
 				],
-				'@typescript-eslint/method-signature-style': ['error', 'property'],
+				'@typescript-eslint/method-signature-style': ['error', 'method'],
 				'camelcase': 0,
 				'no-underscore-dangle': 0,
 				'@typescript-eslint/naming-convention': [

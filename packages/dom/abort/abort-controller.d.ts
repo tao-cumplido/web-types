@@ -2,7 +2,12 @@
 
 import type { AbortSignal } from '../abort';
 
-export declare class AbortController {
+export interface AbortController {
 	readonly signal: AbortSignal;
 	abort(): void;
+}
+
+export interface AbortControllerConstructor extends Function {
+	prototype: AbortController;
+	new (): AbortController;
 }

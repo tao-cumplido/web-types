@@ -1,5 +1,9 @@
 import type { NonElementParentNode, ParentNode } from './mixins';
-import { Node } from './node';
+import type { Node, NodeConstructor } from './node';
 
-export declare interface DocumentFragment extends NonElementParentNode, ParentNode {}
-export declare class DocumentFragment extends Node<null> {}
+export interface DocumentFragment extends Node<null>, NonElementParentNode, ParentNode {}
+
+export interface DocumentFragmentConstructor extends NodeConstructor {
+	prototype: DocumentFragment;
+	new (): DocumentFragment;
+}

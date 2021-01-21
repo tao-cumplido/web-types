@@ -1,13 +1,18 @@
 import type { HTMLHtmlElement } from './html';
 import type { DocumentOrShadowRoot, ElementQueryMap, NonElementParentNode, ParentNode } from './mixins';
-import { Node } from './node';
+import type { Node, NodeConstructor } from './node';
 
-export declare interface DocumentQueryMap {
+export interface DocumentQueryMap {
 	html: HTMLHtmlElement;
 }
 
-export declare interface Document
-	extends NonElementParentNode,
+export interface Document
+	extends Node<null, null>,
+		NonElementParentNode,
 		DocumentOrShadowRoot,
 		ParentNode<ElementQueryMap & DocumentQueryMap> {}
-export declare class Document extends Node<null, null> {}
+
+export interface DocumentConstructor extends NodeConstructor {
+	prototype: Document;
+	new (): Document;
+}

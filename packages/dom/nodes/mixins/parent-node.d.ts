@@ -9,20 +9,20 @@ type QuerySelector<
 	QueryMap extends Record<keyof QueryMap, Element>
 > = Lowercase<Selector> extends keyof QueryMap ? QueryMap[Lowercase<Selector>] : Element;
 
-export declare interface ElementQueryMap {
+export interface ElementQueryMap {
 	slot: html.HTMLSlotElement;
 }
 
-export declare interface ParentNode<QueryMap extends Record<keyof QueryMap, Element> = ElementQueryMap> {
+export interface ParentNode<QueryMap extends Record<keyof QueryMap, Element> = ElementQueryMap> {
 	readonly children: HTMLCollection;
 	readonly firstElementChild: Element | null;
 	readonly lastElementChild: Element | null;
 	readonly childElementCount: number;
 
-	append: (...nodes: Array<Node | string>) => void;
-	prepend: (...nodes: Array<Node | string>) => void;
-	replaceChildren: (...nodes: Array<Node | string>) => void;
+	append(...nodes: Array<Node | string>): void;
+	prepend(...nodes: Array<Node | string>): void;
+	replaceChildren(...nodes: Array<Node | string>): void;
 
-	querySelector: <Selector extends string>(selectors: Selector) => QuerySelector<Selector, QueryMap> | null;
-	querySelectorAll: <Selector extends string>(selectors: Selector) => NodeList<QuerySelector<Selector, QueryMap>>;
+	querySelector<Selector extends string>(selectors: Selector): QuerySelector<Selector, QueryMap> | null;
+	querySelectorAll<Selector extends string>(selectors: Selector): NodeList<QuerySelector<Selector, QueryMap>>;
 }

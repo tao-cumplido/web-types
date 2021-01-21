@@ -1,5 +1,10 @@
+import type { DocumentFragment, DocumentFragmentConstructor } from './document-fragment';
 import type { DocumentOrShadowRoot } from './mixins';
-import { DocumentFragment } from './document-fragment';
 
-export declare interface ShadowRoot extends DocumentOrShadowRoot {}
-export declare abstract class ShadowRoot extends DocumentFragment {}
+export interface ShadowRoot extends DocumentFragment, DocumentOrShadowRoot {}
+
+export interface ShadowRootConstructor extends DocumentFragmentConstructor {
+	prototype: ShadowRoot;
+	/** @abstract */
+	new (): ShadowRoot;
+}
