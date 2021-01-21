@@ -1,6 +1,6 @@
 import type { Element } from '../element';
 
-export declare interface NonDocumentTypeChildNode {
+export interface NonDocumentTypeChildNode {
 	readonly previousElementSibling: Element | null;
 	readonly nextElementSibling: Element | null;
 }

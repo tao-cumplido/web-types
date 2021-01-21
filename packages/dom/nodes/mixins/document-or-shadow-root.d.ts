@@ -1,1 +1,1 @@
-export declare interface DocumentOrShadowRoot {}
+export interface DocumentOrShadowRoot {}
