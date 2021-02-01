@@ -1,7 +1,0 @@
-{
-	"name": "@tslib/dom",
-	"version": "0.0.0",
-	"peerDependencies": {
-		"typescript": "~4.1.3"
-	}
-}

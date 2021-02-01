@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"strict": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"moduleResolution": "node",
+		"target": "esnext",
+		"lib": ["es2020"]
+	}
+}

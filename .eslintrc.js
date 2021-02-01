@@ -103,7 +103,6 @@ module.exports = {
 		'symbol-description': 'error',
 		'use-isnan': ['error', { enforceForIndexOf: true }],
 		'yoda': 'error',
-
 		// plugins
 		'style/group-imports': 'error',
 		'style/sort-imports': ['error', { caseGroups: true, typesInGroup: 'top' }],
@@ -127,7 +126,7 @@ module.exports = {
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				sourceType: 'module',
-				project: 'tsconfig.json',
+				project: ['tsconfig.src.json'],
 			},
 			plugins: ['@typescript-eslint'],
 			extends: [
@@ -264,7 +263,6 @@ module.exports = {
 				'@typescript-eslint/prefer-function-type': 'error',
 				'@typescript-eslint/prefer-literal-enum-member': 'error',
 				'@typescript-eslint/prefer-optional-chain': 'error',
-
 				// require type information
 				'@typescript-eslint/no-base-to-string': 'error',
 				'@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
