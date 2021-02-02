@@ -1,9 +1,6 @@
 import type { Element, ElementConstructor } from '../nodes/element';
 
-export interface HTMLElement extends Element {
-	foo: string;
-	bar: number;
-}
+export interface HTMLElement extends Element {}
 
 export interface HTMLElementConstructor extends ElementConstructor {
 	prototype: HTMLElement;
