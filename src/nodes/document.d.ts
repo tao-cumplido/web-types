@@ -11,6 +11,7 @@ import type {
 import type { Range } from '../ranges';
 import type { SVGElement, SVGElementMap } from '../svg';
 import type { NodeFilter, NodeIterator, TreeWalker } from '../traversal';
+import type { XPathEvaluatorBase } from '../xpath';
 import type { Attr } from './attr';
 import type { CDATASection } from './cdata-section';
 import type { Comment } from './comment';
@@ -72,7 +73,8 @@ export interface Document<CDATA extends CDATASection = never>
 		NonElementParentNode,
 		DocumentOrShadowRoot,
 		ParentNode,
-		DocumentOrElement {
+		DocumentOrElement,
+		XPathEvaluatorBase {
 	readonly nodeType: NodeTypes['DOCUMENT_NODE'];
 	readonly nodeName: '#document';
 	readonly ownerDocument: null;
