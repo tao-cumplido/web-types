@@ -1,5 +1,6 @@
 /** @Window @Worker @AudioWorklet */
 
+import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
 export interface EventPhases {
@@ -20,7 +21,7 @@ type Target = EventTarget | null;
 export interface Event<CurrentTarget extends Target = Target> extends EventPhases {
 	readonly type: string;
 	readonly target: Target;
-	readonly eventPhase: EventPhases[keyof EventPhases];
+	readonly eventPhase: ValueOf<EventPhases>;
 	readonly currentTarget: CurrentTarget;
 	readonly bubbles: boolean;
 	readonly cancelable: boolean;

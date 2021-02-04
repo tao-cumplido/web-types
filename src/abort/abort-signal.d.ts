@@ -1,7 +1,6 @@
 /** @Window @Worker */
 
-import type { EventHandler, EventTarget } from '../event';
-import type { EventTargetConstructor } from '../event/event-target';
+import type { EventHandler, EventTarget, EventTargetConstructor } from '../event';
 
 export interface AbortSignal extends EventTarget {
 	readonly aborted: boolean;

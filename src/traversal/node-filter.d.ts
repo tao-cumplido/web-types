@@ -1,6 +1,7 @@
 /** @Window */
 
-import type { Node } from '../nodes/node';
+import type { ValueOf } from '../@types';
+import type { Node } from '../nodes';
 
 export interface NodeFilterResult {
 	readonly FILTER_ACCEPT: 1;
@@ -27,7 +28,7 @@ export interface NodeFilterMask {
 	readonly SHOW_NOTATION: 0x800;
 }
 
-export type NodeFilterCallback = (node: Node) => NodeFilterResult[keyof NodeFilterResult] | undefined;
+export type NodeFilterCallback = (node: Node) => ValueOf<NodeFilterResult> | undefined;
 
 export type NodeFilter = NodeFilterCallback | { acceptNode: NodeFilterCallback };
 
@@ -36,6 +37,4 @@ export interface NodeFilterConstructor extends Function, NodeFilterResult, NodeF
 	prototype: undefined;
 	/** @deprecated */
 	new (): never;
-	/** @deprecated */
-	(): never;
 }

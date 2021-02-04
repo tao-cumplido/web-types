@@ -4,7 +4,7 @@ import type { CharacterData } from './character-data';
 import type { Node } from './node';
 import type { NodeList } from './node-list';
 
-export interface MutationRecordBase {
+interface MutationRecordBase {
 	readonly type: 'attributes' | 'characterData' | 'childList';
 	readonly target: Node;
 	readonly addedNodes: NodeList;

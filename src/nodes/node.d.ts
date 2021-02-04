@@ -1,5 +1,6 @@
 /** @Window */
 
+import type { ValueOf } from '../@types';
 import type { EventTarget, EventTargetConstructor } from '../event';
 import type { Document } from './document';
 import type { DocumentFragment } from './document-fragment';
@@ -39,7 +40,7 @@ export interface GetRootNodeOptions {
 }
 
 export interface Node extends EventTarget, NodeTypes, DocumentPositions {
-	readonly nodeType: NodeTypes[keyof NodeTypes];
+	readonly nodeType: ValueOf<NodeTypes>;
 	readonly nodeName: string;
 	readonly baseURI: string;
 	readonly isConnected: boolean;

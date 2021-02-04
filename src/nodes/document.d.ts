@@ -2,9 +2,14 @@
 
 import type { Merge } from '../@types';
 import type { CustomEvent, Event } from '../event';
-import type { HTMLElement, HTMLUnknownElement } from '../html';
+import type {
+	AutonomousCustomElementMap,
+	CustomizedBuiltInElementMap,
+	HTMLElementMap,
+	HTMLUnknownElement,
+} from '../html';
 import type { Range } from '../ranges';
-import type { SVGElement } from '../svg';
+import type { SVGElement, SVGElementMap } from '../svg';
 import type { NodeFilter, NodeIterator, TreeWalker } from '../traversal';
 import type { Attr } from './attr';
 import type { CDATASection } from './cdata-section';
@@ -13,16 +18,12 @@ import type { DocumentFragment } from './document-fragment';
 import type { DocumentType } from './document-type';
 import type { DOMImplementation } from './dom-implementation';
 import type { Element } from './element';
-import type { HTMLCollection } from './html-collection';
 import type {
-	AutonomousCustomElementMap,
-	CustomizedBuiltInElementMap,
+	DocumentOrElement,
 	DocumentOrShadowRoot,
 	ElementSelector,
-	HTMLElementMap,
 	NonElementParentNode,
 	ParentNode,
-	SVGElementMap,
 } from './mixins';
 import type { Node, NodeConstructor, NodeTypes } from './node';
 import type { ProcessingInstruction } from './processing-instruction';
@@ -34,7 +35,7 @@ type CreateElement<Tag extends string, Is extends string> = ElementSelector<
 	CustomizedBuiltInElementMap,
 	never
 > extends never
-	? ElementSelector<Tag, HTMLElementMap | AutonomousCustomElementMap, HTMLUnknownElement>
+	? ElementSelector<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
 	: ElementSelector<Is, CustomizedBuiltInElementMap>;
 
 export interface ElementCreationOptions<Is extends string = string> {
@@ -70,7 +71,8 @@ export interface Document<CDATA extends CDATASection = never>
 	extends Node,
 		NonElementParentNode,
 		DocumentOrShadowRoot,
-		ParentNode {
+		ParentNode,
+		DocumentOrElement {
 	readonly nodeType: NodeTypes['DOCUMENT_NODE'];
 	readonly nodeName: '#document';
 	readonly ownerDocument: null;
@@ -95,20 +97,6 @@ export interface Document<CDATA extends CDATASection = never>
 	readonly charset: string;
 	/** @deprecated legacy alias of .characterSet */
 	readonly inputEncoding: string;
-
-	getElementsByTagName<Tag extends string>(
-		qualifiedName: Tag,
-	): HTMLCollection<ElementSelector<Tag, Merge<HTMLElementMap, SVGElementMap>>>;
-	getElementsByTagNameNS<Tag extends string>(
-		namespace: 'http://www.w3.org/1999/xhtml',
-		localName: Tag,
-	): HTMLCollection<ElementSelector<Tag, HTMLElementMap, HTMLElement>>;
-	getElementsByTagNameNS<Tag extends string>(
-		namespace: 'http://www.w3.org/2000/svg',
-		localName: Tag,
-	): HTMLCollection<ElementSelector<Tag, SVGElementMap, SVGElement>>;
-	getElementsByTagNameNS(namespace: string, localName: string): HTMLCollection;
-	getElementsByClassName(classNames: string): HTMLCollection;
 
 	createElement<Tag extends string, Is extends string>(
 		localName: Tag,

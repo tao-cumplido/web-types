@@ -1,4 +1,4 @@
-import type { Element, ElementConstructor } from '../nodes/element';
+import type { Element, ElementConstructor } from '../nodes';
 
 export interface HTMLElement extends Element {}
 

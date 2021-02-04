@@ -1,3 +1,3 @@
-import type { Element } from '../nodes/element';
+import type { Element } from '../nodes';
 
 export interface SVGElement extends Element {}
