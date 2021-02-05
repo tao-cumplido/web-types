@@ -7,11 +7,15 @@ import type { XPathResult, XPathResultType } from './xpath-result';
 
 type XPathNSResolverCallback = (prefix: string | null) => string | null;
 
-export type XPathNSResolver = XPathNSResolverCallback | { lookupNamespaceURI: XPathNSResolverCallback };
+interface XPathNSResolverInterface {
+	lookupNamespaceURI: XPathNSResolverCallback;
+}
+
+export type XPathNSResolver = XPathNSResolverCallback | XPathNSResolverInterface;
 
 export interface XPathEvaluatorBase {
 	createExpression(expression: string, resolver?: XPathNSResolver | null): XPathExpression;
-	createNSResolver(nodeResolver: Node): Exclude<XPathNSResolver, XPathNSResolverCallback>;
+	createNSResolver(nodeResolver: Node): XPathNSResolverInterface;
 	evaluate(
 		expression: string,
 		contextNode: Node,
