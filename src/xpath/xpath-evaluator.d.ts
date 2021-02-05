@@ -3,7 +3,7 @@
 import type { ValueOf } from '../@types';
 import type { Node } from '../nodes';
 import type { XPathExpression } from './xpath-expression';
-import type { XPathResult, XPathResultType } from './xpath-result';
+import type { XPathResult, XPathResultTypes } from './xpath-result';
 
 type XPathNSResolverCallback = (prefix: string | null) => string | null;
 
@@ -20,7 +20,7 @@ export interface XPathEvaluatorBase {
 		expression: string,
 		contextNode: Node,
 		resolver?: XPathNSResolver | null,
-		type?: ValueOf<XPathResultType>,
+		type?: ValueOf<XPathResultTypes>,
 		result?: XPathResult | null,
 	): XPathResult;
 }

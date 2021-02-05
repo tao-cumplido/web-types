@@ -3,7 +3,7 @@
 import type { ValueOf } from '../@types';
 import type { Node } from '../nodes';
 
-export interface XPathResultType {
+export interface XPathResultTypes {
 	readonly ANY_TYPE: 0;
 	readonly NUMBER_TYPE: 1;
 	readonly STRING_TYPE: 2;
@@ -16,8 +16,8 @@ export interface XPathResultType {
 	readonly FIRST_ORDERED_NODE_TYPE: 9;
 }
 
-export interface XPathResult extends XPathResultType {
-	readonly resultType: ValueOf<XPathResultType>;
+export interface XPathResult extends XPathResultTypes {
+	readonly resultType: ValueOf<XPathResultTypes>;
 	readonly numberValue: number;
 	readonly stringValue: string;
 	readonly booleanValue: boolean;
@@ -29,7 +29,7 @@ export interface XPathResult extends XPathResultType {
 	snapshotItem(index: number): Node | null;
 }
 
-export interface XPathResultConstructor extends Function, XPathResultType {
+export interface XPathResultConstructor extends Function, XPathResultTypes {
 	prototype: XPathResult;
 	/** @abstract */
 	new (): XPathResult;

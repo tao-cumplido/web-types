@@ -3,13 +3,13 @@
 import type { ValueOf } from '../@types';
 import type { Node } from '../nodes';
 
-export interface NodeFilterResult {
+export interface NodeFilterResults {
 	readonly FILTER_ACCEPT: 1;
 	readonly FILTER_REJECT: 2;
 	readonly FILTER_SKIP: 3;
 }
 
-export interface NodeFilterMask {
+export interface NodeFilterWhatToShowTypes {
 	readonly SHOW_ALL: 0xffff_ffff;
 	readonly SHOW_ELEMENT: 0x1;
 	readonly SHOW_ATTRIBUTE: 0x2;
@@ -28,11 +28,11 @@ export interface NodeFilterMask {
 	readonly SHOW_NOTATION: 0x800;
 }
 
-export type NodeFilterCallback = (node: Node) => ValueOf<NodeFilterResult> | undefined;
+export type NodeFilterCallback = (node: Node) => ValueOf<NodeFilterResults> | undefined;
 
 export type NodeFilter = NodeFilterCallback | { acceptNode: NodeFilterCallback };
 
-export interface NodeFilterConstructor extends Function, NodeFilterResult, NodeFilterMask {
+export interface NodeFilterConstructor extends Function, NodeFilterResults, NodeFilterWhatToShowTypes {
 	/** @deprecated */
 	prototype: undefined;
 	/** @deprecated */
