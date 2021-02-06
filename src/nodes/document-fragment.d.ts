@@ -1,24 +1,36 @@
-/** @Window */
-
 import type { Document } from './document';
 import type { NonElementParentNode, ParentNode } from './mixins';
-import type { Node, NodeConstructor, NodeTypes } from './node';
+import type { Node } from './node';
 
-export interface DocumentFragment extends Node, NonElementParentNode, ParentNode {
-	readonly nodeType: NodeTypes['DOCUMENT_FRAGMENT_NODE'];
-	readonly nodeName: '#document-fragment';
-	readonly ownerDocument: Document;
-	readonly parentNode: null;
-	readonly parentElement: null;
-	readonly previousSibling: null;
-	readonly nextSibling: null;
-	readonly nodeValue: null;
-	readonly textContent: string;
+export interface DocumentFragment extends DocumentFragment.Interface {}
 
-	lookupPrefix(namespace: string | null): null;
-}
+/**
+ * @exposed Window
+ */
+export namespace DocumentFragment {
+	export interface Prototype extends Node.Prototype, NonElementParentNode, ParentNode {
+		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
-export interface DocumentFragmentConstructor extends NodeConstructor {
-	prototype: DocumentFragment;
-	new (): DocumentFragment;
+		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_FRAGMENT_NODE'];
+		readonly nodeName: '#document-fragment';
+		readonly ownerDocument: Document;
+		readonly parentNode: null;
+		readonly parentElement: null;
+		readonly previousSibling: null;
+		readonly nextSibling: null;
+		readonly nodeValue: null;
+		readonly textContent: string;
+
+		lookupPrefix(namespace: string | null): null;
+	}
+
+	export type Interface = Prototype & Node.Interface;
+
+	export interface Static extends Node.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		new (): DocumentFragment;
+	}
 }

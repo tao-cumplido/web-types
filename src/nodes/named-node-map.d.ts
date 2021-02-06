@@ -1,23 +1,34 @@
-/** @Window */
-
+import type { IndexedIterable } from '../iterable';
 import type { Attr } from './attr';
 import type { Element } from './element';
 
-export interface NamedNodeMap<Owner extends Element | null = Element | null> {
-	[index: number]: Attr<Owner> | null;
-	readonly length: number;
-	[Symbol.iterator](): IterableIterator<Attr<Owner>>;
-	item(index: number): Attr<Owner> | null;
-	getNamedItem(qualifiedName: string): Attr<Owner> | null;
-	getNamedItemNS(namespace: string | null, localName: string): Attr<Owner> | null;
-	setNamedItem(attr: Attr): Attr<Owner> | null;
-	setNamedItemNS(attr: Attr): Attr<Owner> | null;
-	removeNamedItem(qualifiedName: string): Attr<null>;
-	removeNamedItemNS(namespace: string | null, localName: string): Attr<null>;
-}
+export interface NamedNodeMap<Owner extends Element | null = Element | null> extends NamedNodeMap.Interface<Owner> {}
 
-export interface NamedNodeMapConstructor extends Function {
-	prototype: NamedNodeMap;
-	/** @abstract */
-	new (): NamedNodeMap;
+/**
+ * @exposed Window
+ */
+export namespace NamedNodeMap {
+	export type NamedIterable<T extends Element | null = Element | null> = NamedNodeMap<T> & Record<string, T>;
+
+	export interface Prototype<Owner extends Element | null = Element | null> extends IndexedIterable<Owner> {
+		readonly length: number;
+		item(index: number): Attr<Owner> | null;
+		getNamedItem(qualifiedName: string): Attr<Owner> | null;
+		getNamedItemNS(namespace: string | null, localName: string): Attr<Owner> | null;
+		setNamedItem(attr: Attr): Attr<Owner> | null;
+		setNamedItemNS(attr: Attr): Attr<Owner> | null;
+		removeNamedItem(qualifiedName: string): Attr<null>;
+		removeNamedItemNS(namespace: string | null, localName: string): Attr<null>;
+	}
+
+	export type Interface<Owner extends Element | null = Element | null> = Prototype<Owner>;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new <Owner extends Element | null = Element | null>(): NamedNodeMap<Owner>;
+	}
 }

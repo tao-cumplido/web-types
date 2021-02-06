@@ -1,14 +1,25 @@
-/** @Window @Worker */
+import type { EventHandler, EventTarget } from '../event';
 
-import type { EventHandler, EventTarget, EventTargetConstructor } from '../event';
+export interface AbortSignal extends AbortSignal.Interface {}
 
-export interface AbortSignal extends EventTarget {
-	readonly aborted: boolean;
-	onabort: EventHandler<this> | null;
-}
+/**
+ * @exposed Window
+ * @exposed Worker
+ */
+export namespace AbortSignal {
+	export interface Prototype extends EventTarget.Prototype {
+		readonly aborted: boolean;
+		onabort: EventHandler<this> | null;
+	}
 
-export interface AbortSignalConstructor extends EventTargetConstructor {
-	prototype: AbortSignal;
-	/** @abstract */
-	new (): AbortSignal;
+	export type Interface = Prototype & EventTarget.Interface;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): AbortSignal;
+	}
 }

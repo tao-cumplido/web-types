@@ -1,3 +1,3 @@
-export { XPathEvaluator, XPathEvaluatorBase, XPathEvaluatorConstructor, XPathNSResolver } from './xpath-evaluator';
-export { XPathExpression, XPathExpressionConstructor } from './xpath-expression';
-export { XPathResult, XPathResultConstructor } from './xpath-result';
+export { XPathEvaluator, XPathEvaluatorBase, XPathNSResolver } from './xpath-evaluator';
+export { XPathExpression } from './xpath-expression';
+export { XPathResult } from './xpath-result';

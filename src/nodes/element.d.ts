@@ -1,5 +1,3 @@
-/** @Window */
-
 import type { DOMTokenList } from '../sets';
 import type { Attr } from './attr';
 import type { Document } from './document';
@@ -13,7 +11,7 @@ import type {
 	Slottable,
 } from './mixins';
 import type { NamedNodeMap } from './named-node-map';
-import type { Node, NodeConstructor, NodeTypes } from './node';
+import type { Node } from './node';
 import type { ShadowRoot, ShadowRootMode } from './shadow-root';
 
 export interface ShadowRootInit {
@@ -21,63 +19,88 @@ export interface ShadowRootInit {
 	delegatesFocus?: boolean;
 }
 
-export type InsertPosition = 'beforebegin' | 'afterbegin' | 'beforeend' | 'afterend';
+export interface Element extends Element.Interface {}
 
-export interface Element extends Node, ParentNode, NonDocumentTypeChildNode, ChildNode, Slottable, DocumentOrElement {
-	readonly nodeType: NodeTypes['ELEMENT_NODE'];
-	readonly ownerDocument: Document;
-	readonly nodeValue: null;
-	readonly textContent: string;
+/**
+ * @exposed Window
+ */
+export namespace Element {
+	export type InsertPosition = 'beforebegin' | 'afterbegin' | 'beforeend' | 'afterend';
 
-	readonly namespaceURI: string | null;
-	readonly prefix: string | null;
-	readonly localName: string;
-	readonly tagName: string;
+	export interface Unscopables extends ParentNode.Unscopables, ChildNode.Unscopables {
+		slot: true;
+	}
 
-	readonly classList: DOMTokenList;
+	export interface Prototype
+		extends Node.Prototype,
+			ParentNode,
+			NonDocumentTypeChildNode,
+			ChildNode,
+			Slottable,
+			DocumentOrElement {
+		readonly [Symbol.unscopables]: Unscopables;
 
-	readonly attributes: NamedNodeMap<this>;
+		readonly nodeType: Node.NodeTypesLegacyEnum['ELEMENT_NODE'];
+		readonly ownerDocument: Document;
+		readonly nodeValue: null;
+		readonly textContent: string;
 
-	readonly shadowRoot: ShadowRoot | null;
+		readonly namespaceURI: string | null;
+		readonly prefix: string | null;
+		readonly localName: string;
+		readonly tagName: string;
 
-	id: string;
-	className: string;
-	slot: string;
+		/** @putForwards {value} */
+		readonly classList: DOMTokenList;
 
-	hasAttributes(): boolean;
-	getAttributeNames(): string[];
-	getAttribute(qualifiedName: string): string | null;
-	getAttributeNS(namespace: string | null, localName: string): string | null;
-	setAttribute(qualifiedName: string, value: string): void;
-	setAttributeNS(namespace: string | null, localName: string, value: string): void;
-	removeAttribute(qualifiedName: string): void;
-	removeAttributeNS(namespace: string | null, localName: string): void;
-	toggleAttribute(qualifiedName: string, force?: boolean): boolean;
-	hasAttribute(qualifiedName: string): boolean;
-	hasAttributeNS(namespace: string | null, localName: string): boolean;
+		readonly attributes: NamedNodeMap.NamedIterable<this>;
 
-	getAttributeNode(qualifiedName: string): Attr<this> | null;
-	getAttributeNodeNS(namespace: string | null, localName: string): Attr<this> | null;
-	setAttributeNode(attr: Attr): Attr<this> | null;
-	setAttributeNodeNS(attr: Attr): Attr<this> | null;
-	removeAttributeNode(attr: Attr): Attr<null>;
+		readonly shadowRoot: ShadowRoot | null;
 
-	attachShadow(init: ShadowRootInit): ShadowRoot;
+		id: string;
+		className: string;
+		slot: string;
 
-	closest<Selector extends string>(selectors: Selector): ElementSelector<Selector, ElementMap> | null;
-	closest<Result extends Element>(selectors: string): Result | null;
-	matches(selectors: string): boolean;
+		hasAttributes(): boolean;
+		getAttributeNames(): string[];
+		getAttribute(qualifiedName: string): string | null;
+		getAttributeNS(namespace: string | null, localName: string): string | null;
+		setAttribute(qualifiedName: string, value: string): void;
+		setAttributeNS(namespace: string | null, localName: string, value: string): void;
+		removeAttribute(qualifiedName: string): void;
+		removeAttributeNS(namespace: string | null, localName: string): void;
+		toggleAttribute(qualifiedName: string, force?: boolean): boolean;
+		hasAttribute(qualifiedName: string): boolean;
+		hasAttributeNS(namespace: string | null, localName: string): boolean;
 
-	/** @deprecated legacy alias of .matches */
-	webkitMatchesSelector(selectors: string): boolean;
-	/** @deprecated */
-	insertAdjacentElement(where: InsertPosition, element: Element): Element | null;
-	/** @deprecated */
-	insertAdjacentText(where: InsertPosition, data: string): void;
-}
+		getAttributeNode(qualifiedName: string): Attr<this> | null;
+		getAttributeNodeNS(namespace: string | null, localName: string): Attr<this> | null;
+		setAttributeNode(attr: Attr): Attr<this> | null;
+		setAttributeNodeNS(attr: Attr): Attr<this> | null;
+		removeAttributeNode(attr: Attr): Attr<null>;
 
-export interface ElementConstructor extends NodeConstructor {
-	prototype: Element;
-	/** @abstract */
-	new (): Element;
+		attachShadow(init: ShadowRootInit): ShadowRoot;
+
+		closest<Selector extends string>(selectors: Selector): ElementSelector<Selector, ElementMap> | null;
+		closest<Result extends Element>(selectors: string): Result | null;
+		matches(selectors: string): boolean;
+
+		/** @deprecated legacy alias of .matches */
+		webkitMatchesSelector(selectors: string): boolean;
+		/** @deprecated */
+		insertAdjacentElement(where: InsertPosition, element: Element): Element | null;
+		/** @deprecated */
+		insertAdjacentText(where: InsertPosition, data: string): void;
+	}
+
+	export type Interface = Prototype & Node.Interface;
+
+	export interface Static extends Node.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): Element;
+	}
 }

@@ -1,13 +1,24 @@
-/** @Window @Worker */
-
 import type { AbortSignal } from '../abort';
 
-export interface AbortController {
-	readonly signal: AbortSignal;
-	abort(): void;
-}
+export interface AbortController extends AbortController.Interface {}
 
-export interface AbortControllerConstructor extends Function {
-	prototype: AbortController;
-	new (): AbortController;
+/**
+ * @exposed Window
+ * @exposed Worker
+ */
+export namespace AbortController {
+	export interface Prototype {
+		readonly signal: AbortSignal;
+		abort(): void;
+	}
+
+	export type Interface = Prototype;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		new (): AbortController;
+	}
 }

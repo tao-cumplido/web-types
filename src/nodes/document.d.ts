@@ -1,5 +1,3 @@
-/** @Window */
-
 import type { Merge } from '../@types';
 import type { CustomEvent, Event } from '../event';
 import type {
@@ -26,18 +24,10 @@ import type {
 	NonElementParentNode,
 	ParentNode,
 } from './mixins';
-import type { Node, NodeConstructor, NodeTypes } from './node';
+import type { Node } from './node';
 import type { ProcessingInstruction } from './processing-instruction';
 import type { ShadowRoot } from './shadow-root';
 import type { Text } from './text';
-
-type CreateElement<Tag extends string, Is extends string> = ElementSelector<
-	Is,
-	CustomizedBuiltInElementMap,
-	never
-> extends never
-	? ElementSelector<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
-	: ElementSelector<Is, CustomizedBuiltInElementMap>;
 
 export interface ElementCreationOptions<Is extends string = string> {
 	is?: Is;
@@ -68,112 +58,152 @@ export interface CreateEventMap {
 	uievents: Event;
 }
 
-export interface Document<CDATA extends CDATASection = never>
-	extends Node,
-		NonElementParentNode,
-		DocumentOrShadowRoot,
-		ParentNode,
-		DocumentOrElement,
-		XPathEvaluatorBase {
-	readonly nodeType: NodeTypes['DOCUMENT_NODE'];
-	readonly nodeName: '#document';
-	readonly ownerDocument: null;
-	readonly parentNode: null;
-	readonly parentElement: null;
-	readonly previousSibling: null;
-	readonly nextSibling: null;
-	readonly nodeValue: null;
-	readonly textContent: null;
+export interface Document extends Document.Interface<Document.Type.HTML> {}
 
-	readonly implementation: DOMImplementation;
-	readonly URL: string;
-	readonly documentURI: string;
-	readonly compatMode: 'BackCompat' | 'CSS1Compat';
-	readonly characterSet: string;
-	readonly contentType: string;
+/**
+ * @exposed Window
+ */
+export namespace Document {
+	type CreateElement<Tag extends string, Is extends string> = ElementSelector<
+		Is,
+		CustomizedBuiltInElementMap,
+		never
+	> extends never
+		? ElementSelector<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
+		: ElementSelector<Is, CustomizedBuiltInElementMap>;
 
-	readonly docType: DocumentType | null;
-	readonly documentElement: Element | null;
+	export enum Type {
+		HTML = 'html',
+		XML = 'xml',
+	}
 
-	/** @deprecated legacy alias of .characterSet */
-	readonly charset: string;
-	/** @deprecated legacy alias of .characterSet */
-	readonly inputEncoding: string;
+	export interface Prototype<T extends Type = Type.HTML>
+		extends Node.Prototype,
+			NonElementParentNode,
+			DocumentOrShadowRoot,
+			ParentNode,
+			DocumentOrElement,
+			XPathEvaluatorBase {
+		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
-	createElement<Tag extends string, Is extends string>(
-		localName: Tag,
-		options?: ElementCreationOptions<Is>,
-	): CreateElement<Tag, Is>;
-	/** @deprecated */
-	createElement<Tag extends string, Is extends string>(localName: Tag, options: Is): CreateElement<Tag, Is>;
+		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_NODE'];
+		readonly nodeName: '#document';
+		readonly ownerDocument: null;
+		readonly parentNode: null;
+		readonly parentElement: null;
+		readonly previousSibling: null;
+		readonly nextSibling: null;
+		readonly nodeValue: null;
+		readonly textContent: null;
 
-	createElementNS<Tag extends string, Is extends string>(
-		namespace: 'http://www.w3.org/1999/xhtml',
-		qualifiedName: Tag,
-		options?: ElementCreationOptions<Is>,
-	): CreateElement<Tag, Is>;
-	createElementNS<Tag extends string>(
-		namespace: 'http://www.w3.org/2000/svg',
-		qualifiedName: Tag,
-	): ElementSelector<Tag, SVGElementMap, SVGElement>;
-	createElementNS(namespace: string | null, qualifiedName: string, options?: ElementCreationOptions): Element;
-	/** @deprecated */
-	createElementNS<Tag extends string, Is extends string>(
-		namespace: 'http://www.w3.org/1999/xhtml',
-		qualifiedName: Tag,
-		options: Is,
-	): CreateElement<Tag, Is>;
-	/** @deprecated */
-	createElementNS<Tag extends string>(
-		namespace: 'http://www.w3.org/2000/svg',
-		qualifiedName: Tag,
-		options: string | ElementCreationOptions,
-	): ElementSelector<Tag, SVGElementMap, SVGElement>;
-	/** @deprecated */
-	createElementNS(namespace: string, qualifiedName: string, options: string): Element;
+		readonly implementation: DOMImplementation;
+		readonly URL: string;
+		readonly documentURI: string;
+		readonly compatMode: 'BackCompat' | 'CSS1Compat';
+		readonly characterSet: string;
+		readonly contentType: string;
 
-	createDocumentFragment(): DocumentFragment;
-	createTextNode(data: string): Text;
-	/** @deprecated */
-	createCDATASection(data: string): CDATA;
-	createComment(data: string): Comment;
-	createProcessingInstruction(target: string, data: string): ProcessingInstruction;
+		readonly docType: DocumentType | null;
+		readonly documentElement: Element | null;
 
-	/** @deprecated */
-	importNode(node: Document | ShadowRoot, deep?: boolean): never;
-	importNode<T extends Node>(node: T, deep?: boolean): T;
+		/** @deprecated legacy alias of .characterSet */
+		readonly charset: string;
+		/** @deprecated legacy alias of .characterSet */
+		readonly inputEncoding: string;
 
-	/** @deprecated */
-	adoptNode(node: Document | ShadowRoot): never;
-	adoptNode<T extends Node>(node: T): T;
+		createElement<Tag extends string, Is extends string>(
+			localName: Tag,
+			options?: ElementCreationOptions<Is>,
+		): CreateElement<Tag, Is>;
+		/** @deprecated */
+		createElement<Tag extends string, Is extends string>(localName: Tag, options: Is): CreateElement<Tag, Is>;
 
-	createAttribute(localName: string): Attr;
-	createAttributeNS(namespace: string | null, qualifiedName: string): Attr;
+		createElementNS<Tag extends string, Is extends string>(
+			namespace: 'http://www.w3.org/1999/xhtml',
+			qualifiedName: Tag,
+			options?: ElementCreationOptions<Is>,
+		): CreateElement<Tag, Is>;
+		createElementNS<Tag extends string>(
+			namespace: 'http://www.w3.org/2000/svg',
+			qualifiedName: Tag,
+		): ElementSelector<Tag, SVGElementMap, SVGElement>;
+		createElementNS(namespace: string | null, qualifiedName: string, options?: ElementCreationOptions): Element;
+		/** @deprecated */
+		createElementNS<Tag extends string, Is extends string>(
+			namespace: 'http://www.w3.org/1999/xhtml',
+			qualifiedName: Tag,
+			options: Is,
+		): CreateElement<Tag, Is>;
+		/** @deprecated */
+		createElementNS<Tag extends string>(
+			namespace: 'http://www.w3.org/2000/svg',
+			qualifiedName: Tag,
+			options: string | ElementCreationOptions,
+		): ElementSelector<Tag, SVGElementMap, SVGElement>;
+		/** @deprecated */
+		createElementNS(namespace: string, qualifiedName: string, options: string): Element;
 
-	/** @deprecated */
-	createEvent<Interface extends string>(
-		interface: Interface,
-	): Lowercase<Interface> extends keyof CreateEventMap ? CreateEventMap[Lowercase<Interface>] : never;
-	/** @deprecated */
-	createEvent(interface: string): never;
+		createDocumentFragment(): DocumentFragment;
+		createTextNode(data: string): Text;
+		/** @deprecated */
+		createCDATASection(data: string): T extends Type.HTML ? never : CDATASection;
+		createComment(data: string): Comment;
+		createProcessingInstruction(target: string, data: string): ProcessingInstruction;
 
-	createRange(): Range;
+		/** @deprecated */
+		importNode(node: Document | ShadowRoot, deep?: boolean): never;
+		importNode<N extends Node>(node: N, deep?: boolean): N;
 
-	createNodeIterator(root: Node, whatToShow?: number, filter?: NodeFilter | null): NodeIterator;
-	createTreeWalker(root: Node, whatToShow?: number, filter?: NodeFilter | null): TreeWalker;
+		/** @deprecated */
+		adoptNode(node: Document | ShadowRoot): never;
+		adoptNode<N extends Node>(node: N): N;
+
+		createAttribute(localName: string): Attr;
+		createAttributeNS(namespace: string | null, qualifiedName: string): Attr;
+
+		/** @deprecated */
+		createEvent<Interface extends string>(
+			interface: Interface,
+		): Lowercase<Interface> extends keyof CreateEventMap ? CreateEventMap[Lowercase<Interface>] : never;
+		/** @deprecated */
+		createEvent(interface: string): never;
+
+		createRange(): Range;
+
+		createNodeIterator(root: Node, whatToShow?: number, filter?: NodeFilter.Interface | null): NodeIterator;
+		createTreeWalker(root: Node, whatToShow?: number, filter?: NodeFilter.Interface | null): TreeWalker;
+	}
+
+	export type Interface<T extends Type> = Prototype<T>;
+
+	export interface Static<T extends Type = Type.HTML> extends Node.Static {
+		prototype: Prototype<T>;
+	}
+
+	export interface Constructor extends Static {
+		new (): Document;
+	}
 }
 
-export interface DocumentConstructor extends NodeConstructor {
-	prototype: Document<CDATASection>;
-	new (): Document;
-}
+export interface XMLDocument extends XMLDocument.Interface {}
 
-export interface XMLDocument extends Document<CDATASection> {
-	createCDATASection(data: string): CDATASection;
-}
+/**
+ * @exposed Window
+ */
+export namespace XMLDocument {
+	export interface Prototype extends Document.Prototype<Document.Type.XML> {
+		// not deprecated
+		createCDATASection(data: string): CDATASection;
+	}
 
-export interface XMLDocumentConstructor extends DocumentConstructor {
-	prototype: XMLDocument;
-	/** @abstract */
-	new (): XMLDocument;
+	export type Interface = Prototype & Document.Interface<Document.Type.XML>;
+
+	export interface Static extends Document.Static<Document.Type.XML> {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): XMLDocument;
+	}
 }

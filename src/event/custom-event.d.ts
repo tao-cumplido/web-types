@@ -1,24 +1,46 @@
-/** @Window @Worker */
-
-import type { Event, EventConstructor, EventInit } from './event';
-import type { EventTarget } from './event-target';
+import type { Event, EventInit } from './event';
 
 export interface CustomEventInit<Detail> extends EventInit {
 	detail?: Detail;
 }
 
-export interface CustomEvent<CurrentTarget extends EventTarget | null = EventTarget | null, Detail = unknown>
-	extends Event<CurrentTarget> {
-	readonly detail: Detail;
+// prettier-ignore
+export interface CustomEvent<
+	CurrentTarget extends Event.Target = Event.Target,
+	Detail = unknown
+> extends
+CustomEvent.Interface<CurrentTarget, Detail> {}
 
-	/** @deprecated */
-	initCustomEvent(type: string, bubbles?: boolean, cancelable?: boolean, detail?: Detail): void;
-}
+/**
+ * @exposed Window
+ * @exposed Worker
+ */
+export namespace CustomEvent {
+	export interface Prototype<
+		// prettier-ignore
+		CurrentTarget extends Event.Target = Event.Target,
+		Detail = unknown
+	> extends Event.Prototype<CurrentTarget> {
+		readonly detail: Detail;
 
-export interface CustomEventConstructor extends EventConstructor {
-	prototype: CustomEvent;
-	new <CurrentTarget extends EventTarget | null = EventTarget | null, Detail = unknown>(
-		type: string,
-		eventInitDict?: CustomEventInit<Detail>,
-	): CustomEvent<CurrentTarget, Detail>;
+		/** @deprecated */
+		initCustomEvent(type: string, bubbles?: boolean, cancelable?: boolean, detail?: Detail): void;
+	}
+
+	export type Interface<
+		// prettier-ignore
+		CurrentTarget extends Event.Target = Event.Target,
+		Detail = unknown
+	> = Prototype<CurrentTarget, Detail> & Event.Interface<CurrentTarget>;
+
+	export interface Static extends Event.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		new <CurrentTarget extends Event.Target = Event.Target, Detail = unknown>(
+			type: string,
+			eventInitDict?: CustomEventInit<Detail>,
+		): CustomEvent<CurrentTarget, Detail>;
+	}
 }

@@ -1,16 +1,25 @@
-/** @Window */
-
-import type { WebIDLIterable } from '../idl';
+import type { IndexedIterable, KeyValueIterable } from '../iterable';
 import type { Node } from './node';
 
-export interface NodeList<Item extends Node = Node> extends WebIDLIterable<number, Item> {
-	[index: number]: Item | null;
-	readonly length: number;
-	item(index: number): Item | null;
-}
+export interface NodeList<Item extends Node = Node> extends NodeList.Interface<Item> {}
 
-export interface NodeListConstructor extends Function {
-	prototype: NodeList;
-	/** @abstract */
-	new <Item extends Node = Node>(): NodeList<Item>;
+/**
+ * @exposed Window
+ */
+export namespace NodeList {
+	export interface Prototype<Item extends Node = Node> extends IndexedIterable<Item>, KeyValueIterable<number, Item> {
+		readonly length: number;
+		item(index: number): Item | null;
+	}
+
+	export type Interface<Item extends Node = Node> = Prototype<Item>;
+
+	export interface Static {
+		prototype: NodeList;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new <Item extends Node = Node>(): NodeList<Item>;
+	}
 }

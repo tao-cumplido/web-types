@@ -1,20 +1,36 @@
-/** @Window */
-
 import type { Node } from '../nodes';
 import type { NodeFilter } from './node-filter';
 
-export interface TreeWalker {
-	readonly root: Node;
-	readonly whatToShow: number;
-	readonly filter: NodeFilter | null;
+export interface TreeWalker extends TreeWalker.Interface {}
 
-	currentNode: Node;
+/**
+ * @exposed Window
+ */
+export namespace TreeWalker {
+	export interface Prototype {
+		readonly root: Node;
+		readonly whatToShow: number;
+		readonly filter: NodeFilter.Interface | null;
 
-	parentNode(): Node | null;
-	firstChild(): Node | null;
-	lastChild(): Node | null;
-	previousSibling(): Node | null;
-	nextSibling(): Node | null;
-	previousNode(): Node | null;
-	nextNode(): Node | null;
+		currentNode: Node;
+
+		parentNode(): Node | null;
+		firstChild(): Node | null;
+		lastChild(): Node | null;
+		previousSibling(): Node | null;
+		nextSibling(): Node | null;
+		previousNode(): Node | null;
+		nextNode(): Node | null;
+	}
+
+	export type Interface = Prototype;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): TreeWalker;
+	}
 }

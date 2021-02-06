@@ -1,14 +1,24 @@
-/** @Window */
+import type { CharacterData } from './character-data';
+import type { Node } from './node';
 
-import type { CharacterData, CharacterDataConstructor } from './character-data';
-import type { NodeTypes } from './node';
+export interface Comment extends Comment.Interface {}
 
-export interface Comment extends CharacterData {
-	readonly nodeType: NodeTypes['COMMENT_NODE'];
-	readonly nodeName: '#comment';
-}
+/**
+ * @exposed Window
+ */
+export namespace Comment {
+	export interface Prototype extends CharacterData.Prototype {
+		readonly nodeType: Node.NodeTypesLegacyEnum['COMMENT_NODE'];
+		readonly nodeName: '#comment';
+	}
 
-export interface CommentConstructor extends CharacterDataConstructor {
-	prototype: Comment;
-	new (data?: string): Comment;
+	export type Interface = Prototype & CharacterData.Interface;
+
+	export interface Static extends CharacterData.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		new (data?: string): Comment;
+	}
 }

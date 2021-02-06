@@ -9,31 +9,31 @@ import type { ElementSelector } from './parent-node';
 export interface DocumentOrElement {
 	getElementsByTagName<Tag extends string>(
 		qualifiedName: Tag,
-	): HTMLCollection<ElementSelector<Tag, Merge<HTMLElementMap, SVGElementMap>>>;
+	): HTMLCollection.NamedIterable<ElementSelector<Tag, Merge<HTMLElementMap, SVGElementMap>>>;
 
-	getElementsByTagName<Result extends Element>(qualifiedName: string): HTMLCollection<Result>;
+	getElementsByTagName<Result extends Element>(qualifiedName: string): HTMLCollection.NamedIterable<Result>;
 
 	getElementsByTagNameNS<Tag extends string>(
 		namespace: 'http://www.w3.org/1999/xhtml',
 		localName: Tag,
-	): HTMLCollection<ElementSelector<Tag, HTMLElementMap, HTMLElement>>;
+	): HTMLCollection.NamedIterable<ElementSelector<Tag, HTMLElementMap, HTMLElement>>;
 
 	getElementsByTagNameNS<Result extends HTMLElement>(
 		namespace: 'http://www.w3.org/1999/xhtml',
 		localName: string,
-	): HTMLCollection<Result>;
+	): HTMLCollection.NamedIterable<Result>;
 
 	getElementsByTagNameNS<Tag extends string>(
 		namespace: 'http://www.w3.org/2000/svg',
 		localName: Tag,
-	): HTMLCollection<ElementSelector<Tag, SVGElementMap, SVGElement>>;
+	): HTMLCollection.NamedIterable<ElementSelector<Tag, SVGElementMap, SVGElement>>;
 
 	getElementsByTagNameNS<Result extends SVGElement>(
 		namespace: 'http://www.w3.org/2000/svg',
 		localName: string,
-	): HTMLCollection<Result>;
+	): HTMLCollection.NamedIterable<Result>;
 
-	getElementsByTagNameNS(namespace: string, localName: string): HTMLCollection;
+	getElementsByTagNameNS(namespace: string, localName: string): HTMLCollection.NamedIterable;
 
-	getElementsByClassName(classNames: string): HTMLCollection;
+	getElementsByClassName(classNames: string): HTMLCollection.NamedIterable;
 }

@@ -1,4 +1,4 @@
-export interface WebIDLIterable<Key, Value> {
+export interface KeyValueIterable<Key, Value> {
 	[Symbol.iterator](): IterableIterator<Value>;
 	entries(): IterableIterator<[Key, Value]>;
 	keys(): IterableIterator<Key>;

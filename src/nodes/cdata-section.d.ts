@@ -1,15 +1,21 @@
-/** @Window */
+import type { Text } from './text';
 
-import type { NodeTypes } from './node';
-import type { Text, TextConstructor } from './text';
+export interface CDATASection extends CDATASection.Interface {}
 
-export interface CDATASection extends Text {
-	readonly nodeType: NodeTypes['CDATA_SECTION_NODE'];
-	readonly nodeName: '#cdata-section';
-}
+/**
+ * @exposed Window
+ */
+export namespace CDATASection {
+	export interface Prototype extends Text.Prototype<Text.Type.CDATASection> {}
 
-export interface CDATASectionConstructor extends TextConstructor {
-	prototype: CDATASection;
-	/** @abstract */
-	new (): CDATASection;
+	export type Interface = Prototype & Text.Interface<Text.Type.CDATASection>;
+
+	export interface Static extends Text.Static<Text.Type.CDATASection> {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): CDATASection;
+	}
 }

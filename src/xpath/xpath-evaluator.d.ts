@@ -1,9 +1,7 @@
-/** @Window */
-
 import type { ValueOf } from '../@types';
 import type { Node } from '../nodes';
 import type { XPathExpression } from './xpath-expression';
-import type { XPathResult, XPathResultTypes } from './xpath-result';
+import type { XPathResult } from './xpath-result';
 
 type XPathNSResolverCallback = (prefix: string | null) => string | null;
 
@@ -20,14 +18,26 @@ export interface XPathEvaluatorBase {
 		expression: string,
 		contextNode: Node,
 		resolver?: XPathNSResolver | null,
-		type?: ValueOf<XPathResultTypes>,
+		type?: ValueOf<XPathResult.ResultTypesLegacyEnum>,
 		result?: XPathResult | null,
 	): XPathResult;
 }
 
-export interface XPathEvaluator extends XPathEvaluatorBase {}
+export interface XPathEvaluator extends XPathEvaluator.Interface {}
 
-export interface XPathEvaluatorConstructor extends Function {
-	prototype: XPathEvaluator;
-	new (): XPathEvaluator;
+/**
+ * @exposed Window
+ */
+export namespace XPathEvaluator {
+	export interface Prototype extends XPathEvaluatorBase {}
+
+	export type Interface = Prototype;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		new (): XPathEvaluator;
+	}
 }

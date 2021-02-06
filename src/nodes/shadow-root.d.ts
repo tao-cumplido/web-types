@@ -1,20 +1,30 @@
-/** @Window */
-
 import type { EventHandler } from '../event';
-import type { DocumentFragment, DocumentFragmentConstructor } from './document-fragment';
+import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
 import type { DocumentOrShadowRoot } from './mixins';
 
 export type ShadowRootMode = 'open' | 'closed';
 
-export interface ShadowRoot extends DocumentFragment, DocumentOrShadowRoot {
-	readonly mode: ShadowRootMode;
-	readonly host: Element;
-	onslotchange: EventHandler<this>;
-}
+export interface ShadowRoot extends ShadowRoot.Interface {}
 
-export interface ShadowRootConstructor extends DocumentFragmentConstructor {
-	prototype: ShadowRoot;
-	/** @abstract */
-	new (): ShadowRoot;
+/**
+ * @exposed Window
+ */
+export namespace ShadowRoot {
+	export interface Prototype extends DocumentFragment.Prototype, DocumentOrShadowRoot {
+		readonly mode: ShadowRootMode;
+		readonly host: Element;
+		onslotchange: EventHandler<this>;
+	}
+
+	export type Interface = Prototype & DocumentFragment.Interface;
+
+	export interface Static extends DocumentFragment.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): ShadowRoot;
+	}
 }

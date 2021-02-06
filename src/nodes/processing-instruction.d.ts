@@ -1,16 +1,26 @@
-/** @Window */
+import type { CharacterData } from './character-data';
+import type { Node } from './node';
 
-import type { CharacterData, CharacterDataConstructor } from './character-data';
-import type { NodeTypes } from './node';
+export interface ProcessingInstruction extends ProcessingInstruction.Interface {}
 
-export interface ProcessingInstruction extends CharacterData {
-	readonly nodeType: NodeTypes['PROCESSING_INSTRUCTION_NODE'];
+/**
+ * @exposed Window
+ */
+export namespace ProcessingInstruction {
+	export interface Prototype extends CharacterData.Prototype {
+		readonly nodeType: Node.NodeTypesLegacyEnum['PROCESSING_INSTRUCTION_NODE'];
 
-	readonly target: string;
-}
+		readonly target: string;
+	}
 
-export interface ProcessingInstructionConstructor extends CharacterDataConstructor {
-	prototype: ProcessingInstruction;
-	/** @abstract */
-	new (): ProcessingInstruction;
+	export type Interface = Prototype & CharacterData.Interface;
+
+	export interface Static extends CharacterData.Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): ProcessingInstruction;
+	}
 }

@@ -1,19 +1,35 @@
-/** @Window */
-
-import type { CharacterData, CharacterDataConstructor } from './character-data';
+import type { CharacterData } from './character-data';
 import type { Slottable } from './mixins';
-import type { NodeTypes } from './node';
+import type { Node } from './node';
 
-export interface Text extends CharacterData, Slottable {
-	readonly nodeType: NodeTypes['CDATA_SECTION_NODE'] | NodeTypes['TEXT_NODE'];
-	readonly nodeName: '#cdata-section' | '#text';
+export interface Text extends Text.Interface<Text.Type.Text> {}
 
-	readonly wholeText: string;
+/**
+ * @exposed Window
+ */
+export namespace Text {
+	export enum Type {
+		CDATASection = '#cdata-section',
+		// eslint-disable-next-line @typescript-eslint/no-shadow
+		Text = '#text',
+	}
 
-	splitText(offset: number): Text;
-}
+	export interface Prototype<T extends Type = Type.Text> extends CharacterData.Prototype, Slottable {
+		readonly nodeType: Node.NodeTypesLegacyEnum[T extends Type.Text ? 'TEXT_NODE' : 'CDATA_SECTION_NODE'];
+		readonly nodeName: T;
 
-export interface TextConstructor extends CharacterDataConstructor {
-	prototype: Text;
-	new (): Text;
+		readonly wholeText: string;
+
+		splitText(offset: number): Text;
+	}
+
+	export type Interface<T extends Type = Type.Text> = Prototype<T> & CharacterData.Interface;
+
+	export interface Static<T extends Type = Type.Text> extends CharacterData.Static {
+		prototype: Prototype<T>;
+	}
+
+	export interface Constructor extends Static {
+		new (): Text;
+	}
 }

@@ -15,7 +15,7 @@ export type ElementSelector<
 export type ElementMap = Merge<HTMLElementMap, Merge<SVGElementMap, AutonomousCustomElementMap>>;
 
 export interface ParentNode {
-	readonly children: HTMLCollection;
+	readonly children: HTMLCollection.NamedIterable;
 	readonly firstElementChild: Element | null;
 	readonly lastElementChild: Element | null;
 	readonly childElementCount: number;
@@ -28,4 +28,12 @@ export interface ParentNode {
 	querySelector<Result extends Element>(selectors: string): Result | null;
 	querySelectorAll<Selector extends string>(selectors: Selector): NodeList<ElementSelector<Selector, ElementMap>>;
 	querySelectorAll<Result extends Element>(selectors: string): NodeList<Result>;
+}
+
+export namespace ParentNode {
+	export interface Unscopables {
+		prepend: true;
+		append: true;
+		replaceChildren: true;
+	}
 }

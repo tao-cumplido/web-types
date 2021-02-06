@@ -6,3 +6,12 @@ export interface ChildNode {
 	replaceWith(...nodes: Array<Node | string>): void;
 	remove(): void;
 }
+
+export namespace ChildNode {
+	export interface Unscopables {
+		before: true;
+		after: true;
+		replaceWith: true;
+		remove: true;
+	}
+}

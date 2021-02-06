@@ -1,17 +1,28 @@
-/** @Window */
-
+import type { IndexedIterable } from '../iterable';
 import type { Element } from './element';
 
-export interface HTMLCollection<Item extends Element = Element> {
-	[index: number]: Item | null;
-	readonly length: number;
-	[Symbol.iterator](): IterableIterator<Item>;
-	item(index: number): Item | null;
-	namedItem(name: string): Item | null;
-}
+export interface HTMLCollection<Item extends Element = Element> extends HTMLCollection.Interface<Item> {}
 
-export interface HTMLCollectionConstructor extends Function {
-	prototype: HTMLCollection;
-	/** @abstract */
-	new (): HTMLCollection;
+/**
+ * @exposed Window
+ */
+export namespace HTMLCollection {
+	export type NamedIterable<T extends Element = Element> = HTMLCollection<T> & Record<string, T>;
+
+	export interface Prototype<Item extends Element = Element> extends IndexedIterable<Item> {
+		readonly length: number;
+		item(index: number): Item | null;
+		namedItem(name: string): Item | null;
+	}
+
+	export type Interface<Item extends Element = Element> = Prototype<Item>;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new <Item extends Element = Element>(): HTMLCollection<Item>;
+	}
 }

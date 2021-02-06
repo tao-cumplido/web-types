@@ -1,19 +1,33 @@
-/** @Window */
+import type { IndexedIterable, KeyValueIterable } from '../iterable';
 
-import type { WebIDLIterable } from '../idl';
+export interface DOMTokenList extends DOMTokenList.Interface {}
 
-export interface DOMTokenList extends WebIDLIterable<number, string> {
-	[index: number]: string | null;
+/**
+ * @exposed Window
+ */
+export namespace DOMTokenList {
+	export interface Prototype extends IndexedIterable<string>, KeyValueIterable<number, string> {
+		readonly length: number;
 
-	readonly length: number;
+		value: string;
 
-	value: string;
+		item(index: number): string | null;
+		contains(token: string): boolean;
+		add(...tokens: string[]): void;
+		remove(...tokens: string[]): void;
+		toggle(token: string, force?: boolean): boolean;
+		replace(token: string, newToken: string): boolean;
+		supports(token: string): boolean;
+	}
 
-	item(index: number): string | null;
-	contains(token: string): boolean;
-	add(...tokens: string[]): void;
-	remove(...tokens: string[]): void;
-	toggle(token: string, force?: boolean): boolean;
-	replace(token: string, newToken: string): boolean;
-	supports(token: string): boolean;
+	export type Interface = Prototype;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new (): DOMTokenList;
+	}
 }
