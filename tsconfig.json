@@ -3,6 +3,9 @@
 	"references": [
 		{
 			"path": "tsconfig.src.json"
+		},
+		{
+			"path": "tsconfig.build.json"
 		}
 	]
 }

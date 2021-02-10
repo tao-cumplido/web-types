@@ -1,9 +1,13 @@
 {
 	"name": "web-types",
+	"version": "0.0.0",
+	"author": "Tao Cumplido",
+	"license": "ISC",
 	"private": "true",
 	"workspaces": {
 		"packages": [
-			"packages/*"
+			"packages/*",
+			"test"
 		]
 	},
 	"volta": {
@@ -11,15 +15,20 @@
 		"yarn": "1.22.10"
 	},
 	"scripts": {
-		"lint": "eslint **/*.{js,ts}"
+		"lint": "eslint **/*.{js,ts}",
+		"build": "rimraf packages && ts-node -P tsconfig.build.json ./build"
 	},
 	"devDependencies": {
+		"@types/node": "14.14.25",
 		"@typescript-eslint/eslint-plugin": "4.14.2",
 		"@typescript-eslint/parser": "4.14.2",
 		"eslint": "7.19.0",
 		"eslint-config-prettier": "7.2.0",
 		"eslint-plugin-style": "0.1.3",
 		"prettier": "2.2.1",
-		"typescript": "4.1.3"
+		"rimraf": "3.0.2",
+		"ts-morph": "9.1.0",
+		"ts-node": "9.1.1",
+		"typescript": "4.1.4"
 	}
 }

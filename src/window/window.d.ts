@@ -4,6 +4,7 @@ export interface Window extends EventTarget, Window.Prototype {}
 
 /**
  * @exposed Window
+ * @global Window
  */
 export namespace Window {
 	export interface Prototype extends EventTarget.Prototype {

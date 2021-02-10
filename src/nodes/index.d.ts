@@ -7,6 +7,7 @@ export { DocumentFragment } from './document-fragment';
 export { DocumentType } from './document-type';
 export { DOMImplementation } from './dom-implementation';
 export { Element, ShadowRootInit } from './element';
+export { HTMLCollection } from './html-collection';
 export * from './mixins';
 export { MutationCallback, MutationObserver, MutationObserverInit } from './mutation-observer';
 export { MutationRecord } from './mutation-record';
