@@ -81,7 +81,7 @@ module.exports = {
 		'no-useless-return': 'error',
 		'no-var': 'error',
 		'no-void': 'error',
-		'no-warning-comments': ['error', { location: 'anywhere' }],
+		'no-warning-comments': ['warn', { location: 'anywhere' }],
 		'object-shorthand': 'error',
 		'one-var': ['error', 'never'],
 		'operator-assignment': 'error',
