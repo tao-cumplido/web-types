@@ -15,7 +15,7 @@ export type ElementSelector<
 export type ElementMap = Merge<HTMLElementMap, Merge<SVGElementMap, AutonomousCustomElementMap>>;
 
 export interface ParentNode {
-	readonly children: HTMLCollection.NamedIterable;
+	readonly children: HTMLCollection.LegacyUnenumerableNamedProperties;
 	readonly firstElementChild: Element | null;
 	readonly lastElementChild: Element | null;
 	readonly childElementCount: number;

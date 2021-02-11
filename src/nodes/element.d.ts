@@ -53,7 +53,7 @@ export namespace Element {
 		/** @putForwards {value} */
 		readonly classList: DOMTokenList;
 
-		readonly attributes: NamedNodeMap.NamedIterable<this>;
+		readonly attributes: NamedNodeMap.LegacyUnenumerableNamedProperties<this>;
 
 		readonly shadowRoot: ShadowRoot | null;
 

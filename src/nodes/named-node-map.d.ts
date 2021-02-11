@@ -8,7 +8,8 @@ export interface NamedNodeMap<Owner extends Element | null = Element | null> ext
  * @exposed Window
  */
 export namespace NamedNodeMap {
-	export type NamedIterable<T extends Element | null = Element | null> = NamedNodeMap<T> & Record<string, T>;
+	export type LegacyUnenumerableNamedProperties<T extends Element | null = Element | null> = NamedNodeMap<T> &
+		Record<string, T>;
 
 	export interface Prototype<Owner extends Element | null = Element | null> extends IndexedIterable<Owner> {
 		readonly length: number;

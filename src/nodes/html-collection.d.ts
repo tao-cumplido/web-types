@@ -7,7 +7,7 @@ export interface HTMLCollection<Item extends Element = Element> extends HTMLColl
  * @exposed Window
  */
 export namespace HTMLCollection {
-	export type NamedIterable<T extends Element = Element> = HTMLCollection<T> & Record<string, T>;
+	export type LegacyUnenumerableNamedProperties<T extends Element = Element> = HTMLCollection<T> & Record<string, T>;
 
 	export interface Prototype<Item extends Element = Element> extends IndexedIterable<Item> {
 		readonly length: number;
@@ -17,8 +17,8 @@ export namespace HTMLCollection {
 
 	export type Interface<Item extends Element = Element> = Prototype<Item>;
 
-	export interface Static {
-		prototype: Prototype;
+	export interface Static<Item extends Element = Element> {
+		prototype: Prototype<Item>;
 	}
 
 	export interface Constructor extends Static {

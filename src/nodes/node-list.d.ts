@@ -14,8 +14,8 @@ export namespace NodeList {
 
 	export type Interface<Item extends Node = Node> = Prototype<Item>;
 
-	export interface Static {
-		prototype: NodeList;
+	export interface Static<Item extends Node = Node> {
+		prototype: Prototype<Item>;
 	}
 
 	export interface Constructor extends Static {

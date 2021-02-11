@@ -1,4 +1,4 @@
-import type { Element } from '../nodes';
+import type { Element } from '../../nodes';
 
 export interface HTMLElement extends HTMLElement.Interface {}
 
