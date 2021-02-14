@@ -1,5 +1,5 @@
+import type { Slottable } from '../mixins';
 import type { CharacterData } from './character-data';
-import type { Slottable } from './mixins';
 import type { Node } from './node';
 
 export interface Text extends Text.Interface<Text.Type.Text> {}

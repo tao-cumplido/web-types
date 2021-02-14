@@ -1,5 +1,5 @@
+import type { NonElementParentNode, ParentNode } from '../mixins';
 import type { Document } from './document';
-import type { NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 
 export interface DocumentFragment extends DocumentFragment.Interface {}

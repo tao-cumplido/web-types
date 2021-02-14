@@ -4,7 +4,6 @@ export {
 	CustomEvent,
 	CustomEventInit,
 	Event,
-	EventHandler,
 	EventInit,
 	EventListener,
 	EventListenerOptions,
@@ -23,12 +22,10 @@ export {
 	Attr,
 	CDATASection,
 	CharacterData,
-	ChildNode,
 	Comment,
 	CreateEventMap,
 	Document,
 	DocumentFragment,
-	DocumentOrShadowRoot,
 	DocumentType,
 	DOMImplementation,
 	Element,
@@ -42,14 +39,10 @@ export {
 	NamedNodeMap,
 	Node,
 	NodeList,
-	NonDocumentTypeChildNode,
-	NonElementParentNode,
-	ParentNode,
 	ProcessingInstruction,
 	ShadowRoot,
 	ShadowRootInit,
 	ShadowRootMode,
-	Slottable,
 	Text,
 	XMLDocument,
 } from './nodes';
@@ -57,5 +50,4 @@ export { AbstractRange, Range, StaticRange } from './ranges';
 export { DOMTokenList } from './sets';
 export { SVGElement, SVGElementMap, SVGGraphicsElement, SVGSVGElement } from './svg';
 export { NodeFilter, NodeIterator, TreeWalker } from './traversal';
-export { Window } from './window';
 export { XPathEvaluator, XPathEvaluatorBase, XPathExpression, XPathNSResolver, XPathResult } from './xpath';

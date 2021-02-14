@@ -1,7 +1,7 @@
-import type { EventHandler } from '../event';
+import type { EventHandler } from '../html';
+import type { DocumentOrShadowRoot } from '../mixins';
 import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
-import type { DocumentOrShadowRoot } from './mixins';
 
 export type ShadowRootMode = 'open' | 'closed';
 

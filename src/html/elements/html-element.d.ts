@@ -1,9 +1,37 @@
+import type { ElementContentEditable } from '../../mixins';
+import type { HTMLOrSVGElement } from '../../mixins/html-or-svg-element';
 import type { Element } from '../../nodes';
+import type { DocumentAndElementEventHandlers, GlobalEventHandlers } from '../web-application-apis';
+import type { ElementInternals } from './element-internals';
 
 export interface HTMLElement extends HTMLElement.Interface {}
 
 export namespace HTMLElement {
-	export interface Prototype extends Element.Prototype {}
+	export interface Prototype
+		extends Element.Prototype,
+			GlobalEventHandlers,
+			DocumentAndElementEventHandlers,
+			ElementContentEditable,
+			HTMLOrSVGElement {
+		readonly accessKeyLabel: string;
+
+		title: string;
+		lang: string;
+		translate: boolean;
+		dir: '' | 'ltr' | 'rtl' | 'auto';
+
+		hidden: boolean;
+		accessKey: string;
+		draggable: boolean;
+		spellcheck: boolean;
+		autocapitalize: string;
+
+		innerText: string;
+
+		click(): void;
+
+		attachInternals(): ElementInternals;
+	}
 
 	export type Interface = Prototype & Element.Interface;
 

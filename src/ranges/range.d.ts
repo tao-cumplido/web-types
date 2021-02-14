@@ -1,5 +1,6 @@
 import type { ValueOf } from '../@types';
-import type { ChildNode, DocumentFragment, Node } from '../nodes';
+import type { ChildNode } from '../mixins';
+import type { DocumentFragment, Node } from '../nodes';
 import type { AbstractRange } from './abstract-range';
 
 export interface Range extends Range.Interface {}

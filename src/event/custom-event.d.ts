@@ -1,4 +1,5 @@
 import type { Event, EventInit } from './event';
+import type { EventTarget } from './event-target';
 
 export interface CustomEventInit<Detail> extends EventInit {
 	detail?: Detail;
@@ -6,7 +7,7 @@ export interface CustomEventInit<Detail> extends EventInit {
 
 // prettier-ignore
 export interface CustomEvent<
-	CurrentTarget extends Event.Target = Event.Target,
+	CurrentTarget extends EventTarget = EventTarget,
 	Detail = unknown
 > extends
 CustomEvent.Interface<CurrentTarget, Detail> {}
@@ -18,7 +19,7 @@ CustomEvent.Interface<CurrentTarget, Detail> {}
 export namespace CustomEvent {
 	export interface Prototype<
 		// prettier-ignore
-		CurrentTarget extends Event.Target = Event.Target,
+		CurrentTarget extends EventTarget = EventTarget,
 		Detail = unknown
 	> extends Event.Prototype<CurrentTarget> {
 		readonly detail: Detail;
@@ -29,7 +30,7 @@ export namespace CustomEvent {
 
 	export type Interface<
 		// prettier-ignore
-		CurrentTarget extends Event.Target = Event.Target,
+		CurrentTarget extends EventTarget = EventTarget,
 		Detail = unknown
 	> = Prototype<CurrentTarget, Detail> & Event.Interface<CurrentTarget>;
 
@@ -38,7 +39,7 @@ export namespace CustomEvent {
 	}
 
 	export interface Constructor extends Static {
-		new <CurrentTarget extends Event.Target = Event.Target, Detail = unknown>(
+		new <CurrentTarget extends EventTarget = EventTarget, Detail = unknown>(
 			type: string,
 			eventInitDict?: CustomEventInit<Detail>,
 		): CustomEvent<CurrentTarget, Detail>;

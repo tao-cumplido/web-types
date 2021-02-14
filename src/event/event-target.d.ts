@@ -1,15 +1,12 @@
 import type { AbortSignal } from '../abort';
+import type { EventHandler } from '../html';
 import type { Event } from './event';
 
-export type EventHandler<
-	CurrentTarget extends Event.Target = Event.Target,
-	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
-> = (this: CurrentTarget, event: AbstractEvent) => void;
-
 export type EventListener<
-	CurrentTarget extends Event.Target = Event.Target,
-	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
-> = EventHandler<CurrentTarget, AbstractEvent> | { handleEvent: EventHandler<CurrentTarget, AbstractEvent> };
+	CurrentTarget extends EventTarget = EventTarget,
+	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>,
+	Handler extends EventHandler<CurrentTarget, AbstractEvent> = EventHandler<CurrentTarget, AbstractEvent>
+> = Handler | { handleEvent: Handler };
 
 export interface EventListenerOptions {
 	capture?: boolean;
@@ -40,7 +37,7 @@ export namespace EventTarget {
 	}[keyof T];
 
 	type HandlerToListener<T> = NonNullable<T> extends EventHandler<infer CurrentTarget, infer AbstractEvent>
-		? EventListener<CurrentTarget, AbstractEvent>
+		? EventListener<CurrentTarget, AbstractEvent, NonNullable<T>>
 		: never;
 
 	export interface Prototype {

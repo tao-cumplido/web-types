@@ -1,5 +1,5 @@
+import type { ChildNode } from '../mixins';
 import type { Document } from './document';
-import type { ChildNode } from './mixins';
 import type { Node } from './node';
 
 export interface DocumentType extends DocumentType.Interface {}

@@ -1,4 +1,5 @@
-import type { EventHandler, EventTarget } from '../event';
+import type { EventTarget } from '../event';
+import type { EventHandler } from '../html';
 
 export interface AbortSignal extends AbortSignal.Interface {}
 

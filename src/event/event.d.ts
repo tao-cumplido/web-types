@@ -7,7 +7,7 @@ export interface EventInit {
 	composed?: boolean;
 }
 
-export interface Event<CurrentTarget extends Event.Target = Event.Target> extends Event.Interface<CurrentTarget> {}
+export interface Event<CurrentTarget extends EventTarget = EventTarget> extends Event.Interface<CurrentTarget> {}
 
 /**
  * @exposed Window
@@ -15,8 +15,6 @@ export interface Event<CurrentTarget extends Event.Target = Event.Target> extend
  * @exposed AudioWorklet
  */
 export namespace Event {
-	export type Target = EventTarget | null;
-
 	export interface PhasesLegacyEnum {
 		readonly NONE: 0;
 		readonly CAPTURING_PHASE: 1;
@@ -24,11 +22,11 @@ export namespace Event {
 		readonly BUBBLING_PHASE: 3;
 	}
 
-	export interface Prototype<CurrentTarget extends Target = Target> extends PhasesLegacyEnum {
+	export interface Prototype<CurrentTarget extends EventTarget = EventTarget> extends PhasesLegacyEnum {
 		readonly type: string;
-		readonly target: Target;
+		readonly target: EventTarget | null;
 		readonly eventPhase: ValueOf<PhasesLegacyEnum>;
-		readonly currentTarget: CurrentTarget;
+		readonly currentTarget: CurrentTarget | null;
 		readonly bubbles: boolean;
 		readonly cancelable: boolean;
 		readonly defaultPrevented: boolean;
@@ -36,7 +34,7 @@ export namespace Event {
 		readonly timeStamp: number;
 
 		/** @deprecated */
-		readonly srcElement: Target;
+		readonly srcElement: EventTarget | null;
 		/** @deprecated */
 		readonly returnValue: boolean;
 		/** @deprecated */
@@ -51,7 +49,7 @@ export namespace Event {
 		initEvent(type: string, bubbles?: boolean, cancelable?: boolean): void;
 	}
 
-	export type Interface<CurrentTarget extends Target = Target> = Prototype<CurrentTarget> & {
+	export type Interface<CurrentTarget extends EventTarget = EventTarget> = Prototype<CurrentTarget> & {
 		readonly isTrusted: boolean;
 	};
 
@@ -60,6 +58,6 @@ export namespace Event {
 	}
 
 	export interface Constructor extends Static {
-		new <CurrentTarget extends Target = Target>(type: string, eventInitDict?: EventInit): Event<CurrentTarget>;
+		new <CurrentTarget extends EventTarget = EventTarget>(type: string, eventInitDict?: EventInit): Event<CurrentTarget>;
 	}
 }

@@ -3,11 +3,32 @@ import type { CustomEvent, Event } from '../event';
 import type {
 	AutonomousCustomElementMap,
 	CustomizedBuiltInElementMap,
+	DocumentAndElementEventHandlers,
+	EventHandler,
+	GlobalEventHandlers,
+	HTMLAnchorElement,
+	HTMLAreaElement,
+	HTMLBodyElement,
 	HTMLElementMap,
+	HTMLEmbedElement,
+	HTMLFormElement,
+	HTMLFrameSetElement,
+	HTMLHeadElement,
+	HTMLImageElement,
+	HTMLScriptElement,
 	HTMLUnknownElement,
+	Location,
 } from '../html';
+import type { Window } from '../html/browser/window';
+import type {
+	DocumentOrElement,
+	DocumentOrShadowRoot,
+	ElementSelector,
+	NonElementParentNode,
+	ParentNode,
+} from '../mixins';
 import type { Range } from '../ranges';
-import type { SVGElement, SVGElementMap } from '../svg';
+import type { SVGElement, SVGElementMap, SVGScriptElement } from '../svg';
 import type { NodeFilter, NodeIterator, TreeWalker } from '../traversal';
 import type { XPathEvaluatorBase } from '../xpath';
 import type { Attr } from './attr';
@@ -17,14 +38,9 @@ import type { DocumentFragment } from './document-fragment';
 import type { DocumentType } from './document-type';
 import type { DOMImplementation } from './dom-implementation';
 import type { Element } from './element';
-import type {
-	DocumentOrElement,
-	DocumentOrShadowRoot,
-	ElementSelector,
-	NonElementParentNode,
-	ParentNode,
-} from './mixins';
+import type { HTMLCollection } from './html-collection';
 import type { Node } from './node';
+import type { NodeList } from './node-list';
 import type { ProcessingInstruction } from './processing-instruction';
 import type { ShadowRoot } from './shadow-root';
 import type { Text } from './text';
@@ -32,6 +48,8 @@ import type { Text } from './text';
 export interface ElementCreationOptions<Is extends string = string> {
 	is?: Is;
 }
+
+export type DocumentReadyState = 'loading' | 'interactive' | 'complete';
 
 // TODO: use correct event interfaces
 export interface CreateEventMap {
@@ -58,7 +76,7 @@ export interface CreateEventMap {
 	uievents: Event;
 }
 
-export interface Document extends Document.Interface<Document.Type.HTML> {}
+export interface Document<Type extends Document.Type = Document.Type.HTML> extends Document.Interface<Type> {}
 
 /**
  * @exposed Window
@@ -77,13 +95,19 @@ export namespace Document {
 		XML = 'xml',
 	}
 
+	// TODO: add named elements https://html.spec.whatwg.org/multipage/dom.html#dom-document-nameditem-filter
+	export type NamedElements<T extends Type = Type.HTML> = Document<T> &
+		Record<string, HTMLEmbedElement | HTMLFormElement | HTMLImageElement>;
+
 	export interface Prototype<T extends Type = Type.HTML>
 		extends Node.Prototype,
 			NonElementParentNode,
 			DocumentOrShadowRoot,
 			ParentNode,
 			DocumentOrElement,
-			XPathEvaluatorBase {
+			XPathEvaluatorBase,
+			GlobalEventHandlers,
+			DocumentAndElementEventHandlers {
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
 		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_NODE'];
@@ -106,10 +130,36 @@ export namespace Document {
 		readonly docType: DocumentType | null;
 		readonly documentElement: Element | null;
 
+		readonly referrer: string;
+		readonly lastModified: string;
+		readonly readyState: DocumentReadyState;
+
+		readonly head: HTMLHeadElement | null;
+		readonly images: HTMLCollection<HTMLImageElement>;
+		readonly embeds: HTMLCollection<HTMLEmbedElement>;
+		readonly plugins: HTMLCollection<HTMLEmbedElement>;
+		readonly links: HTMLCollection<HTMLAnchorElement | HTMLAreaElement>;
+		readonly forms: HTMLCollection<HTMLFormElement>;
+		readonly scripts: HTMLCollection<HTMLScriptElement>;
+		readonly currentScript: HTMLScriptElement | SVGScriptElement | null;
+
+		readonly defaultView: Window.WindowProxy | null;
+
 		/** @deprecated legacy alias of .characterSet */
 		readonly charset: string;
 		/** @deprecated legacy alias of .characterSet */
 		readonly inputEncoding: string;
+
+		domain: string;
+		cookie: string;
+
+		title: string;
+		dir: '' | 'ltr' | 'rtl' | 'auto';
+		body: HTMLBodyElement | HTMLFrameSetElement | null;
+
+		designMode: string;
+
+		onreadystatechange: EventHandler<this> | null;
 
 		createElement<Tag extends string, Is extends string>(
 			localName: Tag,
@@ -172,9 +222,30 @@ export namespace Document {
 
 		createNodeIterator(root: Node, whatToShow?: number, filter?: NodeFilter.Interface | null): NodeIterator;
 		createTreeWalker(root: Node, whatToShow?: number, filter?: NodeFilter.Interface | null): TreeWalker;
+
+		getElementsByName(elementName: string): NodeList<Element>;
+
+		open(url: string, name: string, features: string): Window.WindowProxy | null;
+		/** @deprecated */
+		open(unused1: string, unused2?: string): Document;
+		open(): Document;
+		close(): void;
+		write(...text: string[]): void;
+		writeln(...text: string[]): void;
+
+		hasFocus(): boolean;
+		execCommand(commandId: string, showUI?: boolean, value?: string): boolean;
+		queryCommandEnabled(commandId: string): boolean;
+		queryCommandIndeterm(commandId: string): boolean;
+		queryCommandState(commandId: string): boolean;
+		queryCommandSupported(commandId: string): boolean;
+		queryCommandValue(commandId: string): string;
 	}
 
-	export type Interface<T extends Type> = Prototype<T>;
+	export type Interface<T extends Type> = Prototype<T> & {
+		/** @putForwards href */
+		readonly location: Location | null;
+	};
 
 	export interface Static<T extends Type = Type.HTML> extends Node.Static {
 		prototype: Prototype<T>;
@@ -196,7 +267,13 @@ export namespace XMLDocument {
 		createCDATASection(data: string): CDATASection;
 	}
 
-	export type Interface = Prototype & Document.Interface<Document.Type.XML>;
+	export type Interface = Prototype &
+		Document.Interface<Document.Type.XML> & {
+			/** @deprecated */
+			open(unused1: string, unused2?: string): never;
+			/** @deprecated */
+			open(): never;
+		};
 
 	export interface Static extends Document.Static<Document.Type.XML> {
 		prototype: Prototype;

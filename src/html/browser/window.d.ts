@@ -1,4 +1,4 @@
-import type { Event, EventTarget } from '../event';
+import type { Event, EventTarget } from '../../event';
 
 export interface Window extends EventTarget, Window.Prototype {}
 
@@ -7,6 +7,8 @@ export interface Window extends EventTarget, Window.Prototype {}
  * @global Window
  */
 export namespace Window {
+	export type WindowProxy = Window;
+
 	export interface Prototype extends EventTarget.Prototype {
 		/** @deprecated */
 		readonly event?: Event;

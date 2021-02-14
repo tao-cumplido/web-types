@@ -1,4 +1,4 @@
-import type { Element } from '../element';
+import type { Element } from '../nodes';
 
 export interface NonDocumentTypeChildNode {
 	readonly previousElementSibling: Element | null;

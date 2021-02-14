@@ -1,4 +1,4 @@
-import type { Node } from '../node';
+import type { Node } from '../nodes';
 
 export interface ChildNode {
 	before(...nodes: Array<Node | string>): void;

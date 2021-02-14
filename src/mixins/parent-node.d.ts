@@ -1,10 +1,7 @@
-import type { Merge } from '../../@types';
-import type { AutonomousCustomElementMap, HTMLElementMap } from '../../html';
-import type { SVGElementMap } from '../../svg';
-import type { Element } from '../element';
-import type { HTMLCollection } from '../html-collection';
-import type { Node } from '../node';
-import type { NodeList } from '../node-list';
+import type { Merge } from '../@types';
+import type { AutonomousCustomElementMap, HTMLElementMap } from '../html';
+import type { Element, HTMLCollection, Node, NodeList } from '../nodes';
+import type { SVGElementMap } from '../svg';
 
 export type ElementSelector<
 	Selector extends string,

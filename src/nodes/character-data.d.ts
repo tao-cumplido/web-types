@@ -1,5 +1,5 @@
 import type { ValueOf } from '../@types';
-import type { ChildNode, NonDocumentTypeChildNode } from './mixins';
+import type { ChildNode, NonDocumentTypeChildNode } from '../mixins';
 import type { LeafNode, Node } from './node';
 
 export interface CharacterData extends CharacterData.Interface {}

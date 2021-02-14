@@ -1,6 +1,3 @@
-import type { DOMTokenList } from '../sets';
-import type { Attr } from './attr';
-import type { Document } from './document';
 import type {
 	ChildNode,
 	DocumentOrElement,
@@ -9,7 +6,10 @@ import type {
 	NonDocumentTypeChildNode,
 	ParentNode,
 	Slottable,
-} from './mixins';
+} from '../mixins';
+import type { DOMTokenList } from '../sets';
+import type { Attr } from './attr';
+import type { Document } from './document';
 import type { NamedNodeMap } from './named-node-map';
 import type { Node } from './node';
 import type { ShadowRoot, ShadowRootMode } from './shadow-root';
@@ -50,7 +50,7 @@ export namespace Element {
 		readonly localName: string;
 		readonly tagName: string;
 
-		/** @putForwards {value} */
+		/** @putForwards value */
 		readonly classList: DOMTokenList;
 
 		readonly attributes: NamedNodeMap.LegacyUnenumerableNamedProperties<this>;

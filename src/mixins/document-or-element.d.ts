@@ -1,8 +1,7 @@
-import type { Merge } from '../../@types';
-import type { HTMLElement, HTMLElementMap } from '../../html';
-import type { SVGElement, SVGElementMap } from '../../svg';
-import type { Element } from '../element';
-import type { HTMLCollection } from '../html-collection';
+import type { Merge } from '../@types';
+import type { HTMLElement, HTMLElementMap } from '../html';
+import type { Element, HTMLCollection } from '../nodes';
+import type { SVGElement, SVGElementMap } from '../svg';
 import type { ElementSelector } from './parent-node';
 
 /** non-standard */
