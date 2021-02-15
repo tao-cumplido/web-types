@@ -1,12 +1,6 @@
 import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
-export interface EventInit {
-	bubbles?: boolean;
-	cancelable?: boolean;
-	composed?: boolean;
-}
-
 export interface Event<CurrentTarget extends EventTarget = EventTarget> extends Event.Interface<CurrentTarget> {}
 
 /**
@@ -15,6 +9,33 @@ export interface Event<CurrentTarget extends EventTarget = EventTarget> extends 
  * @exposed AudioWorklet
  */
 export namespace Event {
+	export type Handler<
+		CurrentTarget extends EventTarget = EventTarget,
+		AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
+	> = (this: CurrentTarget, event: AbstractEvent) => unknown;
+
+	export namespace Handler {
+		export type OnError<CurrentTarget extends EventTarget = EventTarget> = (
+			this: CurrentTarget,
+			event: Event<CurrentTarget> | string,
+			source?: string,
+			lineno?: number,
+			colno?: number,
+			error?: Error,
+		) => unknown;
+
+		export type OnBeforeUnload<CurrentTarget extends EventTarget = EventTarget> = (
+			this: CurrentTarget,
+			event: Event<CurrentTarget>,
+		) => string | null;
+	}
+
+	export interface Init {
+		bubbles?: boolean;
+		cancelable?: boolean;
+		composed?: boolean;
+	}
+
 	export interface PhasesLegacyEnum {
 		readonly NONE: 0;
 		readonly CAPTURING_PHASE: 1;
@@ -58,6 +79,6 @@ export namespace Event {
 	}
 
 	export interface Constructor extends Static {
-		new <CurrentTarget extends EventTarget = EventTarget>(type: string, eventInitDict?: EventInit): Event<CurrentTarget>;
+		new (type: string, eventInitDict?: Init): Event;
 	}
 }

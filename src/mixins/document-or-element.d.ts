@@ -1,14 +1,17 @@
 import type { Merge } from '../@types';
+import type { HTMLCollection } from '../collections';
+import type { Element } from '../dom';
 import type { HTMLElement, HTMLElementMap } from '../html';
-import type { Element, HTMLCollection } from '../nodes';
 import type { SVGElement, SVGElementMap } from '../svg';
-import type { ElementSelector } from './parent-node';
+import type { ParentNode } from './parent-node';
 
 /** non-standard */
 export interface DocumentOrElement {
 	getElementsByTagName<Tag extends string>(
 		qualifiedName: Tag,
-	): HTMLCollection.LegacyUnenumerableNamedProperties<ElementSelector<Tag, Merge<HTMLElementMap, SVGElementMap>>>;
+	): HTMLCollection.LegacyUnenumerableNamedProperties<
+		ParentNode.ElementLookup<Tag, Merge<HTMLElementMap, SVGElementMap>>
+	>;
 
 	getElementsByTagName<Result extends Element>(
 		qualifiedName: string,
@@ -17,7 +20,7 @@ export interface DocumentOrElement {
 	getElementsByTagNameNS<Tag extends string>(
 		namespace: 'http://www.w3.org/1999/xhtml',
 		localName: Tag,
-	): HTMLCollection.LegacyUnenumerableNamedProperties<ElementSelector<Tag, HTMLElementMap, HTMLElement>>;
+	): HTMLCollection.LegacyUnenumerableNamedProperties<ParentNode.ElementLookup<Tag, HTMLElementMap, HTMLElement>>;
 
 	getElementsByTagNameNS<Result extends HTMLElement>(
 		namespace: 'http://www.w3.org/1999/xhtml',
@@ -27,7 +30,7 @@ export interface DocumentOrElement {
 	getElementsByTagNameNS<Tag extends string>(
 		namespace: 'http://www.w3.org/2000/svg',
 		localName: Tag,
-	): HTMLCollection.LegacyUnenumerableNamedProperties<ElementSelector<Tag, SVGElementMap, SVGElement>>;
+	): HTMLCollection.LegacyUnenumerableNamedProperties<ParentNode.ElementLookup<Tag, SVGElementMap, SVGElement>>;
 
 	getElementsByTagNameNS<Result extends SVGElement>(
 		namespace: 'http://www.w3.org/2000/svg',

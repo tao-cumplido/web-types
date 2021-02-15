@@ -1,2 +1,2 @@
-export { AbortController } from './abort-controller';
-export { AbortSignal } from './abort-signal';
+export * from './abort-controller';
+export * from './abort-signal';

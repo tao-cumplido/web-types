@@ -2,7 +2,7 @@
 
 export interface SVGElementMap {}
 
-export { SVGElement } from './svg-element';
-export { SVGGraphicsElement } from './svg-graphics-element';
-export { SVGScriptElement } from './svg-script-element';
-export { SVGSVGElement } from './svg-svg-element';
+export * from './svg-element';
+export * from './svg-graphics-element';
+export * from './svg-script-element';
+export * from './svg-svg-element';

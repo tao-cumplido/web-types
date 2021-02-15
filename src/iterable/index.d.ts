@@ -1,2 +1,2 @@
-export { IndexedIterable } from './indexed-iterable';
-export { KeyValueIterable } from './key-value-iterable';
+export * from './indexed-iterable';
+export * from './key-value-iterable';

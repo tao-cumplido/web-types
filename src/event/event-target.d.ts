@@ -1,22 +1,5 @@
 import type { AbortSignal } from '../abort';
-import type { EventHandler } from '../html';
 import type { Event } from './event';
-
-export type EventListener<
-	CurrentTarget extends EventTarget = EventTarget,
-	AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>,
-	Handler extends EventHandler<CurrentTarget, AbstractEvent> = EventHandler<CurrentTarget, AbstractEvent>
-> = Handler | { handleEvent: Handler };
-
-export interface EventListenerOptions {
-	capture?: boolean;
-}
-
-export interface AddEventListenerOptions extends EventListenerOptions {
-	passive?: boolean;
-	once?: boolean;
-	signal?: AbortSignal | null;
-}
 
 export interface EventTarget extends EventTarget.Interface {}
 
@@ -29,16 +12,32 @@ export namespace EventTarget {
 	type ExtractEvents<T extends EventTarget> = {
 		[P in keyof T]: P extends `on${infer K}`
 			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends EventHandler<T>
+				? NonNullable<T[P]> extends Event.Handler<T>
 					? K
 					: never
 				: never
 			: never;
 	}[keyof T];
 
-	type HandlerToListener<T> = NonNullable<T> extends EventHandler<infer CurrentTarget, infer AbstractEvent>
+	type HandlerToListener<T> = NonNullable<T> extends Event.Handler<infer CurrentTarget, infer AbstractEvent>
 		? EventListener<CurrentTarget, AbstractEvent, NonNullable<T>>
 		: never;
+
+	export type EventListener<
+		CurrentTarget extends EventTarget = EventTarget,
+		AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>,
+		Handler extends Event.Handler<CurrentTarget, AbstractEvent> = Event.Handler<CurrentTarget, AbstractEvent>
+	> = Handler | { handleEvent: Handler };
+
+	export interface EventListenerOptions {
+		capture?: boolean;
+	}
+
+	export interface AddEventListenerOptions extends EventListenerOptions {
+		passive?: boolean;
+		once?: boolean;
+		signal?: AbortSignal | null;
+	}
 
 	export interface Prototype {
 		addEventListener<E extends ExtractEvents<this>>(
@@ -57,7 +56,7 @@ export namespace EventTarget {
 
 		removeEventListener(type: string, callback?: EventListener<this>, options?: EventListenerOptions | boolean): void;
 
-		dispatchEvent(event: Event<this>): boolean;
+		dispatchEvent(event: Event): boolean;
 	}
 
 	export type Interface = Prototype;

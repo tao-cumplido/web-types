@@ -1,18 +1,18 @@
 import type { Event, EventTarget } from '../event';
 
-export interface AbortSignal extends AbortSignal.Interface {}
+export interface Window extends EventTarget, Window.Prototype {}
 
 /**
  * @exposed Window
- * @exposed Worker
+ * @global Window
  */
-export namespace AbortSignal {
-	export interface Prototype extends EventTarget.Prototype {
-		readonly aborted: boolean;
-		onabort: Event.Handler<this> | null;
-	}
+export namespace Window {
+	export type WindowProxy = Window;
 
-	export type Interface = Prototype & EventTarget.Interface;
+	export interface Prototype extends EventTarget.Prototype {
+		/** @deprecated */
+		readonly event?: Event;
+	}
 
 	export interface Static {
 		prototype: Prototype;

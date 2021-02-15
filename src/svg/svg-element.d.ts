@@ -1,4 +1,4 @@
-import type { Element } from '../nodes';
+import type { Element } from '../dom';
 
 export interface SVGElement extends SVGElement.Interface {}
 
