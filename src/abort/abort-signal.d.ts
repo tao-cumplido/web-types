@@ -9,7 +9,7 @@ export interface AbortSignal extends AbortSignal.Interface {}
 export namespace AbortSignal {
 	export interface Prototype extends EventTarget.Prototype {
 		readonly aborted: boolean;
-		onabort: Event.Handler<this> | null;
+		onabort: Event.Handler | null;
 	}
 
 	export type Interface = Prototype & EventTarget.Interface;

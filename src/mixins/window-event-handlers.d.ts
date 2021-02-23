@@ -1,21 +1,21 @@
-import type { Event, EventTarget } from '../event';
+import type { Event } from '../event';
 
 // TODO: add concrete events where appropriate
-export interface WindowEventHandlers extends EventTarget.Prototype {
-	onafterprint: Event.Handler<this> | null;
-	onbeforeprint: Event.Handler<this> | null;
-	onbeforeunload: Event.Handler.OnBeforeUnload<this> | null;
-	onhashchange: Event.Handler<this> | null;
-	onlanguagechange: Event.Handler<this> | null;
-	onmessage: Event.Handler<this> | null;
-	onmessageerror: Event.Handler<this> | null;
-	onoffline: Event.Handler<this> | null;
-	ononline: Event.Handler<this> | null;
-	onpagehide: Event.Handler<this> | null;
-	onpageshow: Event.Handler<this> | null;
-	onpopstate: Event.Handler<this> | null;
-	onrejectionhandled: Event.Handler<this> | null;
-	onstorage: Event.Handler<this> | null;
-	onunhandledrejection: Event.Handler<this> | null;
-	onunload: Event.Handler<this> | null;
+export interface WindowEventHandlers {
+	onafterprint: Event.Handler | null;
+	onbeforeprint: Event.Handler | null;
+	onbeforeunload: Event.Handler.OnBeforeUnload | null;
+	onhashchange: Event.Handler | null;
+	onlanguagechange: Event.Handler | null;
+	onmessage: Event.Handler | null;
+	onmessageerror: Event.Handler | null;
+	onoffline: Event.Handler | null;
+	ononline: Event.Handler | null;
+	onpagehide: Event.Handler | null;
+	onpageshow: Event.Handler | null;
+	onpopstate: Event.Handler | null;
+	onrejectionhandled: Event.Handler | null;
+	onstorage: Event.Handler | null;
+	onunhandledrejection: Event.Handler | null;
+	onunload: Event.Handler | null;
 }

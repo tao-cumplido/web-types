@@ -2,6 +2,9 @@ import type { HTMLElement } from './html-element';
 
 export interface HTMLHtmlElement extends HTMLHtmlElement.Interface {}
 
+/**
+ * @exposed Window
+ */
 export namespace HTMLHtmlElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

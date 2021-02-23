@@ -8,6 +8,7 @@ import type {
 	HTMLAnchorElement,
 	HTMLAreaElement,
 	HTMLBodyElement,
+	HTMLElement,
 	HTMLElementMap,
 	HTMLEmbedElement,
 	HTMLFormElement,
@@ -135,7 +136,7 @@ export namespace Document {
 		readonly embeds: HTMLCollection<HTMLEmbedElement>;
 		readonly plugins: HTMLCollection<HTMLEmbedElement>;
 		readonly links: HTMLCollection<HTMLAnchorElement | HTMLAreaElement>;
-		readonly forms: HTMLCollection<HTMLFormElement>;
+		readonly forms: HTMLCollection<HTMLFormElement.LegacyUnenumerableNamedProperties>;
 		readonly scripts: HTMLCollection<HTMLScriptElement>;
 		readonly currentScript: HTMLScriptElement | SVGScriptElement | null;
 
@@ -150,12 +151,12 @@ export namespace Document {
 		cookie: string;
 
 		title: string;
-		dir: '' | 'ltr' | 'rtl' | 'auto';
+		dir: HTMLElement.Directionality;
 		body: HTMLBodyElement | HTMLFrameSetElement | null;
 
 		designMode: string;
 
-		onreadystatechange: Event.Handler<this> | null;
+		onreadystatechange: Event.Handler | null;
 
 		createElement<Tag extends string, Is extends string>(
 			localName: Tag,

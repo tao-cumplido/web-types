@@ -1,7 +1,7 @@
 import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
-export interface Event<CurrentTarget extends EventTarget = EventTarget> extends Event.Interface<CurrentTarget> {}
+export interface Event extends Event.Interface {}
 
 /**
  * @exposed Window
@@ -9,25 +9,18 @@ export interface Event<CurrentTarget extends EventTarget = EventTarget> extends 
  * @exposed AudioWorklet
  */
 export namespace Event {
-	export type Handler<
-		CurrentTarget extends EventTarget = EventTarget,
-		AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>
-	> = (this: CurrentTarget, event: AbstractEvent) => unknown;
+	export type Handler<AbstractEvent extends Event = Event> = (event: AbstractEvent) => unknown;
 
 	export namespace Handler {
-		export type OnError<CurrentTarget extends EventTarget = EventTarget> = (
-			this: CurrentTarget,
-			event: Event<CurrentTarget> | string,
+		export type OnError = (
+			event: Event | string,
 			source?: string,
 			lineno?: number,
 			colno?: number,
 			error?: Error,
 		) => unknown;
 
-		export type OnBeforeUnload<CurrentTarget extends EventTarget = EventTarget> = (
-			this: CurrentTarget,
-			event: Event<CurrentTarget>,
-		) => string | null;
+		export type OnBeforeUnload = (event: Event) => string | null;
 	}
 
 	export interface Init {
@@ -43,11 +36,11 @@ export namespace Event {
 		readonly BUBBLING_PHASE: 3;
 	}
 
-	export interface Prototype<CurrentTarget extends EventTarget = EventTarget> extends PhasesLegacyEnum {
+	export interface Prototype extends PhasesLegacyEnum {
 		readonly type: string;
 		readonly target: EventTarget | null;
 		readonly eventPhase: ValueOf<PhasesLegacyEnum>;
-		readonly currentTarget: CurrentTarget | null;
+		readonly currentTarget: EventTarget | null;
 		readonly bubbles: boolean;
 		readonly cancelable: boolean;
 		readonly defaultPrevented: boolean;
@@ -70,7 +63,7 @@ export namespace Event {
 		initEvent(type: string, bubbles?: boolean, cancelable?: boolean): void;
 	}
 
-	export type Interface<CurrentTarget extends EventTarget = EventTarget> = Prototype<CurrentTarget> & {
+	export type Interface = Prototype & {
 		readonly isTrusted: boolean;
 	};
 

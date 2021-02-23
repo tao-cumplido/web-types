@@ -1,8 +1,4 @@
-import type { DOMStringMap } from '../html/common';
-
-export interface FocusOptions {
-	preventScroll?: boolean;
-}
+import type { DOMStringMap } from '../collections';
 
 export interface HTMLOrSVGElement {
 	readonly dataset: DOMStringMap;
@@ -11,6 +7,12 @@ export interface HTMLOrSVGElement {
 	autofocus: boolean;
 	tabIndex: number;
 
-	focus(options?: FocusOptions): void;
+	focus(options?: HTMLOrSVGElement.FocusOptions): void;
 	blur(): void;
+}
+
+export namespace HTMLOrSVGElement {
+	export interface FocusOptions {
+		preventScroll?: boolean;
+	}
 }

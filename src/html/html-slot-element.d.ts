@@ -1,9 +1,18 @@
+import type { Element, Node } from '../dom';
 import type { HTMLElement } from './html-element';
 
 export interface HTMLSlotElement extends HTMLSlotElement.Interface {}
 
 export namespace HTMLSlotElement {
-	export interface Prototype extends HTMLElement.Prototype {}
+	export interface AssignedNodesOptions {
+		flatten?: boolean;
+	}
+
+	export interface Prototype extends HTMLElement.Prototype {
+		name: string;
+		assignedNodes(options?: AssignedNodesOptions): Node[];
+		assignedElements(options?: AssignedNodesOptions): Element[];
+	}
 
 	export type Interface = Prototype & HTMLElement.Interface;
 

@@ -12,21 +12,20 @@ export namespace EventTarget {
 	type ExtractEvents<T extends EventTarget> = {
 		[P in keyof T]: P extends `on${infer K}`
 			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends Event.Handler<T>
+				? NonNullable<T[P]> extends Event.Handler
 					? K
 					: never
 				: never
 			: never;
 	}[keyof T];
 
-	type HandlerToListener<T> = NonNullable<T> extends Event.Handler<infer CurrentTarget, infer AbstractEvent>
-		? EventListener<CurrentTarget, AbstractEvent, NonNullable<T>>
+	type HandlerToListener<T> = NonNullable<T> extends Event.Handler<infer AbstractEvent>
+		? EventListener<AbstractEvent, NonNullable<T>>
 		: never;
 
 	export type EventListener<
-		CurrentTarget extends EventTarget = EventTarget,
-		AbstractEvent extends Event<CurrentTarget> = Event<CurrentTarget>,
-		Handler extends Event.Handler<CurrentTarget, AbstractEvent> = Event.Handler<CurrentTarget, AbstractEvent>
+		AbstractEvent extends Event = Event,
+		Handler extends Event.Handler<AbstractEvent> = Event.Handler<AbstractEvent>
 	> = Handler | { handleEvent: Handler };
 
 	export interface EventListenerOptions {
@@ -46,7 +45,7 @@ export namespace EventTarget {
 			options?: AddEventListenerOptions | boolean,
 		): void;
 
-		addEventListener(type: string, callback?: EventListener<this>, options?: AddEventListenerOptions | boolean): void;
+		addEventListener(type: string, callback?: EventListener, options?: AddEventListenerOptions | boolean): void;
 
 		removeEventListener<E extends ExtractEvents<this>>(
 			type: E,
@@ -54,7 +53,7 @@ export namespace EventTarget {
 			options?: EventListenerOptions | boolean,
 		): void;
 
-		removeEventListener(type: string, callback?: EventListener<this>, options?: EventListenerOptions | boolean): void;
+		removeEventListener(type: string, callback?: EventListener, options?: EventListenerOptions | boolean): void;
 
 		dispatchEvent(event: Event): boolean;
 	}

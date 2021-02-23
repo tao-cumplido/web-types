@@ -14,7 +14,7 @@ export namespace ShadowRoot {
 	export interface Prototype extends DocumentFragment.Prototype, DocumentOrShadowRoot {
 		readonly mode: Mode;
 		readonly host: Element;
-		onslotchange: Event.Handler<this>;
+		onslotchange: Event.Handler | null;
 	}
 
 	export type Interface = Prototype & DocumentFragment.Interface;
