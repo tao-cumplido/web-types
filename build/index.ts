@@ -4,9 +4,10 @@ import fs from 'fs';
 import path from 'path';
 
 import prettier from 'prettier';
-import { Project } from 'ts-morph';
+import { Node, Project } from 'ts-morph';
 
 import packageJson from '../package.json';
+import { updateMap } from './update-map';
 
 const packagesRoot = 'packages';
 
@@ -41,64 +42,70 @@ const project = new Project({
 const typeChecker = project.getTypeChecker();
 
 for (const sourceFile of project.getSourceFiles()) {
-	for (const namespace of sourceFile.getNamespaces()) {
-		for (const docComment of namespace.getJsDocs()) {
-			for (const tag of docComment.getTags()) {
-				const context = tag.getComment();
-				const tagName = tag.getTagName();
+	for (const namespaceNode of sourceFile.getNamespaces()) {
+		const namespace = namespaceNode.getName();
+
+		for (const jsDocNode of namespaceNode.getJsDocs()) {
+			for (const tagNode of jsDocNode.getTags()) {
+				const context = tagNode.getComment();
+				const tagName = tagNode.getTagName();
 
 				if (!context) {
-					throw new Error(`missing context for tag @${tagName}`);
+					continue;
 				}
 
 				if (tagName === 'exposed') {
-					const interfaces = exposedInterfaces.get(context) ?? [];
-					interfaces.push(namespace.getName());
-					exposedInterfaces.set(context, interfaces);
-					tag.remove();
+					updateMap(exposedInterfaces, context, (interfaces) => [...interfaces, namespace], [namespace]);
 				}
 
 				if (tagName === 'legacyWindowAlias') {
-					legacyWindowAliases.push({ alias: context, name: namespace.getName() });
-					tag.remove();
+					legacyWindowAliases.push({ alias: context, name: namespace });
 				}
 
 				if (tagName === 'global') {
-					const scope = globalScopes.get(namespace.getName()) ?? {
-						global: [],
-						properties: typeChecker
-							.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace.getName())))
-							.map((symbol) => symbol.getName()),
-					};
+					updateMap(
+						globalScopes,
+						namespace,
+						(scope) => {
+							scope.global.push(context);
+							return scope;
+						},
+						{
+							global: [context],
+							properties: typeChecker
+								.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
+								.map((symbol) => symbol.getName()),
+						},
+					);
+				}
+			}
+		}
 
-					scope.global.push(context);
-					globalScopes.set(namespace.getName(), scope);
+		for (const interfaceNode of namespaceNode.getNamespace('Prototype')?.getInterfaces() ?? []) {
+			updateMap(augmentations, interfaceNode.getName(), (interfaces) => [...interfaces, namespace], [namespace]);
+		}
+	}
+}
+
+for (const sourceFile of project.getSourceFiles()) {
+	sourceFile.forEachDescendant((node, traversal) => {
+		if (!Node.isJSDocableNode(node)) {
+			traversal.skip();
+			return;
+		}
+
+		for (const jsDocNode of node.getJsDocs()) {
+			for (const tag of jsDocNode.getTags()) {
+				if (['exposed', 'legacyWindowAlias', 'global', 'augment'].includes(tag.getTagName())) {
 					tag.remove();
 				}
 			}
 
-			if (!docComment.getInnerText().trim()) {
-				docComment.remove();
+			if (!jsDocNode.getInnerText().trim()) {
+				jsDocNode.remove();
 			}
 		}
-
-		for (const interfaceNode of namespace.getInterfaces()) {
-			for (const docComment of interfaceNode.getJsDocs()) {
-				for (const tag of docComment.getTags()) {
-					if (tag.getTagName() === 'augment') {
-						const interfaces = augmentations.get(interfaceNode.getName()) ?? [];
-						interfaces.push(namespace.getName());
-						augmentations.set(interfaceNode.getName(), interfaces);
-						tag.remove();
-					}
-				}
-
-				if (!docComment.getInnerText().trim()) {
-					docComment.remove();
-				}
-			}
-		}
-	}
+	});
 
 	const fileName = path.relative(process.cwd(), sourceFile.getFilePath()).replace(/^src[/\\]/u, '');
 	const outPath = path.join(packagesRoot, 'core', fileName);
@@ -123,7 +130,7 @@ for (const [context, scope] of globalScopes) {
 					.map(
 						(name) => `
 							namespace ${name} {
-								interface Prototype extends ${context} {}
+								interface Prototype extends Prototype.${context} {}
 							}
 						`,
 					)

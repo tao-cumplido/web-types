@@ -1,5 +1,12 @@
 import type { WritableInherit } from '../@types';
-import type { DOMMatrix } from './dom-matrix';
+import type { DOMMatrixInit } from './dom-matrix';
+
+export interface DOMPointInit {
+	x?: number;
+	y?: number;
+	z?: number;
+	w?: number;
+}
 
 export interface DOMPointReadOnly extends DOMPointReadOnly.Interface {}
 
@@ -9,7 +16,7 @@ export interface DOMPointReadOnly extends DOMPointReadOnly.Interface {}
  */
 export namespace DOMPointReadOnly {
 	export interface Prototype extends Readonly<DOMPoint.JSONObject> {
-		matrixTransform(matrix?: DOMMatrix.Init): DOMPoint;
+		matrixTransform(matrix?: DOMMatrixInit): DOMPoint;
 		toJSON(): DOMPoint.JSONObject;
 	}
 
@@ -17,7 +24,7 @@ export namespace DOMPointReadOnly {
 
 	export interface Static<This extends DOMPointReadOnly> {
 		prototype: Prototype;
-		fromPoint(other?: DOMPoint.Init): This;
+		fromPoint(other?: DOMPointInit): This;
 	}
 
 	export interface Constructor extends Static<DOMPointReadOnly> {
@@ -33,18 +40,11 @@ export interface DOMPoint extends DOMPoint.Interface {}
  * @legacyWindowAlias SVGPoint
  */
 export namespace DOMPoint {
-	export interface Init {
-		x?: number;
-		y?: number;
-		z?: number;
-		w?: number;
-	}
+	export interface JSONObject extends Required<DOMPointInit> {}
 
-	export interface JSONObject extends Required<Init> {}
+	export interface Prototype extends WritableInherit<DOMPointReadOnly.Prototype, keyof DOMPointInit> {}
 
-	export interface Prototype extends WritableInherit<DOMPointReadOnly.Prototype, keyof Init> {}
-
-	export type Interface = Prototype & WritableInherit<DOMPointReadOnly.Interface, keyof Init>;
+	export type Interface = Prototype & WritableInherit<DOMPointReadOnly.Interface, keyof DOMPointInit>;
 
 	export interface Static extends DOMPointReadOnly.Static<DOMPoint> {
 		prototype: Prototype;
