@@ -29,6 +29,7 @@ export * from './html-hr-element';
 export * from './html-html-element';
 export * from './html-iframe-element';
 export * from './html-image-element';
+export * from './html-input-element';
 export * from './html-label-element';
 export * from './html-legend-element';
 export * from './html-li-element';

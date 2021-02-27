@@ -1,3 +1,4 @@
-export { IntersectionOf } from './intersection-of';
-export { Merge } from './merge';
-export { ValueOf } from './value-of';
+export * from './intersection-of';
+export * from './merge';
+export * from './value-of';
+export * from './writable-inherit';
