@@ -3,10 +3,13 @@ import type { Node } from '../node';
 
 export type NodeFilter = NodeFilter.Interface;
 
+// ts-morph errors when this is as next-line between jsdoc and namespace
+/* eslint-disable @typescript-eslint/no-redeclare */
 /**
  * @exposed Window
  */
 export namespace NodeFilter {
+	/* eslint-enable @typescript-eslint/no-redeclare */
 	export interface ResultsLegacyEnum {
 		readonly FILTER_ACCEPT: 1;
 		readonly FILTER_REJECT: 2;
