@@ -6,7 +6,6 @@ export type NodeFilter = NodeFilter.Interface;
 /**
  * @exposed Window
  */
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export namespace NodeFilter {
 	export interface ResultsLegacyEnum {
 		readonly FILTER_ACCEPT: 1;
