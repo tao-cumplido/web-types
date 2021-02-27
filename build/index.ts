@@ -1,6 +1,9 @@
-import * as fs from 'fs';
-import * as path from 'path';
+/* eslint-disable max-depth */
 
+import fs from 'fs';
+import path from 'path';
+
+import prettier from 'prettier';
 import { Project } from 'ts-morph';
 
 import packageJson from '../package.json';
@@ -8,7 +11,9 @@ import packageJson from '../package.json';
 const packagesRoot = 'packages';
 
 const exposedInterfaces = new Map<string, string[]>();
+const legacyWindowAliases: Array<{ alias: string; name: string }> = [];
 const globalScopes = new Map<string, { global: string[]; properties: string[] }>();
+const augmentations = new Map<string, string[]>();
 
 function writePackage(name: string, dependencies: Record<string, string> = {}) {
 	const { version, author, license } = packageJson;
@@ -40,19 +45,26 @@ for (const sourceFile of project.getSourceFiles()) {
 		for (const docComment of namespace.getJsDocs()) {
 			for (const tag of docComment.getTags()) {
 				const context = tag.getComment();
+				const tagName = tag.getTagName();
 
 				if (!context) {
-					throw new Error(`missing context for tag @${tag.getTagName()}`);
+					throw new Error(`missing context for tag @${tagName}`);
 				}
 
-				if (tag.getTagName() === 'exposed') {
+				if (tagName === 'exposed') {
 					const interfaces = exposedInterfaces.get(context) ?? [];
 					interfaces.push(namespace.getName());
 					exposedInterfaces.set(context, interfaces);
+					tag.remove();
 				}
 
-				if (tag.getTagName() === 'global') {
-					const scope = globalScopes.get(namespace.getName()) || {
+				if (tagName === 'legacyWindowAlias') {
+					legacyWindowAliases.push({ alias: context, name: namespace.getName() });
+					tag.remove();
+				}
+
+				if (tagName === 'global') {
+					const scope = globalScopes.get(namespace.getName()) ?? {
 						global: [],
 						properties: typeChecker
 							.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace.getName())))
@@ -61,10 +73,30 @@ for (const sourceFile of project.getSourceFiles()) {
 
 					scope.global.push(context);
 					globalScopes.set(namespace.getName(), scope);
+					tag.remove();
 				}
 			}
 
-			docComment.remove();
+			if (!docComment.getInnerText().trim()) {
+				docComment.remove();
+			}
+		}
+
+		for (const interfaceNode of namespace.getInterfaces()) {
+			for (const docComment of interfaceNode.getJsDocs()) {
+				for (const tag of docComment.getTags()) {
+					if (tag.getTagName() === 'augment') {
+						const interfaces = augmentations.get(interfaceNode.getName()) ?? [];
+						interfaces.push(namespace.getName());
+						augmentations.set(interfaceNode.getName(), interfaces);
+						tag.remove();
+					}
+				}
+
+				if (!docComment.getInnerText().trim()) {
+					docComment.remove();
+				}
+			}
 		}
 	}
 
@@ -80,15 +112,53 @@ for (const [context, scope] of globalScopes) {
 	// eslint-disable-next-line prefer-named-capture-group
 	const packageName = context.replace(/([a-z])([A-Z])/gu, '$1-$2').toLowerCase();
 
+	let augmentationBlock = '';
+
+	const augmentedInterfaces = augmentations.get(context);
+
+	if (augmentedInterfaces) {
+		augmentationBlock = `
+			declare module '@tswt/core' {
+				${augmentedInterfaces
+					.map(
+						(name) => `
+							namespace ${name} {
+								interface Prototype extends ${context} {}
+							}
+						`,
+					)
+					.join('\n')}
+			}
+		`;
+	}
+
+	const interfaces = scope.global.flatMap(
+		(exposed) => exposedInterfaces.get(exposed)?.map((name) => `var ${name}: web.${name}.Constructor;`) ?? [],
+	);
+
+	if (context === 'Window') {
+		interfaces.push(...legacyWindowAliases.map(({ alias, name }) => `var ${alias}: web.${name}.Constructor;`));
+	}
+
 	fs.mkdirSync(path.join(packagesRoot, packageName));
 	fs.writeFileSync(
 		path.join(packagesRoot, packageName, 'index.d.ts'),
-		// prettier-ignore
-		`import * as web from '@tswt/core';\n\ndeclare global {\n${
-			scope.global.flatMap((exposed) => exposedInterfaces.get(exposed)?.map((name) => `\tvar ${name}: web.${name}.Constructor;`) ?? []).join('\n')
-		}\n${
-			scope.properties.map((name) => `\tvar ${name}: web.${context}['${name}'];`).join('\n')
-		}\n}`,
+		prettier.format(
+			`
+				import * as web from '@tswt/core';
+
+				${augmentationBlock}
+
+				declare global {
+					${interfaces.join('\n')}
+					${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
+				}
+			`,
+			{
+				...prettier.resolveConfig.sync(__filename),
+				parser: 'typescript',
+			},
+		),
 	);
 
 	writePackage(packageName, { '@tswt/core': `~${packageJson.version}` });
