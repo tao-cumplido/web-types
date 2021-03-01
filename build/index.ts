@@ -3,15 +3,18 @@
 import fs from 'fs';
 import path from 'path';
 
+import type { JSDocableNode, NamespaceDeclaration, ReferenceFindableNode } from 'ts-morph';
 import prettier from 'prettier';
 import { Node, Project } from 'ts-morph';
 
 import packageJson from '../package.json';
 import { updateMap } from './update-map';
+import { docTags, guardsUnion } from './utility';
 
 const packagesRoot = 'packages';
 
 const exposedInterfaces = new Map<string, string[]>();
+const exposedTypes = new Map<string, Set<string>>();
 const legacyWindowAliases: Array<{ alias: string; name: string }> = [];
 const globalScopes = new Map<string, { global: string[]; properties: string[] }>();
 const augmentations = new Map<string, string[]>();
@@ -55,6 +58,7 @@ for (const sourceFile of project.getSourceFiles()) {
 				}
 
 				if (tagName === 'exposed') {
+					namespaceNode.getInterfaceOrThrow('Constructor');
 					updateMap(exposedInterfaces, context, (interfaces) => [...interfaces, namespace], [namespace]);
 				}
 
@@ -87,6 +91,90 @@ for (const sourceFile of project.getSourceFiles()) {
 	}
 }
 
+for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').getExportedDeclarations()) {
+	const typeDeclarations = declarations.filter(guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration));
+
+	if (typeDeclarations.some((node) => new Set(docTags(node).map((tag) => tag.getTagName())).has('nonStandard'))) {
+		continue;
+	}
+
+	if (typeDeclarations.length === 0) {
+		// eslint-disable-next-line no-console
+		console.warn(`no exposure found for '${name}'`);
+		continue;
+	}
+
+	const namespace = declarations.find(Node.isNamespaceDeclaration);
+
+	if (namespace) {
+		const tagList = namespace.getJsDocs().flatMap((node) =>
+			node
+				.getTags()
+				.filter((tag) => tag.getTagName() === 'exposed')
+				.map((tag) => {
+					const comment = tag.getComment();
+
+					if (!comment) {
+						throw new Error(`missing value for @exposed tag`);
+					}
+
+					return comment;
+				}),
+		);
+
+		if (tagList.length === 0) {
+			// eslint-disable-next-line no-console
+			console.warn(`no exposure found for '${name}'`);
+		}
+
+		for (const tag of tagList) {
+			// TODO: expose generic signatures
+			updateMap(exposedTypes, tag, (types) => types.add(name), new Set([name]));
+		}
+
+		continue;
+	}
+
+	const findExposures = (sourceNode: ReferenceFindableNode & JSDocableNode) => {
+		for (const reference of sourceNode.findReferencesAsNodes()) {
+			const exposedNamespace = reference.getFirstAncestor((node): node is NamespaceDeclaration => {
+				if (!Node.isNamespaceDeclaration(node)) {
+					return false;
+				}
+
+				return Boolean(docTags(node).filter((tag) => tag.getTagName() === 'exposed'));
+			});
+
+			if (!exposedNamespace) {
+				const host = reference.getFirstAncestor(
+					guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration, Node.isNamespaceDeclaration),
+				);
+
+				if (host) {
+					findExposures(host);
+				}
+
+				continue;
+			}
+
+			const exposureSet = docTags(exposedNamespace)
+				.filter((tag) => tag.getTagName() === 'exposed')
+				.map((tag) => tag.getComment() ?? '');
+
+			for (const context of exposureSet) {
+				updateMap(exposedTypes, context, (types) => types.add(name), new Set([name]));
+			}
+		}
+	};
+
+	typeDeclarations.forEach(findExposures);
+
+	if (!new Set([...exposedTypes.values()].flatMap((set) => [...set])).has(name)) {
+		// eslint-disable-next-line no-console
+		console.warn(`no referenced exposure found for '${name}'`);
+	}
+}
+
 for (const sourceFile of project.getSourceFiles()) {
 	sourceFile.forEachDescendant((node, traversal) => {
 		if (!Node.isJSDocableNode(node)) {
@@ -96,7 +184,7 @@ for (const sourceFile of project.getSourceFiles()) {
 
 		for (const jsDocNode of node.getJsDocs()) {
 			for (const tag of jsDocNode.getTags()) {
-				if (['exposed', 'legacyWindowAlias', 'global', 'augment'].includes(tag.getTagName())) {
+				if (['exposed', 'legacyWindowAlias', 'global', 'nonStandard'].includes(tag.getTagName())) {
 					tag.remove();
 				}
 			}
@@ -147,6 +235,10 @@ for (const [context, scope] of globalScopes) {
 		interfaces.push(...legacyWindowAliases.map(({ alias, name }) => `var ${alias}: web.${name}.Constructor;`));
 	}
 
+	const types = scope.global.flatMap((exposed) =>
+		[...(exposedTypes.get(exposed) ?? [])].map((name) => `type ${name} = web.${name};`),
+	);
+
 	fs.mkdirSync(path.join(packagesRoot, packageName));
 	fs.writeFileSync(
 		path.join(packagesRoot, packageName, 'index.d.ts'),
@@ -157,6 +249,7 @@ for (const [context, scope] of globalScopes) {
 				${augmentationBlock}
 
 				declare global {
+					${types.join('\n')}
 					${interfaces.join('\n')}
 					${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
 				}
