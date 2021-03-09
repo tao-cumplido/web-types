@@ -2,11 +2,10 @@ import type { HTMLCollection } from '../collections';
 import type { HTMLElement } from './html-element';
 import type { HTMLTableCellElement } from './html-table-cell-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/tables.html#the-tr-element */
 export interface HTMLTableRowElement extends HTMLTableRowElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLTableRowElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly rowIndex: number;

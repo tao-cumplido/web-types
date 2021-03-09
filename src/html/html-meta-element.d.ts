@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element */
 export interface HTMLMetaElement extends HTMLMetaElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLMetaElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		name: string;

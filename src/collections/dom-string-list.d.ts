@@ -1,6 +1,9 @@
 import type { IndexedIterable } from '../iterable';
 
-/** @deprecated */
+/**
+ * @deprecated
+ * @spec https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#the-domstringlist-interface
+ */
 export interface DOMStringList extends DOMStringList.Interface {}
 
 /**

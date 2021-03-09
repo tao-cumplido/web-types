@@ -1,18 +1,13 @@
+import type { ElementCSSInlineStyle } from '../css';
 import type { Element } from '../dom';
-import type {
-	DocumentAndElementEventHandlers,
-	ElementContentEditable,
-	ElementCSSInlineStyle,
-	GlobalEventHandlers,
-	HTMLOrSVGElement,
-} from '../mixins';
+import type { DocumentAndElementEventHandlers, GlobalEventHandlers } from '../event';
 import type { ElementInternals } from './element-internals';
+import type { ElementContentEditable, HTMLOrSVGElement } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlelement */
 export interface HTMLElement extends HTMLElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLElement {
 	export type Directionality = '' | 'ltr' | 'rtl' | 'auto';
 
@@ -55,11 +50,10 @@ export namespace HTMLElement {
 	}
 }
 
+/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlunknownelement */
 export interface HTMLUnknownElement extends HTMLUnknownElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLUnknownElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

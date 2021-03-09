@@ -1,11 +1,10 @@
 import type { Node } from '../dom';
 import type { IndexedIterable, KeyValueIterable } from '../iterable';
 
+/** @spec https://dom.spec.whatwg.org/#interface-nodelist */
 export interface NodeList<Item extends Node = Node> extends NodeList.Interface<Item> {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace NodeList {
 	export interface Prototype<Item extends Node = Node> extends IndexedIterable<Item>, KeyValueIterable<number, Item> {
 		readonly length: number;

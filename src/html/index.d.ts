@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
+/** @nonStandard */
 export interface HTMLElementMap {}
+
+/** @nonStandard */
 export interface AutonomousCustomElementMap {}
+
+/** @nonStandard */
 export interface CustomizedBuiltInElementMap {}
 
 export * from './form-data-event';
@@ -70,5 +75,6 @@ export * from './html-title-element';
 export * from './html-track-element';
 export * from './html-ulist-element';
 export * from './html-video-element';
+export * from './mixins';
 export * from './submit-event';
 export * from './validity-state';

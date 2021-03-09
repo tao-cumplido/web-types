@@ -1,9 +1,12 @@
 import type { SVGGraphicsElement } from './svg-graphics-element';
 
+/** @spec https://www.w3.org/TR/SVG2/struct.html#InterfaceSVGSVGElement */
 export interface SVGSVGElement extends SVGSVGElement.Interface {}
 
 export namespace SVGSVGElement {
-	export interface Prototype extends SVGGraphicsElement.Prototype {}
+	export interface Prototype extends SVGGraphicsElement.Prototype {
+		// TODO
+	}
 
 	export type Interface = Prototype & SVGGraphicsElement.Interface;
 
@@ -13,7 +16,7 @@ export namespace SVGSVGElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): SVGSVGElement;
+		new (): never;
 	}
 }
 

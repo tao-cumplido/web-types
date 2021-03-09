@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element */
 export interface HTMLDialogElement extends HTMLDialogElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLDialogElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		open: boolean;

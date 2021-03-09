@@ -2,11 +2,10 @@ import type { NodeList } from '../collections';
 import type { CharacterData } from './character-data';
 import type { Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-mutationrecord */
 export interface MutationRecord extends MutationRecord.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace MutationRecord {
 	export type Constrained = MutationRecord &
 		(

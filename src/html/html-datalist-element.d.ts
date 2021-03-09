@@ -2,11 +2,10 @@ import type { HTMLCollection } from '../collections';
 import type { HTMLElement } from './html-element';
 import type { HTMLOptionElement } from './html-option-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element */
 export interface HTMLDataListElement extends HTMLDataListElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLDataListElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly options: HTMLCollection<HTMLOptionElement>;

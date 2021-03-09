@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
+/** @nonStandard */
 export interface SVGElementMap {}
 
 export * from './svg-element';

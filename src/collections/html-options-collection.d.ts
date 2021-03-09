@@ -1,11 +1,10 @@
 import type { HTMLElement, HTMLOptGroupElement, HTMLOptionElement } from '../html';
 import type { HTMLCollection } from './html-collection';
 
+/** @spec https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#the-htmloptionscollection-interface */
 export interface HTMLOptionsCollection extends HTMLOptionsCollection.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLOptionsCollection {
 	export type LegacyUnenumerableNamedProperties = HTMLOptionsCollection & Record<string, HTMLOptionElement>;
 

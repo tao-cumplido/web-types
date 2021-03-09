@@ -76,6 +76,7 @@ export namespace DOMMatrixReadOnly {
 	}
 }
 
+/** @spec https://drafts.fxtf.org/geometry/#dommatrix */
 export interface DOMMatrix extends DOMMatrix.Interface {}
 
 /**

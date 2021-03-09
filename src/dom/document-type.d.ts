@@ -1,19 +1,18 @@
-import type { ChildNode } from '../mixins';
 import type { Document } from './document';
+import type { ChildNode } from './mixins';
 import type { Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-documenttype */
 export interface DocumentType extends DocumentType.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace DocumentType {
 	export interface Prototype extends Node.Prototype, ChildNode {
 		readonly [Symbol.unscopables]: ChildNode.Unscopables;
 
-		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_TYPE_NODE'];
-		readonly ownerDocument: Document;
-		readonly parentNode: Document;
+		readonly nodeType: Node.NodeTypes['DOCUMENT_TYPE_NODE'];
+		readonly ownerDocument: Document.NamedProperties;
+		readonly parentNode: Document.NamedProperties;
 		readonly parentElement: null;
 		readonly nodeValue: null;
 		readonly textContent: null;

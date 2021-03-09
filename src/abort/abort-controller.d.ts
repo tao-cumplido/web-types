@@ -1,5 +1,6 @@
 import type { AbortSignal } from '../abort';
 
+/** @spec https://dom.spec.whatwg.org/#interface-abortcontroller */
 export interface AbortController extends AbortController.Interface {}
 
 /**

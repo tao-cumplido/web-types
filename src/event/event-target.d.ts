@@ -1,6 +1,26 @@
 import type { AbortSignal } from '../abort';
 import type { Event } from './event';
+import type { EventHandlerNonNull } from './event-handler';
 
+/** @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition */
+export type EventListener<
+	AbstractEvent extends Event = Event,
+	Handler extends EventHandlerNonNull<AbstractEvent> = EventHandlerNonNull<AbstractEvent>
+> = Handler | { handleEvent: Handler };
+
+/** @spec https://dom.spec.whatwg.org/#dictdef-eventlisteneroptions */
+export interface EventListenerOptions {
+	capture?: boolean;
+}
+
+/** @spec https://dom.spec.whatwg.org/#dictdef-addeventlisteneroptions */
+export interface AddEventListenerOptions extends EventListenerOptions {
+	passive?: boolean;
+	once?: boolean;
+	signal?: AbortSignal | null;
+}
+
+/** @spec https://dom.spec.whatwg.org/#interface-eventtarget */
 export interface EventTarget extends EventTarget.Interface {}
 
 /**
@@ -12,31 +32,16 @@ export namespace EventTarget {
 	type ExtractEvents<T extends EventTarget> = {
 		[P in keyof T]: P extends `on${infer K}`
 			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends Event.Handler
+				? NonNullable<T[P]> extends EventHandlerNonNull
 					? K
 					: never
 				: never
 			: never;
 	}[keyof T];
 
-	type HandlerToListener<T> = NonNullable<T> extends Event.Handler<infer AbstractEvent>
+	type HandlerToListener<T> = NonNullable<T> extends EventHandlerNonNull<infer AbstractEvent>
 		? EventListener<AbstractEvent, NonNullable<T>>
 		: never;
-
-	export type EventListener<
-		AbstractEvent extends Event = Event,
-		Handler extends Event.Handler<AbstractEvent> = Event.Handler<AbstractEvent>
-	> = Handler | { handleEvent: Handler };
-
-	export interface EventListenerOptions {
-		capture?: boolean;
-	}
-
-	export interface AddEventListenerOptions extends EventListenerOptions {
-		passive?: boolean;
-		once?: boolean;
-		signal?: AbortSignal | null;
-	}
 
 	export interface Prototype {
 		addEventListener<E extends ExtractEvents<this>>(

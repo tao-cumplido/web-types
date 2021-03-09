@@ -1,11 +1,10 @@
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/scripting.html#the-script-element */
 export interface HTMLScriptElement extends HTMLScriptElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLScriptElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		src: string;

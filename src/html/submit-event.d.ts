@@ -1,16 +1,16 @@
-import type { Event } from '../event';
+import type { Event, EventInit } from '../event';
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#submiteventinit */
+export interface SubmitEventInit extends EventInit {
+	submitter?: HTMLElement | null;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-submitevent-interface */
 export interface SubmitEvent extends SubmitEvent.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace SubmitEvent {
-	export interface Init extends Event.Init {
-		submitter?: HTMLElement | null;
-	}
-
 	export interface Prototype extends Event.Prototype {
 		readonly submitter: HTMLElement | null;
 	}
@@ -22,6 +22,6 @@ export namespace SubmitEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: Init): SubmitEvent;
+		new (type: string, eventInitDict?: SubmitEventInit): SubmitEvent;
 	}
 }

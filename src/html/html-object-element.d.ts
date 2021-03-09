@@ -4,15 +4,14 @@ import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { ValidityState } from './validity-state';
 
+/** @spec https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-object-element */
 export interface HTMLObjectElement extends HTMLObjectElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLObjectElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly form: HTMLFormElement | null;
-		readonly contentDocument: Document | null;
+		readonly contentDocument: Document.NamedProperties | null;
 		readonly contentWindow: Window.WindowProxy | null;
 
 		readonly willValidate: boolean;
@@ -26,7 +25,7 @@ export namespace HTMLObjectElement {
 		width: string;
 		height: string;
 
-		getSVGDocument(): Document | null;
+		getSVGDocument(): Document.NamedProperties | null;
 
 		checkValidity(): boolean;
 		reportValidity(): boolean;

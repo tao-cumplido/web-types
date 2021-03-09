@@ -1,8 +1,7 @@
+/** @spec https://html.spec.whatwg.org/multipage/media.html#timeranges */
 export interface TimeRanges extends TimeRanges.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace TimeRanges {
 	export interface Prototype {
 		readonly length: number;

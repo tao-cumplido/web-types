@@ -1,8 +1,7 @@
+/** @spec https://html.spec.whatwg.org/multipage/dom.html#domstringmap */
 export interface DOMStringMap extends DOMStringMap.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace DOMStringMap {
 	// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
 	export interface Prototype {

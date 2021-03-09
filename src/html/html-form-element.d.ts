@@ -2,11 +2,10 @@ import type { DOMTokenList, HTMLFormControlsCollection, RadioNodeList } from '..
 import type { Element } from '../dom';
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/forms.html#the-form-element */
 export interface HTMLFormElement extends HTMLFormElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLFormElement {
 	export type Method = 'get' | 'post' | 'dialog';
 

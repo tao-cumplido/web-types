@@ -1,11 +1,10 @@
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
 
+/** @spec */
 export interface HTMLImageElement extends HTMLImageElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLImageElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly naturalWidth: number;
@@ -41,9 +40,7 @@ export namespace HTMLImageElement {
 	}
 }
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Image {
 	export interface Constructor {
 		prototype: HTMLImageElement.Prototype;

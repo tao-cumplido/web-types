@@ -4,11 +4,10 @@ import type { HTMLTableCaptionElement } from './html-table-caption-element';
 import type { HTMLTableRowElement } from './html-table-row-element';
 import type { HTMLTableSectionElement } from './html-table-section-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/tables.html#the-table-element */
 export interface HTMLTableElement extends HTMLTableElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLTableElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly tBodies: HTMLCollection<HTMLTableSectionElement>;

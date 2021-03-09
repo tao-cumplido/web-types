@@ -1,8 +1,7 @@
+/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#validitystate */
 export interface ValidityState extends ValidityState.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace ValidityState {
 	export interface Prototype {
 		readonly valueMissing: boolean;

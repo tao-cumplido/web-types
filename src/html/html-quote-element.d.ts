@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element */
 export interface HTMLQuoteElement extends HTMLQuoteElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLQuoteElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		cite: string;

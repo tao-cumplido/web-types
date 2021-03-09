@@ -2,19 +2,18 @@ import type { Document } from './document';
 import type { Element } from './element';
 import type { LeafNode, Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-attr */
 export interface Attr<Owner extends Element | null = Element | null> extends Attr.Interface<Owner> {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Attr {
 	export interface Prototype<Owner extends Element | null = Element | null> extends LeafNode.Prototype {
 		/** @deprecated */
-		readonly nodeType: Node.NodeTypesLegacyEnum['ATTRIBUTE_NODE'];
+		readonly nodeType: Node.NodeTypes['ATTRIBUTE_NODE'];
 		/** @deprecated */
 		readonly nodeName: string;
 		/** @deprecated */
-		readonly ownerDocument: Document;
+		readonly ownerDocument: Document.NamedProperties;
 		/** @deprecated */
 		readonly parentNode: null;
 		/** @deprecated */

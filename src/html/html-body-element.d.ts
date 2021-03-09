@@ -1,11 +1,10 @@
-import type { WindowEventHandlers } from '../mixins';
+import type { WindowEventHandlers } from '../event';
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/sections.html#the-body-element */
 export interface HTMLBodyElement extends HTMLBodyElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLBodyElement {
 	export interface Prototype extends HTMLElement.Prototype, WindowEventHandlers {}
 

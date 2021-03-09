@@ -1,13 +1,12 @@
 import type { DOMTokenList } from '../collections';
-import type { HTMLHyperlinkElementUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
+import type { HTMLHyperlinkElementUtils } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element */
 export interface HTMLAnchorElement extends HTMLAnchorElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLAnchorElement {
 	export interface Prototype extends HTMLElement.Prototype, HTMLHyperlinkElementUtils {
 		/** @putForwards value */

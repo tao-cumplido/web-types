@@ -1,7 +1,7 @@
 import type { Merge } from '../@types';
-import type { Location, Window } from '../browser';
+import type { BeforeUnloadEvent, Location, Window } from '../browser';
 import type { HTMLCollection, NodeList } from '../collections';
-import type { CustomEvent, Event } from '../event';
+import type { CustomEvent, DocumentAndElementEventHandlers, Event, EventHandler, GlobalEventHandlers } from '../event';
 import type {
 	AutonomousCustomElementMap,
 	CustomizedBuiltInElementMap,
@@ -14,18 +14,12 @@ import type {
 	HTMLFormElement,
 	HTMLFrameSetElement,
 	HTMLHeadElement,
+	HTMLIFrameElement,
 	HTMLImageElement,
+	HTMLObjectElement,
 	HTMLScriptElement,
 	HTMLUnknownElement,
 } from '../html';
-import type {
-	DocumentAndElementEventHandlers,
-	DocumentOrElement,
-	DocumentOrShadowRoot,
-	GlobalEventHandlers,
-	NonElementParentNode,
-	ParentNode,
-} from '../mixins';
 import type { SVGElement, SVGElementMap, SVGScriptElement } from '../svg';
 import type { Attr } from './attr';
 import type { CDATASection } from './cdata-section';
@@ -34,17 +28,19 @@ import type { DocumentFragment } from './document-fragment';
 import type { DocumentType } from './document-type';
 import type { DOMImplementation } from './dom-implementation';
 import type { Element } from './element';
+import type { DocumentOrElement, DocumentOrShadowRoot, NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 import type { ProcessingInstruction } from './processing-instruction';
 import type { Range } from './ranges';
 import type { ShadowRoot } from './shadow-root';
 import type { Text } from './text';
 import type { NodeFilter, NodeIterator, TreeWalker } from './traversal';
-import type { XPathEvaluator } from './xpath';
+import type { XPathEvaluatorBase } from './xpath';
 
-// TODO: use correct event interfaces
+// TODO: use correct event interfaces https://dom.spec.whatwg.org/#dom-document-createevent
+/** @nonStandard */
 export interface CreateEventMap {
-	beforeunloadevent: Event;
+	beforeunloadevent: BeforeUnloadEvent;
 	compositionevent: Event;
 	customevent: CustomEvent;
 	devicemotionevent: Event;
@@ -62,16 +58,29 @@ export interface CreateEventMap {
 	storageevent: Event;
 	svgevents: Event;
 	textevent: Event;
-	// skip touchevent, should be added manually if required
+	// skip touchevent, augment interface manually if required
 	uievent: Event;
 	uievents: Event;
 }
 
-export interface Document<Type extends Document.Type = Document.Type.HTML> extends Document.Interface<Type> {}
+/** @spec https://dom.spec.whatwg.org/#dictdef-elementcreationoptions */
+export interface ElementCreationOptions<Is extends string = string> {
+	is?: Is;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/dom.html#documentreadystate */
+export type DocumentReadyState = 'loading' | 'interactive' | 'complete';
+
+/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement */
+export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
 
 /**
- * @exposed Window
+ * @spec https://dom.spec.whatwg.org/#interface-document
+ * @spec https://html.spec.whatwg.org/multipage/dom.html#the-document-object
  */
+export interface Document<Type extends Document.Type = Document.Type.HTML> extends Document.Interface<Type> {}
+
+/** @exposed Window */
 export namespace Document {
 	type CreateElement<Tag extends string, Is extends string> = ParentNode.ElementLookup<
 		Is,
@@ -81,20 +90,15 @@ export namespace Document {
 		? ParentNode.ElementLookup<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
 		: ParentNode.ElementLookup<Is, CustomizedBuiltInElementMap>;
 
-	export interface ElementCreationOptions<Is extends string = string> {
-		is?: Is;
-	}
-
-	export type ReadyState = 'loading' | 'interactive' | 'complete';
-
 	export enum Type {
 		HTML = 'html',
 		XML = 'xml',
 	}
 
-	// TODO: add named elements https://html.spec.whatwg.org/multipage/dom.html#dom-document-nameditem-filter
-	export type NamedElements<T extends Type = Type.HTML> = Document<T> &
-		Record<string, HTMLEmbedElement | HTMLFormElement | HTMLImageElement>;
+	type NamedElements = HTMLEmbedElement | HTMLFormElement | HTMLIFrameElement | HTMLImageElement | HTMLObjectElement;
+
+	export type NamedProperties = Document &
+		Record<string, NamedElements | HTMLCollection<NamedElements> | Window.WindowProxy>;
 
 	export interface Prototype<T extends Type = Type.HTML>
 		extends Node.Prototype,
@@ -102,12 +106,12 @@ export namespace Document {
 			DocumentOrShadowRoot,
 			ParentNode,
 			DocumentOrElement,
-			XPathEvaluator.Base,
+			XPathEvaluatorBase,
 			GlobalEventHandlers,
 			DocumentAndElementEventHandlers {
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
-		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_NODE'];
+		readonly nodeType: Node.NodeTypes['DOCUMENT_NODE'];
 		readonly nodeName: '#document';
 		readonly ownerDocument: null;
 		readonly parentNode: null;
@@ -129,7 +133,7 @@ export namespace Document {
 
 		readonly referrer: string;
 		readonly lastModified: string;
-		readonly readyState: ReadyState;
+		readonly readyState: DocumentReadyState;
 
 		readonly head: HTMLHeadElement | null;
 		readonly images: HTMLCollection<HTMLImageElement>;
@@ -138,7 +142,7 @@ export namespace Document {
 		readonly links: HTMLCollection<HTMLAnchorElement | HTMLAreaElement>;
 		readonly forms: HTMLCollection<HTMLFormElement.LegacyUnenumerableNamedProperties>;
 		readonly scripts: HTMLCollection<HTMLScriptElement>;
-		readonly currentScript: HTMLScriptElement | SVGScriptElement | null;
+		readonly currentScript: HTMLOrSVGScriptElement | null;
 
 		readonly defaultView: Window.WindowProxy | null;
 
@@ -156,7 +160,7 @@ export namespace Document {
 
 		designMode: string;
 
-		onreadystatechange: Event.Handler | null;
+		onreadystatechange: EventHandler;
 
 		createElement<Tag extends string, Is extends string>(
 			localName: Tag,
@@ -224,8 +228,8 @@ export namespace Document {
 
 		open(url: string, name: string, features: string): Window.WindowProxy | null;
 		/** @deprecated */
-		open(unused1: string, unused2?: string): Document;
-		open(): Document;
+		open(unused1: string, unused2?: string): NamedProperties;
+		open(): NamedProperties;
 		close(): void;
 		write(...text: string[]): void;
 		writeln(...text: string[]): void;
@@ -253,11 +257,10 @@ export namespace Document {
 	}
 }
 
+/** @spec https://dom.spec.whatwg.org/#xmldocument */
 export interface XMLDocument extends XMLDocument.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace XMLDocument {
 	export interface Prototype extends Document.Prototype<Document.Type.XML> {
 		// not deprecated

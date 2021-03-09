@@ -2,11 +2,10 @@ import type { Element } from '../dom';
 import type { HTMLCollection } from './html-collection';
 import type { NodeList } from './node-list';
 
+/** @spec https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#the-htmlformcontrolscollection-interface */
 export interface HTMLFormControlsCollection extends HTMLFormControlsCollection.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLFormControlsCollection {
 	export type LegacyUnenumerableNamedProperties = HTMLFormControlsCollection & Record<string, RadioNodeList | Element>;
 
@@ -30,9 +29,7 @@ export namespace HTMLFormControlsCollection {
 
 export interface RadioNodeList extends RadioNodeList.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace RadioNodeList {
 	export interface Prototype extends NodeList.Prototype<Element> {
 		value: string;

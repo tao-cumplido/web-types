@@ -7,6 +7,7 @@ export * from './document-fragment';
 export * from './document-type';
 export * from './dom-implementation';
 export * from './element';
+export * from './mixins';
 export * from './mutation-observer';
 export * from './mutation-record';
 export * from './node';

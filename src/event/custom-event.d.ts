@@ -1,24 +1,19 @@
-import type { Event } from './event';
+import type { Event, EventInit } from './event';
 
-// prettier-ignore
-export interface CustomEvent<
-	Detail = unknown,
-> extends
-CustomEvent.Interface<Detail> {}
+/** @spec https://dom.spec.whatwg.org/#dictdef-customeventinit */
+export interface CustomEventInit<Detail = unknown> extends EventInit {
+	detail?: Detail;
+}
+
+/** @spec https://dom.spec.whatwg.org/#interface-customevent */
+export interface CustomEvent<Detail = unknown> extends CustomEvent.Interface<Detail> {}
 
 /**
  * @exposed Window
  * @exposed Worker
  */
 export namespace CustomEvent {
-	export interface Init<Detail> extends Event.Init {
-		detail?: Detail;
-	}
-
-	export interface Prototype<
-		// prettier-ignore
-		Detail = unknown
-	> extends Event.Prototype {
+	export interface Prototype<Detail = unknown> extends Event.Prototype {
 		readonly detail: Detail;
 
 		/** @deprecated */
@@ -32,6 +27,6 @@ export namespace CustomEvent {
 	}
 
 	export interface Constructor extends Static {
-		new <Detail = unknown>(type: string, eventInitDict?: Init<Detail>): CustomEvent<Detail>;
+		new <Detail = unknown>(type: string, eventInitDict?: CustomEventInit<Detail>): CustomEvent<Detail>;
 	}
 }

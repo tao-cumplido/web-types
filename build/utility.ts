@@ -19,6 +19,11 @@ export function guardsUnion<Guards extends Guard[]>(
 	return (value) => guards.some((guard) => guard(value));
 }
 
-export function docTags(node: JSDocableNode): JSDocTag[] {
-	return node.getJsDocs().flatMap((doc) => doc.getTags());
+export function docTags(node: JSDocableNode | undefined, filter?: string): JSDocTag[] {
+	return (
+		node
+			?.getJsDocs()
+			.flatMap((doc) => doc.getTags())
+			.filter((tag) => !filter || tag.getTagName() === filter) ?? []
+	);
 }

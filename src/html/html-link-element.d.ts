@@ -1,12 +1,11 @@
 import type { DOMTokenList } from '../collections';
-import type { LinkStyle } from '../mixins';
+import type { LinkStyle } from '../css';
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/semantics.html#the-link-element */
 export interface HTMLLinkElement extends HTMLLinkElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLLinkElement {
 	// TODO: place types in fetch namespace
 	export type ReferrerPolicy =

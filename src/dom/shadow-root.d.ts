@@ -1,20 +1,20 @@
-import type { Event } from '../event';
-import type { DocumentOrShadowRoot } from '../mixins';
+import type { EventHandler } from '../event';
 import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
+import type { DocumentOrShadowRoot } from './mixins';
 
+/** @spec https://dom.spec.whatwg.org/#enumdef-shadowrootmode */
+export type ShadowRootMode = 'open' | 'closed';
+
+/** @spec https://dom.spec.whatwg.org/#interface-shadowroot */
 export interface ShadowRoot extends ShadowRoot.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace ShadowRoot {
-	export type Mode = 'open' | 'closed';
-
 	export interface Prototype extends DocumentFragment.Prototype, DocumentOrShadowRoot {
-		readonly mode: Mode;
+		readonly mode: ShadowRootMode;
 		readonly host: Element;
-		onslotchange: Event.Handler | null;
+		onslotchange: EventHandler;
 	}
 
 	export type Interface = Prototype & DocumentFragment.Interface;
@@ -25,6 +25,6 @@ export namespace ShadowRoot {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): ShadowRoot;
+		new (): never;
 	}
 }

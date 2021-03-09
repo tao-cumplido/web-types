@@ -1,13 +1,12 @@
 import type { DOMTokenList } from '../collections';
-import type { HTMLHyperlinkElementUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
+import type { HTMLHyperlinkElementUtils } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element */
 export interface HTMLAreaElement extends HTMLAreaElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLAreaElement {
 	export interface Prototype extends HTMLElement.Prototype, HTMLHyperlinkElementUtils {
 		/** @putForwards value */

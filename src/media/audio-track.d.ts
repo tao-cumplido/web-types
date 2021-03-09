@@ -1,13 +1,12 @@
 import type { EventTarget } from '../event';
-import type { MediaTrack, MediaTrackList } from '../mixins';
+import type { AudioVideoKind, MediaTrack, MediaTrackList } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#audiotrack */
 export interface AudioTrack extends AudioTrack.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace AudioTrack {
-	export interface Prototype extends MediaTrack<MediaTrack.AudioVideoKind> {
+	export interface Prototype extends MediaTrack<AudioVideoKind> {
 		enabled: boolean;
 	}
 
@@ -23,11 +22,10 @@ export namespace AudioTrack {
 	}
 }
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#audiotracklist */
 export interface AudioTrackList extends AudioTrackList.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace AudioTrackList {
 	export interface Prototype extends EventTarget.Prototype, MediaTrackList<AudioTrack> {}
 

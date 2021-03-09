@@ -2,6 +2,10 @@ import type { Blob, File } from '../file';
 import type { HTMLFormElement } from '../html';
 import type { KeyValueIterable } from '../iterable';
 
+/** @spec https://xhr.spec.whatwg.org/#formdataentryvalue */
+export type FormDataEntryValue = File | string;
+
+/** @spec https://xhr.spec.whatwg.org/#formdata */
 export interface FormData extends FormData.Interface {}
 
 /**
@@ -9,8 +13,6 @@ export interface FormData extends FormData.Interface {}
  * @exposed Worker
  */
 export namespace FormData {
-	export type FormDataEntryValue = File | string;
-
 	export interface Prototype extends KeyValueIterable<string, FormDataEntryValue> {
 		append(name: string, value: string): void;
 		append(name: string, blobValue: Blob, filename?: string): void;

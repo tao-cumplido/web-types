@@ -1,15 +1,14 @@
 import type { HTMLCollection, HTMLOptionsCollection, NodeList } from '../collections';
-import type { HTMLFormInputUtils, HTMLFormValidationUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { HTMLLabelElement } from './html-label-element';
 import type { HTMLOptionElement } from './html-option-element';
+import type { HTMLFormInputUtils, HTMLFormValidationUtils } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element */
 export interface HTMLSelectElement extends HTMLSelectElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLSelectElement {
 	export interface Prototype
 		extends HTMLElement.Prototype,

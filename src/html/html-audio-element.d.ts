@@ -1,10 +1,9 @@
 import type { HTMLMediaElement } from './html-media-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#the-audio-element */
 export interface HTMLAudioElement extends HTMLAudioElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLAudioElement {
 	export interface Prototype extends HTMLMediaElement.Prototype {}
 
@@ -20,9 +19,7 @@ export namespace HTMLAudioElement {
 	}
 }
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Audio {
 	export interface Constructor {
 		prototype: HTMLAudioElement.Prototype;

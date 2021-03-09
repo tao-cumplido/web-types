@@ -1,5 +1,8 @@
 import type { Event, EventTarget } from '../event';
 
+/**
+ * @spec https://dom.spec.whatwg.org/#interface-window-extensions
+ */
 export interface Window extends EventTarget, Window.Prototype {}
 
 /**

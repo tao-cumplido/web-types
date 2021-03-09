@@ -1,11 +1,10 @@
 import type { Node } from '../node';
 import type { NodeFilter } from './node-filter';
 
+/** @spec https://dom.spec.whatwg.org/#interface-nodeiterator */
 export interface NodeIterator extends NodeIterator.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace NodeIterator {
 	export interface Prototype {
 		readonly root: Node;

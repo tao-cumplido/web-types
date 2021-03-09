@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element */
 export interface HTMLBRElement extends HTMLBRElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLBRElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

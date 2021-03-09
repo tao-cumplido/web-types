@@ -1,16 +1,16 @@
-import type { Event } from '../event';
+import type { Event, EventInit } from '../event';
 import type { FormData } from '../xhr';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#formdataeventinit */
+export interface FormDataEventInit extends EventInit {
+	formData: FormData;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-formdataevent-interface */
 export interface FormDataEvent extends FormDataEvent.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace FormDataEvent {
-	export interface Init extends Event.Init {
-		formData: FormData;
-	}
-
 	export interface Prototype extends Event.Prototype {
 		readonly formData: FormData;
 	}
@@ -22,6 +22,6 @@ export namespace FormDataEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict: Init): FormDataEvent;
+		new (type: string, eventInitDict: FormDataEventInit): FormDataEvent;
 	}
 }

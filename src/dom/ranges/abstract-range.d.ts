@@ -1,10 +1,9 @@
 import type { Node } from '../node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-abstractrange */
 export interface AbstractRange extends AbstractRange.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace AbstractRange {
 	export interface Prototype {
 		readonly startContainer: Node;

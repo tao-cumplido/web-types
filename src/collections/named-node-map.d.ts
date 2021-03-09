@@ -1,11 +1,10 @@
 import type { Attr, Element } from '../dom';
 import type { IndexedIterable } from '../iterable';
 
+/** @spec https://dom.spec.whatwg.org/#interface-namednodemap */
 export interface NamedNodeMap<Owner extends Element | null = Element | null> extends NamedNodeMap.Interface<Owner> {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace NamedNodeMap {
 	export type LegacyUnenumerableNamedProperties<T extends Element | null = Element | null> = NamedNodeMap<T> &
 		Record<string, Attr<T>>;

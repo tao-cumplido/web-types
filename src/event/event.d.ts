@@ -1,6 +1,14 @@
 import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
+/** @spec https://dom.spec.whatwg.org/#dictdef-eventinit */
+export interface EventInit {
+	bubbles?: boolean;
+	cancelable?: boolean;
+	composed?: boolean;
+}
+
+/** @spec https://dom.spec.whatwg.org/#interface-event */
 export interface Event extends Event.Interface {}
 
 /**
@@ -9,37 +17,17 @@ export interface Event extends Event.Interface {}
  * @exposed AudioWorklet
  */
 export namespace Event {
-	export type Handler<AbstractEvent extends Event = Event> = (event: AbstractEvent) => unknown;
-
-	export namespace Handler {
-		export type OnError = (
-			event: Event | string,
-			source?: string,
-			lineno?: number,
-			colno?: number,
-			error?: Error,
-		) => unknown;
-
-		export type OnBeforeUnload = (event: Event) => string | null;
-	}
-
-	export interface Init {
-		bubbles?: boolean;
-		cancelable?: boolean;
-		composed?: boolean;
-	}
-
-	export interface PhasesLegacyEnum {
+	export interface Phases {
 		readonly NONE: 0;
 		readonly CAPTURING_PHASE: 1;
 		readonly AT_TARGET: 2;
 		readonly BUBBLING_PHASE: 3;
 	}
 
-	export interface Prototype extends PhasesLegacyEnum {
+	export interface Prototype extends Phases {
 		readonly type: string;
 		readonly target: EventTarget | null;
-		readonly eventPhase: ValueOf<PhasesLegacyEnum>;
+		readonly eventPhase: ValueOf<Phases>;
 		readonly currentTarget: EventTarget | null;
 		readonly bubbles: boolean;
 		readonly cancelable: boolean;
@@ -49,8 +37,13 @@ export namespace Event {
 
 		/** @deprecated */
 		readonly srcElement: EventTarget | null;
+
+		// the return value is specified as type boolean but the BeforeUnloadEvent overrides to string
+		// to keep BeforeUnloadEvent assignable to Event it is typed as unknown here
+		// it shouldn't be used for new projects anyway
 		/** @deprecated */
-		readonly returnValue: boolean;
+		returnValue: unknown;
+
 		/** @deprecated */
 		cancelBubble: boolean;
 
@@ -67,11 +60,11 @@ export namespace Event {
 		readonly isTrusted: boolean;
 	};
 
-	export interface Static extends PhasesLegacyEnum {
+	export interface Static extends Phases {
 		prototype: Prototype;
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: Init): Event;
+		new (type: string, eventInitDict?: EventInit): Event;
 	}
 }

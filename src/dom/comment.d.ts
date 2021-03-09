@@ -1,14 +1,13 @@
 import type { CharacterData } from './character-data';
 import type { Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-comment */
 export interface Comment extends Comment.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Comment {
 	export interface Prototype extends CharacterData.Prototype {
-		readonly nodeType: Node.NodeTypesLegacyEnum['COMMENT_NODE'];
+		readonly nodeType: Node.NodeTypes['COMMENT_NODE'];
 		readonly nodeName: '#comment';
 	}
 

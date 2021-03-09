@@ -1,10 +1,9 @@
 import type { HTMLMediaElement } from './html-media-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#the-video-element */
 export interface HTMLVideoElement extends HTMLVideoElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLVideoElement {
 	export interface Prototype extends HTMLMediaElement.Prototype {
 		readonly videoWidth: number;

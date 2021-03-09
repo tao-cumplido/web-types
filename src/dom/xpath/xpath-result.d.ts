@@ -1,13 +1,12 @@
 import type { ValueOf } from '../../@types';
 import type { Node } from '../node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-xpathresult */
 export interface XPathResult extends XPathResult.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace XPathResult {
-	export interface ResultTypesLegacyEnum {
+	export interface ResultTypes {
 		readonly ANY_TYPE: 0;
 		readonly NUMBER_TYPE: 1;
 		readonly STRING_TYPE: 2;
@@ -20,8 +19,8 @@ export namespace XPathResult {
 		readonly FIRST_ORDERED_NODE_TYPE: 9;
 	}
 
-	export interface Prototype extends ResultTypesLegacyEnum {
-		readonly resultType: ValueOf<ResultTypesLegacyEnum>;
+	export interface Prototype extends ResultTypes {
+		readonly resultType: ValueOf<ResultTypes>;
 		readonly numberValue: number;
 		readonly stringValue: string;
 		readonly booleanValue: boolean;
@@ -35,7 +34,7 @@ export namespace XPathResult {
 
 	export type Interface = Prototype;
 
-	export interface Static extends ResultTypesLegacyEnum {
+	export interface Static extends ResultTypes {
 		prototype: Prototype;
 	}
 

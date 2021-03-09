@@ -1,6 +1,7 @@
 import type { WritableInherit } from '../@types';
 import type { DOMMatrixInit } from './dom-matrix';
 
+/** @spec https://drafts.fxtf.org/geometry/#dictdef-dompointinit */
 export interface DOMPointInit {
 	x?: number;
 	y?: number;
@@ -8,6 +9,7 @@ export interface DOMPointInit {
 	w?: number;
 }
 
+/** @spec https://drafts.fxtf.org/geometry/#dompointreadonly */
 export interface DOMPointReadOnly extends DOMPointReadOnly.Interface {}
 
 /**
@@ -32,6 +34,7 @@ export namespace DOMPointReadOnly {
 	}
 }
 
+/** @spec https://drafts.fxtf.org/geometry/#dompoint */
 export interface DOMPoint extends DOMPoint.Interface {}
 
 /**

@@ -92,46 +92,38 @@ for (const sourceFile of project.getSourceFiles()) {
 }
 
 for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').getExportedDeclarations()) {
-	const typeDeclarations = declarations.filter(guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration));
+	const jsDocables = declarations.filter(Node.isJSDocableNode);
 
-	if (typeDeclarations.some((node) => new Set(docTags(node).map((tag) => tag.getTagName())).has('nonStandard'))) {
+	if (jsDocables.some((node) => docTags(node, 'nonStandard').length)) {
 		continue;
 	}
 
-	if (typeDeclarations.length === 0) {
-		// eslint-disable-next-line no-console
-		console.warn(`no exposure found for '${name}'`);
-		continue;
-	}
+	const typeDeclarations = jsDocables.filter(guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration));
 
-	const namespace = declarations.find(Node.isNamespaceDeclaration);
+	const exposedRealms = docTags(jsDocables.find(Node.isNamespaceDeclaration), 'exposed').map((tag) => {
+		const comment = tag.getComment();
 
-	if (namespace) {
-		const tagList = namespace.getJsDocs().flatMap((node) =>
-			node
-				.getTags()
-				.filter((tag) => tag.getTagName() === 'exposed')
-				.map((tag) => {
-					const comment = tag.getComment();
-
-					if (!comment) {
-						throw new Error(`missing value for @exposed tag`);
-					}
-
-					return comment;
-				}),
-		);
-
-		if (tagList.length === 0) {
-			// eslint-disable-next-line no-console
-			console.warn(`no exposure found for '${name}'`);
+		if (!comment) {
+			throw new Error(`missing value for @exposed tag`);
 		}
 
-		for (const tag of tagList) {
+		return comment;
+	});
+
+	if (typeDeclarations.length && exposedRealms.length) {
+		for (const realm of exposedRealms) {
 			// TODO: expose generic signatures
-			updateMap(exposedTypes, tag, (types) => types.add(name), new Set([name]));
+			updateMap(exposedTypes, realm, (types) => types.add(name), new Set([name]));
 		}
 
+		continue;
+	}
+
+	if (!typeDeclarations.length) {
+		if (!exposedRealms.length) {
+			// eslint-disable-next-line no-console
+			console.warn(`no declarations found for '${name}'`);
+		}
 		continue;
 	}
 
@@ -142,7 +134,7 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 					return false;
 				}
 
-				return Boolean(docTags(node).filter((tag) => tag.getTagName() === 'exposed'));
+				return docTags(node, 'exposed').length > 0;
 			});
 
 			if (!exposedNamespace) {
@@ -157,9 +149,7 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 				continue;
 			}
 
-			const exposureSet = docTags(exposedNamespace)
-				.filter((tag) => tag.getTagName() === 'exposed')
-				.map((tag) => tag.getComment() ?? '');
+			const exposureSet = docTags(exposedNamespace, 'exposed').map((tag) => tag.getComment() ?? '');
 
 			for (const context of exposureSet) {
 				updateMap(exposedTypes, context, (types) => types.add(name), new Set([name]));

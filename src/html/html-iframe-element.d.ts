@@ -4,16 +4,15 @@ import type { Document } from '../dom';
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element */
 export interface HTMLIFrameElement extends HTMLIFrameElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLIFrameElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		/** @putForwards value */
 		readonly sandbox: DOMTokenList;
-		readonly contentDocument: Document | null;
+		readonly contentDocument: Document.NamedProperties | null;
 		readonly contentWindow: Window.WindowProxy | null;
 
 		src: string;
@@ -26,7 +25,7 @@ export namespace HTMLIFrameElement {
 		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
 		loading: HTMLLinkElement.LazyLoadingAttribute;
 
-		getSVGDocument(): Document | null;
+		getSVGDocument(): Document.NamedProperties | null;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

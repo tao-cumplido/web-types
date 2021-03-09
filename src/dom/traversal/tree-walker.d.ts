@@ -1,11 +1,10 @@
 import type { Node } from '../node';
 import type { NodeFilter } from './node-filter';
 
+/** @spec https://dom.spec.whatwg.org/#interface-treewalker */
 export interface TreeWalker extends TreeWalker.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace TreeWalker {
 	export interface Prototype {
 		readonly root: Node;

@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element */
 export interface HTMLSpanElement extends HTMLSpanElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLSpanElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

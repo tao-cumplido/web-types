@@ -2,11 +2,10 @@ import type { Element } from '../dom';
 import type { IndexedIterable } from '../iterable';
 import type { HTMLCollection } from './html-collection';
 
+/** @spec https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#the-htmlallcollection-interface */
 export interface HTMLAllCollection extends HTMLAllCollection.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLAllCollection {
 	export type LegacyUnenumerableNamedProperties = HTMLAllCollection & Record<string, HTMLCollection | Element>;
 

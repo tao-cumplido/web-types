@@ -1,21 +1,21 @@
 import type { DOMTokenList, NamedNodeMap } from '../collections';
-import type { ChildNode, DocumentOrElement, NonDocumentTypeChildNode, ParentNode, Slottable } from '../mixins';
 import type { Attr } from './attr';
 import type { Document } from './document';
+import type { ChildNode, DocumentOrElement, NonDocumentTypeChildNode, ParentNode, Slottable } from './mixins';
 import type { Node } from './node';
-import type { ShadowRoot } from './shadow-root';
+import type { ShadowRoot, ShadowRootMode } from './shadow-root';
 
+/** @spec https://dom.spec.whatwg.org/#dictdef-shadowrootinit */
+export interface ShadowRootInit {
+	mode: ShadowRootMode;
+	delegatesFocus?: boolean;
+}
+
+/** @spec https://dom.spec.whatwg.org/#interface-element */
 export interface Element extends Element.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Element {
-	export interface ShadowRootInit {
-		mode: ShadowRoot.Mode;
-		delegatesFocus?: boolean;
-	}
-
 	export type InsertPosition = 'beforebegin' | 'afterbegin' | 'beforeend' | 'afterend';
 
 	export interface Unscopables extends ParentNode.Unscopables, ChildNode.Unscopables {
@@ -31,8 +31,8 @@ export namespace Element {
 			DocumentOrElement {
 		readonly [Symbol.unscopables]: Unscopables;
 
-		readonly nodeType: Node.NodeTypesLegacyEnum['ELEMENT_NODE'];
-		readonly ownerDocument: Document;
+		readonly nodeType: Node.NodeTypes['ELEMENT_NODE'];
+		readonly ownerDocument: Document.NamedProperties;
 		readonly nodeValue: null;
 		readonly textContent: string;
 

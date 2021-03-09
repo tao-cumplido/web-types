@@ -1,10 +1,9 @@
 import type { IndexedIterable, KeyValueIterable } from '../iterable';
 
+/** @spec https://dom.spec.whatwg.org/#interface-domtokenlist */
 export interface DOMTokenList extends DOMTokenList.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace DOMTokenList {
 	export interface Prototype extends IndexedIterable<string>, KeyValueIterable<number, string> {
 		readonly length: number;

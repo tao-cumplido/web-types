@@ -1,19 +1,18 @@
-import type { NonElementParentNode, ParentNode } from '../mixins';
 import type { Document } from './document';
+import type { NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-documentfragment */
 export interface DocumentFragment extends DocumentFragment.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace DocumentFragment {
 	export interface Prototype extends Node.Prototype, NonElementParentNode, ParentNode {
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
-		readonly nodeType: Node.NodeTypesLegacyEnum['DOCUMENT_FRAGMENT_NODE'];
+		readonly nodeType: Node.NodeTypes['DOCUMENT_FRAGMENT_NODE'];
 		readonly nodeName: '#document-fragment';
-		readonly ownerDocument: Document;
+		readonly ownerDocument: Document.NamedProperties;
 		readonly parentNode: null;
 		readonly parentElement: null;
 		readonly previousSibling: null;

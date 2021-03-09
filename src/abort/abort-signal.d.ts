@@ -1,5 +1,6 @@
-import type { Event, EventTarget } from '../event';
+import type { EventHandler, EventTarget } from '../event';
 
+/** @spec https://dom.spec.whatwg.org/#interface-AbortSignal */
 export interface AbortSignal extends AbortSignal.Interface {}
 
 /**
@@ -9,12 +10,12 @@ export interface AbortSignal extends AbortSignal.Interface {}
 export namespace AbortSignal {
 	export interface Prototype extends EventTarget.Prototype {
 		readonly aborted: boolean;
-		onabort: Event.Handler | null;
+		onabort: EventHandler;
 	}
 
 	export type Interface = Prototype & EventTarget.Interface;
 
-	export interface Static {
+	export interface Static extends EventTarget.Static {
 		prototype: Prototype;
 	}
 

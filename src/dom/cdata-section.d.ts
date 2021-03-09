@@ -1,10 +1,9 @@
 import type { Text } from './text';
 
+/** @spec https://dom.spec.whatwg.org/#interface-cdatasection */
 export interface CDATASection extends CDATASection.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace CDATASection {
 	export interface Prototype extends Text.Prototype<Text.Type.CDATASection> {}
 

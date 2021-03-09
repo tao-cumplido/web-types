@@ -6,6 +6,5 @@ export * from './event';
 export * from './geometry';
 export * from './html';
 export * from './media';
-export * from './mixins';
 export * from './svg';
 export * from './xhr';

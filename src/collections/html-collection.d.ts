@@ -1,11 +1,10 @@
 import type { Element } from '../dom';
 import type { IndexedIterable } from '../iterable';
 
+/** @spec https://dom.spec.whatwg.org/#interface-htmlcollection */
 export interface HTMLCollection<Item extends Element = Element> extends HTMLCollection.Interface<Item> {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLCollection {
 	export type LegacyUnenumerableNamedProperties<T extends Element = Element> = HTMLCollection<T> & Record<string, T>;
 

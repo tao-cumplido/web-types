@@ -6,17 +6,17 @@ import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
 import type { ShadowRoot } from './shadow-root';
 
+/** @spec https://dom.spec.whatwg.org/#dictdef-getrootnodeoptions */
+export interface GetRootNodeOptions {
+	composed?: boolean;
+}
+
+/** @spec https://dom.spec.whatwg.org/#interface-node */
 export interface Node extends Node.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Node {
-	export interface GetRootNodeOptions {
-		composed?: boolean;
-	}
-
-	export interface NodeTypesLegacyEnum {
+	export interface NodeTypes {
 		readonly ELEMENT_NODE: 1;
 		readonly ATTRIBUTE_NODE: 2;
 		readonly TEXT_NODE: 3;
@@ -34,7 +34,7 @@ export namespace Node {
 		readonly NOTATION_NODE: 12;
 	}
 
-	export interface DocumentPositionsLegacyEnum {
+	export interface DocumentPositions {
 		readonly DOCUMENT_POSITION_DISCONNECTED: 0x01;
 		readonly DOCUMENT_POSITION_PRECEDING: 0x02;
 		readonly DOCUMENT_POSITION_FOLLOWING: 0x04;
@@ -43,13 +43,13 @@ export namespace Node {
 		readonly DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: 0x20;
 	}
 
-	export interface Prototype extends EventTarget.Prototype, NodeTypesLegacyEnum, DocumentPositionsLegacyEnum {
-		readonly nodeType: ValueOf<NodeTypesLegacyEnum>;
+	export interface Prototype extends EventTarget.Prototype, NodeTypes, DocumentPositions {
+		readonly nodeType: ValueOf<NodeTypes>;
 		readonly nodeName: string;
 		readonly baseURI: string;
 		readonly isConnected: boolean;
-		readonly ownerDocument: Document | null;
-		readonly parentNode: Element | Document | DocumentFragment | null;
+		readonly ownerDocument: Document.NamedProperties | null;
+		readonly parentNode: Element | Document.NamedProperties | DocumentFragment | null;
 		readonly parentElement: Element | null;
 		readonly childNodes: NodeList;
 		readonly firstChild: Node | null;
@@ -61,8 +61,8 @@ export namespace Node {
 
 		normalize(): void;
 
-		getRootNode(options: { composed: true }): Document;
-		getRootNode(options?: GetRootNodeOptions): Document | ShadowRoot;
+		getRootNode(options: { composed: true }): Document.NamedProperties;
+		getRootNode(options?: GetRootNodeOptions): Document.NamedProperties | ShadowRoot;
 		hasChildNodes(): boolean;
 
 		cloneNode(deep?: boolean): this;
@@ -86,7 +86,7 @@ export namespace Node {
 
 	export type Interface = Prototype & EventTarget.Interface;
 
-	export interface Static extends EventTarget.Static, NodeTypesLegacyEnum, DocumentPositionsLegacyEnum {
+	export interface Static extends EventTarget.Static, NodeTypes, DocumentPositions {
 		prototype: Prototype;
 	}
 
@@ -96,9 +96,10 @@ export namespace Node {
 	}
 }
 
+/** @nonStandard */
 export namespace LeafNode {
 	export interface Prototype extends Node.Prototype {
-		readonly ownerDocument: Document;
+		readonly ownerDocument: Document.NamedProperties;
 
 		/** @deprecated */
 		readonly childNodes: NodeList<never>;

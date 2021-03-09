@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/grouping-content.html#the-menu-element */
 export interface HTMLMenuElement extends HTMLMenuElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLMenuElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

@@ -1,14 +1,13 @@
 import type { CharacterData } from './character-data';
 import type { Node } from './node';
 
+/** @spec https://dom.spec.whatwg.org/#interface-processinginstruction */
 export interface ProcessingInstruction extends ProcessingInstruction.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace ProcessingInstruction {
 	export interface Prototype extends CharacterData.Prototype {
-		readonly nodeType: Node.NodeTypesLegacyEnum['PROCESSING_INSTRUCTION_NODE'];
+		readonly nodeType: Node.NodeTypes['PROCESSING_INSTRUCTION_NODE'];
 
 		readonly target: string;
 	}

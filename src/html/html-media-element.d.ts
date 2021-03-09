@@ -6,6 +6,7 @@ import type {
 	MediaSource,
 	MediaStream,
 	TextTrack,
+	TextTrackKind,
 	TextTrackList,
 	TimeRanges,
 	VideoTrackList,
@@ -13,24 +14,25 @@ import type {
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#canplaytyperesult */
+export type CanPlayTypeResult = '' | 'maybe' | 'probably';
+
+/** @spec https://html.spec.whatwg.org/multipage/media.html#mediaprovider */
+export type MediaProvider = MediaStream | MediaSource | Blob;
+
+/** @spec https://html.spec.whatwg.org/multipage/media.html#media-elements */
 export interface HTMLMediaElement extends HTMLMediaElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLMediaElement {
-	export type CanPlayTypeResult = '' | 'maybe' | 'probably';
-
-	export type MediaProvider = MediaStream | MediaSource | Blob;
-
-	export interface NetworkStateLegacyEnum {
+	export interface NetworkState {
 		readonly NETWORK_EMPTY: 0;
 		readonly NETWORK_IDLE: 1;
 		readonly NETWORK_LOADING: 2;
 		readonly NETWORK_NO_SOURCE: 3;
 	}
 
-	export interface ReadyStateLegacyEnum {
+	export interface ReadyState {
 		readonly HAVE_NOTHING: 0;
 		readonly HAVE_METADATA: 1;
 		readonly HAVE_CURRENT_DATA: 2;
@@ -38,14 +40,14 @@ export namespace HTMLMediaElement {
 		readonly HAVE_ENOUGH_DATA: 4;
 	}
 
-	export interface Prototype extends HTMLElement.Prototype, NetworkStateLegacyEnum, ReadyStateLegacyEnum {
+	export interface Prototype extends HTMLElement.Prototype, NetworkState, ReadyState {
 		readonly error: MediaError | null;
 
 		readonly currentSrc: string;
-		readonly networkState: ValueOf<NetworkStateLegacyEnum>;
+		readonly networkState: ValueOf<NetworkState>;
 		readonly buffered: TimeRanges;
 
-		readonly readyState: ValueOf<ReadyStateLegacyEnum>;
+		readonly readyState: ValueOf<ReadyState>;
 		readonly seeking: boolean;
 
 		readonly duration: number;
@@ -83,12 +85,12 @@ export namespace HTMLMediaElement {
 		play(): Promise<void>;
 		pause(): void;
 
-		addTextTrack(kind: TextTrack.Kind, label?: string, language?: string): TextTrack;
+		addTextTrack(kind: TextTrackKind, label?: string, language?: string): TextTrack;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;
 
-	export interface Static extends HTMLElement.Static, NetworkStateLegacyEnum, ReadyStateLegacyEnum {
+	export interface Static extends HTMLElement.Static, NetworkState, ReadyState {
 		prototype: Prototype;
 	}
 

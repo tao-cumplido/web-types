@@ -1,14 +1,13 @@
 import type { NodeList } from '../collections';
-import type { HTMLFormControlUtils, HTMLFormValidationUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { HTMLLabelElement } from './html-label-element';
+import type { HTMLFormControlUtils, HTMLFormValidationUtils } from './mixins';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element */
 export interface HTMLButtonElement extends HTMLButtonElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLButtonElement {
 	export type Type = 'submit' | 'reset' | 'button';
 

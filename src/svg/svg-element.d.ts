@@ -1,10 +1,13 @@
+import type { ElementCSSInlineStyle } from '../css';
 import type { Element } from '../dom';
-import type { ElementCSSInlineStyle } from '../mixins';
 
+/** @spec https://www.w3.org/TR/SVG2/types.html#InterfaceSVGElement */
 export interface SVGElement extends SVGElement.Interface {}
 
 export namespace SVGElement {
-	export interface Prototype extends Element.Prototype, ElementCSSInlineStyle {}
+	export interface Prototype extends Element.Prototype, ElementCSSInlineStyle {
+		// TODO
+	}
 
 	export type Interface = Prototype & Element.Interface;
 
@@ -14,6 +17,6 @@ export namespace SVGElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): SVGElement;
+		new (): never;
 	}
 }

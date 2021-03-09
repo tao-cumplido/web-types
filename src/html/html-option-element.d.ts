@@ -1,11 +1,10 @@
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-option-element */
 export interface HTMLOptionElement extends HTMLOptionElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLOptionElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly form: HTMLFormElement | null;
@@ -31,9 +30,7 @@ export namespace HTMLOptionElement {
 	}
 }
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Option {
 	export interface Constructor {
 		prototype: HTMLOptionElement.Prototype;

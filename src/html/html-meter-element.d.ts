@@ -2,11 +2,10 @@ import type { NodeList } from '../collections';
 import type { HTMLElement } from './html-element';
 import type { HTMLLabelElement } from './html-label-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element */
 export interface HTMLMeterElement extends HTMLMeterElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLMeterElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly labels: NodeList<HTMLLabelElement>;

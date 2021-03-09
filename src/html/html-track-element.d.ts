@@ -1,12 +1,11 @@
 import type { ValueOf } from '../@types';
-import type { TextTrack } from '../media';
+import type { TextTrack, TextTrackKind } from '../media';
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#the-track-element */
 export interface HTMLTrackElement extends HTMLTrackElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLTrackElement {
 	export interface ReadyStateLegacyEnum {
 		readonly NONE: 0;
@@ -19,7 +18,7 @@ export namespace HTMLTrackElement {
 		readonly readyState: ValueOf<ReadyStateLegacyEnum>;
 		readonly track: TextTrack;
 
-		kind: TextTrack.Kind;
+		kind: TextTrackKind;
 		src: string;
 		srclang: string;
 		label: string;

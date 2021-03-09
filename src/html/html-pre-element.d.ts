@@ -1,10 +1,9 @@
 import type { HTMLElement } from './html-element';
 
+/** @spec https://html.spec.whatwg.org/multipage/grouping-content.html#the-pre-element */
 export interface HTMLPreElement extends HTMLPreElement.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace HTMLPreElement {
 	export interface Prototype extends HTMLElement.Prototype {}
 

@@ -1,25 +1,22 @@
 import type { ValueOf } from '../../@types';
-import type { ChildNode } from '../../mixins';
 import type { DocumentFragment } from '../document-fragment';
+import type { ChildNode } from '../mixins';
 import type { Node } from '../node';
 import type { AbstractRange } from './abstract-range';
 
+/** @spec https://dom.spec.whatwg.org/#interface-range */
 export interface Range extends Range.Interface {}
 
-/**
- * @exposed Window
- */
+/** @exposed Window */
 export namespace Range {
 	interface BoundaryNode extends Node {
-		readonly nodeType: ValueOf<Omit<Node.NodeTypesLegacyEnum, 'DOCUMENT_TYPE_NODE'>>;
+		readonly nodeType: ValueOf<Omit<Node.NodeTypes, 'DOCUMENT_TYPE_NODE'>>;
 	}
 
 	interface NonParentNode extends Node, ChildNode {}
 
 	interface NewParentNode extends Node {
-		readonly nodeType: ValueOf<
-			Omit<Node.NodeTypesLegacyEnum, 'DOCUMENT_NODE' | 'DOCUMENT_TYPE_NODE' | 'DOCUMENT_FRAGMENT_NODE'>
-		>;
+		readonly nodeType: ValueOf<Omit<Node.NodeTypes, 'DOCUMENT_NODE' | 'DOCUMENT_TYPE_NODE' | 'DOCUMENT_FRAGMENT_NODE'>>;
 	}
 
 	export interface BoundariesLegacyEnum {
