@@ -15,6 +15,7 @@ export type AudioVideoKind =
 	| 'commentary'
 	| '';
 
+/** @nonStandard */
 export interface MediaTrack<Kind extends string = string> {
 	readonly id: string;
 	readonly kind: Kind;

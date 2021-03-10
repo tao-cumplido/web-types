@@ -4,6 +4,7 @@ import type { Element } from '../dom';
 /** @spec https://www.w3.org/TR/SVG2/types.html#InterfaceSVGElement */
 export interface SVGElement extends SVGElement.Interface {}
 
+/** @exposed Window */
 export namespace SVGElement {
 	export interface Prototype extends Element.Prototype, ElementCSSInlineStyle {
 		// TODO

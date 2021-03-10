@@ -78,7 +78,7 @@ export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
  * @spec https://dom.spec.whatwg.org/#interface-document
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-document-object
  */
-export interface Document<Type extends Document.Type = Document.Type.HTML> extends Document.Interface<Type> {}
+export interface Document extends Document.Interface<Document.Type.HTML> {}
 
 /** @exposed Window */
 export namespace Document {

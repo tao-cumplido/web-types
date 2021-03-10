@@ -3,6 +3,7 @@ import type { SVGGraphicsElement } from './svg-graphics-element';
 /** @spec https://www.w3.org/TR/SVG2/struct.html#InterfaceSVGSVGElement */
 export interface SVGSVGElement extends SVGSVGElement.Interface {}
 
+/** @exposed Window */
 export namespace SVGSVGElement {
 	export interface Prototype extends SVGGraphicsElement.Prototype {
 		// TODO
