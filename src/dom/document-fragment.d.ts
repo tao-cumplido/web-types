@@ -17,8 +17,9 @@ export namespace DocumentFragment {
 		readonly parentElement: null;
 		readonly previousSibling: null;
 		readonly nextSibling: null;
-		readonly nodeValue: null;
-		readonly textContent: string;
+
+		nodeValue: null;
+		textContent: string;
 
 		lookupPrefix(namespace: string | null): null;
 	}

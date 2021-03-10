@@ -118,8 +118,6 @@ export namespace Document {
 		readonly parentElement: null;
 		readonly previousSibling: null;
 		readonly nextSibling: null;
-		readonly nodeValue: null;
-		readonly textContent: null;
 
 		readonly implementation: DOMImplementation;
 		readonly URL: string;
@@ -150,6 +148,9 @@ export namespace Document {
 		readonly charset: string;
 		/** @deprecated legacy alias of .characterSet */
 		readonly inputEncoding: string;
+
+		nodeValue: null;
+		textContent: null;
 
 		domain: string;
 		cookie: string;

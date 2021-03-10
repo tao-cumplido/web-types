@@ -56,8 +56,9 @@ export namespace Node {
 		readonly lastChild: Node | null;
 		readonly previousSibling: Node | null;
 		readonly nextSibling: Node | null;
-		readonly nodeValue: string | null;
-		readonly textContent: string | null;
+
+		nodeValue: string | null;
+		textContent: string | null;
 
 		normalize(): void;
 

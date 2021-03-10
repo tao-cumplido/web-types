@@ -14,12 +14,13 @@ export namespace DocumentType {
 		readonly ownerDocument: Document.NamedProperties;
 		readonly parentNode: Document.NamedProperties;
 		readonly parentElement: null;
-		readonly nodeValue: null;
-		readonly textContent: null;
 
 		readonly name: string;
 		readonly publicId: string;
 		readonly systemId: string;
+
+		nodeValue: null;
+		textContent: null;
 
 		lookupPrefix(namespace: string | null): null;
 	}

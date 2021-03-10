@@ -17,10 +17,10 @@ export namespace CharacterData {
 			>
 		>;
 
-		readonly nodeValue: string;
-		readonly textContent: string;
-
 		readonly length: number;
+
+		nodeValue: string;
+		textContent: string;
 
 		data: string;
 

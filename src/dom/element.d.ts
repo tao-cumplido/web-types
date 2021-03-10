@@ -33,8 +33,6 @@ export namespace Element {
 
 		readonly nodeType: Node.NodeTypes['ELEMENT_NODE'];
 		readonly ownerDocument: Document.NamedProperties;
-		readonly nodeValue: null;
-		readonly textContent: string;
 
 		readonly namespaceURI: string | null;
 		readonly prefix: string | null;
@@ -47,6 +45,9 @@ export namespace Element {
 		readonly attributes: NamedNodeMap.LegacyUnenumerableNamedProperties<this>;
 
 		readonly shadowRoot: ShadowRoot | null;
+
+		nodeValue: null;
+		textContent: string;
 
 		id: string;
 		className: string;

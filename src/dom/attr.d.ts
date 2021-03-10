@@ -20,10 +20,6 @@ export namespace Attr {
 		readonly previousSibling: null;
 		/** @deprecated */
 		readonly nextSibling: null;
-		/** @deprecated */
-		readonly nodeValue: string;
-		/** @deprecated */
-		readonly textContent: string;
 
 		readonly namespaceURI: string | null;
 		readonly prefix: string | null;
@@ -33,6 +29,11 @@ export namespace Attr {
 
 		/** @deprecated */
 		readonly specified: true;
+
+		/** @deprecated */
+		nodeValue: string;
+		/** @deprecated */
+		textContent: string;
 
 		value: string;
 
