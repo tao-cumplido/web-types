@@ -3,7 +3,12 @@
 import fs from 'fs';
 import path from 'path';
 
-import type { JSDocableNode, NamespaceDeclaration, ReferenceFindableNode } from 'ts-morph';
+import type {
+	JSDocableNode,
+	NamespaceDeclaration,
+	ReferenceFindableNode,
+	TypeParameterDeclarationStructure,
+} from 'ts-morph';
 import prettier from 'prettier';
 import { Node, Project } from 'ts-morph';
 
@@ -14,7 +19,7 @@ import { docTags, guardsUnion } from './utility';
 const packagesRoot = 'packages';
 
 const exposedInterfaces = new Map<string, string[]>();
-const exposedTypes = new Map<string, Set<string>>();
+const exposedTypes = new Map<string, Map<string, TypeParameterDeclarationStructure[]>>();
 const legacyWindowAliases: Array<{ alias: string; name: string }> = [];
 const globalScopes = new Map<string, { global: string[]; properties: string[] }>();
 const augmentations = new Map<string, string[]>();
@@ -110,10 +115,19 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 		return comment;
 	});
 
+	const typeParameters = typeDeclarations.flatMap((node) =>
+		node.getTypeParameters().map((parameter) => parameter.getStructure()),
+	);
+
 	if (typeDeclarations.length && exposedRealms.length) {
 		for (const realm of exposedRealms) {
-			// TODO: expose generic signatures
-			updateMap(exposedTypes, realm, (types) => types.add(name), new Set([name]));
+			// TODO: copy partial jsdocs
+			updateMap(
+				exposedTypes,
+				realm,
+				(types) => updateMap(types, name, () => typeParameters, typeParameters),
+				new Map([[name, typeParameters]]),
+			);
 		}
 
 		continue;
@@ -152,14 +166,19 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 			const exposureSet = docTags(exposedNamespace, 'exposed').map((tag) => tag.getComment() ?? '');
 
 			for (const context of exposureSet) {
-				updateMap(exposedTypes, context, (types) => types.add(name), new Set([name]));
+				updateMap(
+					exposedTypes,
+					context,
+					(types) => updateMap(types, name, () => typeParameters, typeParameters),
+					new Map([[name, typeParameters]]),
+				);
 			}
 		}
 	};
 
 	typeDeclarations.forEach(findExposures);
 
-	if (!new Set([...exposedTypes.values()].flatMap((set) => [...set])).has(name)) {
+	if (!new Set([...exposedTypes.values()].flatMap((set) => [...set.keys()])).has(name)) {
 		// eslint-disable-next-line no-console
 		console.warn(`no referenced exposure found for '${name}'`);
 	}
@@ -226,7 +245,29 @@ for (const [context, scope] of globalScopes) {
 	}
 
 	const types = scope.global.flatMap((exposed) =>
-		[...(exposedTypes.get(exposed) ?? [])].map((name) => `type ${name} = web.${name};`),
+		[...(exposedTypes.get(exposed) ?? [])].map(([type, parameters]) => {
+			if (!parameters.length) {
+				return `type ${type} = web.${type};`;
+			}
+
+			const parameterSignature = parameters
+				.map(({ name, constraint, default: assignedDefault }) => {
+					if (typeof constraint === 'string') {
+						if (typeof assignedDefault === 'string') {
+							return `${name} extends ${constraint} = ${assignedDefault}`;
+						}
+
+						return `${name} extends ${constraint}`;
+					}
+
+					return name;
+				})
+				.join(', ');
+
+			const parameterNames = parameters.map(({ name }) => name).join(', ');
+
+			return `type ${type}<${parameterSignature}> = web.${type}<${parameterNames}>;`;
+		}),
 	);
 
 	fs.mkdirSync(path.join(packagesRoot, packageName));

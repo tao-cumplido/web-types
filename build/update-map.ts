@@ -3,7 +3,8 @@ export function updateMap<Key, Value>(
 	key: Key,
 	update: (value: Value) => Value,
 	defaultValue: Value,
-): void {
+): Map<Key, Value> {
 	const value = source.get(key);
 	source.set(key, value ? update(value) : defaultValue);
+	return source;
 }
