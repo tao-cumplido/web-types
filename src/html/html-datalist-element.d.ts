@@ -22,9 +22,3 @@ export namespace HTMLDataListElement {
 		new (): HTMLDataListElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		datalist: HTMLDataListElement;
-	}
-}

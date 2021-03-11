@@ -21,9 +21,3 @@ export namespace HTMLParamElement {
 		new (): HTMLParamElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		param: HTMLParamElement;
-	}
-}

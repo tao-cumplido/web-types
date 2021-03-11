@@ -24,9 +24,3 @@ export namespace HTMLDialogElement {
 		new (): HTMLDialogElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		dialog: HTMLDialogElement;
-	}
-}

@@ -33,9 +33,3 @@ export namespace HTMLAreaElement {
 		new (): HTMLAreaElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		area: HTMLAreaElement;
-	}
-}

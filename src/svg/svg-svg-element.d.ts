@@ -20,9 +20,3 @@ export namespace SVGSVGElement {
 		new (): never;
 	}
 }
-
-declare module '@tswt/core' {
-	interface SVGElementMap {
-		svg: SVGSVGElement;
-	}
-}

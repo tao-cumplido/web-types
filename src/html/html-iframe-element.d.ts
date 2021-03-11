@@ -39,9 +39,3 @@ export namespace HTMLIFrameElement {
 		new (): HTMLIFrameElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		iframe: HTMLIFrameElement;
-	}
-}

@@ -21,9 +21,3 @@ export namespace HTMLStyleElement {
 		new (): HTMLStyleElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		style: HTMLStyleElement;
-	}
-}

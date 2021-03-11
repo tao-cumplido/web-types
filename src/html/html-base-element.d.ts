@@ -21,9 +21,3 @@ export namespace HTMLBaseElement {
 		new (): HTMLBaseElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		base: HTMLBaseElement;
-	}
-}

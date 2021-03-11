@@ -77,9 +77,3 @@ export namespace HTMLLinkElement {
 		new (): HTMLLinkElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		link: HTMLLinkElement;
-	}
-}

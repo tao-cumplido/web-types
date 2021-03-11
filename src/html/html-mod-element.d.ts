@@ -21,10 +21,3 @@ export namespace HTMLModElement {
 		new (): HTMLModElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		ins: HTMLModElement;
-		del: HTMLModElement;
-	}
-}

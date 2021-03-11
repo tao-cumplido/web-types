@@ -22,9 +22,3 @@ export namespace HTMLMetaElement {
 		new (): HTMLMetaElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		meta: HTMLMetaElement;
-	}
-}

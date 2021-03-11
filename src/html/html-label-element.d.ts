@@ -23,9 +23,3 @@ export namespace HTMLLabelElement {
 		new (): HTMLLabelElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		label: HTMLLabelElement;
-	}
-}

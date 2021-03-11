@@ -28,9 +28,3 @@ export namespace HTMLSlotElement {
 		new (): HTMLSlotElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		slot: HTMLSlotElement;
-	}
-}

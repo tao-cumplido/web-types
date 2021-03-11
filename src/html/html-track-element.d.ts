@@ -36,9 +36,3 @@ export namespace HTMLTrackElement {
 		new (): HTMLTrackElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		track: HTMLTrackElement;
-	}
-}

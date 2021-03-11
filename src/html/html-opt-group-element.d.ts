@@ -21,9 +21,3 @@ export namespace HTMLOptGroupElement {
 		new (): HTMLOptGroupElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		optgroup: HTMLOptGroupElement;
-	}
-}

@@ -19,9 +19,3 @@ export namespace HTMLBodyElement {
 		new (): HTMLBodyElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		body: HTMLBodyElement;
-	}
-}

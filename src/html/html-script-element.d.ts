@@ -29,9 +29,3 @@ export namespace HTMLScriptElement {
 		new (): HTMLScriptElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		script: HTMLScriptElement;
-	}
-}

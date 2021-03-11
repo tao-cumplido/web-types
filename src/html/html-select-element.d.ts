@@ -43,9 +43,3 @@ export namespace HTMLSelectElement {
 		new (): HTMLSelectElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		select: HTMLSelectElement;
-	}
-}

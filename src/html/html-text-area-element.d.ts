@@ -40,9 +40,3 @@ export namespace HTMLTextAreaElement {
 		new (): HTMLTextAreaElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		textarea: HTMLTextAreaElement;
-	}
-}

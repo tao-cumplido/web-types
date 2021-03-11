@@ -25,9 +25,3 @@ export namespace HTMLProgressElement {
 		new (): HTMLProgressElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		progress: HTMLProgressElement;
-	}
-}

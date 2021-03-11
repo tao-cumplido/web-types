@@ -18,9 +18,3 @@ export namespace HTMLUListElement {
 		new (): HTMLUListElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		ul: HTMLUListElement;
-	}
-}

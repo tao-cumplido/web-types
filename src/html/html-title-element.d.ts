@@ -20,9 +20,3 @@ export namespace HTMLTitleElement {
 		new (): HTMLTitleElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		title: HTMLTitleElement;
-	}
-}

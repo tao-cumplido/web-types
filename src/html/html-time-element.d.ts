@@ -20,9 +20,3 @@ export namespace HTMLTimeElement {
 		new (): HTMLTimeElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		time: HTMLTimeElement;
-	}
-}

@@ -18,9 +18,3 @@ export namespace HTMLDListElement {
 		new (): HTMLDListElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		dl: HTMLDListElement;
-	}
-}

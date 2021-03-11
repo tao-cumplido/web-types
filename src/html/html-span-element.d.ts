@@ -18,9 +18,3 @@ export namespace HTMLSpanElement {
 		new (): HTMLSpanElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		span: HTMLSpanElement;
-	}
-}

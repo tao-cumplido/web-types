@@ -37,9 +37,3 @@ export namespace Option {
 		new (text?: string, value?: string, defaultSelected?: boolean, selected?: boolean): HTMLOptionElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		option: HTMLOptionElement;
-	}
-}

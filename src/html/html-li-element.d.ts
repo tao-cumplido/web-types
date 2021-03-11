@@ -20,9 +20,3 @@ export namespace HTMLLIElement {
 		new (): HTMLLIElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		li: HTMLLIElement;
-	}
-}

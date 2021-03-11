@@ -20,10 +20,3 @@ export namespace HTMLQuoteElement {
 		new (): HTMLQuoteElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		blockquote: HTMLQuoteElement;
-		q: HTMLQuoteElement;
-	}
-}

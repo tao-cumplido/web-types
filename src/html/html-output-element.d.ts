@@ -32,9 +32,3 @@ export namespace HTMLOutputElement {
 		new (): HTMLOutputElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		output: HTMLOutputElement;
-	}
-}

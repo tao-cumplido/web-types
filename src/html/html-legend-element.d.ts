@@ -21,9 +21,3 @@ export namespace HTMLLegendElement {
 		new (): HTMLLegendElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		legend: HTMLLegendElement;
-	}
-}

@@ -28,9 +28,3 @@ export namespace HTMLMeterElement {
 		new (): HTMLMeterElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		meter: HTMLMeterElement;
-	}
-}

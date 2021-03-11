@@ -18,9 +18,3 @@ export namespace HTMLHRElement {
 		new (): HTMLHRElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		hr: HTMLHRElement;
-	}
-}

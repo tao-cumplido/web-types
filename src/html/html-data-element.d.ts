@@ -20,9 +20,3 @@ export namespace HTMLDataElement {
 		new (): HTMLDataElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		data: HTMLDataElement;
-	}
-}

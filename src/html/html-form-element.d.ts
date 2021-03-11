@@ -48,9 +48,3 @@ export namespace HTMLFormElement {
 		new (): HTMLFormElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		form: HTMLFormElement;
-	}
-}

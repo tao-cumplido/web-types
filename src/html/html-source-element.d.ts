@@ -24,9 +24,3 @@ export namespace HTMLSourceElement {
 		new (): HTMLSourceElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		source: HTMLSourceElement;
-	}
-}

@@ -18,9 +18,3 @@ export namespace HTMLHeadElement {
 		new (): HTMLHeadElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		head: HTMLHeadElement;
-	}
-}

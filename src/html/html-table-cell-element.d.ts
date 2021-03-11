@@ -27,10 +27,3 @@ export namespace HTMLTableCellElement {
 		new (): HTMLTableCellElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		td: HTMLTableCellElement;
-		th: HTMLTableCellElement;
-	}
-}

@@ -18,9 +18,3 @@ export namespace HTMLParagraphElement {
 		new (): HTMLParagraphElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		p: HTMLParagraphElement;
-	}
-}

@@ -20,10 +20,3 @@ export namespace HTMLTableColElement {
 		new (): HTMLTableColElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		colgroup: HTMLTableColElement;
-		col: HTMLTableColElement;
-	}
-}

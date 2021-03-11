@@ -25,11 +25,3 @@ export namespace HTMLTableSectionElement {
 		new (): HTMLTableSectionElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		tbody: HTMLTableSectionElement;
-		thead: HTMLTableSectionElement;
-		tfoot: HTMLTableSectionElement;
-	}
-}

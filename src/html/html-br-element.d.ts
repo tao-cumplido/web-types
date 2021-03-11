@@ -18,9 +18,3 @@ export namespace HTMLBRElement {
 		new (): HTMLBRElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		br: HTMLBRElement;
-	}
-}

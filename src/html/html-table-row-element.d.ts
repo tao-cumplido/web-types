@@ -27,9 +27,3 @@ export namespace HTMLTableRowElement {
 		new (): HTMLTableRowElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		tr: HTMLTableRowElement;
-	}
-}

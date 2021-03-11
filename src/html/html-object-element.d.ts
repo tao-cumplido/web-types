@@ -43,9 +43,3 @@ export namespace HTMLObjectElement {
 		new (): HTMLObjectElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		object: HTMLObjectElement;
-	}
-}

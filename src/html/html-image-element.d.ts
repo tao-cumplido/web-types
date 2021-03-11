@@ -48,9 +48,3 @@ export namespace Image {
 		new (width?: number, height?: number): HTMLImageElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		img: HTMLImageElement;
-	}
-}

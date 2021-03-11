@@ -32,9 +32,3 @@ export namespace HTMLButtonElement {
 		new (): HTMLButtonElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		button: HTMLButtonElement;
-	}
-}

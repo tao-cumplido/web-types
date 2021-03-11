@@ -26,9 +26,3 @@ export namespace HTMLEmbedElement {
 		new (): HTMLEmbedElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		embed: HTMLEmbedElement;
-	}
-}

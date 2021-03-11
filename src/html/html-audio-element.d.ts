@@ -27,9 +27,3 @@ export namespace Audio {
 		new (src?: string): HTMLAudioElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		video: HTMLAudioElement;
-	}
-}

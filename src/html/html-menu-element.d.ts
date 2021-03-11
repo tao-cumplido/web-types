@@ -18,9 +18,3 @@ export namespace HTMLMenuElement {
 		new (): HTMLMenuElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		menu: HTMLMenuElement;
-	}
-}

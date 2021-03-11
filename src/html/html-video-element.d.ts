@@ -26,9 +26,3 @@ export namespace HTMLVideoElement {
 		new (): HTMLVideoElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		video: HTMLVideoElement;
-	}
-}

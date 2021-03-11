@@ -35,9 +35,3 @@ export namespace HTMLAnchorElement {
 		new (): HTMLAnchorElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		a: HTMLAnchorElement;
-	}
-}

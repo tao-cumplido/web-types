@@ -22,9 +22,3 @@ export namespace HTMLOListElement {
 		new (): HTMLOListElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		ol: HTMLOListElement;
-	}
-}

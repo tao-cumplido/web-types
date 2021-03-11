@@ -18,9 +18,3 @@ export namespace HTMLTableCaptionElement {
 		new (): HTMLTableCaptionElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		caption: HTMLTableCaptionElement;
-	}
-}

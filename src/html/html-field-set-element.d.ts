@@ -40,9 +40,3 @@ export namespace HTMLFieldSetElement {
 		new (): HTMLFieldSetElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		fieldset: HTMLFieldSetElement;
-	}
-}

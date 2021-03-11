@@ -18,11 +18,3 @@ export namespace HTMLPreElement {
 		new (): HTMLPreElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		pre: HTMLPreElement;
-		listing: HTMLPreElement;
-		xmp: HTMLPreElement;
-	}
-}

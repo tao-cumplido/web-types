@@ -82,9 +82,3 @@ export namespace HTMLInputElement {
 		new (): HTMLInputElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		input: HTMLInputElement;
-	}
-}

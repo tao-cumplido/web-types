@@ -18,9 +18,3 @@ export namespace HTMLPictureElement {
 		new (): HTMLPictureElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		picture: HTMLPictureElement;
-	}
-}

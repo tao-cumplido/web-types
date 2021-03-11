@@ -21,9 +21,3 @@ export namespace HTMLTemplateElement {
 		new (): HTMLTemplateElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		template: HTMLTemplateElement;
-	}
-}

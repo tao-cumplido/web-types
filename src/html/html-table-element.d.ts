@@ -39,9 +39,3 @@ export namespace HTMLTableElement {
 		new (): HTMLTableElement;
 	}
 }
-
-declare module '@tswt/core' {
-	interface HTMLElementMap {
-		table: HTMLTableElement;
-	}
-}
