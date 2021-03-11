@@ -193,7 +193,9 @@ for (const sourceFile of project.getSourceFiles()) {
 
 		for (const jsDocNode of node.getJsDocs()) {
 			for (const tag of jsDocNode.getTags()) {
-				if (['exposed', 'legacyWindowAlias', 'global', 'nonStandard'].includes(tag.getTagName())) {
+				if (
+					['exposed', 'legacyWindowAlias', 'global', 'nonStandard', 'legacyNullToEmptyString'].includes(tag.getTagName())
+				) {
 					tag.remove();
 				}
 			}

@@ -4,7 +4,10 @@ import type { ChildNode } from '../mixins';
 import type { Node } from '../node';
 import type { AbstractRange } from './abstract-range';
 
-/** @spec https://dom.spec.whatwg.org/#interface-range */
+/**
+ * @spec https://dom.spec.whatwg.org/#interface-range
+ * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-range-interface
+ */
 export interface Range extends Range.Interface {}
 
 /** @exposed Window */
@@ -54,6 +57,8 @@ export namespace Range {
 		comparePoint(node: BoundaryNode, offset: number): -1 | 0 | 1;
 
 		intersectsNode(node: Node): boolean;
+
+		createContextualFragment(fragment: string): DocumentFragment;
 	}
 
 	export type Interface = Prototype & AbstractRange.Interface;

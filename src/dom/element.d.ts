@@ -1,7 +1,14 @@
 import type { DOMTokenList, NamedNodeMap } from '../collections';
 import type { Attr } from './attr';
 import type { Document } from './document';
-import type { ChildNode, DocumentOrElement, NonDocumentTypeChildNode, ParentNode, Slottable } from './mixins';
+import type {
+	ChildNode,
+	DocumentOrElement,
+	InnerHTML,
+	NonDocumentTypeChildNode,
+	ParentNode,
+	Slottable,
+} from './mixins';
 import type { Node } from './node';
 import type { ShadowRoot, ShadowRootMode } from './shadow-root';
 
@@ -11,7 +18,10 @@ export interface ShadowRootInit {
 	delegatesFocus?: boolean;
 }
 
-/** @spec https://dom.spec.whatwg.org/#interface-element */
+/**
+ * @spec https://dom.spec.whatwg.org/#interface-element
+ * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-element-interface
+ */
 export interface Element extends Element.Interface {}
 
 /** @exposed Window */
@@ -28,7 +38,8 @@ export namespace Element {
 			NonDocumentTypeChildNode,
 			ChildNode,
 			Slottable,
-			DocumentOrElement {
+			DocumentOrElement,
+			InnerHTML {
 		readonly [Symbol.unscopables]: Unscopables;
 
 		readonly nodeType: Node.NodeTypes['ELEMENT_NODE'];
@@ -53,6 +64,9 @@ export namespace Element {
 		className: string;
 		slot: string;
 
+		/** @legacyNullToEmptyString */
+		outerHTML: string;
+
 		hasAttributes(): boolean;
 		getAttributeNames(): string[];
 		getAttribute(qualifiedName: string): string | null;
@@ -76,6 +90,8 @@ export namespace Element {
 		closest<Selector extends string>(selectors: Selector): ParentNode.ElementLookup<Selector> | null;
 		closest<Result extends Element>(selectors: string): Result | null;
 		matches(selectors: string): boolean;
+
+		insertAdjacentHTML(position: InsertPosition, text: string): void;
 
 		/** @deprecated legacy alias of .matches */
 		webkitMatchesSelector(selectors: string): boolean;

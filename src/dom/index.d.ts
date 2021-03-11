@@ -16,4 +16,5 @@ export * from './ranges';
 export * from './shadow-root';
 export * from './text';
 export * from './traversal';
+export * from './xml-serializer';
 export * from './xpath';

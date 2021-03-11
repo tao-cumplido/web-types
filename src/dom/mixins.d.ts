@@ -123,3 +123,9 @@ export interface DocumentOrElement {
 
 	getElementsByClassName(classNames: string): HTMLCollection.LegacyUnenumerableNamedProperties;
 }
+
+/** @spec https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin */
+export interface InnerHTML {
+	/** @legacyNullToEmptyString */
+	innerHTML: string;
+}
