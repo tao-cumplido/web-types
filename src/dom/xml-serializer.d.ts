@@ -11,8 +11,10 @@ export namespace XMLSerializer {
 
 	export type Interface = Prototype;
 
-	export interface Constructor {
-		// eslint-disable-next-line @typescript-eslint/prefer-function-type
+	export interface Static {
+		prototype: Prototype;
+	}
+	export interface Constructor extends Static {
 		new (): XMLSerializer;
 	}
 }
