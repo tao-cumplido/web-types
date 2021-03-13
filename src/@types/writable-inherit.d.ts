@@ -1,7 +1,7 @@
-export type WritableInherit<T extends Record<keyof T, unknown>, ReadonlyKeys extends keyof T = keyof T> = Omit<
+export type WritableInherit<T extends Record<keyof T, unknown>, WritableKeys extends keyof T = keyof T> = Omit<
 	T,
-	ReadonlyKeys
+	WritableKeys
 > &
 	{
-		-readonly [P in ReadonlyKeys]: T[P];
+		-readonly [P in WritableKeys]: T[P];
 	};

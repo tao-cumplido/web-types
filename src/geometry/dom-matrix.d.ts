@@ -114,9 +114,9 @@ export namespace DOMMatrix {
 
 	export type SkewY = Transform<[sy?: number]>;
 
-	type ReadonlyKeys = Exclude<keyof DOMMatrixInit, 'is2D'>;
+	type WritableKeys = Exclude<keyof DOMMatrixInit, 'is2D'>;
 
-	export interface Prototype extends WritableInherit<DOMMatrixReadOnly.Prototype, ReadonlyKeys> {
+	export interface Prototype extends WritableInherit<DOMMatrixReadOnly.Prototype, WritableKeys> {
 		multiplySelf: Multiply;
 		preMultiplySelf: Multiply;
 		translateSelf: Translate;
@@ -136,7 +136,7 @@ export namespace DOMMatrix {
 		}
 	}
 
-	export type Interface = Prototype & WritableInherit<DOMMatrixReadOnly.Interface, ReadonlyKeys>;
+	export type Interface = Prototype & WritableInherit<DOMMatrixReadOnly.Interface, WritableKeys>;
 
 	export interface Static extends DOMMatrixReadOnly.Static<DOMMatrix> {
 		prototype: Prototype;
