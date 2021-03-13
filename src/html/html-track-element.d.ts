@@ -7,15 +7,15 @@ export interface HTMLTrackElement extends HTMLTrackElement.Interface {}
 
 /** @exposed Window */
 export namespace HTMLTrackElement {
-	export interface ReadyStateLegacyEnum {
+	export interface ReadyState {
 		readonly NONE: 0;
 		readonly LOADING: 1;
 		readonly LOADED: 2;
 		readonly ERROR: 3;
 	}
 
-	export interface Prototype extends HTMLElement.Prototype, ReadyStateLegacyEnum {
-		readonly readyState: ValueOf<ReadyStateLegacyEnum>;
+	export interface Prototype extends HTMLElement.Prototype, ReadyState {
+		readonly readyState: ValueOf<ReadyState>;
 		readonly track: TextTrack;
 
 		kind: TextTrackKind;
@@ -27,7 +27,7 @@ export namespace HTMLTrackElement {
 
 	export type Interface = Prototype & HTMLElement.Interface;
 
-	export interface Static extends HTMLElement.Static, ReadyStateLegacyEnum {
+	export interface Static extends HTMLElement.Static, ReadyState {
 		prototype: Prototype;
 	}
 

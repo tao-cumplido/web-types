@@ -22,14 +22,14 @@ export namespace Range {
 		readonly nodeType: ValueOf<Omit<Node.NodeTypes, 'DOCUMENT_NODE' | 'DOCUMENT_TYPE_NODE' | 'DOCUMENT_FRAGMENT_NODE'>>;
 	}
 
-	export interface BoundariesLegacyEnum {
+	export interface Boundaries {
 		readonly START_TO_START: 0;
 		readonly START_TO_END: 1;
 		readonly END_TO_END: 2;
 		readonly END_TO_START: 3;
 	}
 
-	export interface Prototype extends AbstractRange.Prototype, BoundariesLegacyEnum {
+	export interface Prototype extends AbstractRange.Prototype, Boundaries {
 		readonly commonAncestorContainer: Node;
 
 		setStart(node: BoundaryNode, offset: number): void;
@@ -42,7 +42,7 @@ export namespace Range {
 		selectNode(node: NonParentNode): void;
 		selectNodeContents(node: BoundaryNode): void;
 
-		compareBoundaryPoints(how: ValueOf<BoundariesLegacyEnum>, sourceRange: Range): -1 | 0 | 1;
+		compareBoundaryPoints(how: ValueOf<Boundaries>, sourceRange: Range): -1 | 0 | 1;
 
 		deleteContents(): void;
 		extractContents(): DocumentFragment;
@@ -63,7 +63,7 @@ export namespace Range {
 
 	export type Interface = Prototype & AbstractRange.Interface;
 
-	export interface Static extends AbstractRange.Static, BoundariesLegacyEnum {
+	export interface Static extends AbstractRange.Static, Boundaries {
 		prototype: Prototype;
 	}
 
