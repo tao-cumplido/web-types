@@ -13,6 +13,7 @@ export * from './svg-animated-string';
 export * from './svg-animated-transform-list';
 export * from './svg-element';
 export * from './svg-graphics-element';
+export * from './svg-image-element';
 export * from './svg-length';
 export * from './svg-number';
 export * from './svg-preserve-aspect-ratio';

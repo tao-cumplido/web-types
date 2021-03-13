@@ -7,6 +7,7 @@ import type { HTMLBaseElement } from './html-base-element';
 import type { HTMLBodyElement } from './html-body-element';
 import type { HTMLBRElement } from './html-br-element';
 import type { HTMLButtonElement } from './html-button-element';
+import type { HTMLCanvasElement } from './html-canvas-element';
 import type { HTMLDataElement } from './html-data-element';
 import type { HTMLDataListElement } from './html-datalist-element';
 import type { HTMLDetailsElement } from './html-details-element';
@@ -230,6 +231,9 @@ export interface HTMLElementMap {
 	noscript: HTMLElement;
 	template: HTMLTemplateElement;
 	slot: HTMLSlotElement;
+
+	// https://html.spec.whatwg.org/multipage/canvas.html
+	canvas: HTMLCanvasElement;
 }
 
 /** @nonStandard */
@@ -246,6 +250,7 @@ export * from './html-base-element';
 export * from './html-body-element';
 export * from './html-br-element';
 export * from './html-button-element';
+export * from './html-canvas-element';
 export * from './html-data-element';
 export * from './html-datalist-element';
 export * from './html-details-element';
