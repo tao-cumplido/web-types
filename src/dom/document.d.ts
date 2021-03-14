@@ -1,10 +1,11 @@
 import type { Merge } from '../@types';
 import type { BeforeUnloadEvent, Location, Window } from '../browser';
 import type { HTMLCollection, NodeList } from '../collections';
-import type { CustomEvent, DocumentAndElementEventHandlers, Event, EventHandler, GlobalEventHandlers } from '../event';
 import type {
 	AutonomousCustomElementMap,
 	CustomizedBuiltInElementMap,
+	DocumentAndElementEventHandlers,
+	GlobalEventHandlers,
 	HTMLAnchorElement,
 	HTMLAreaElement,
 	HTMLBodyElement,
@@ -24,10 +25,13 @@ import type { SVGElement, SVGElementMap, SVGScriptElement } from '../svg';
 import type { Attr } from './attr';
 import type { CDATASection } from './cdata-section';
 import type { Comment } from './comment';
+import type { CustomEvent } from './custom-event';
 import type { DocumentFragment } from './document-fragment';
 import type { DocumentType } from './document-type';
 import type { DOMImplementation } from './dom-implementation';
 import type { Element } from './element';
+import type { Event } from './event';
+import type { EventHandler } from './event-target';
 import type { DocumentOrElement, DocumentOrShadowRoot, NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 import type { ProcessingInstruction } from './processing-instruction';
@@ -159,7 +163,7 @@ export namespace Document {
 		dir: HTMLElement.Directionality;
 		body: HTMLBodyElement | HTMLFrameSetElement | null;
 
-		designMode: string;
+		designMode: 'on' | 'off';
 
 		onreadystatechange: EventHandler;
 

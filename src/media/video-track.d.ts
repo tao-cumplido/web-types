@@ -1,4 +1,4 @@
-import type { EventTarget } from '../event';
+import type { EventTarget } from '../dom';
 import type { AudioVideoKind, MediaTrack, MediaTrackList } from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#videotrack */

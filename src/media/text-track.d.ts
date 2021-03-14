@@ -1,4 +1,4 @@
-import type { EventHandler, EventTarget } from '../event';
+import type { EventHandler, EventTarget } from '../dom';
 import type { IndexedIterable } from '../iterable';
 import type { MediaTrack, MediaTrackList } from './mixins';
 

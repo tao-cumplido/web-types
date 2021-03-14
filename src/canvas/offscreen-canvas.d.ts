@@ -1,4 +1,4 @@
-import type { EventTarget } from '../event';
+import type { EventTarget } from '../dom';
 import type { Blob } from '../file';
 import type { WebGL2RenderingContext, WebGLRenderingContext } from '../web-gl';
 import type { ImageBitmap } from './image-bitmap';

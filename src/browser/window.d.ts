@@ -1,4 +1,4 @@
-import type { Event, EventTarget } from '../event';
+import type { Event, EventTarget } from '../dom';
 
 /**
  * @spec https://dom.spec.whatwg.org/#interface-window-extensions

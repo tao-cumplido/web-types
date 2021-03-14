@@ -1,6 +1,11 @@
 import type { AbortSignal } from '../abort';
 import type { Event } from './event';
-import type { EventHandlerNonNull } from './event-handler';
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandlernonnull */
+export type EventHandlerNonNull<AbstractEvent extends Event = Event> = (event: AbstractEvent) => unknown;
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler */
+export type EventHandler<AbstractEvent extends Event = Event> = EventHandlerNonNull<AbstractEvent> | null;
 
 /** @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition */
 export type EventListener<

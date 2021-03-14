@@ -1,9 +1,9 @@
 import type { ValueOf } from '../@types';
 import type { NodeList } from '../collections';
-import type { EventTarget } from '../event';
 import type { Document } from './document';
 import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
+import type { EventTarget } from './event-target';
 import type { ShadowRoot } from './shadow-root';
 
 /** @spec https://dom.spec.whatwg.org/#dictdef-getrootnodeoptions */

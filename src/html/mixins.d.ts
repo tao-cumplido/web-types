@@ -1,5 +1,8 @@
 import type { DOMStringMap } from '../collections';
-import type { HTMLFormElement } from './html-form-element';
+import type { Event, EventHandler } from '../dom';
+import type { HTMLFormElement } from './elements';
+import type { FormDataEvent } from './form-data-event';
+import type { SubmitEvent } from './submit-event';
 import type { ValidityState } from './validity-state';
 
 /** @spec https://html.spec.whatwg.org/multipage/interaction.html#focusoptions */
@@ -91,4 +94,121 @@ export interface HTMLFormTextUtils<Optional extends null> {
 	setRangeText(replacement: string): void;
 	setRangeText(replacement: string, start: number, end: number, selectionMode?: SelectionMode): void;
 	setSelectionRange(start: number, end: number, direction?: string): void;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onerroreventhandlernonnull */
+export type OnErrorEventHandlerNonNull = (
+	event: Event | string,
+	source?: string,
+	lineno?: number,
+	colno?: number,
+	error?: Error,
+) => unknown;
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onerroreventhandler */
+export type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandlernonnull */
+export type OnBeforeUnloadEventHandlerNonNull = (event: Event) => string | null;
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandler */
+export type OnBeforeUnloadEventHandler = OnBeforeUnloadEventHandlerNonNull | null;
+
+// TODO: add concrete events where appropriate
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#globaleventhandlers */
+export interface GlobalEventHandlers {
+	onabort: EventHandler;
+	onauxclick: EventHandler;
+	onblur: EventHandler;
+	oncancel: EventHandler;
+	oncanplay: EventHandler;
+	oncanplaythrough: EventHandler;
+	onchange: EventHandler;
+	onclick: EventHandler;
+	onclose: EventHandler;
+	oncontextmenu: EventHandler;
+	oncuechange: EventHandler;
+	ondblclick: EventHandler;
+	ondrag: EventHandler;
+	ondragend: EventHandler;
+	ondragenter: EventHandler;
+	ondragleave: EventHandler;
+	ondragover: EventHandler;
+	ondragstart: EventHandler;
+	ondrop: EventHandler;
+	ondurationchange: EventHandler;
+	onemptied: EventHandler;
+	onended: EventHandler;
+	onerror: OnErrorEventHandler;
+	onfocus: EventHandler;
+	onformdata: EventHandler<FormDataEvent>;
+	oninput: EventHandler;
+	oninvalid: EventHandler;
+	onkeydown: EventHandler;
+	onkeypress: EventHandler;
+	onkeyup: EventHandler;
+	onload: EventHandler;
+	onloadeddata: EventHandler;
+	onloadedmetadata: EventHandler;
+	onloadstart: EventHandler;
+	onmousedown: EventHandler;
+	onmouseenter: EventHandler;
+	onmouseleave: EventHandler;
+	onmousemove: EventHandler;
+	onmouseout: EventHandler;
+	onmouseover: EventHandler;
+	onmouseup: EventHandler;
+	onpause: EventHandler;
+	onplay: EventHandler;
+	onplaying: EventHandler;
+	onprogress: EventHandler;
+	onratechange: EventHandler;
+	onreset: EventHandler;
+	onresize: EventHandler;
+	onscroll: EventHandler;
+	onsecuritypolicyviolation: EventHandler;
+	onseeked: EventHandler;
+	onseeking: EventHandler;
+	onselect: EventHandler;
+	onslotchange: EventHandler;
+	onstalled: EventHandler;
+	onsubmit: EventHandler<SubmitEvent>;
+	onsuspend: EventHandler;
+	ontimeupdate: EventHandler;
+	ontoggle: EventHandler;
+	onvolumechange: EventHandler;
+	onwaiting: EventHandler;
+	onwebkitanimationend: EventHandler;
+	onwebkitanimationiteration: EventHandler;
+	onwebkitanimationstart: EventHandler;
+	onwebkittransitionend: EventHandler;
+	onwheel: EventHandler;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoweventhandlers */
+export interface WindowEventHandlers {
+	onafterprint: EventHandler;
+	onbeforeprint: EventHandler;
+	onbeforeunload: OnBeforeUnloadEventHandler;
+	onhashchange: EventHandler;
+	onlanguagechange: EventHandler;
+	onmessage: EventHandler;
+	onmessageerror: EventHandler;
+	onoffline: EventHandler;
+	ononline: EventHandler;
+	onpagehide: EventHandler;
+	onpageshow: EventHandler;
+	onpopstate: EventHandler;
+	onrejectionhandled: EventHandler;
+	onstorage: EventHandler;
+	onunhandledrejection: EventHandler;
+	onunload: EventHandler;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#documentandelementeventhandlers */
+export interface DocumentAndElementEventHandlers {
+	oncopy: EventHandler;
+	oncut: EventHandler;
+	onpaste: EventHandler;
 }

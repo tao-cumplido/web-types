@@ -1,4 +1,4 @@
-import type { Event, EventInit } from '../event';
+import type { Event, EventInit } from '../dom';
 import type { FormData } from '../xhr';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#formdataeventinit */

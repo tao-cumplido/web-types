@@ -1,4 +1,4 @@
-import type { EventHandler, EventTarget } from '../event';
+import type { EventHandler, EventTarget } from '../dom';
 
 /** @spec https://dom.spec.whatwg.org/#interface-AbortSignal */
 export interface AbortSignal extends AbortSignal.Interface {}

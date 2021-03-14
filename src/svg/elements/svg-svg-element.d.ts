@@ -1,7 +1,7 @@
 import type { NodeList } from '../../collections';
 import type { Element } from '../../dom';
-import type { WindowEventHandlers } from '../../event';
 import type { DOMMatrix, DOMMatrix2DInit, DOMPoint, DOMPointReadOnly, DOMRect, DOMRectReadOnly } from '../../geometry';
+import type { WindowEventHandlers } from '../../html';
 import type { SVGFitToViewBox } from '../mixins';
 import type { SVGAngle } from '../svg-angle';
 import type { SVGAnimatedLength } from '../svg-animated-length';

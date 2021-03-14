@@ -1,7 +1,6 @@
 import type { ElementCSSInlineStyle } from '../../css';
 import type { Element } from '../../dom';
-import type { DocumentAndElementEventHandlers, GlobalEventHandlers } from '../../event';
-import type { HTMLOrSVGElement } from '../../html';
+import type { DocumentAndElementEventHandlers, GlobalEventHandlers, HTMLOrSVGElement } from '../../html';
 import type { SVGElementInstance } from '../mixins';
 import type { SVGSVGElement } from './svg-svg-element';
 

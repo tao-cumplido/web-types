@@ -1,4 +1,4 @@
-import type { Event, EventInit } from '../event';
+import type { Event, EventInit } from '../dom';
 import type { AudioTrack } from './audio-track';
 import type { TextTrack } from './text-track';
 import type { VideoTrack } from './video-track';

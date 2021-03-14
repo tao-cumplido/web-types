@@ -1,4 +1,4 @@
-import type { WindowEventHandlers } from '../../event';
+import type { WindowEventHandlers } from '../mixins';
 import type { HTMLElement } from './html-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/sections.html#the-body-element */

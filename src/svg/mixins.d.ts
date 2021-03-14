@@ -1,10 +1,9 @@
 import type { IndexedIterable } from '../iterable';
+import type { SVGElement, SVGUseElement } from './elements';
 import type { SVGAnimatedPreserveAspectRatio } from './svg-animated-preserve-aspect-ratio';
 import type { SVGAnimatedRect } from './svg-animated-rect';
 import type { SVGAnimatedString } from './svg-animated-string';
-import type { SVGElement } from './svg-element';
 import type { SVGStringList } from './svg-string-list';
-import type { SVGUseElement } from './svg-use-element';
 
 /** @spec https://svgwg.org/svg2-draft/struct.html#InterfaceSVGElementInstance */
 export interface SVGElementInstance {
