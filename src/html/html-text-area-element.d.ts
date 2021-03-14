@@ -2,7 +2,7 @@ import type { NodeList } from '../collections';
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { HTMLLabelElement } from './html-label-element';
-import type { HTMLFormInputUtils, HTMLFormTextUtils, HTMLFormValidationUtils } from './mixins';
+import type { HTMLFormCustomValidationUtils, HTMLFormInputUtils, HTMLFormTextUtils } from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element */
 export interface HTMLTextAreaElement extends HTMLTextAreaElement.Interface {}
@@ -11,7 +11,7 @@ export interface HTMLTextAreaElement extends HTMLTextAreaElement.Interface {}
 export namespace HTMLTextAreaElement {
 	export interface Prototype
 		extends HTMLElement.Prototype,
-			HTMLFormValidationUtils,
+			HTMLFormCustomValidationUtils,
 			HTMLFormInputUtils,
 			HTMLFormTextUtils<never> {
 		readonly form: HTMLFormElement | null;

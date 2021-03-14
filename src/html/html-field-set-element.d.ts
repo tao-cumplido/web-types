@@ -6,14 +6,14 @@ import type { HTMLInputElement } from './html-input-element';
 import type { HTMLOutputElement } from './html-output-element';
 import type { HTMLSelectElement } from './html-select-element';
 import type { HTMLTextAreaElement } from './html-text-area-element';
-import type { HTMLFormValidationUtils } from './mixins';
+import type { HTMLFormCustomValidationUtils } from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element */
 export interface HTMLFieldSetElement extends HTMLFieldSetElement.Interface {}
 
 /** @exposed Window */
 export namespace HTMLFieldSetElement {
-	export interface Prototype extends HTMLElement.Prototype, HTMLFormValidationUtils {
+	export interface Prototype extends HTMLElement.Prototype, HTMLFormCustomValidationUtils {
 		readonly form: HTMLFormElement | null;
 		readonly type: 'fieldset';
 		readonly elements: HTMLCollection<

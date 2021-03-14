@@ -2,6 +2,7 @@ import type { DOMTokenList, NamedNodeMap } from '../collections';
 import type { Attr } from './attr';
 import type { Document } from './document';
 import type {
+	ARIAMixin,
 	ChildNode,
 	DocumentOrElement,
 	InnerHTML,
@@ -39,7 +40,8 @@ export namespace Element {
 			ChildNode,
 			Slottable,
 			DocumentOrElement,
-			InnerHTML {
+			InnerHTML,
+			ARIAMixin {
 		readonly [Symbol.unscopables]: Unscopables;
 
 		readonly nodeType: Node.NodeTypes['ELEMENT_NODE'];

@@ -16,7 +16,7 @@ export namespace HTMLFormElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		/** @putForwards value */
 		readonly relList: DOMTokenList;
-		readonly elements: HTMLFormControlsCollection;
+		readonly elements: HTMLFormControlsCollection.LegacyUnenumerableNamedProperties;
 		readonly length: number;
 
 		acceptCharset: string;

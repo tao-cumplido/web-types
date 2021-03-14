@@ -237,7 +237,10 @@ export interface HTMLElementMap {
 }
 
 /** @nonStandard */
-export interface AutonomousCustomElementMap {}
+export interface FormAssociatedCustomElementMap {}
+
+/** @nonStandard */
+export interface AutonomousCustomElementMap extends FormAssociatedCustomElementMap {}
 
 /** @nonStandard */
 export interface CustomizedBuiltInElementMap {}

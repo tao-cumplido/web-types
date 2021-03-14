@@ -129,3 +129,56 @@ export interface InnerHTML {
 	/** @legacyNullToEmptyString */
 	innerHTML: string;
 }
+
+/** @spec https://w3c.github.io/aria/#ARIAMixin */
+export interface ARIAMixin {
+	role: string | null;
+
+	ariaAtomic: string;
+	ariaAutoComplete: string;
+	ariaBusy: string;
+	ariaChecked: string;
+	ariaColCount: string;
+	ariaColIndex: string;
+	ariaColIndexText: string;
+	ariaColSpan: string;
+	ariaCurrent: string;
+
+	ariaDescription: string;
+
+	ariaDisabled: string;
+
+	ariaExpanded: string;
+
+	ariaHasPopup: string;
+	ariaHidden: string;
+	ariaInvalid: string;
+	ariaKeyShortcuts: string;
+	ariaLabel: string;
+
+	ariaLevel: string;
+	ariaLive: string;
+	ariaModal: string;
+	ariaMultiLine: string;
+	ariaMultiSelectable: string;
+	ariaOrientation: string;
+
+	ariaPlaceholder: string;
+	ariaPosInSet: string;
+	ariaPressed: string;
+	ariaReadOnly: string;
+
+	ariaRequired: string;
+	ariaRoleDescription: string;
+	ariaRowCount: string;
+	ariaRowIndex: string;
+	ariaRowIndexText: string;
+	ariaRowSpan: string;
+	ariaSelected: string;
+	ariaSetSize: string;
+	ariaSort: string;
+	ariaValueMax: string;
+	ariaValueMin: string;
+	ariaValueNow: string;
+	ariaValueText: string;
+}

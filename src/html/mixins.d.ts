@@ -62,6 +62,10 @@ export interface HTMLFormValidationUtils {
 
 	checkValidity(): boolean;
 	reportValidity(): boolean;
+}
+
+/** @nonStandard */
+export interface HTMLFormCustomValidationUtils extends HTMLFormValidationUtils {
 	setCustomValidity(error: string): void;
 }
 

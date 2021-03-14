@@ -3,7 +3,12 @@ import type { FileList } from '../file';
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { HTMLLabelElement } from './html-label-element';
-import type { HTMLFormControlUtils, HTMLFormInputUtils, HTMLFormTextUtils, HTMLFormValidationUtils } from './mixins';
+import type {
+	HTMLFormControlUtils,
+	HTMLFormCustomValidationUtils,
+	HTMLFormInputUtils,
+	HTMLFormTextUtils,
+} from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/input.html#the-input-element */
 export interface HTMLInputElement extends HTMLInputElement.Interface {}
@@ -37,7 +42,7 @@ export namespace HTMLInputElement {
 	export interface Prototype
 		extends HTMLElement.Prototype,
 			HTMLFormControlUtils,
-			HTMLFormValidationUtils,
+			HTMLFormCustomValidationUtils,
 			HTMLFormInputUtils,
 			HTMLFormTextUtils<null> {
 		readonly form: HTMLFormElement | null;
