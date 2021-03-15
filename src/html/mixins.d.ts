@@ -1,5 +1,6 @@
 import type { DOMStringMap } from '../collections';
 import type { Event, EventHandler } from '../dom';
+import type { DragEvent } from './drag-event';
 import type { HTMLFormElement } from './elements';
 import type { FormDataEvent } from './form-data-event';
 import type { SubmitEvent } from './submit-event';
@@ -130,13 +131,13 @@ export interface GlobalEventHandlers {
 	oncontextmenu: EventHandler;
 	oncuechange: EventHandler;
 	ondblclick: EventHandler;
-	ondrag: EventHandler;
-	ondragend: EventHandler;
-	ondragenter: EventHandler;
-	ondragleave: EventHandler;
-	ondragover: EventHandler;
-	ondragstart: EventHandler;
-	ondrop: EventHandler;
+	ondrag: EventHandler<DragEvent>;
+	ondragend: EventHandler<DragEvent>;
+	ondragenter: EventHandler<DragEvent>;
+	ondragleave: EventHandler<DragEvent>;
+	ondragover: EventHandler<DragEvent>;
+	ondragstart: EventHandler<DragEvent>;
+	ondrop: EventHandler<DragEvent>;
 	ondurationchange: EventHandler;
 	onemptied: EventHandler;
 	onended: EventHandler;
