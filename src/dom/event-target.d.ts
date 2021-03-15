@@ -37,8 +37,10 @@ export namespace EventTarget {
 	type ExtractEvents<T extends EventTarget> = {
 		[P in keyof T]: P extends `on${infer K}`
 			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends EventHandlerNonNull
-					? K
+				? NonNullable<T[P]> extends EventHandlerNonNull<infer AbstractEvent>
+					? AbstractEvent extends AbstractEvent
+						? K
+						: never
 					: never
 				: never
 			: never;
@@ -48,18 +50,20 @@ export namespace EventTarget {
 		? EventListener<AbstractEvent, NonNullable<T>>
 		: never;
 
-	export interface Prototype {
-		addEventListener<E extends ExtractEvents<this>>(
-			type: E,
-			callback?: HandlerToListener<this[`on${E}`]>,
+	// GlobalThis should only be used when the interface extending EventTarget is a global scope
+	// otherwise the add/remove event listener signatures wouldn't be correct when referenced globally
+	export interface Prototype<GlobalThis extends EventTarget = never> {
+		addEventListener<EventType extends ExtractEvents<this extends EventTarget ? this : GlobalThis>>(
+			type: EventType,
+			callback?: HandlerToListener<this[`on${EventType}`]>,
 			options?: AddEventListenerOptions | boolean,
 		): void;
 
 		addEventListener(type: string, callback?: EventListener, options?: AddEventListenerOptions | boolean): void;
 
-		removeEventListener<E extends ExtractEvents<this>>(
-			type: E,
-			callback?: HandlerToListener<this[`on${E}`]>,
+		removeEventListener<EventType extends ExtractEvents<this extends EventTarget ? this : GlobalThis>>(
+			type: EventType,
+			callback?: HandlerToListener<this[`on${EventType}`]>,
 			options?: EventListenerOptions | boolean,
 		): void;
 
