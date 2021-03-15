@@ -21,7 +21,7 @@ const packagesRoot = 'packages';
 const exposedInterfaces = new Map<string, string[]>();
 const exposedTypes = new Map<string, Map<string, TypeParameterDeclarationStructure[]>>();
 const legacyWindowAliases: Array<{ alias: string; name: string }> = [];
-const globalScopes = new Map<string, { global: string[]; properties: string[] }>();
+const globalScopes = new Map<string, { global: string[]; properties: string[]; globalProperties: string[] }>();
 const augmentations = new Map<string, string[]>();
 
 function writePackage(name: string, dependencies: Record<string, string> = {}) {
@@ -72,6 +72,17 @@ for (const sourceFile of project.getSourceFiles()) {
 				}
 
 				if (tagName === 'global') {
+					const globalProperties = namespaceNode
+						.forEachDescendantAsArray()
+						.filter(Node.isPropertySignature)
+						.filter((node) => Boolean(docTags(node, 'globalThis').length))
+						.map((node) => node.getName());
+
+					const properties = typeChecker
+						.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
+						.map((symbol) => symbol.getName())
+						.filter((name) => !globalProperties.includes(name));
+
 					updateMap(
 						globalScopes,
 						namespace,
@@ -81,9 +92,8 @@ for (const sourceFile of project.getSourceFiles()) {
 						},
 						{
 							global: [context],
-							properties: typeChecker
-								.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
-								.map((symbol) => symbol.getName()),
+							globalProperties,
+							properties,
 						},
 					);
 				}
@@ -193,9 +203,16 @@ for (const sourceFile of project.getSourceFiles()) {
 
 		for (const jsDocNode of node.getJsDocs()) {
 			for (const tag of jsDocNode.getTags()) {
-				if (
-					['exposed', 'legacyWindowAlias', 'global', 'nonStandard', 'legacyNullToEmptyString'].includes(tag.getTagName())
-				) {
+				const removableTags = [
+					'exposed',
+					'legacyWindowAlias',
+					'global',
+					'nonStandard',
+					'legacyNullToEmptyString',
+					'globalThis',
+				];
+
+				if (removableTags.includes(tag.getTagName())) {
 					tag.remove();
 				}
 			}
@@ -284,6 +301,7 @@ for (const [context, scope] of globalScopes) {
 				declare global {
 					${types.join('\n')}
 					${interfaces.join('\n')}
+					${scope.globalProperties.map((name) => `var ${name}: web.${context}['${name}'] & typeof globalThis;`).join('\n')}
 					${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
 				}
 			`,
