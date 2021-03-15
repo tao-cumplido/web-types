@@ -156,11 +156,11 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 					guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration, Node.isNamespaceDeclaration),
 				);
 
-				if (host) {
-					findExposures(host);
+				if (!host || host === sourceNode) {
+					continue;
 				}
 
-				continue;
+				findExposures(host);
 			}
 
 			const exposureSet = docTags(exposedNamespace, 'exposed').map((tag) => tag.getComment() ?? '');
