@@ -1,4 +1,4 @@
-import type { Window } from '../../browser';
+import type { WindowProxy } from '../../browser';
 import type { DOMTokenList } from '../../collections';
 import type { Document } from '../../dom';
 import type { HTMLElement } from './html-element';
@@ -13,7 +13,7 @@ export namespace HTMLIFrameElement {
 		/** @putForwards value */
 		readonly sandbox: DOMTokenList;
 		readonly contentDocument: Document.NamedProperties | null;
-		readonly contentWindow: Window.WindowProxy | null;
+		readonly contentWindow: WindowProxy | null;
 
 		src: string;
 		srcdoc: string;

@@ -1,5 +1,5 @@
 import type { Merge } from '../@types';
-import type { BeforeUnloadEvent, Location, Window } from '../browser';
+import type { BeforeUnloadEvent, Location, WindowProxy } from '../browser';
 import type { HTMLCollection, NodeList } from '../collections';
 import type {
 	AutonomousCustomElementMap,
@@ -101,8 +101,7 @@ export namespace Document {
 
 	type NamedElements = HTMLEmbedElement | HTMLFormElement | HTMLIFrameElement | HTMLImageElement | HTMLObjectElement;
 
-	export type NamedProperties = Document &
-		Record<string, NamedElements | HTMLCollection<NamedElements> | Window.WindowProxy>;
+	export type NamedProperties = Document & Record<string, NamedElements | HTMLCollection<NamedElements> | WindowProxy>;
 
 	export interface Prototype<T extends Type = Type.HTML>
 		extends Node.Prototype,
@@ -146,7 +145,7 @@ export namespace Document {
 		readonly scripts: HTMLCollection<HTMLScriptElement>;
 		readonly currentScript: HTMLOrSVGScriptElement | null;
 
-		readonly defaultView: Window.WindowProxy | null;
+		readonly defaultView: WindowProxy | null;
 
 		/** @deprecated legacy alias of .characterSet */
 		readonly charset: string;
@@ -231,7 +230,7 @@ export namespace Document {
 
 		getElementsByName(elementName: string): NodeList<Element>;
 
-		open(url: string, name: string, features: string): Window.WindowProxy | null;
+		open(url: string, name: string, features: string): WindowProxy | null;
 		/** @deprecated */
 		open(unused1: string, unused2?: string): NamedProperties;
 		open(): NamedProperties;

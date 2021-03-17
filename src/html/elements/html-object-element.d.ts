@@ -1,4 +1,4 @@
-import type { Window } from '../../browser';
+import type { WindowProxy } from '../../browser';
 import type { Document } from '../../dom';
 import type { ValidityState } from '../validity-state';
 import type { HTMLElement } from './html-element';
@@ -12,7 +12,7 @@ export namespace HTMLObjectElement {
 	export interface Prototype extends HTMLElement.Prototype {
 		readonly form: HTMLFormElement | null;
 		readonly contentDocument: Document.NamedProperties | null;
-		readonly contentWindow: Window.WindowProxy | null;
+		readonly contentWindow: WindowProxy | null;
 
 		readonly willValidate: boolean;
 		readonly validity: ValidityState;

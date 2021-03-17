@@ -24,7 +24,7 @@ export interface ImageBitmapOptions {
 	colorSpaceConversion?: ColorSpaceConversion;
 	resizeWidth?: number;
 	resizeHeight?: number;
-	resizeQuality?: number;
+	resizeQuality?: ResizeQuality;
 }
 
 /** @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#images-2 */

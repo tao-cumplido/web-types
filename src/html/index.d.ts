@@ -171,6 +171,9 @@ export interface HTMLElementMap {
 
 	// https://html.spec.whatwg.org/multipage/canvas.html
 	canvas: elements.HTMLCanvasElement;
+
+	// https://html.spec.whatwg.org/multipage/obsolete.html#frameset
+	frameset: elements.HTMLFrameSetElement;
 }
 
 /** @nonStandard */
