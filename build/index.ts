@@ -81,7 +81,7 @@ for (const sourceFile of project.getSourceFiles()) {
 					const properties = typeChecker
 						.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
 						.map((symbol) => symbol.getName())
-						.filter((name) => !globalProperties.includes(name));
+						.filter((name) => !name.startsWith('__@') && !globalProperties.includes(name));
 
 					updateMap(
 						globalScopes,
@@ -195,9 +195,8 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 }
 
 for (const sourceFile of project.getSourceFiles()) {
-	sourceFile.forEachDescendant((node, traversal) => {
+	sourceFile.forEachDescendant((node) => {
 		if (!Node.isJSDocableNode(node)) {
-			traversal.skip();
 			return;
 		}
 
@@ -210,6 +209,7 @@ for (const sourceFile of project.getSourceFiles()) {
 					'nonStandard',
 					'legacyNullToEmptyString',
 					'globalThis',
+					'putForwards',
 				];
 
 				if (removableTags.includes(tag.getTagName())) {

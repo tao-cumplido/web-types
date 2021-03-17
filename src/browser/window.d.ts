@@ -14,7 +14,7 @@ export interface WindowPostMessageOptions extends PostMessageOptions {
 }
 
 /** @spec https://html.spec.whatwg.org/multipage/window-object.html#the-windowproxy-exotic-object */
-export type WindowProxy = Window & typeof globalThis;
+export type WindowProxy = Window;
 
 /**
  * @spec https://dom.spec.whatwg.org/#interface-window-extensions
