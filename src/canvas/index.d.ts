@@ -9,3 +9,4 @@ export * from './offscreen-canvas';
 export * from './offscreen-canvas-rendering-context-2d';
 export * from './path-2d';
 export * from './text-metrics';
+export * from './types';

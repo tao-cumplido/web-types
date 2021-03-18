@@ -1,5 +1,4 @@
 export * from './abort';
-export * from './browser';
 export * from './canvas';
 export * from './collections';
 export * from './dom';
@@ -9,4 +8,5 @@ export * from './media';
 export * from './svg';
 export * from './ui-events';
 export * from './web-gl';
+export * from './web-idl';
 export * from './xhr';

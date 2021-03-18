@@ -1,8 +1,8 @@
 import type { Merge } from '../@types';
-import type { BeforeUnloadEvent, Location, WindowProxy } from '../browser';
 import type { HTMLCollection, NodeList } from '../collections';
 import type {
 	AutonomousCustomElementMap,
+	BeforeUnloadEvent,
 	CustomizedBuiltInElementMap,
 	DocumentAndElementEventHandlers,
 	GlobalEventHandlers,
@@ -20,6 +20,8 @@ import type {
 	HTMLObjectElement,
 	HTMLScriptElement,
 	HTMLUnknownElement,
+	Location,
+	WindowProxy,
 } from '../html';
 import type { SVGElement, SVGElementMap, SVGScriptElement } from '../svg';
 import type { Attr } from './attr';

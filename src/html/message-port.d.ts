@@ -1,8 +1,5 @@
-import type { ImageBitmap, OffscreenCanvas } from '../canvas';
 import type { EventTarget } from '../dom';
-
-// not specced as type but as extended IDL attribute on the following interfaces
-export type Transferable = ArrayBuffer | MessagePort | OffscreenCanvas | ImageBitmap;
+import type { Transferable } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/web-messaging.html#postmessageoptions */
 export interface PostMessageOptions {

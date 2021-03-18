@@ -1,6 +1,6 @@
-import type { WindowProxy } from '../../browser';
 import type { DOMTokenList } from '../../collections';
 import type { Document } from '../../dom';
+import type { WindowProxy } from '../../html';
 import type { HTMLElement } from './html-element';
 import type { HTMLLinkElement } from './html-link-element';
 

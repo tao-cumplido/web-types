@@ -1,6 +1,6 @@
 import type { Blob } from '../file';
 import type { ImageData } from './image-data';
-import type { CanvasImageSource } from './mixins';
+import type { CanvasImageSource } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource */
 export type ImageBitmapSource = CanvasImageSource | Blob | ImageData;

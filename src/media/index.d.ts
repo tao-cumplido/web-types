@@ -6,4 +6,5 @@ export * from './mixins';
 export * from './text-track';
 export * from './time-ranges';
 export * from './track-event';
+export * from './types';
 export * from './video-track';

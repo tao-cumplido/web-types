@@ -1,19 +1,6 @@
-import type { EventHandler } from '../event';
+import type { EventHandler } from '../dom';
 import type { IndexedIterable } from '../iterable';
 import type { TrackEvent } from './track-event';
-
-/** @nonStandard */
-export type AudioVideoKind =
-	| 'alternative'
-	| 'captions'
-	| 'descriptions'
-	| 'main'
-	| 'main-desc'
-	| 'sign'
-	| 'subtitles'
-	| 'translation'
-	| 'commentary'
-	| '';
 
 /** @nonStandard */
 export interface MediaTrack<Kind extends string = string> {

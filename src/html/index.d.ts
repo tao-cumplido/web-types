@@ -185,6 +185,8 @@ export interface AutonomousCustomElementMap extends FormAssociatedCustomElementM
 /** @nonStandard */
 export interface CustomizedBuiltInElementMap {}
 
+export * from './bar-prop';
+export * from './before-unload-event';
 export * from './custom-element-registry';
 export * from './data-transafer-item';
 export * from './data-transfer';
@@ -193,6 +195,12 @@ export * from './drag-event';
 export * from './element-internals';
 export * from './elements';
 export * from './form-data-event';
+export * from './history';
+export * from './location';
+export * from './message-port';
 export * from './mixins';
+export * from './navigator';
 export * from './submit-event';
+export * from './types';
 export * from './validity-state';
+export * from './window';

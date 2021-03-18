@@ -1,5 +1,5 @@
-import type { Window } from '../browser';
 import type { Event, EventInit } from '../dom';
+import type { Window } from '../html';
 
 /** @spec https://w3c.github.io/uievents/#idl-uieventinit */
 export interface UIEventInit extends EventInit {

@@ -1,12 +1,13 @@
 import type { Document, Element, Event, EventTarget } from '../dom';
-import type { CustomElementRegistry, GlobalEventHandlers, WindowEventHandlers } from '../html';
 import type { IndexedIterable } from '../iterable';
 import type { BarProp } from './bar-prop';
+import type { CustomElementRegistry } from './custom-element-registry';
 import type { History } from './history';
 import type { Location } from './location';
-import type { PostMessageOptions, Transferable } from './message-port';
-import type { WindowOrWorkerGlobalScope } from './mixins';
+import type { PostMessageOptions } from './message-port';
+import type { GlobalEventHandlers, WindowEventHandlers, WindowOrWorkerGlobalScope } from './mixins';
 import type { Navigator } from './navigator';
+import type { Transferable } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/window-object.html#windowpostmessageoptions */
 export interface WindowPostMessageOptions extends PostMessageOptions {

@@ -1,30 +1,4 @@
-import type { ImageBitmap, ImageData } from '../canvas';
-
-/** @nonStandard */
-export type Serializable =
-	| undefined
-	| null
-	| boolean
-	| number
-	| bigint
-	| string
-	| boolean
-	| number
-	| bigint
-	| string
-	| Date
-	| RegExp
-	| SharedArrayBuffer
-	| ArrayBuffer
-	| ArrayBufferView
-	| Map<Serializable, Serializable>
-	| Set<Serializable>
-	| Serializable[]
-	// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
-	| { [key: string]: Serializable }
-	| Error
-	| ImageData
-	| ImageBitmap;
+import type { Serializable } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/history.html#scrollrestoration */
 export type ScrollRestoration = 'auto' | 'manual';

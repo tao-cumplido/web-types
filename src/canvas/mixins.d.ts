@@ -1,21 +1,27 @@
 import type { Element } from '../dom';
 import type { DOMMatrix, DOMMatrix2DInit } from '../geometry';
-import type { HTMLCanvasElement, HTMLImageElement, HTMLVideoElement } from '../html';
-import type { SVGImageElement } from '../svg';
 import type { WebGL2RenderingContext, WebGLContextAttributes, WebGLRenderingContext } from '../web-gl';
 import type { CanvasGradient } from './canvas-gradient';
 import type { CanvasPattern } from './canvas-pattern';
 import type { CanvasRenderingContext2D, CanvasRenderingContext2DSettings } from './canvas-rendering-context-2d';
-import type { ImageBitmap } from './image-bitmap';
 import type {
 	ImageBitmapRenderingContext,
 	ImageBitmapRenderingContextSettings,
 } from './image-bitmap-rendering-context';
 import type { ImageData } from './image-data';
-import type { OffscreenCanvas } from './offscreen-canvas';
 import type { OffscreenCanvasRenderingContext2D } from './offscreen-canvas-rendering-context-2d';
 import type { Path2D } from './path-2d';
 import type { TextMetrics } from './text-metrics';
+import type {
+	CanvasDirection,
+	CanvasFillRule,
+	CanvasImageSource,
+	CanvasLineCap,
+	CanvasLineJoin,
+	CanvasTextAlign,
+	CanvasTextBaseline,
+	ImageSmoothingQuality,
+} from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasstate */
 export interface CanvasState {
@@ -41,9 +47,6 @@ export interface CanvasCompositing {
 	globalAlpha: number;
 	globalCompositeOperation: 'source-over' | 'copy';
 }
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#imagesmoothingquality */
-export type ImageSmoothingQuality = 'low' | 'medium' | 'high';
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagesmoothing */
 export interface CanvasImageSmoothing {
@@ -80,9 +83,6 @@ export interface CanvasRect {
 	strokeRect(x: number, y: number, w: number, h: number): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasfillrule */
-export type CanvasFillRule = 'nonzero' | 'evenodd';
-
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawpath */
 export interface CanvasDrawPath {
 	beginPath(): void;
@@ -110,17 +110,6 @@ export interface CanvasText {
 	strokeText(text: string, x: number, y: number, maxWidth: number): void;
 	measureText(text: string): TextMetrics;
 }
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#htmlorsvgimageelement */
-export type HTMLOrSVGImageElement = HTMLImageElement | SVGImageElement;
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagesource */
-export type CanvasImageSource =
-	| HTMLOrSVGImageElement
-	| HTMLVideoElement
-	| HTMLCanvasElement
-	| ImageBitmap
-	| OffscreenCanvas;
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawimage */
 export interface CanvasDrawImage {
@@ -156,12 +145,6 @@ export interface CanvasImageData {
 	): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaslinecap */
-export type CanvasLineCap = 'butt' | 'round' | 'square';
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaslinejoin */
-export type CanvasLineJoin = 'round' | 'bevel' | 'miter';
-
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaspathdrawingstyles */
 export interface CanvasPathDrawingStyles {
 	lineWidth: number;
@@ -174,15 +157,6 @@ export interface CanvasPathDrawingStyles {
 	setLineDash(segments: number[]): void;
 	getLineDash(): number[];
 }
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastextalign */
-export type CanvasTextAlign = 'start' | 'end' | 'left' | 'right' | 'center';
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastextbaseline */
-export type CanvasTextBaseline = 'top' | 'hanging' | 'middle' | 'alphabetic' | 'ideographic' | 'bottom';
-
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdirection */
-export type CanvasDirection = 'ltr' | 'rtl' | 'inherit';
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastextdrawingstyles */
 export interface CanvasTextDrawingStyles {

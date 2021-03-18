@@ -1,15 +1,12 @@
+import type { ImageBitmap, ImageBitmapOptions, ImageBitmapSource } from '../canvas';
 import type { DOMStringMap } from '../collections';
-import type { Event, EventHandler } from '../dom';
+import type { EventHandler } from '../dom';
 import type { DragEvent } from './drag-event';
 import type { HTMLFormElement } from './elements';
 import type { FormDataEvent } from './form-data-event';
 import type { SubmitEvent } from './submit-event';
+import type { FocusOptions, OnBeforeUnloadEventHandler, OnErrorEventHandler, SelectionMode } from './types';
 import type { ValidityState } from './validity-state';
-
-/** @spec https://html.spec.whatwg.org/multipage/interaction.html#focusoptions */
-export interface FocusOptions {
-	preventScroll?: boolean;
-}
 
 /** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement */
 export interface HTMLOrSVGElement {
@@ -45,9 +42,6 @@ export interface HTMLHyperlinkElementUtils {
 	search: string;
 	hash: string;
 }
-
-/** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#selectionmode */
-export type SelectionMode = 'select' | 'start' | 'end' | 'preserve';
 
 /** @nonStandard */
 export interface HTMLFormControlUtils {
@@ -96,24 +90,6 @@ export interface HTMLFormTextUtils<Optional extends null> {
 	setRangeText(replacement: string, start: number, end: number, selectionMode?: SelectionMode): void;
 	setSelectionRange(start: number, end: number, direction?: string): void;
 }
-
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onerroreventhandlernonnull */
-export type OnErrorEventHandlerNonNull = (
-	event: Event | string,
-	source?: string,
-	lineno?: number,
-	colno?: number,
-	error?: Error,
-) => unknown;
-
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onerroreventhandler */
-export type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
-
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandlernonnull */
-export type OnBeforeUnloadEventHandlerNonNull = (event: Event) => string | null;
-
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandler */
-export type OnBeforeUnloadEventHandler = OnBeforeUnloadEventHandlerNonNull | null;
 
 // TODO: add concrete events where appropriate
 
@@ -212,4 +188,9 @@ export interface DocumentAndElementEventHandlers {
 	oncopy: EventHandler;
 	oncut: EventHandler;
 	onpaste: EventHandler;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope-mixin */
+export interface WindowOrWorkerGlobalScope {
+	createImageBitmap(image: ImageBitmapSource, options?: ImageBitmapOptions): Promise<ImageBitmap>;
 }

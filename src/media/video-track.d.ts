@@ -1,5 +1,6 @@
 import type { EventTarget } from '../dom';
-import type { AudioVideoKind, MediaTrack, MediaTrackList } from './mixins';
+import type { MediaTrack, MediaTrackList } from './mixins';
+import type { AudioVideoKind } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#videotrack */
 export interface VideoTrack extends VideoTrack.Interface {}
