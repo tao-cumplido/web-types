@@ -20,7 +20,7 @@ export interface RequestInit {
 	headers?: HeadersInit;
 	body?: BodyInit | null;
 	referrer?: string;
-	referrerPolicy: ReferrerPolicy;
+	referrerPolicy?: ReferrerPolicy;
 	mode?: RequestMode;
 	credentials?: RequestCredentials;
 	cache?: RequestCache;
