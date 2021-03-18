@@ -30,6 +30,6 @@ export namespace HTMLAreaElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLAreaElement;
+		new(): HTMLAreaElement;
 	}
 }

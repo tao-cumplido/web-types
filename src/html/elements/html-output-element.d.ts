@@ -29,6 +29,6 @@ export namespace HTMLOutputElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLOutputElement;
+		new(): HTMLOutputElement;
 	}
 }

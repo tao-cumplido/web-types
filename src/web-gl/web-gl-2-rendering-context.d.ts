@@ -16,6 +16,6 @@ export namespace WebGL2RenderingContext {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

@@ -15,6 +15,6 @@ export namespace HTMLPreElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLPreElement;
+		new(): HTMLPreElement;
 	}
 }

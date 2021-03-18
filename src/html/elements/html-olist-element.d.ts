@@ -19,6 +19,6 @@ export namespace HTMLOListElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLOListElement;
+		new(): HTMLOListElement;
 	}
 }

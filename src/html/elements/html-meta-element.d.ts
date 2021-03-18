@@ -19,6 +19,6 @@ export namespace HTMLMetaElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLMetaElement;
+		new(): HTMLMetaElement;
 	}
 }

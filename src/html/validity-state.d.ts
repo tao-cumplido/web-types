@@ -25,6 +25,6 @@ export namespace ValidityState {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

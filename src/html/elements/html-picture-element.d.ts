@@ -15,6 +15,6 @@ export namespace HTMLPictureElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLPictureElement;
+		new(): HTMLPictureElement;
 	}
 }

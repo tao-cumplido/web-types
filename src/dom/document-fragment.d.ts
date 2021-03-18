@@ -31,6 +31,6 @@ export namespace DocumentFragment {
 	}
 
 	export interface Constructor extends Static {
-		new (): DocumentFragment;
+		new(): DocumentFragment;
 	}
 }

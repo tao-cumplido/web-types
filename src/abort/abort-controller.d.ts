@@ -20,6 +20,6 @@ export namespace AbortController {
 	}
 
 	export interface Constructor extends Static {
-		new (): AbortController;
+		new(): AbortController;
 	}
 }

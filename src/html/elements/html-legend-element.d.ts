@@ -18,6 +18,6 @@ export namespace HTMLLegendElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLLegendElement;
+		new(): HTMLLegendElement;
 	}
 }

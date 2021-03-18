@@ -18,6 +18,6 @@ export namespace HTMLOptGroupElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLOptGroupElement;
+		new(): HTMLOptGroupElement;
 	}
 }

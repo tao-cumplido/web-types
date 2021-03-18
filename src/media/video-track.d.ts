@@ -19,7 +19,7 @@ export namespace VideoTrack {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -40,6 +40,6 @@ export namespace VideoTrackList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

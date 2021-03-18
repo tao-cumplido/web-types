@@ -23,6 +23,6 @@ export namespace DOMImplementation {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

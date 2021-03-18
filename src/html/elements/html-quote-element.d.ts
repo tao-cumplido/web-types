@@ -17,6 +17,6 @@ export namespace HTMLQuoteElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLQuoteElement;
+		new(): HTMLQuoteElement;
 	}
 }

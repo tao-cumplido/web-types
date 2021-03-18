@@ -24,6 +24,6 @@ export namespace HTMLTableRowElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTableRowElement;
+		new(): HTMLTableRowElement;
 	}
 }

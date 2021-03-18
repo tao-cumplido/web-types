@@ -17,6 +17,6 @@ export namespace HTMLLIElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLLIElement;
+		new(): HTMLLIElement;
 	}
 }

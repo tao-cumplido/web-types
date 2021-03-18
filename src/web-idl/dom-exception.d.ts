@@ -49,6 +49,6 @@ export namespace DOMException {
 	}
 
 	export interface Constructor extends Static {
-		new (message?: string, name?: string): DOMException;
+		new(message?: string, name?: string): DOMException;
 	}
 }

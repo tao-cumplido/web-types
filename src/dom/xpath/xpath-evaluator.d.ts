@@ -42,6 +42,6 @@ export namespace XPathEvaluator {
 	}
 
 	export interface Constructor extends Static {
-		new (): XPathEvaluator;
+		new(): XPathEvaluator;
 	}
 }

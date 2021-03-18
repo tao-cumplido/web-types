@@ -22,6 +22,6 @@ export namespace SubmitEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: SubmitEventInit): SubmitEvent;
+		new(type: string, eventInitDict?: SubmitEventInit): SubmitEvent;
 	}
 }

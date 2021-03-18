@@ -32,6 +32,6 @@ export namespace HTMLAnchorElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLAnchorElement;
+		new(): HTMLAnchorElement;
 	}
 }

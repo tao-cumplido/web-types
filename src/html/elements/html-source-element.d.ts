@@ -21,6 +21,6 @@ export namespace HTMLSourceElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLSourceElement;
+		new(): HTMLSourceElement;
 	}
 }

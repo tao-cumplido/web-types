@@ -7,8 +7,9 @@ export interface MutationRecord extends MutationRecord.Interface {}
 
 /** @exposed Window */
 export namespace MutationRecord {
-	export type Constrained = MutationRecord &
-		(
+	export type Constrained =
+		& MutationRecord
+		& (
 			| { type: 'attributes'; oldValue: string }
 			| { type: 'characterData'; target: CharacterData; oldValue: string }
 			| { type: 'childList'; oldValue: null }
@@ -36,6 +37,6 @@ export namespace MutationRecord {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

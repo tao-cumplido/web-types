@@ -15,6 +15,6 @@ export namespace HTMLTableCaptionElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTableCaptionElement;
+		new(): HTMLTableCaptionElement;
 	}
 }

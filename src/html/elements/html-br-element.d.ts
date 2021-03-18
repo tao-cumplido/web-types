@@ -15,6 +15,6 @@ export namespace HTMLBRElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLBRElement;
+		new(): HTMLBRElement;
 	}
 }

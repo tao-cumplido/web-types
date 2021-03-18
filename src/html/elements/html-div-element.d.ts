@@ -15,6 +15,6 @@ export namespace HTMLDivElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLDivElement;
+		new(): HTMLDivElement;
 	}
 }

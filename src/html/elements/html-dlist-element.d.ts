@@ -15,6 +15,6 @@ export namespace HTMLDListElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLDListElement;
+		new(): HTMLDListElement;
 	}
 }

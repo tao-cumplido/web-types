@@ -11,10 +11,12 @@ export interface HTMLSelectElement extends HTMLSelectElement.Interface {}
 /** @exposed Window */
 export namespace HTMLSelectElement {
 	export interface Prototype
-		extends HTMLElement.Prototype,
+		extends
+			HTMLElement.Prototype,
 			HTMLFormCustomValidationUtils,
 			HTMLFormInputUtils,
-			HTMLOptionsCollection /* used like a mixin */ {
+			HTMLOptionsCollection /* used like a mixin */
+	{
 		readonly form: HTMLFormElement | null;
 		readonly labels: NodeList<HTMLLabelElement> | null;
 		readonly options: HTMLOptionsCollection;
@@ -40,6 +42,6 @@ export namespace HTMLSelectElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLSelectElement;
+		new(): HTMLSelectElement;
 	}
 }

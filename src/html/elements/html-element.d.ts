@@ -16,12 +16,14 @@ export namespace HTMLElement {
 	export type Directionality = '' | 'ltr' | 'rtl' | 'auto';
 
 	export interface Prototype
-		extends Element.Prototype,
+		extends
+			Element.Prototype,
 			GlobalEventHandlers,
 			DocumentAndElementEventHandlers,
 			ElementContentEditable,
 			HTMLOrSVGElement,
-			ElementCSSInlineStyle {
+			ElementCSSInlineStyle
+	{
 		readonly accessKeyLabel: string;
 
 		title: string;
@@ -50,7 +52,7 @@ export namespace HTMLElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLElement;
+		new(): HTMLElement;
 	}
 }
 
@@ -69,6 +71,6 @@ export namespace HTMLUnknownElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

@@ -19,6 +19,6 @@ export namespace NodeList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

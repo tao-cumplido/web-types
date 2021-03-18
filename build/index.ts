@@ -9,7 +9,6 @@ import type {
 	ReferenceFindableNode,
 	TypeParameterDeclarationStructure,
 } from 'ts-morph';
-import prettier from 'prettier';
 import { Node, Project } from 'ts-morph';
 
 import packageJson from '../package.json';
@@ -126,7 +125,7 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 	});
 
 	const typeParameters = typeDeclarations.flatMap((node) =>
-		node.getTypeParameters().map((parameter) => parameter.getStructure()),
+		node.getTypeParameters().map((parameter) => parameter.getStructure())
 	);
 
 	if (typeDeclarations.length && exposedRealms.length) {
@@ -240,17 +239,16 @@ for (const [context, scope] of globalScopes) {
 	const augmentedInterfaces = augmentations.get(context);
 
 	if (augmentedInterfaces) {
+		// dprint-ignore
+		const format = (name: string) => `
+			namespace ${name} {
+				interface Prototype extends Prototype.${context} {}
+			}
+		`;
+
 		augmentationBlock = `
 			declare module '@tswt/core' {
-				${augmentedInterfaces
-					.map(
-						(name) => `
-							namespace ${name} {
-								interface Prototype extends Prototype.${context} {}
-							}
-						`,
-					)
-					.join('\n')}
+				${augmentedInterfaces.map(format).join('\n')}
 			}
 		`;
 	}
@@ -286,30 +284,24 @@ for (const [context, scope] of globalScopes) {
 			const parameterNames = parameters.map(({ name }) => name).join(', ');
 
 			return `type ${type}<${parameterSignature}> = web.${type}<${parameterNames}>;`;
-		}),
+		})
 	);
 
 	fs.mkdirSync(path.join(packagesRoot, packageName));
 	fs.writeFileSync(
 		path.join(packagesRoot, packageName, 'index.d.ts'),
-		prettier.format(
-			`
-				import * as web from '@tswt/core';
+		`
+			import * as web from '@tswt/core';
 
-				${augmentationBlock}
+			${augmentationBlock}
 
-				declare global {
-					${types.join('\n')}
-					${interfaces.join('\n')}
-					${scope.globalProperties.map((name) => `var ${name}: web.${context}['${name}'] & typeof globalThis;`).join('\n')}
-					${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
-				}
-			`,
-			{
-				...prettier.resolveConfig.sync(__filename),
-				parser: 'typescript',
-			},
-		),
+			declare global {
+				${types.join('\n')}
+				${interfaces.join('\n')}
+				${scope.globalProperties.map((name) => `var ${name}: web.${context}['${name}'] & typeof globalThis;`).join('\n')}
+				${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
+			}
+		`,
 	);
 
 	writePackage(packageName, { '@tswt/core': `~${packageJson.version}` });

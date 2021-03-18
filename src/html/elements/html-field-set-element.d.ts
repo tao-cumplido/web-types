@@ -37,6 +37,6 @@ export namespace HTMLFieldSetElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLFieldSetElement;
+		new(): HTMLFieldSetElement;
 	}
 }

@@ -15,6 +15,6 @@ export namespace HTMLParagraphElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLParagraphElement;
+		new(): HTMLParagraphElement;
 	}
 }

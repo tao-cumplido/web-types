@@ -43,6 +43,6 @@ export namespace ElementInternals {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

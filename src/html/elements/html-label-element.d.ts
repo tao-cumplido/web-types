@@ -20,6 +20,6 @@ export namespace HTMLLabelElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLLabelElement;
+		new(): HTMLLabelElement;
 	}
 }

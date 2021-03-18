@@ -30,7 +30,8 @@ export interface CanvasRenderingContext2D extends CanvasRenderingContext2D.Inter
 /** @exposed Window */
 export namespace CanvasRenderingContext2D {
 	export interface Prototype
-		extends CanvasState,
+		extends
+			CanvasState,
 			CanvasTransform,
 			CanvasCompositing,
 			CanvasImageSmoothing,
@@ -45,7 +46,8 @@ export namespace CanvasRenderingContext2D {
 			CanvasImageData,
 			CanvasPathDrawingStyles,
 			CanvasTextDrawingStyles,
-			CanvasPath {
+			CanvasPath
+	{
 		readonly canvas: HTMLCanvasElement;
 		getContextAttributes(): CanvasRenderingContext2DSettings;
 	}
@@ -58,6 +60,6 @@ export namespace CanvasRenderingContext2D {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

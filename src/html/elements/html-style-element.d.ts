@@ -18,6 +18,6 @@ export namespace HTMLStyleElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLStyleElement;
+		new(): HTMLStyleElement;
 	}
 }

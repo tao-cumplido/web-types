@@ -92,8 +92,7 @@ export namespace Document {
 		Is,
 		CustomizedBuiltInElementMap,
 		never
-	> extends never
-		? ParentNode.ElementLookup<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
+	> extends never ? ParentNode.ElementLookup<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
 		: ParentNode.ElementLookup<Is, CustomizedBuiltInElementMap>;
 
 	export enum Type {
@@ -106,14 +105,16 @@ export namespace Document {
 	export type NamedProperties = Document & Record<string, NamedElements | HTMLCollection<NamedElements> | WindowProxy>;
 
 	export interface Prototype<T extends Type = Type.HTML>
-		extends Node.Prototype,
+		extends
+			Node.Prototype,
 			NonElementParentNode,
 			DocumentOrShadowRoot,
 			ParentNode,
 			DocumentOrElement,
 			XPathEvaluatorBase,
 			GlobalEventHandlers,
-			DocumentAndElementEventHandlers {
+			DocumentAndElementEventHandlers
+	{
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
 		readonly nodeType: Node.NodeTypes['DOCUMENT_NODE'];
@@ -259,7 +260,7 @@ export namespace Document {
 	}
 
 	export interface Constructor extends Static {
-		new (): Document;
+		new(): Document;
 	}
 }
 
@@ -273,8 +274,10 @@ export namespace XMLDocument {
 		createCDATASection(data: string): CDATASection;
 	}
 
-	export type Interface = Prototype &
-		Document.Interface<Document.Type.XML> & {
+	export type Interface =
+		& Prototype
+		& Document.Interface<Document.Type.XML>
+		& {
 			/** @deprecated */
 			open(unused1: string, unused2?: string): never;
 			/** @deprecated */
@@ -287,6 +290,6 @@ export namespace XMLDocument {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

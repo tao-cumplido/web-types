@@ -23,6 +23,6 @@ export namespace HTMLEmbedElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLEmbedElement;
+		new(): HTMLEmbedElement;
 	}
 }

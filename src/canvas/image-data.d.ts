@@ -19,7 +19,7 @@ export namespace ImageData {
 	}
 
 	export interface Constructor extends Static {
-		new (sw: number, sh: number): ImageData;
-		new (data: Uint8ClampedArray, sw: number, sh: number): ImageData;
+		new(sw: number, sh: number): ImageData;
+		new(data: Uint8ClampedArray, sw: number, sh: number): ImageData;
 	}
 }

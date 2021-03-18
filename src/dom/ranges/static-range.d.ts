@@ -28,6 +28,6 @@ export namespace StaticRange {
 	}
 
 	export interface Constructor extends Static {
-		new (init: StaticRangeInit): StaticRange;
+		new(init: StaticRangeInit): StaticRange;
 	}
 }

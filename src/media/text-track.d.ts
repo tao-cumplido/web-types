@@ -27,7 +27,7 @@ export namespace TextTrackCue {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -49,7 +49,7 @@ export namespace TextTrackCueList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -86,7 +86,7 @@ export namespace TextTrack {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -105,6 +105,6 @@ export namespace TextTrackList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

@@ -37,6 +37,6 @@ export namespace ImageBitmapRenderingContext {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

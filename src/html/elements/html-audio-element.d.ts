@@ -15,7 +15,7 @@ export namespace HTMLAudioElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLAudioElement;
+		new(): HTMLAudioElement;
 	}
 }
 
@@ -24,6 +24,6 @@ export namespace Audio {
 	export interface Constructor {
 		prototype: HTMLAudioElement.Prototype;
 		/** @deprecated */
-		new (src?: string): HTMLAudioElement;
+		new(src?: string): HTMLAudioElement;
 	}
 }

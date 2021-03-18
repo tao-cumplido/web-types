@@ -23,6 +23,6 @@ export namespace HTMLVideoElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLVideoElement;
+		new(): HTMLVideoElement;
 	}
 }

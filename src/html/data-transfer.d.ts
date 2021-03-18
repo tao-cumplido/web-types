@@ -31,6 +31,6 @@ export namespace DataTransfer {
 	}
 
 	export interface Constructor extends Static {
-		new (): DataTransfer;
+		new(): DataTransfer;
 	}
 }

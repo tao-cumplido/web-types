@@ -30,7 +30,7 @@ export namespace DOMPointReadOnly {
 	}
 
 	export interface Constructor extends Static<DOMPointReadOnly> {
-		new (x?: number, y?: number, z?: number, w?: number): DOMPointReadOnly;
+		new(x?: number, y?: number, z?: number, w?: number): DOMPointReadOnly;
 	}
 }
 
@@ -54,6 +54,6 @@ export namespace DOMPoint {
 	}
 
 	export interface Constructor extends Static {
-		new (x?: number, y?: number, z?: number, w?: number): DOMPoint;
+		new(x?: number, y?: number, z?: number, w?: number): DOMPoint;
 	}
 }

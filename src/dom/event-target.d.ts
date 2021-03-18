@@ -10,7 +10,7 @@ export type EventHandler<AbstractEvent extends Event = Event> = EventHandlerNonN
 /** @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition */
 export type EventListener<
 	AbstractEvent extends Event = Event,
-	Handler extends EventHandlerNonNull<AbstractEvent> = EventHandlerNonNull<AbstractEvent>
+	Handler extends EventHandlerNonNull<AbstractEvent> = EventHandlerNonNull<AbstractEvent>,
 > = Handler | { handleEvent: Handler };
 
 /** @spec https://dom.spec.whatwg.org/#dictdef-eventlisteneroptions */
@@ -37,12 +37,10 @@ export namespace EventTarget {
 	type ExtractEvents<T extends EventTarget> = {
 		[P in keyof T]: P extends `on${infer K}`
 			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends EventHandlerNonNull<infer AbstractEvent>
-					? AbstractEvent extends AbstractEvent
-						? K
-						: never
-					: never
+				? NonNullable<T[P]> extends EventHandlerNonNull<infer AbstractEvent> ? AbstractEvent extends AbstractEvent ? K
 				: never
+				: never
+			: never
 			: never;
 	}[keyof T];
 
@@ -79,6 +77,6 @@ export namespace EventTarget {
 	}
 
 	export interface Constructor extends Static {
-		new (): EventTarget;
+		new(): EventTarget;
 	}
 }

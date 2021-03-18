@@ -40,6 +40,6 @@ export namespace NodeFilter {
 
 	export interface Constructor extends Results, WhatToShow {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

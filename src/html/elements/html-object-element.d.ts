@@ -40,6 +40,6 @@ export namespace HTMLObjectElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLObjectElement;
+		new(): HTMLObjectElement;
 	}
 }

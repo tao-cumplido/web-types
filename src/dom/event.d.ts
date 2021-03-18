@@ -65,6 +65,6 @@ export namespace Event {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: EventInit): Event;
+		new(type: string, eventInitDict?: EventInit): Event;
 	}
 }

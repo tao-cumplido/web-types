@@ -19,6 +19,6 @@ export namespace HTMLDataListElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLDataListElement;
+		new(): HTMLDataListElement;
 	}
 }

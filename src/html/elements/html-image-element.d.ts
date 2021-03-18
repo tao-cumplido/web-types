@@ -37,7 +37,7 @@ export namespace HTMLImageElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLImageElement;
+		new(): HTMLImageElement;
 	}
 }
 
@@ -46,6 +46,6 @@ export namespace Image {
 	export interface Constructor {
 		prototype: HTMLImageElement.Prototype;
 		/** @deprecated */
-		new (width?: number, height?: number): HTMLImageElement;
+		new(width?: number, height?: number): HTMLImageElement;
 	}
 }

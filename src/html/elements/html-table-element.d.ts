@@ -36,6 +36,6 @@ export namespace HTMLTableElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTableElement;
+		new(): HTMLTableElement;
 	}
 }

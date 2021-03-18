@@ -72,7 +72,7 @@ export namespace DOMMatrixReadOnly {
 	}
 
 	export interface Constructor extends Static<DOMMatrixReadOnly> {
-		new (init?: string | number[]): DOMMatrixReadOnly;
+		new(init?: string | number[]): DOMMatrixReadOnly;
 	}
 }
 
@@ -143,6 +143,6 @@ export namespace DOMMatrix {
 	}
 
 	export interface Constructor extends Static {
-		new (init?: string | number[]): DOMMatrix;
+		new(init?: string | number[]): DOMMatrix;
 	}
 }

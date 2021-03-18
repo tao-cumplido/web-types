@@ -25,6 +25,6 @@ export namespace URLSearchParams {
 	}
 
 	export interface Constructor extends Static {
-		new (init?: string[][] | Record<string, string> | string): URLSearchParams;
+		new(init?: string[][] | Record<string, string> | string): URLSearchParams;
 	}
 }

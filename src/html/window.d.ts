@@ -29,11 +29,13 @@ export interface Window extends Window.Interface {}
  */
 export namespace Window {
 	export interface Prototype
-		extends EventTarget.Prototype<Window>,
+		extends
+			EventTarget.Prototype<Window>,
 			IndexedIterable<WindowProxy>,
 			GlobalEventHandlers,
 			WindowEventHandlers,
-			WindowOrWorkerGlobalScope {
+			WindowOrWorkerGlobalScope
+	{
 		/** @globalThis */
 		readonly self: WindowProxy;
 		readonly history: History;
@@ -94,6 +96,6 @@ export namespace Window {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

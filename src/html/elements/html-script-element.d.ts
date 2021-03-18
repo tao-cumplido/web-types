@@ -27,6 +27,6 @@ export namespace HTMLScriptElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLScriptElement;
+		new(): HTMLScriptElement;
 	}
 }

@@ -26,7 +26,7 @@ export namespace HTMLOptionElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLOptionElement;
+		new(): HTMLOptionElement;
 	}
 }
 
@@ -34,6 +34,6 @@ export namespace HTMLOptionElement {
 export namespace Option {
 	export interface Constructor {
 		prototype: HTMLOptionElement.Prototype;
-		new (text?: string, value?: string, defaultSelected?: boolean, selected?: boolean): HTMLOptionElement;
+		new(text?: string, value?: string, defaultSelected?: boolean, selected?: boolean): HTMLOptionElement;
 	}
 }

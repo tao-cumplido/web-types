@@ -25,6 +25,6 @@ export namespace HTMLSlotElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLSlotElement;
+		new(): HTMLSlotElement;
 	}
 }

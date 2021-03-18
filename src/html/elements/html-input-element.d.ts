@@ -40,11 +40,13 @@ export namespace HTMLInputElement {
 		| 'button';
 
 	export interface Prototype
-		extends HTMLElement.Prototype,
+		extends
+			HTMLElement.Prototype,
 			HTMLFormControlUtils,
 			HTMLFormCustomValidationUtils,
 			HTMLFormInputUtils,
-			HTMLFormTextUtils<null> {
+			HTMLFormTextUtils<null>
+	{
 		readonly form: HTMLFormElement | null;
 		readonly labels: NodeList<HTMLLabelElement> | null;
 		readonly list: HTMLElement | null;
@@ -84,6 +86,6 @@ export namespace HTMLInputElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLInputElement;
+		new(): HTMLInputElement;
 	}
 }

@@ -18,6 +18,6 @@ export namespace HTMLModElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLModElement;
+		new(): HTMLModElement;
 	}
 }

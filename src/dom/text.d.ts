@@ -29,6 +29,6 @@ export namespace Text {
 	}
 
 	export interface Constructor extends Static {
-		new (): Text;
+		new(): Text;
 	}
 }

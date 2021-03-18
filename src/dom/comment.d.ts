@@ -18,6 +18,6 @@ export namespace Comment {
 	}
 
 	export interface Constructor extends Static {
-		new (data?: string): Comment;
+		new(data?: string): Comment;
 	}
 }

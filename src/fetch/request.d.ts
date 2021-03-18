@@ -67,6 +67,6 @@ export namespace Request {
 	}
 
 	export interface Constructor extends Static {
-		new (input: RequestInfo): Request;
+		new(input: RequestInfo): Request;
 	}
 }

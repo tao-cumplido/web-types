@@ -10,10 +10,8 @@ export interface HTMLTextAreaElement extends HTMLTextAreaElement.Interface {}
 /** @exposed Window */
 export namespace HTMLTextAreaElement {
 	export interface Prototype
-		extends HTMLElement.Prototype,
-			HTMLFormCustomValidationUtils,
-			HTMLFormInputUtils,
-			HTMLFormTextUtils<never> {
+		extends HTMLElement.Prototype, HTMLFormCustomValidationUtils, HTMLFormInputUtils, HTMLFormTextUtils<never>
+	{
 		readonly form: HTMLFormElement | null;
 		readonly labels: NodeList<HTMLLabelElement> | null;
 
@@ -37,6 +35,6 @@ export namespace HTMLTextAreaElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTextAreaElement;
+		new(): HTMLTextAreaElement;
 	}
 }

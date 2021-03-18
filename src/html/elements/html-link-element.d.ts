@@ -37,6 +37,6 @@ export namespace HTMLLinkElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLLinkElement;
+		new(): HTMLLinkElement;
 	}
 }

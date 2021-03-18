@@ -15,6 +15,6 @@ export namespace XMLSerializer {
 		prototype: Prototype;
 	}
 	export interface Constructor extends Static {
-		new (): XMLSerializer;
+		new(): XMLSerializer;
 	}
 }

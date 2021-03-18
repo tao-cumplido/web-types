@@ -45,7 +45,7 @@ export namespace ParentNode {
 	export type ElementLookup<
 		Selector extends string,
 		LookupMap extends Record<keyof LookupMap, Element> = ElementMap,
-		Fallback extends Element = Element
+		Fallback extends Element = Element,
 	> = Lowercase<Selector> extends keyof LookupMap ? LookupMap[Lowercase<Selector>] : Fallback;
 
 	export interface Unscopables {

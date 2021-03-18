@@ -25,6 +25,6 @@ export namespace HTMLFrameSetElement {
 		 * @abstract
 		 * @deprecated
 		 */
-		new (): HTMLFrameSetElement;
+		new(): HTMLFrameSetElement;
 	}
 }

@@ -21,6 +21,6 @@ export namespace AbstractRange {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

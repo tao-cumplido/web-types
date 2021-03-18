@@ -37,6 +37,6 @@ export namespace HTMLCanvasElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLCanvasElement;
+		new(): HTMLCanvasElement;
 	}
 }

@@ -31,6 +31,6 @@ export namespace FormData {
 	}
 
 	export interface Constructor extends Static {
-		new (form?: HTMLFormElement): FormData;
+		new(form?: HTMLFormElement): FormData;
 	}
 }

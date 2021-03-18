@@ -20,6 +20,6 @@ export namespace Path2D {
 	}
 
 	export interface Constructor extends Static {
-		new (path?: Path2D | string): Path2D;
+		new(path?: Path2D | string): Path2D;
 	}
 }

@@ -44,7 +44,7 @@ export namespace HTMLFormControlsCollection {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -64,6 +64,6 @@ export namespace RadioNodeList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

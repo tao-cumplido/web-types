@@ -45,6 +45,6 @@ export namespace HTMLFormElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLFormElement;
+		new(): HTMLFormElement;
 	}
 }

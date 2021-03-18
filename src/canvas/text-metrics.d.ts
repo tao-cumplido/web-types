@@ -30,6 +30,6 @@ export namespace TextMetrics {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

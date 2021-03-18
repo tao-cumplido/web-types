@@ -26,7 +26,8 @@ export interface OffscreenCanvasRenderingContext2D extends OffscreenCanvasRender
  */
 export namespace OffscreenCanvasRenderingContext2D {
 	export interface Prototype
-		extends CanvasState,
+		extends
+			CanvasState,
 			CanvasTransform,
 			CanvasCompositing,
 			CanvasImageSmoothing,
@@ -40,7 +41,8 @@ export namespace OffscreenCanvasRenderingContext2D {
 			CanvasImageData,
 			CanvasPathDrawingStyles,
 			CanvasTextDrawingStyles,
-			CanvasPath {
+			CanvasPath
+	{
 		readonly canvas: OffscreenCanvas;
 		commit(): void;
 	}
@@ -53,6 +55,6 @@ export namespace OffscreenCanvasRenderingContext2D {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

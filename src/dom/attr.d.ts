@@ -53,6 +53,6 @@ export namespace Attr {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

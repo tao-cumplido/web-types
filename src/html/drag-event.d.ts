@@ -21,6 +21,6 @@ export namespace DragEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: DragEventInit): DragEvent;
+		new(type: string, eventInitDict?: DragEventInit): DragEvent;
 	}
 }

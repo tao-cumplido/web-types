@@ -22,6 +22,6 @@ export namespace HTMLTableSectionElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTableSectionElement;
+		new(): HTMLTableSectionElement;
 	}
 }

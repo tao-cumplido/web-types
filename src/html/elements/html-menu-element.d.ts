@@ -15,6 +15,6 @@ export namespace HTMLMenuElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLMenuElement;
+		new(): HTMLMenuElement;
 	}
 }

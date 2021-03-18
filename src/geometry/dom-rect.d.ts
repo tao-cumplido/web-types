@@ -28,7 +28,7 @@ export namespace DOMRectReadOnly {
 	}
 
 	export interface Constructor extends Static<DOMRectReadOnly> {
-		new (x?: number, y?: number, width?: number, height?: number): DOMRectReadOnly;
+		new(x?: number, y?: number, width?: number, height?: number): DOMRectReadOnly;
 	}
 }
 
@@ -57,6 +57,6 @@ export namespace DOMRect {
 	}
 
 	export interface Constructor extends Static {
-		new (x?: number, y?: number, width?: number, height?: number): DOMRect;
+		new(x?: number, y?: number, width?: number, height?: number): DOMRect;
 	}
 }

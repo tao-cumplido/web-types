@@ -34,14 +34,16 @@ export namespace Element {
 	}
 
 	export interface Prototype
-		extends Node.Prototype,
+		extends
+			Node.Prototype,
 			ParentNode,
 			NonDocumentTypeChildNode,
 			ChildNode,
 			Slottable,
 			DocumentOrElement,
 			InnerHTML,
-			ARIAMixin {
+			ARIAMixin
+	{
 		readonly [Symbol.unscopables]: Unscopables;
 
 		readonly nodeType: Node.NodeTypes['ELEMENT_NODE'];
@@ -111,6 +113,6 @@ export namespace Element {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

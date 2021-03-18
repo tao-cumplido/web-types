@@ -109,7 +109,7 @@ module.exports = {
 		'style/experimental/no-commented-code': [
 			'warn',
 			{
-				ignorePatterns: ['^https?://', '^prettier-'],
+				ignorePatterns: ['^https?://', '^prettier-', '^dprint-ignore'],
 				extendDefaultIgnorePatterns: true,
 			},
 		],

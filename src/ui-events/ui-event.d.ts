@@ -43,6 +43,6 @@ export namespace UIEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: UIEventInit): UIEvent;
+		new(type: string, eventInitDict?: UIEventInit): UIEvent;
 	}
 }

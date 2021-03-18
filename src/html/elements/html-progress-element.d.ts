@@ -22,6 +22,6 @@ export namespace HTMLProgressElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLProgressElement;
+		new(): HTMLProgressElement;
 	}
 }

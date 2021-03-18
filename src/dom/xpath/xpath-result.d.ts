@@ -40,6 +40,6 @@ export namespace XPathResult {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

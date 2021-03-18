@@ -33,6 +33,6 @@ export namespace HTMLTrackElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTrackElement;
+		new(): HTMLTrackElement;
 	}
 }

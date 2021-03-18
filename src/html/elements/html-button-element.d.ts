@@ -29,6 +29,6 @@ export namespace HTMLButtonElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLButtonElement;
+		new(): HTMLButtonElement;
 	}
 }

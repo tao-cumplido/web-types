@@ -27,6 +27,6 @@ export namespace CustomEvent {
 	}
 
 	export interface Constructor extends Static {
-		new <Detail = unknown>(type: string, eventInitDict?: CustomEventInit<Detail>): CustomEvent<Detail>;
+		new<Detail = unknown>(type: string, eventInitDict?: CustomEventInit<Detail>): CustomEvent<Detail>;
 	}
 }

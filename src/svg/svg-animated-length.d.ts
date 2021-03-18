@@ -16,6 +16,6 @@ export namespace SVGAnimatedLength {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

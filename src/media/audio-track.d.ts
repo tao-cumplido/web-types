@@ -19,7 +19,7 @@ export namespace AudioTrack {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 
@@ -38,6 +38,6 @@ export namespace AudioTrackList {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

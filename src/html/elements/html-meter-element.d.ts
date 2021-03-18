@@ -25,6 +25,6 @@ export namespace HTMLMeterElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLMeterElement;
+		new(): HTMLMeterElement;
 	}
 }

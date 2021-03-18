@@ -190,7 +190,7 @@ export interface CanvasPath {
 
 /** @nonStandard */
 export interface CanvasRenderingContextHost<
-	RenderingContext2D extends CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D
+	RenderingContext2D extends CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
 > {
 	width: number;
 	height: number;

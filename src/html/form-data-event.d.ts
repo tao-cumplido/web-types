@@ -22,6 +22,6 @@ export namespace FormDataEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict: FormDataEventInit): FormDataEvent;
+		new(type: string, eventInitDict: FormDataEventInit): FormDataEvent;
 	}
 }

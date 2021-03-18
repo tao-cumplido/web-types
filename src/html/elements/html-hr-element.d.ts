@@ -15,6 +15,6 @@ export namespace HTMLHRElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLHRElement;
+		new(): HTMLHRElement;
 	}
 }

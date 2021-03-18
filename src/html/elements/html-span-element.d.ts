@@ -15,6 +15,6 @@ export namespace HTMLSpanElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLSpanElement;
+		new(): HTMLSpanElement;
 	}
 }

@@ -16,6 +16,6 @@ export namespace HTMLBodyElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLBodyElement;
+		new(): HTMLBodyElement;
 	}
 }

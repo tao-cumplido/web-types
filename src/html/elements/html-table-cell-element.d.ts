@@ -24,6 +24,6 @@ export namespace HTMLTableCellElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTableCellElement;
+		new(): HTMLTableCellElement;
 	}
 }

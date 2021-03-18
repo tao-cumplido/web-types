@@ -37,6 +37,6 @@ export namespace HTMLIFrameElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLIFrameElement;
+		new(): HTMLIFrameElement;
 	}
 }

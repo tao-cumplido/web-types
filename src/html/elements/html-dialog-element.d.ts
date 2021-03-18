@@ -21,6 +21,6 @@ export namespace HTMLDialogElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLDialogElement;
+		new(): HTMLDialogElement;
 	}
 }

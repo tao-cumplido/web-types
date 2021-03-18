@@ -31,8 +31,8 @@ export interface OffscreenCanvas extends OffscreenCanvas.Interface {}
  */
 export namespace OffscreenCanvas {
 	export interface Prototype
-		extends EventTarget.Prototype,
-			CanvasRenderingContextHost<OffscreenCanvasRenderingContext2D> {
+		extends EventTarget.Prototype, CanvasRenderingContextHost<OffscreenCanvasRenderingContext2D>
+	{
 		transferToImageBitmap(): ImageBitmap;
 		convertToBlob(options?: ImageEncodeOptions): Promise<Blob>;
 	}
@@ -44,6 +44,6 @@ export namespace OffscreenCanvas {
 	}
 
 	export interface Constructor extends Static {
-		new (width: number, height: number): OffscreenCanvas;
+		new(width: number, height: number): OffscreenCanvas;
 	}
 }

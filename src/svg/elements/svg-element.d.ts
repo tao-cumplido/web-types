@@ -10,12 +10,14 @@ export interface SVGElement extends SVGElement.Interface {}
 /** @exposed Window */
 export namespace SVGElement {
 	export interface Prototype
-		extends Element.Prototype,
+		extends
+			Element.Prototype,
 			ElementCSSInlineStyle,
 			GlobalEventHandlers,
 			DocumentAndElementEventHandlers,
 			HTMLOrSVGElement,
-			SVGElementInstance {
+			SVGElementInstance
+	{
 		readonly ownerSVGElement: SVGSVGElement | null;
 		readonly viewportElement: SVGElement | null;
 
@@ -31,6 +33,6 @@ export namespace SVGElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

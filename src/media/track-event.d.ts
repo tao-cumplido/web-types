@@ -23,6 +23,6 @@ export namespace TrackEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: Init): TrackEvent;
+		new(type: string, eventInitDict?: Init): TrackEvent;
 	}
 }

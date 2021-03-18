@@ -36,6 +36,6 @@ export namespace Response {
 	}
 
 	export interface Constructor extends Static {
-		new (body?: BodyInit, init?: ResponseInit): Response;
+		new(body?: BodyInit, init?: ResponseInit): Response;
 	}
 }

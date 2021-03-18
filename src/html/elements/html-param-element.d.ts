@@ -18,6 +18,6 @@ export namespace HTMLParamElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLParamElement;
+		new(): HTMLParamElement;
 	}
 }

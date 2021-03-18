@@ -17,6 +17,6 @@ export namespace HTMLTimeElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTimeElement;
+		new(): HTMLTimeElement;
 	}
 }

@@ -4,7 +4,7 @@ import type { HTMLElement } from './elements';
 /** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#customelementconstructor */
 export type CustomElementConstructor =
 	/** @abstract */
-	new () => HTMLElement;
+	new() => HTMLElement;
 
 /** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#elementdefinitionoptions */
 export interface ElementDefinitionOptions {
@@ -31,6 +31,6 @@ export namespace CustomElementRegistry {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

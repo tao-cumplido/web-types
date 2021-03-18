@@ -16,15 +16,16 @@ export interface MutationObserverInit {
 }
 
 export namespace MutationObserverInit {
-	export type Constrained = MutationObserverInit &
+	export type Constrained =
+		& MutationObserverInit
 		// The options object must set at least one of 'attributes', 'characterData', or 'childList' to true.
-		({ childList: true } | { attributes: true } | { characterData: true }) &
+		& ({ childList: true } | { attributes: true } | { characterData: true })
 		// The options object may only set 'attributeOldValue' to true when 'attributes' is true or not present.
-		({ attributes?: true; attributeOldValue?: true } | { attributes?: false; attributeOldValue?: false }) &
+		& ({ attributes?: true; attributeOldValue?: true } | { attributes?: false; attributeOldValue?: false })
 		// The options object may only set 'attributeFilter' when 'attributes' is true or not present.
-		({ attributes?: true; attributeFilter: readonly string[] } | { attributes?: false; attributeFilter?: undefined }) &
+		& ({ attributes?: true; attributeFilter: readonly string[] } | { attributes?: false; attributeFilter?: undefined })
 		// The options object may only set 'characterDataOldValue' to true when 'characterData' is true or not present.
-		({ characterData?: true; characterDataOldValue?: true } | { characterData?: false; characterDataOldValue?: false });
+		& ({ characterData?: true; characterDataOldValue?: true } | { characterData?: false; characterDataOldValue?: false });
 }
 
 /** @spec https://dom.spec.whatwg.org/#interface-mutationobserver */
@@ -45,6 +46,6 @@ export namespace MutationObserver {
 	}
 
 	export interface Constructor extends Static {
-		new (callback: MutationCallback): MutationObserver;
+		new(callback: MutationCallback): MutationObserver;
 	}
 }

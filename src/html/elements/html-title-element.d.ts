@@ -17,6 +17,6 @@ export namespace HTMLTitleElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLTitleElement;
+		new(): HTMLTitleElement;
 	}
 }

@@ -6,8 +6,9 @@ export interface NamedNodeMap<Owner extends Element | null = Element | null> ext
 
 /** @exposed Window */
 export namespace NamedNodeMap {
-	export type LegacyUnenumerableNamedProperties<T extends Element | null = Element | null> = NamedNodeMap<T> &
-		Record<string, Attr<T>>;
+	export type LegacyUnenumerableNamedProperties<T extends Element | null = Element | null> =
+		& NamedNodeMap<T>
+		& Record<string, Attr<T>>;
 
 	export interface Prototype<Owner extends Element | null = Element | null> extends IndexedIterable<Owner> {
 		readonly length: number;
@@ -28,6 +29,6 @@ export namespace NamedNodeMap {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }

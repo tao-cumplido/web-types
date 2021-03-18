@@ -68,6 +68,6 @@ export namespace Range {
 	}
 
 	export interface Constructor extends Static {
-		new (): Range;
+		new(): Range;
 	}
 }

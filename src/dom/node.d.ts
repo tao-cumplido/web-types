@@ -93,7 +93,7 @@ export namespace Node {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): never;
+		new(): never;
 	}
 }
 

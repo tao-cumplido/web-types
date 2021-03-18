@@ -45,6 +45,6 @@ export namespace MouseEvent {
 	}
 
 	export interface Constructor extends Static {
-		new (type: string, eventInitDict?: MouseEventInit): MouseEvent;
+		new(type: string, eventInitDict?: MouseEventInit): MouseEvent;
 	}
 }

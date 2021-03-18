@@ -20,6 +20,6 @@ export namespace HTMLMapElement {
 
 	export interface Constructor extends Static {
 		/** @abstract */
-		new (): HTMLMapElement;
+		new(): HTMLMapElement;
 	}
 }

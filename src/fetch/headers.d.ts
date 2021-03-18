@@ -26,6 +26,6 @@ export namespace Headers {
 	}
 
 	export interface Constructor extends Static {
-		new (init?: HeadersInit): Headers;
+		new(init?: HeadersInit): Headers;
 	}
 }
