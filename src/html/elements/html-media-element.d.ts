@@ -11,8 +11,8 @@ import type {
 	TimeRanges,
 	VideoTrackList,
 } from '../../media';
+import type { CORSSettingsAttribute } from '../types';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#canplaytyperesult */
 export type CanPlayTypeResult = '' | 'maybe' | 'probably';
@@ -62,7 +62,7 @@ export namespace HTMLMediaElement {
 
 		src: string;
 		srcObject: MediaProvider | null;
-		crossOrigin: HTMLLinkElement.CORSSettingsAttribute | null;
+		crossOrigin: CORSSettingsAttribute | null;
 		preload: 'none' | 'metadata' | 'auto';
 
 		currentTime: number;

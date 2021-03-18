@@ -1,4 +1,4 @@
-import type { HTMLLinkElement } from '../../html';
+import type { CORSSettingsAttribute } from '../../html';
 import type { SVGURIReference } from '../mixins';
 import type { SVGElement } from './svg-element';
 
@@ -9,7 +9,7 @@ export interface SVGScriptElement extends SVGScriptElement.Interface {}
 export namespace SVGScriptElement {
 	export interface Prototype extends SVGElement.Prototype, SVGURIReference {
 		type: string;
-		crossOrigin: HTMLLinkElement.CORSSettingsAttribute | null;
+		crossOrigin: CORSSettingsAttribute | null;
 	}
 
 	export type Interface = Prototype & SVGElement.Interface;

@@ -1,5 +1,6 @@
 import type { ImageBitmap, ImageData, OffscreenCanvas } from '../canvas';
 import type { Event } from '../dom';
+import type { ReadableStream } from '../streams';
 import type { DOMException } from '../web-idl';
 import type { MessagePort } from './message-port';
 
@@ -29,8 +30,14 @@ export type OnBeforeUnloadEventHandlerNonNull = (event: Event) => string | null;
 /** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandler */
 export type OnBeforeUnloadEventHandler = OnBeforeUnloadEventHandlerNonNull | null;
 
+/** @spec https://html.spec.whatwg.org/multipage/urls-and-fetching.html#cors-settings-attribute enumerated attribute */
+export type CORSSettingsAttribute = 'anonymous' | 'use-credentials';
+
+/** @spec https://html.spec.whatwg.org/multipage/urls-and-fetching.html#lazy-loading-attribute */
+export type LazyLoadingAttribute = 'lazy' | 'eager';
+
 /** @spec https://html.spec.whatwg.org/multipage/structured-data.html#transferable extended IDL attribute */
-export type Transferable = ArrayBuffer | MessagePort | OffscreenCanvas | ImageBitmap;
+export type Transferable = ArrayBuffer | MessagePort | OffscreenCanvas | ImageBitmap | ReadableStream;
 
 /** @spec https://html.spec.whatwg.org/multipage/structured-data.html#serializable extended IDL attribute */
 export type Serializable =

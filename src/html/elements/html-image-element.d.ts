@@ -1,7 +1,8 @@
+import type { ReferrerPolicy } from '../../fetch';
+import type { CORSSettingsAttribute, LazyLoadingAttribute } from '../types';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
-/** @spec */
+/** @spec https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element */
 export interface HTMLImageElement extends HTMLImageElement.Interface {}
 
 /** @exposed Window */
@@ -16,14 +17,14 @@ export namespace HTMLImageElement {
 		src: string;
 		srcset: string;
 		sizes: string;
-		crossOrigin: HTMLLinkElement.CORSSettingsAttribute | null;
+		crossOrigin: CORSSettingsAttribute | null;
 		useMap: string;
 		isMap: boolean;
 		width: number;
 		height: number;
-		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
+		referrerPolicy: ReferrerPolicy;
 		decoding: 'sync' | 'async' | 'auto';
-		loading: HTMLLinkElement.LazyLoadingAttribute;
+		loading: LazyLoadingAttribute;
 
 		decode(): Promise<void>;
 	}

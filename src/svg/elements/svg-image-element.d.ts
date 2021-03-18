@@ -1,4 +1,4 @@
-import type { HTMLLinkElement } from '../../html';
+import type { CORSSettingsAttribute } from '../../html';
 import type { SVGURIReference } from '../mixins';
 import type { SVGAnimatedLength } from '../svg-animated-length';
 import type { SVGPreserveAspectRatio } from '../svg-preserve-aspect-ratio';
@@ -16,7 +16,7 @@ export namespace SVGImageElement {
 		readonly height: SVGAnimatedLength;
 		readonly preserveAspectRation: SVGPreserveAspectRatio;
 
-		crossOrigin: HTMLLinkElement.CORSSettingsAttribute | null;
+		crossOrigin: CORSSettingsAttribute | null;
 	}
 
 	export type Interface = Prototype & SVGGraphicsElement.Interface;

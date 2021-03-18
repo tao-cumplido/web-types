@@ -1,7 +1,7 @@
 import type { DOMTokenList } from '../../collections';
+import type { ReferrerPolicy } from '../../fetch';
 import type { HTMLHyperlinkElementUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element */
 export interface HTMLAreaElement extends HTMLAreaElement.Interface {}
@@ -19,7 +19,7 @@ export namespace HTMLAreaElement {
 		download: string;
 		ping: string;
 		rel: string;
-		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
+		referrerPolicy: ReferrerPolicy;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

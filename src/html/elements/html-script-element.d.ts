@@ -1,5 +1,6 @@
+import type { ReferrerPolicy } from '../../fetch';
+import type { CORSSettingsAttribute } from '../types';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/scripting.html#the-script-element */
 export interface HTMLScriptElement extends HTMLScriptElement.Interface {}
@@ -12,10 +13,10 @@ export namespace HTMLScriptElement {
 		noModule: boolean;
 		async: boolean;
 		defer: boolean;
-		crossOrigin: HTMLLinkElement.CORSSettingsAttribute | null;
+		crossOrigin: CORSSettingsAttribute | null;
 		text: string;
 		integrity: string;
-		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
+		referrerPolicy: ReferrerPolicy;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

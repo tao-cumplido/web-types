@@ -1,8 +1,9 @@
 import type { DOMTokenList } from '../../collections';
 import type { Document } from '../../dom';
-import type { WindowProxy } from '../../html';
+import type { ReferrerPolicy } from '../../fetch';
+import type { LazyLoadingAttribute } from '../types';
+import type { WindowProxy } from '../window';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element */
 export interface HTMLIFrameElement extends HTMLIFrameElement.Interface {}
@@ -22,8 +23,8 @@ export namespace HTMLIFrameElement {
 		allowFullscreen: boolean;
 		width: string;
 		height: string;
-		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
-		loading: HTMLLinkElement.LazyLoadingAttribute;
+		referrerPolicy: ReferrerPolicy;
+		loading: LazyLoadingAttribute;
 
 		getSVGDocument(): Document.NamedProperties | null;
 	}

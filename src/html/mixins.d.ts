@@ -1,6 +1,7 @@
 import type { ImageBitmap, ImageBitmapOptions, ImageBitmapSource } from '../canvas';
 import type { DOMStringMap } from '../collections';
 import type { EventHandler } from '../dom';
+import type { RequestInfo, RequestInit, Response } from '../fetch';
 import type { DragEvent } from './drag-event';
 import type { HTMLFormElement } from './elements';
 import type { FormDataEvent } from './form-data-event';
@@ -190,7 +191,12 @@ export interface DocumentAndElementEventHandlers {
 	onpaste: EventHandler;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope-mixin */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope-mixin
+ * @spec https://fetch.spec.whatwg.org/#fetch-method
+ */
 export interface WindowOrWorkerGlobalScope {
 	createImageBitmap(image: ImageBitmapSource, options?: ImageBitmapOptions): Promise<ImageBitmap>;
+
+	fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
 }

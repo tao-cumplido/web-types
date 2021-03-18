@@ -1,7 +1,7 @@
 import type { DOMTokenList } from '../../collections';
+import type { ReferrerPolicy } from '../../fetch';
 import type { HTMLHyperlinkElementUtils } from '../mixins';
 import type { HTMLElement } from './html-element';
-import type { HTMLLinkElement } from './html-link-element';
 
 /** @spec https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element */
 export interface HTMLAnchorElement extends HTMLAnchorElement.Interface {}
@@ -21,7 +21,7 @@ export namespace HTMLAnchorElement {
 
 		text: string;
 
-		referrerPolicy: HTMLLinkElement.ReferrerPolicy | '';
+		referrerPolicy: ReferrerPolicy;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;
