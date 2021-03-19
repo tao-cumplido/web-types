@@ -2,6 +2,7 @@ import type { ImageBitmap, ImageData, OffscreenCanvas } from '../canvas';
 import type { Event } from '../dom';
 import type { ReadableStream } from '../streams';
 import type { DOMException } from '../web-idl';
+import type { BeforeUnloadEvent } from './before-unload-event';
 import type { MessagePort } from './message-port';
 
 /** @spec https://html.spec.whatwg.org/multipage/interaction.html#focusoptions */
@@ -25,7 +26,7 @@ export type OnErrorEventHandlerNonNull = (
 export type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
 
 /** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandlernonnull */
-export type OnBeforeUnloadEventHandlerNonNull = (event: Event) => string | null;
+export type OnBeforeUnloadEventHandlerNonNull = (event: BeforeUnloadEvent) => string | null;
 
 /** @spec https://html.spec.whatwg.org/multipage/webappapis.html#onbeforeunloadeventhandler */
 export type OnBeforeUnloadEventHandler = OnBeforeUnloadEventHandlerNonNull | null;
@@ -47,10 +48,12 @@ export type Serializable =
 	| number
 	| bigint
 	| string
-	| boolean
-	| number
-	| bigint
-	| string
+	/* eslint-disable @typescript-eslint/ban-types */
+	| Boolean
+	| Number
+	| BigInt
+	| String
+	/* eslint-enable @typescript-eslint/ban-types */
 	| Date
 	| RegExp
 	| SharedArrayBuffer
