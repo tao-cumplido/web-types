@@ -2,10 +2,7 @@ import type { Event, EventInit } from '../dom';
 import type { Window } from '../html';
 
 /** @spec https://w3c.github.io/uievents/#idl-uieventinit */
-export interface UIEventInit extends EventInit {
-	view?: Window | null;
-	detail?: number;
-}
+export interface UIEventInit extends Partial<UIEvent.State>, EventInit {}
 
 /** @spec https://w3c.github.io/uievents/#event-modifier-initializers */
 export interface EventModifierInit extends UIEventInit {
@@ -31,10 +28,12 @@ export interface UIEvent extends UIEvent.Interface {}
 
 /** @exposed Window */
 export namespace UIEvent {
-	export interface Prototype extends Event.Prototype {
-		readonly view: Window | null;
-		readonly detail: number;
+	export interface State {
+		view: Window | null;
+		detail: number;
 	}
+
+	export interface Prototype extends Readonly<State>, Event.Prototype {}
 
 	export type Interface = Prototype & Event.Interface;
 

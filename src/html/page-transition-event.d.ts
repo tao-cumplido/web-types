@@ -1,18 +1,18 @@
 import type { Event, EventInit } from '../dom';
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#pagetransitioneventinit */
-export interface PageTransitionEventInit extends EventInit {
-	persisted?: boolean;
-}
+export interface PageTransitionEventInit extends Partial<PageTransitionEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-pagetransitionevent-interface */
 export interface PageTransitionEvent extends PageTransitionEvent.Interface {}
 
 /** @exposed Window */
 export namespace PageTransitionEvent {
-	export interface Prototype extends Event.Prototype {
-		readonly persisted: boolean;
+	export interface State {
+		persisted: boolean;
 	}
+
+	export interface Prototype extends Readonly<State>, Event.Prototype {}
 
 	export type Interface = Prototype & Event.Interface;
 

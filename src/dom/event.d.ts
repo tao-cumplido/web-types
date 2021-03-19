@@ -2,11 +2,7 @@ import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
 /** @spec https://dom.spec.whatwg.org/#dictdef-eventinit */
-export interface EventInit {
-	bubbles?: boolean;
-	cancelable?: boolean;
-	composed?: boolean;
-}
+export interface EventInit extends Partial<Event.State> {}
 
 /** @spec https://dom.spec.whatwg.org/#interface-event */
 export interface Event extends Event.Interface {}
@@ -17,6 +13,12 @@ export interface Event extends Event.Interface {}
  * @exposed AudioWorklet
  */
 export namespace Event {
+	export interface State {
+		bubbles: boolean;
+		cancelable: boolean;
+		composed: boolean;
+	}
+
 	export interface Phases {
 		readonly NONE: 0;
 		readonly CAPTURING_PHASE: 1;
@@ -24,15 +26,12 @@ export namespace Event {
 		readonly BUBBLING_PHASE: 3;
 	}
 
-	export interface Prototype extends Phases {
+	export interface Prototype extends Readonly<State>, Phases {
 		readonly type: string;
 		readonly target: EventTarget | null;
 		readonly eventPhase: ValueOf<Phases>;
 		readonly currentTarget: EventTarget | null;
-		readonly bubbles: boolean;
-		readonly cancelable: boolean;
 		readonly defaultPrevented: boolean;
-		readonly composed: boolean;
 		readonly timeStamp: number;
 
 		/** @deprecated */

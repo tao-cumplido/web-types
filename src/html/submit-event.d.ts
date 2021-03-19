@@ -2,18 +2,18 @@ import type { Event, EventInit } from '../dom';
 import type { HTMLElement } from './elements';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#submiteventinit */
-export interface SubmitEventInit extends EventInit {
-	submitter?: HTMLElement | null;
-}
+export interface SubmitEventInit extends Partial<SubmitEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-submitevent-interface */
 export interface SubmitEvent extends SubmitEvent.Interface {}
 
 /** @exposed Window */
 export namespace SubmitEvent {
-	export interface Prototype extends Event.Prototype {
-		readonly submitter: HTMLElement | null;
+	export interface State {
+		submitter: HTMLElement | null;
 	}
+
+	export interface Prototype extends Readonly<State>, Event.Prototype {}
 
 	export type Interface = Prototype & Event.Interface;
 

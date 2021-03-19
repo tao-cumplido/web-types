@@ -3,18 +3,19 @@ import type { AudioTrack } from './audio-track';
 import type { TextTrack } from './text-track';
 import type { VideoTrack } from './video-track';
 
+/** @spec https://html.spec.whatwg.org/multipage/media.html#trackeventinit */
+export interface TrackEventInit extends Partial<TrackEvent.State>, EventInit {}
+
 /** @spec https://html.spec.whatwg.org/multipage/media.html#the-trackevent-interface */
 export interface TrackEvent extends TrackEvent.Interface {}
 
 /** @exposed Window */
 export namespace TrackEvent {
-	export interface Init extends EventInit {
-		track?: VideoTrack | AudioTrack | TextTrack | null;
+	export interface State {
+		track: VideoTrack | AudioTrack | TextTrack | null;
 	}
 
-	export interface Prototype extends Event.Prototype {
-		readonly track: VideoTrack | AudioTrack | TextTrack | null;
-	}
+	export interface Prototype extends Readonly<State>, Event.Prototype {}
 
 	export type Interface = Prototype & Event.Interface;
 
@@ -23,6 +24,6 @@ export namespace TrackEvent {
 	}
 
 	export interface Constructor extends Static {
-		new(type: string, eventInitDict?: Init): TrackEvent;
+		new(type: string, eventInitDict?: TrackEventInit): TrackEvent;
 	}
 }
