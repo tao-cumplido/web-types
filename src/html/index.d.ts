@@ -201,3 +201,4 @@ export * from './web-socket';
 export * from './window';
 export * from './worker';
 export * from './workers';
+export * from './worklet-global-scope';

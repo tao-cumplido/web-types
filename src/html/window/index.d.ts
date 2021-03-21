@@ -19,3 +19,4 @@ export * from './shared-worker';
 export * from './submit-event';
 export * from './validity-state';
 export * from './window';
+export * from './worklet';
