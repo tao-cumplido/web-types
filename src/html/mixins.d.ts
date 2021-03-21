@@ -3,16 +3,9 @@ import type { DOMStringMap } from '../collections';
 import type { EventHandler } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
 import type { VoidFunction } from '../web-idl';
-import type { DragEvent } from './drag-event';
 import type { HTMLFormElement } from './elements';
 import type { ErrorEvent } from './error-event';
-import type { FormDataEvent } from './form-data-event';
-import type { HashChangeEvent } from './hash-change-event';
 import type { MessageEvent } from './message-event';
-import type { MimeTypeArray, PluginArray } from './obsolete';
-import type { PageTransitionEvent } from './page-transition-event';
-import type { PopStateEvent } from './pop-state-event';
-import type { SubmitEvent } from './submit-event';
 import type {
 	FocusOptions,
 	FrameRequestCallback,
@@ -23,7 +16,17 @@ import type {
 	Serializable,
 	Transferable,
 } from './types';
-import type { ValidityState } from './validity-state';
+import type {
+	DragEvent,
+	FormDataEvent,
+	HashChangeEvent,
+	MimeTypeArray,
+	PageTransitionEvent,
+	PluginArray,
+	PopStateEvent,
+	SubmitEvent,
+	ValidityState,
+} from './window';
 
 /** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement */
 export interface HTMLOrSVGElement {

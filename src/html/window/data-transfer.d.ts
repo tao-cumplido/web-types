@@ -1,5 +1,5 @@
-import type { Element } from '../dom';
-import type { FileList } from '../file';
+import type { Element } from '../../dom';
+import type { FileList } from '../../file';
 import type { DataTransferItemList } from './data-transfer-item-list';
 
 /** @spec https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface */

@@ -1,4 +1,4 @@
-import type { Event, EventInit } from '../dom';
+import type { Event, EventInit } from '../../dom';
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#pagetransitioneventinit */
 export interface PageTransitionEventInit extends Partial<PageTransitionEvent.State>, EventInit {}

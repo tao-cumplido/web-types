@@ -1,5 +1,5 @@
-import type { EventHandler } from '../dom';
-import type { MessageEvent } from './message-event';
+import type { EventHandler } from '../../dom';
+import type { MessageEvent } from '../message-event';
 import type { WorkerGlobalScope } from './worker-global-scope';
 
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#shared-workers-and-the-sharedworkerglobalscope-interface */

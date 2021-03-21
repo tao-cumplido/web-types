@@ -6,7 +6,7 @@ import type {
 	NavigatorLanguage,
 	NavigatorOnLine,
 	NavigatorPlugins,
-} from './mixins';
+} from '../mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/system-state.html#the-navigator-object */
 export interface Navigator extends Navigator.Interface {}

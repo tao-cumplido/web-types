@@ -1,4 +1,4 @@
-import type { Serializable } from './types';
+import type { Serializable } from '../types';
 
 /** @spec https://html.spec.whatwg.org/multipage/history.html#scrollrestoration */
 export type ScrollRestoration = 'auto' | 'manual';

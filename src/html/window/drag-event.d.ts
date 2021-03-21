@@ -1,4 +1,4 @@
-import type { MouseEvent, MouseEventInit } from '../ui-events';
+import type { MouseEvent, MouseEventInit } from '../../ui-events';
 import type { DataTransfer } from './data-transfer';
 
 export interface DragEventInit extends Partial<DragEvent.State>, MouseEventInit {}

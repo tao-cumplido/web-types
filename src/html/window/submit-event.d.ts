@@ -1,5 +1,5 @@
-import type { Event, EventInit } from '../dom';
-import type { HTMLElement } from './elements';
+import type { Event, EventInit } from '../../dom';
+import type { HTMLElement } from '../elements';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#submiteventinit */
 export interface SubmitEventInit extends Partial<SubmitEvent.State>, EventInit {}

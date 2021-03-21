@@ -1,7 +1,7 @@
-import type { EventHandler, EventTarget } from '../dom';
-import type { WindowOrWorkerGlobalScope } from './mixins';
-import type { PromiseRejectionEvent } from './promise-rejection-event';
-import type { OnErrorEventHandler } from './types';
+import type { EventHandler, EventTarget } from '../../dom';
+import type { WindowOrWorkerGlobalScope } from '../mixins';
+import type { PromiseRejectionEvent } from '../promise-rejection-event';
+import type { OnErrorEventHandler } from '../types';
 import type { WorkerLocation } from './worker-location';
 import type { WorkerNavigator } from './worker-navigator';
 

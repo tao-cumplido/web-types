@@ -1,4 +1,4 @@
-import type { NavigatorConcurrentHardware, NavigatorID, NavigatorLanguage, NavigatorOnLine } from './mixins';
+import type { NavigatorConcurrentHardware, NavigatorID, NavigatorLanguage, NavigatorOnLine } from '../mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#the-workernavigator-object */
 export interface WorkerNavigator extends WorkerNavigator.Interface {}

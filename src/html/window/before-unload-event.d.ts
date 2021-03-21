@@ -1,4 +1,4 @@
-import type { Event } from '../dom';
+import type { Event } from '../../dom';
 
 /**
  * @deprecated

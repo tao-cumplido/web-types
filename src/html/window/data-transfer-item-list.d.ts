@@ -1,5 +1,5 @@
-import type { File } from '../file';
-import type { IndexedIterable } from '../iterable';
+import type { File } from '../../file';
+import type { IndexedIterable } from '../../iterable';
 import type { DataTransferItem } from './data-transafer-item';
 
 /** @spec https://html.spec.whatwg.org/multipage/dnd.html#the-datatransferitemlist-interface */

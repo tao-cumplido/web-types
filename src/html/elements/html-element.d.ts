@@ -1,12 +1,12 @@
 import type { ElementCSSInlineStyle } from '../../css';
 import type { Element } from '../../dom';
-import type { ElementInternals } from '../element-internals';
 import type {
 	DocumentAndElementEventHandlers,
 	ElementContentEditable,
 	GlobalEventHandlers,
 	HTMLOrSVGElement,
 } from '../mixins';
+import type { ElementInternals } from '../window';
 
 /** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlelement */
 export interface HTMLElement extends HTMLElement.Interface {}

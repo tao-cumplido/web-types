@@ -1,6 +1,5 @@
 import type { Document } from '../../dom';
-import type { ValidityState } from '../validity-state';
-import type { WindowProxy } from '../window';
+import type { ValidityState, WindowProxy } from '../window';
 import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 

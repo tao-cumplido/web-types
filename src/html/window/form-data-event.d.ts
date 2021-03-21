@@ -1,5 +1,5 @@
-import type { Event, EventInit } from '../dom';
-import type { FormData } from '../xhr';
+import type { Event, EventInit } from '../../dom';
+import type { FormData } from '../../xhr';
 
 /** @spec https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#formdataeventinit */
 export interface FormDataEventInit extends FormDataEvent.State, EventInit {}

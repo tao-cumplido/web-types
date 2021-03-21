@@ -1,4 +1,4 @@
-import type { AnimationFrameProvider, MessageEventUtils, PostMessageUtils } from './mixins';
+import type { AnimationFrameProvider, MessageEventUtils, PostMessageUtils } from '../mixins';
 import type { WorkerGlobalScope } from './worker-global-scope';
 
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#dedicated-workers-and-the-dedicatedworkerglobalscope-interface */

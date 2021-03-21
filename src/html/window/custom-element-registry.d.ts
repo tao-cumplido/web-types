@@ -1,5 +1,5 @@
-import type { Node } from '../dom';
-import type { HTMLElement } from './elements';
+import type { Node } from '../../dom';
+import type { HTMLElement } from '../elements';
 
 /** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#customelementconstructor */
 export type CustomElementConstructor =

@@ -1,7 +1,7 @@
-import type { EventTarget } from '../dom';
-import type { MessagePort } from './message-port';
-import type { AbstractWorker } from './mixins';
-import type { WorkerOptions } from './worker';
+import type { EventTarget } from '../../dom';
+import type { MessagePort } from '../message-port';
+import type { AbstractWorker } from '../mixins';
+import type { WorkerOptions } from '../worker';
 
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#shared-workers-and-the-sharedworker-interface */
 export interface SharedWorker extends SharedWorker.Interface {}

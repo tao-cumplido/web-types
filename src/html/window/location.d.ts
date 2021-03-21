@@ -1,4 +1,4 @@
-import type { DOMStringList } from '../collections';
+import type { DOMStringList } from '../../collections';
 
 /** @spec https://html.spec.whatwg.org/multipage/history.html#the-location-interface */
 export interface Location extends Location.Interface {}

@@ -1,5 +1,5 @@
-import type { Event, EventInit } from '../dom';
-import type { Serializable } from './types';
+import type { Event, EventInit } from '../../dom';
+import type { Serializable } from '../types';
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#popstateeventinit */
 export interface PopStateEventInit extends Partial<PopStateEvent.State>, EventInit {}

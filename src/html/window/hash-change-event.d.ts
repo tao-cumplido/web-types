@@ -1,4 +1,4 @@
-import type { Event, EventInit } from '../dom';
+import type { Event, EventInit } from '../../dom';
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#hashchangeeventinit */
 export interface HashChangeEventInit extends Partial<HashChangeEvent.State>, EventInit {}

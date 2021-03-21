@@ -13,7 +13,11 @@ export interface MessageEventInit extends Partial<MessageEvent.State>, EventInit
 /** @spec https://html.spec.whatwg.org/multipage/comms.html#the-messageevent-interface */
 export interface MessageEvent extends MessageEvent.Interface {}
 
-/** @exposed Window */
+/**
+ * @exposed Window
+ * @exposed Worker
+ * @exposed AudioWorklet
+ */
 export namespace MessageEvent {
 	export interface State {
 		data: Serializable;
