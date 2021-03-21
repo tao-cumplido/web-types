@@ -1,5 +1,6 @@
 import type { ImageBitmap, ImageData, OffscreenCanvas } from '../canvas';
 import type { Event } from '../dom';
+import type { DOMHighResTimeStamp } from '../high-resolution-time';
 import type { ReadableStream } from '../streams';
 import type { DOMException } from '../web-idl';
 import type { MessagePort } from './message-port';
@@ -67,3 +68,14 @@ export type Serializable =
 	| ImageData
 	| ImageBitmap
 	| DOMException;
+
+/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#timerhandler */
+export type TimerHandler = string | ((...arguments: unknown[]) => unknown);
+
+/** @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#framerequestcallback */
+export type FrameRequestCallback = (time: DOMHighResTimeStamp) => void;
+
+/** @spec https://html.spec.whatwg.org/multipage/web-messaging.html#postmessageoptions */
+export interface PostMessageOptions {
+	transfer?: Transferable[];
+}

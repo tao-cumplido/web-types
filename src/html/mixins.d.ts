@@ -2,14 +2,27 @@ import type { ImageBitmap, ImageBitmapOptions, ImageBitmapSource } from '../canv
 import type { DOMStringMap } from '../collections';
 import type { EventHandler } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
+import type { VoidFunction } from '../web-idl';
 import type { DragEvent } from './drag-event';
 import type { HTMLFormElement } from './elements';
+import type { ErrorEvent } from './error-event';
 import type { FormDataEvent } from './form-data-event';
 import type { HashChangeEvent } from './hash-change-event';
+import type { MessageEvent } from './message-event';
+import type { MimeTypeArray, PluginArray } from './obsolete';
 import type { PageTransitionEvent } from './page-transition-event';
 import type { PopStateEvent } from './pop-state-event';
 import type { SubmitEvent } from './submit-event';
-import type { FocusOptions, OnBeforeUnloadEventHandler, OnErrorEventHandler, SelectionMode } from './types';
+import type {
+	FocusOptions,
+	FrameRequestCallback,
+	OnBeforeUnloadEventHandler,
+	OnErrorEventHandler,
+	PostMessageOptions,
+	SelectionMode,
+	Serializable,
+	Transferable,
+} from './types';
 import type { ValidityState } from './validity-state';
 
 /** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement */
@@ -199,7 +212,125 @@ export interface DocumentAndElementEventHandlers {
  * @spec https://fetch.spec.whatwg.org/#fetch-method
  */
 export interface WindowOrWorkerGlobalScope {
+	readonly origin: string;
+	readonly isSecureContext: boolean;
+	readonly crossOriginIsolated: boolean;
+
+	btoa(data: string): string;
+	atob(data: string): string;
+
+	setTimeout<Args extends unknown[]>(
+		handler: (...arguments: Args) => unknown,
+		timeout?: number,
+		...arguments: Args
+	): number;
+	setTimeout(code: string, timeout?: number): number;
+	clearTimeout(handle?: number): void;
+	setInterval<Args extends unknown[]>(
+		handler: (...arguments: Args) => unknown,
+		timeout?: number,
+		...arguments: Args
+	): number;
+	setInterval(code: string, timeout?: number): number;
+	clearInterval(handle?: number): void;
+
+	queueMicrotask(callback: VoidFunction): void;
+
 	createImageBitmap(image: ImageBitmapSource, options?: ImageBitmapOptions): Promise<ImageBitmap>;
+	createImageBitmap(
+		image: ImageBitmapSource,
+		sx: number,
+		sy: number,
+		sw: number,
+		sh: number,
+		options?: ImageBitmapOptions,
+	): Promise<ImageBitmap>;
 
 	fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/system-state.html#client-identification */
+export interface NavigatorID {
+	readonly appCodeName: 'Mozilla';
+	readonly appName: 'Netscape';
+	readonly appVersion: string;
+	readonly platform: string;
+	readonly product: 'Gecko';
+	readonly userAgent: string;
+}
+
+export namespace NavigatorID {
+	export interface Window {
+		readonly productSub: '20030107' | '20100101';
+		readonly vendor: 'Google Inc.' | '' | 'Apple Computer, Inc.';
+		readonly vendorSub: '';
+
+		/** @deprecated */
+		readonly oscpu?: string;
+		/** @deprecated */
+		taintEnabled?(): false;
+	}
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/system-state.html#language-preferences */
+export interface NavigatorLanguage {
+	readonly language: string;
+	readonly languages: readonly string[];
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/system-state.html#navigator.online */
+export interface NavigatorOnLine {
+	readonly onLine: boolean;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/system-state.html#custom-handlers */
+export interface NavigatorContentUtils {
+	registerProtocolHandler?(scheme: string, url: string): void;
+	unregisterProtocolHandler?(scheme: string, url: string): void;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/system-state.html#cookies */
+export interface NavigatorCookies {
+	readonly cookieEnabled: boolean;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#animationframeprovider */
+export interface AnimationFrameProvider {
+	requestAnimationFrame(callback: FrameRequestCallback): number;
+	cancelAnimationFrame(handle: number): void;
+}
+
+/** @nonStandard */
+export interface MessageEventUtils {
+	onmessage: EventHandler<MessageEvent>;
+	onmessageerror: EventHandler<MessageEvent>;
+}
+
+/** @nonStandard */
+export interface PostMessageUtils {
+	postMessage(message: Serializable, transfer: Transferable[]): void;
+	postMessage(message: Serializable, options?: PostMessageOptions): void;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/workers.html#the-abstractworker-mixin */
+export interface AbstractWorker {
+	onerror: EventHandler<ErrorEvent>;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency */
+export interface NavigatorConcurrentHardware {
+	readonly hardwareConcurrency: number;
+}
+
+/**
+ * @deprecated
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#navigatorplugins
+ */
+export interface NavigatorPlugins {
+	/** @deprecated */
+	readonly plugins: PluginArray;
+	/** @deprecated */
+	readonly mimeTypes: MimeTypeArray;
+	/** @deprecated */
+	javaEnabled(): false;
 }

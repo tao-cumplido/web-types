@@ -16,7 +16,7 @@ export namespace Location {
 		protocol: string;
 		host: string;
 		hostname: string;
-		port: `${number}`;
+		port: '' | `${number}`;
 		pathname: string;
 		search: string;
 		hash: string;

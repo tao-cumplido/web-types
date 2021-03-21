@@ -1,10 +1,5 @@
 import type { EventTarget } from '../dom';
-import type { Transferable } from './types';
-
-/** @spec https://html.spec.whatwg.org/multipage/web-messaging.html#postmessageoptions */
-export interface PostMessageOptions {
-	transfer?: Transferable[];
-}
+import type { MessageEventUtils, PostMessageUtils } from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/web-messaging.html#message-ports */
 export interface MessagePort extends MessagePort.Interface {}
@@ -15,8 +10,9 @@ export interface MessagePort extends MessagePort.Interface {}
  * @exposed AudioWorklet
  */
 export namespace MessagePort {
-	export interface Prototype extends EventTarget.Prototype {
-		// TODO
+	export interface Prototype extends EventTarget.Prototype, MessageEventUtils, PostMessageUtils {
+		start(): void;
+		close(): void;
 	}
 
 	export type Interface = Prototype & EventTarget.Interface;

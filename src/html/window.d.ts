@@ -4,10 +4,14 @@ import type { BarProp } from './bar-prop';
 import type { CustomElementRegistry } from './custom-element-registry';
 import type { History } from './history';
 import type { Location } from './location';
-import type { PostMessageOptions } from './message-port';
-import type { GlobalEventHandlers, WindowEventHandlers, WindowOrWorkerGlobalScope } from './mixins';
+import type {
+	AnimationFrameProvider,
+	GlobalEventHandlers,
+	WindowEventHandlers,
+	WindowOrWorkerGlobalScope,
+} from './mixins';
 import type { Navigator } from './navigator';
-import type { Transferable } from './types';
+import type { PostMessageOptions, Transferable } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/window-object.html#windowpostmessageoptions */
 export interface WindowPostMessageOptions extends PostMessageOptions {
@@ -34,7 +38,8 @@ export namespace Window {
 			IndexedIterable<WindowProxy>,
 			GlobalEventHandlers,
 			WindowEventHandlers,
-			WindowOrWorkerGlobalScope
+			WindowOrWorkerGlobalScope,
+			AnimationFrameProvider
 	{
 		/** @globalThis */
 		readonly self: WindowProxy;
