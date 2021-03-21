@@ -13,9 +13,7 @@ export interface SharedWorkerGlobalScope extends SharedWorkerGlobalScope.Interfa
 export namespace SharedWorkerGlobalScope {
 	export interface Prototype extends WorkerGlobalScope.Prototype<SharedWorkerGlobalScope> {
 		readonly name: string;
-
 		onconnect: EventHandler<MessageEvent>;
-
 		close(): void;
 	}
 

@@ -85,16 +85,20 @@ for (const sourceFile of project.getSourceFiles()) {
 						throw new Error(`@global interface ${namespace} @exposed error`);
 					}
 
-					const globalProperties = namespaceNode
-						.forEachDescendantAsArray()
+					const propertySymbols = typeChecker
+						.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
+						// filter out properties of type symbol
+						.filter((property) => !property.getName().startsWith('__@'));
+
+					const globalProperties = propertySymbols
+						.flatMap((property) => [...new Set(property.getDeclarations())])
 						.filter(Node.isPropertySignature)
-						.filter((node) => Boolean(docTags(node, 'globalThis').length))
+						.filter((node) => docTags(node, 'globalThis').length)
 						.map((node) => node.getName());
 
-					const properties = typeChecker
-						.getPropertiesOfType(typeChecker.getTypeAtLocation(sourceFile.getInterfaceOrThrow(namespace)))
+					const properties = propertySymbols
 						.map((symbol) => symbol.getName())
-						.filter((name) => !name.startsWith('__@') && !globalProperties.includes(name));
+						.filter((name) => !globalProperties.includes(name));
 
 					updateMap(
 						globalScopes,

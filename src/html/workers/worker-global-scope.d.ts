@@ -13,7 +13,8 @@ export namespace WorkerGlobalScope {
 	export interface Prototype<GlobalThis extends WorkerGlobalScope = never>
 		extends EventTarget.Prototype<GlobalThis>, WindowOrWorkerGlobalScope
 	{
-		readonly self: WorkerGlobalScope;
+		/** @globalThis */
+		readonly self: this;
 		readonly location: WorkerLocation;
 		readonly navigator: WorkerNavigator;
 
