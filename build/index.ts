@@ -17,10 +17,13 @@ import { docTags, guardsUnion } from './utility';
 
 const packagesRoot = 'packages';
 
-const exposedInterfaces = new Map<string, string[]>();
+const exposedInterfaces = new Map<string, Array<{ name: string; secureContext: boolean }>>();
 const exposedTypes = new Map<string, Map<string, TypeParameterDeclarationStructure[]>>();
 const legacyWindowAliases: Array<{ alias: string; name: string }> = [];
-const globalScopes = new Map<string, { global: string[]; properties: string[]; globalProperties: string[] }>();
+const globalScopes = new Map<
+	string,
+	{ name: string; global: string[]; properties: string[]; globalProperties: string[] }
+>();
 const augmentations = new Map<string, string[]>();
 
 function writePackage(name: string, dependencies: Record<string, string> = {}) {
@@ -63,7 +66,11 @@ for (const sourceFile of project.getSourceFiles()) {
 
 				if (tagName === 'exposed') {
 					namespaceNode.getInterfaceOrThrow('Constructor');
-					updateMap(exposedInterfaces, context, (interfaces) => [...interfaces, namespace], [namespace]);
+					const secureContext = docTags(namespaceNode, 'secureContext').length > 0;
+					updateMap(exposedInterfaces, context, (interfaces) => [...interfaces, { name: namespace, secureContext }], [{
+						name: namespace,
+						secureContext,
+					}]);
 				}
 
 				if (tagName === 'legacyWindowAlias') {
@@ -71,6 +78,13 @@ for (const sourceFile of project.getSourceFiles()) {
 				}
 
 				if (tagName === 'global') {
+					const exposed = docTags(namespaceNode, 'exposed');
+					const realm = exposed[0].getComment();
+
+					if (exposed.length !== 1 || !realm) {
+						throw new Error(`@global interface ${namespace} @exposed error`);
+					}
+
 					const globalProperties = namespaceNode
 						.forEachDescendantAsArray()
 						.filter(Node.isPropertySignature)
@@ -84,12 +98,13 @@ for (const sourceFile of project.getSourceFiles()) {
 
 					updateMap(
 						globalScopes,
-						namespace,
+						realm,
 						(scope) => {
 							scope.global.push(context);
 							return scope;
 						},
 						{
+							name: namespace,
 							global: [context],
 							globalProperties,
 							properties,
@@ -209,6 +224,7 @@ for (const sourceFile of project.getSourceFiles()) {
 					'legacyNullToEmptyString',
 					'globalThis',
 					'putForwards',
+					'secureContext',
 				];
 
 				if (removableTags.includes(tag.getTagName())) {
@@ -230,9 +246,13 @@ for (const sourceFile of project.getSourceFiles()) {
 	writePackage('core');
 }
 
+const packages: string[] = [];
+
 for (const [context, scope] of globalScopes) {
 	// eslint-disable-next-line prefer-named-capture-group
 	const packageName = context.replace(/([a-z])([A-Z])/gu, '$1-$2').toLowerCase();
+
+	packages.push(packageName);
 
 	let augmentationBlock = '';
 
@@ -253,16 +273,24 @@ for (const [context, scope] of globalScopes) {
 		`;
 	}
 
-	const interfaces = scope.global.flatMap(
-		(exposed) => exposedInterfaces.get(exposed)?.map((name) => `var ${name}: web.${name}.Constructor;`) ?? [],
-	);
+	const interfaces = [
+		...new Set(scope.global.flatMap(
+			(exposed) => exposedInterfaces.get(exposed) ?? [],
+		)),
+	].map(({ name, secureContext }) => {
+		if (secureContext) {
+			return `var ${name}: web.${name}.Constructor | undefined;`;
+		}
+
+		return `var ${name}: web.${name}.Constructor;`;
+	});
 
 	if (context === 'Window') {
 		interfaces.push(...legacyWindowAliases.map(({ alias, name }) => `var ${alias}: web.${name}.Constructor;`));
 	}
 
-	const types = scope.global.flatMap((exposed) =>
-		[...(exposedTypes.get(exposed) ?? [])].map(([type, parameters]) => {
+	const types = [...new Map(scope.global.flatMap((exposed) => [...(exposedTypes.get(exposed) ?? [])]))].map(
+		([type, parameters]) => {
 			if (!parameters.length) {
 				return `type ${type} = web.${type};`;
 			}
@@ -284,8 +312,13 @@ for (const [context, scope] of globalScopes) {
 			const parameterNames = parameters.map(({ name }) => name).join(', ');
 
 			return `type ${type}<${parameterSignature}> = web.${type}<${parameterNames}>;`;
-		})
+		},
 	);
+
+	const globalProperties = scope.globalProperties.map((name) =>
+		`var ${name}: web.${scope.name}['${name}'] & typeof globalThis;`
+	);
+	const properties = scope.properties.map((name) => `var ${name}: web.${scope.name}['${name}'];`);
 
 	fs.mkdirSync(path.join(packagesRoot, packageName));
 	fs.writeFileSync(
@@ -298,24 +331,38 @@ for (const [context, scope] of globalScopes) {
 			declare global {
 				${types.join('\n')}
 				${interfaces.join('\n')}
-				${scope.globalProperties.map((name) => `var ${name}: web.${context}['${name}'] & typeof globalThis;`).join('\n')}
-				${scope.properties.map((name) => `var ${name}: web.${context}['${name}'];`).join('\n')}
+				${globalProperties.join('\n')}
+				${properties.join('\n')}
 			}
 		`,
 	);
 
 	writePackage(packageName, { '@tswt/core': `~${packageJson.version}` });
+
+	fs.writeFileSync(
+		path.join(packagesRoot, `tsconfig.${packageName}.json`),
+		JSON.stringify(
+			{
+				extends: '../tsconfig.base.json',
+				compilerOptions: {
+					types: [],
+				},
+				include: [`${packageName}/**/*.ts`],
+			},
+			null,
+			'\t',
+		),
+	);
 }
 
 fs.writeFileSync(
 	path.join(packagesRoot, 'tsconfig.json'),
 	JSON.stringify(
 		{
-			extends: '../tsconfig.base.json',
-			compilerOptions: {
-				types: [],
-			},
-			include: ['**/*.ts'],
+			files: [],
+			references: packages.map((name) => {
+				return { path: `tsconfig.${name}.json` };
+			}),
 		},
 		null,
 		'\t',
