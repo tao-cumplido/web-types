@@ -4,6 +4,10 @@
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "dprint.dprint"
 	},
+	"[jsonc]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "dprint.dprint"
+	},
 	"[markdown]": {
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "dprint.dprint"
