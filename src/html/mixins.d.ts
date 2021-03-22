@@ -216,7 +216,7 @@ export interface DocumentAndElementEventHandlers {
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope-mixin
  * @spec https://fetch.spec.whatwg.org/#fetch-method
  */
-export interface WindowOrWorkerGlobalScope {
+export interface WindowOrWorkerGlobalScope extends ConsoleNamespace {
 	readonly origin: string;
 	readonly isSecureContext: boolean;
 	readonly crossOriginIsolated: boolean;
@@ -348,4 +348,35 @@ export interface NavigatorPlugins {
 	readonly mimeTypes: MimeTypeArray;
 	/** @deprecated */
 	javaEnabled(): false;
+}
+
+/**
+ * @nonStandard
+ * @spec https://console.spec.whatwg.org/#console-namespace
+ */
+export interface ConsoleNamespace {
+	console: {
+		assert(condition?: boolean, ...data: unknown[]): void;
+		clear(): void;
+		debug(...data: unknown[]): void;
+		error(...data: unknown[]): void;
+		info(...data: unknown[]): void;
+		log(...data: unknown[]): void;
+		table(tabularData: unknown, properties?: string[]): void;
+		trace(...data: unknown[]): void;
+		warn(...data: unknown[]): void;
+		dir(item?: unknown, options?: Record<PropertyKey, unknown>): void;
+		dirxml(...data: unknown[]): void;
+
+		count(label?: string): void;
+		countReset(label?: string): void;
+
+		group(...data: unknown[]): void;
+		groupCollapsed(...data: unknown[]): void;
+		groupEnd(): void;
+
+		time(label?: string): void;
+		timeLog(label?: string, ...data: unknown[]): void;
+		timeEnd(label?: string): void;
+	};
 }

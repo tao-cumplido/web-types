@@ -1,3 +1,5 @@
+import type { ConsoleNamespace } from './mixins';
+
 /** @spec https://html.spec.whatwg.org/multipage/worklets.html#worklets-global */
 export interface WorkletGlobalScope extends WorkletGlobalScope.Interface {}
 
@@ -6,8 +8,7 @@ export interface WorkletGlobalScope extends WorkletGlobalScope.Interface {}
  * @secureContext
  */
 export namespace WorkletGlobalScope {
-	// eslint-disable-next-line @typescript-eslint/no-empty-interface
-	export interface Prototype {}
+	export interface Prototype extends ConsoleNamespace {}
 
 	export type Interface = Prototype;
 
