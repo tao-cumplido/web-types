@@ -17,6 +17,7 @@ export namespace AbortSignal {
 
 	export interface Static extends EventTarget.Static {
 		prototype: Prototype;
+		abort(): AbortSignal;
 	}
 
 	export interface Constructor extends Static {
