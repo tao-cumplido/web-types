@@ -1,15 +1,14 @@
 import type { HTMLElement } from './html-element';
 
 /**
- * @spec https://html.spec.whatwg.org/multipage/grouping-content.html#the-menu-element
- * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLMenuElement-partial
+ * @deprecated
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#htmldirectoryelement
  */
-export interface HTMLMenuElement extends HTMLMenuElement.Interface {}
+export interface HTMLDirectoryElement extends HTMLDirectoryElement.Interface {}
 
 /** @exposed Window */
-export namespace HTMLMenuElement {
+export namespace HTMLDirectoryElement {
 	export interface Prototype extends HTMLElement.Prototype {
-		/** @deprecated */
 		compact: boolean;
 	}
 
@@ -20,7 +19,10 @@ export namespace HTMLMenuElement {
 	}
 
 	export interface Constructor extends Static {
-		/** @abstract */
-		new(): HTMLMenuElement;
+		/**
+		 * @abstract
+		 * @deprecated
+		 */
+		new(): HTMLDirectoryElement;
 	}
 }

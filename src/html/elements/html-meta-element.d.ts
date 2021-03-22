@@ -1,6 +1,9 @@
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLMetaElement-partial
+ */
 export interface HTMLMetaElement extends HTMLMetaElement.Interface {}
 
 /** @exposed Window */
@@ -9,6 +12,9 @@ export namespace HTMLMetaElement {
 		name: string;
 		httpEquiv: string;
 		content: string;
+
+		/** @deprecated */
+		scheme: string;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

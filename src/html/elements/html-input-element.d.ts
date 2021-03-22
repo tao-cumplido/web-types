@@ -10,7 +10,10 @@ import type { HTMLElement } from './html-element';
 import type { HTMLFormElement } from './html-form-element';
 import type { HTMLLabelElement } from './html-label-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/input.html#the-input-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/input.html#the-input-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLInputElement-partial
+ */
 export interface HTMLInputElement extends HTMLInputElement.Interface {}
 
 /** @exposed Window */
@@ -73,6 +76,11 @@ export namespace HTMLInputElement {
 		defaultValue: string;
 		valueAsDate: Date | null;
 		valueAsNumber: number;
+
+		/** @deprecated */
+		align: string;
+		/** @deprecated */
+		useMap: string;
 
 		stepUp(n?: number): void;
 		stepDown(n?: number): void;

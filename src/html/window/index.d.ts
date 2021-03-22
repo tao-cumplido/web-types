@@ -16,6 +16,8 @@ export * from './obsolete';
 export * from './page-transition-event';
 export * from './pop-state-event';
 export * from './shared-worker';
+export * from './storage';
+export * from './storage-event';
 export * from './submit-event';
 export * from './validity-state';
 export * from './window';

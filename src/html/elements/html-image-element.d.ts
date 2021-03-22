@@ -2,7 +2,10 @@ import type { ReferrerPolicy } from '../../fetch';
 import type { CORSSettingsAttribute, LazyLoadingAttribute } from '../types';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLImageElement-partial
+ */
 export interface HTMLImageElement extends HTMLImageElement.Interface {}
 
 /** @exposed Window */
@@ -25,6 +28,21 @@ export namespace HTMLImageElement {
 		referrerPolicy: ReferrerPolicy;
 		decoding: 'sync' | 'async' | 'auto';
 		loading: LazyLoadingAttribute;
+
+		/** @deprecated */
+		name: string;
+		/** @deprecated */
+		lowsrc: string;
+		/** @deprecated */
+		align: string;
+		/** @deprecated */
+		hspace: number;
+		/** @deprecated */
+		vspace: number;
+		/** @deprecated */
+		longDesc: string;
+		/** @deprecated */
+		border: string;
 
 		decode(): Promise<void>;
 	}

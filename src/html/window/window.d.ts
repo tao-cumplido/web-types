@@ -4,7 +4,9 @@ import type {
 	AnimationFrameProvider,
 	GlobalEventHandlers,
 	WindowEventHandlers,
+	WindowLocalStorage,
 	WindowOrWorkerGlobalScope,
+	WindowSessionStorage,
 } from '../mixins';
 import type { PostMessageOptions, Transferable } from '../types';
 import type { BarProp } from './bar-prop';
@@ -12,6 +14,7 @@ import type { CustomElementRegistry } from './custom-element-registry';
 import type { History } from './history';
 import type { Location } from './location';
 import type { Navigator } from './navigator';
+import type { External } from './obsolete';
 
 /** @spec https://html.spec.whatwg.org/multipage/window-object.html#windowpostmessageoptions */
 export interface WindowPostMessageOptions extends PostMessageOptions {
@@ -24,6 +27,7 @@ export type WindowProxy = Window;
 /**
  * @spec https://dom.spec.whatwg.org/#interface-window-extensions
  * @spec https://html.spec.whatwg.org/multipage/window-object.html#the-window-object
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Window-partial
  */
 export interface Window extends Window.Interface {}
 
@@ -39,7 +43,9 @@ export namespace Window {
 			GlobalEventHandlers,
 			WindowEventHandlers,
 			WindowOrWorkerGlobalScope,
-			AnimationFrameProvider
+			AnimationFrameProvider,
+			WindowSessionStorage,
+			WindowLocalStorage
 	{
 		/** @globalThis */
 		readonly self: WindowProxy;
@@ -63,6 +69,8 @@ export namespace Window {
 
 		/** @deprecated */
 		readonly event?: Event;
+		/** @deprecated */
+		readonly external: External;
 
 		name: string;
 		status: string;
@@ -82,6 +90,11 @@ export namespace Window {
 
 		postMessage(message: unknown, targetOrigin: string, transfer?: Transferable[]): void;
 		postMessage(message: unknown, options?: WindowPostMessageOptions): void;
+
+		/** @deprecated */
+		captureEvents(): void;
+		/** @deprecated */
+		releaseEvents(): void;
 	}
 
 	export interface LegacyUnforgeable {

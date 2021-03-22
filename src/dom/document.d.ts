@@ -1,5 +1,5 @@
 import type { Merge } from '../@types';
-import type { HTMLCollection, NodeList } from '../collections';
+import type { HTMLAllCollection, HTMLCollection, NodeList } from '../collections';
 import type {
 	AutonomousCustomElementMap,
 	BeforeUnloadEvent,
@@ -83,6 +83,7 @@ export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
 /**
  * @spec https://dom.spec.whatwg.org/#interface-document
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-document-object
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Document-partial
  */
 export interface Document extends Document.Interface<Document.Type.HTML> {}
 
@@ -154,6 +155,12 @@ export namespace Document {
 		readonly charset: string;
 		/** @deprecated legacy alias of .characterSet */
 		readonly inputEncoding: string;
+		/** @deprecated */
+		readonly anchors: HTMLCollection<HTMLAnchorElement>;
+		/** @deprecated */
+		readonly applets: HTMLCollection;
+		/** @deprecated */
+		readonly all: HTMLAllCollection;
 
 		nodeValue: null;
 		textContent: null;
@@ -168,6 +175,17 @@ export namespace Document {
 		designMode: 'on' | 'off';
 
 		onreadystatechange: EventHandler;
+
+		/** @deprecated */
+		fgColor: string;
+		/** @deprecated */
+		linkColor: string;
+		/** @deprecated */
+		vlinkColor: string;
+		/** @deprecated */
+		alinkColor: string;
+		/** @deprecated */
+		bgColor: string;
 
 		createElement<Tag extends string, Is extends string>(
 			localName: Tag,
@@ -248,6 +266,13 @@ export namespace Document {
 		queryCommandState(commandId: string): boolean;
 		queryCommandSupported(commandId: string): boolean;
 		queryCommandValue(commandId: string): string;
+
+		/** @deprecated */
+		clear(): void;
+		/** @deprecated */
+		captureEvents(): void;
+		/** @deprecated */
+		releaseEvents(): void;
 	}
 
 	export type Interface<T extends Type> = Prototype<T> & {

@@ -27,6 +27,8 @@ import type {
 	SubmitEvent,
 	ValidityState,
 } from './window';
+import type { Storage } from './window/storage';
+import type { StorageEvent } from './window/storage-event';
 
 /** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement */
 export interface HTMLOrSVGElement {
@@ -198,7 +200,7 @@ export interface WindowEventHandlers {
 	onpageshow: EventHandler<PageTransitionEvent>;
 	onpopstate: EventHandler<PopStateEvent>;
 	onrejectionhandled: EventHandler;
-	onstorage: EventHandler;
+	onstorage: EventHandler<StorageEvent>;
 	onunhandledrejection: EventHandler;
 	onunload: EventHandler;
 }
@@ -323,6 +325,16 @@ export interface AbstractWorker {
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency */
 export interface NavigatorConcurrentHardware {
 	readonly hardwareConcurrency: number;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-sessionstorage-attribute */
+export interface WindowSessionStorage {
+	readonly sessionStorage: Storage.NamedProperties;
+}
+
+/** @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-localstorage-attribute */
+export interface WindowLocalStorage {
+	readonly localStorage: Storage.NamedProperties;
 }
 
 /**

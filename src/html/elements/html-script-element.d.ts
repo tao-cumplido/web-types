@@ -2,7 +2,10 @@ import type { ReferrerPolicy } from '../../fetch';
 import type { CORSSettingsAttribute } from '../types';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/scripting.html#the-script-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/scripting.html#the-script-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLScriptElement-partial
+ */
 export interface HTMLScriptElement extends HTMLScriptElement.Interface {}
 
 /** @exposed Window */
@@ -17,6 +20,13 @@ export namespace HTMLScriptElement {
 		text: string;
 		integrity: string;
 		referrerPolicy: ReferrerPolicy;
+
+		/** @deprecated */
+		charset: string;
+		/** @deprecated */
+		event: string;
+		/** @deprecated */
+		htmlFor: string;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

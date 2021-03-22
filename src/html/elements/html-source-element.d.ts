@@ -11,6 +11,8 @@ export namespace HTMLSourceElement {
 		srcset: string;
 		sizes: string;
 		media: string;
+		width: number;
+		height: number;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

@@ -4,7 +4,10 @@ import type { PotentialDestination, ReferrerPolicy } from '../../fetch';
 import type { CORSSettingsAttribute } from '../types';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/semantics.html#the-link-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/semantics.html#the-link-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLLinkElement-partial
+ */
 export interface HTMLLinkElement extends HTMLLinkElement.Interface {}
 
 /** @exposed Window */
@@ -27,6 +30,13 @@ export namespace HTMLLinkElement {
 		imageSizes: string;
 		referrerPolicy: ReferrerPolicy;
 		disabled: boolean;
+
+		/** @deprecated */
+		charset: string;
+		/** @deprecated */
+		rev: string;
+		/** @deprecated */
+		target: string;
 	}
 
 	export type Interface = Prototype & HTMLElement.Interface;

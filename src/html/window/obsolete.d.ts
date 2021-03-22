@@ -1,3 +1,32 @@
+import type { IndexedIterable } from '../../iterable';
+
+/**
+ * @deprecated
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#external
+ */
+export interface External extends External.Interface {}
+
+/** @exposed Window */
+export namespace External {
+	export interface Prototype {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		AddSearchProvider(): void;
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		IsSearchProviderInstalled(): void;
+	}
+
+	export type Interface = Prototype;
+
+	export interface Static {
+		prototype: Prototype;
+	}
+
+	export interface Constructor extends Static {
+		/** @abstract */
+		new(): never;
+	}
+}
+
 /**
  * @deprecated
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#dom-plugin
@@ -35,7 +64,7 @@ export interface PluginArray extends PluginArray.Interface {}
 
 /** @exposed Window */
 export namespace PluginArray {
-	export interface Prototype {
+	export interface Prototype extends IndexedIterable<null> {
 		readonly length: 0;
 		refresh(): void;
 		item(index: number): null;
@@ -89,7 +118,7 @@ export interface MimeTypeArray extends MimeTypeArray.Interface {}
 
 /** @exposed Window */
 export namespace MimeTypeArray {
-	export interface Prototype {
+	export interface Prototype extends IndexedIterable<null> {
 		readonly length: 0;
 		item(index: number): null;
 		namedItem(name: string): null;

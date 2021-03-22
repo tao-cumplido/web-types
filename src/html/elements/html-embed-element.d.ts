@@ -1,7 +1,10 @@
 import type { Document } from '../../dom';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLEmbedElement-partial
+ */
 export interface HTMLEmbedElement extends HTMLEmbedElement.Interface {}
 
 /** @exposed Window */
@@ -11,6 +14,11 @@ export namespace HTMLEmbedElement {
 		type: string;
 		width: string;
 		height: string;
+
+		/** @deprecated */
+		align: string;
+		/** @deprecated */
+		name: string;
 
 		getSVGDocument(): Document.NamedProperties | null;
 	}

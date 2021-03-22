@@ -4,7 +4,10 @@ import type { HTMLTableCaptionElement } from './html-table-caption-element';
 import type { HTMLTableRowElement } from './html-table-row-element';
 import type { HTMLTableSectionElement } from './html-table-section-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/tables.html#the-table-element */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/tables.html#the-table-element
+ * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLTableElement-partial
+ */
 export interface HTMLTableElement extends HTMLTableElement.Interface {}
 
 /** @exposed Window */
@@ -16,6 +19,25 @@ export namespace HTMLTableElement {
 		caption: HTMLTableCaptionElement | null;
 		tHead: HTMLTableSectionElement | null;
 		tFoot: HTMLTableSectionElement | null;
+
+		/** @deprecated */
+		align: string;
+		/** @deprecated */
+		border: string;
+		/** @deprecated */
+		frame: string;
+		/** @deprecated */
+		rules: string;
+		/** @deprecated */
+		summary: string;
+		/** @deprecated */
+		width: string;
+		/** @deprecated */
+		bgColor: string;
+		/** @deprecated */
+		cellPadding: string;
+		/** @deprecated */
+		cellSpacing: string;
 
 		createCaption(): HTMLTableCaptionElement;
 		deleteCaption(): void;
