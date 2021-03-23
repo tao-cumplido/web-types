@@ -1,12 +1,18 @@
 import type { Node } from '../../dom';
 import type { HTMLElement } from '../elements';
 
-/** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#customelementconstructor */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/custom-elements.html#customelementconstructor
+ */
 export type CustomElementConstructor =
 	/** @abstract */
 	new() => HTMLElement;
 
-/** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#elementdefinitionoptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/custom-elements.html#elementdefinitionoptions
+ */
 export interface ElementDefinitionOptions {
 	extends?: string;
 }

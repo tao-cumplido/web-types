@@ -1,7 +1,10 @@
 import type { EventHandler, EventTarget } from '../dom';
 import type { AbstractWorker, PostMessageUtils } from '../html';
 
-/** @spec https://w3c.github.io/ServiceWorker/#enumdef-serviceworkerstate */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/ServiceWorker/#enumdef-serviceworkerstate
+ */
 export type ServiceWorkerState =
 	| 'parsed'
 	| 'installing'

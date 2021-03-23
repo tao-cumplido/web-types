@@ -5,30 +5,42 @@ import type { SVGAnimatedRect } from './svg-animated-rect';
 import type { SVGAnimatedString } from './svg-animated-string';
 import type { SVGStringList } from './svg-string-list';
 
-/** @spec https://svgwg.org/svg2-draft/struct.html#InterfaceSVGElementInstance */
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/struct.html#InterfaceSVGElementInstance
+ */
 export interface SVGElementInstance {
 	readonly correspondingElement: SVGElement | null;
 	readonly correspondingUseElement: SVGUseElement | null;
 }
 
-/** @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGURIReference */
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGURIReference
+ */
 export interface SVGURIReference {
 	readonly href: SVGAnimatedString;
 }
 
-/** @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGTests */
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGTests
+ */
 export interface SVGTests {
 	readonly requiredExtensions: SVGStringList;
 	readonly systemLanguage: SVGStringList;
 }
 
-/** @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGFitToViewBox */
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/types.html#InterfaceSVGFitToViewBox
+ */
 export interface SVGFitToViewBox {
 	readonly viewBox: SVGAnimatedRect;
 	readonly preserveAspectRatio: SVGAnimatedPreserveAspectRatio;
 }
 
-/** @nonIdlType https://svgwg.org/svg2-draft/types.html#ListInterfaces */
+/** @spec https://svgwg.org/svg2-draft/types.html#ListInterfaces */
 export interface SVGList<T> extends IndexedIterable<T> {
 	readonly length: number;
 	readonly numberOfItems: number;
@@ -42,13 +54,11 @@ export interface SVGList<T> extends IndexedIterable<T> {
 	appendItem(newItem: T): T;
 }
 
-/** @nonIdlType */
 export interface SVGAnimatedReadonly<Base, Anim = Base> {
 	readonly baseVal: Base;
 	readonly animVal: Anim;
 }
 
-/** @nonIdlType */
 export interface SVGAnimatedMutable<Base, Anim = Base> extends SVGAnimatedReadonly<Base, Anim> {
 	baseVal: Base;
 }

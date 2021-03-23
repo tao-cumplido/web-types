@@ -4,7 +4,10 @@ import type { Blob } from '../file';
 import type { CloseEvent } from './close-event';
 import type { MessageEvent } from './message-event';
 
-/** @spec https://html.spec.whatwg.org/multipage/web-sockets.html#binarytype */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/web-sockets.html#binarytype
+ */
 export type BinaryType = 'blob' | 'arraybuffer';
 
 /** @spec https://html.spec.whatwg.org/multipage/web-sockets.html#the-websocket-interface */

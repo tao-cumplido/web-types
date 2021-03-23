@@ -14,10 +14,16 @@ import type {
 import type { CORSSettingsAttribute } from '../types';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/media.html#canplaytyperesult */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/media.html#canplaytyperesult
+ */
 export type CanPlayTypeResult = '' | 'maybe' | 'probably';
 
-/** @spec https://html.spec.whatwg.org/multipage/media.html#mediaprovider */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/media.html#mediaprovider
+ */
 export type MediaProvider = MediaStream | MediaSource | Blob;
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#media-elements */

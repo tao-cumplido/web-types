@@ -1,6 +1,9 @@
 import type { WritableInherit } from '../@types';
 
-/** @spec https://drafts.fxtf.org/geometry/#dictdef-domrectinit */
+/**
+ * @idlType
+ * @spec https://drafts.fxtf.org/geometry/#dictdef-domrectinit
+ */
 export interface DOMRectInit {
 	x?: number;
 	y?: number;

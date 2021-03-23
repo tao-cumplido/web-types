@@ -1,6 +1,9 @@
 import type { Event, EventInit } from './event';
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-customeventinit */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-customeventinit
+ */
 export interface CustomEventInit<Detail = unknown> extends Partial<CustomEvent.State<Detail>>, EventInit {}
 
 /** @spec https://dom.spec.whatwg.org/#interface-customevent */

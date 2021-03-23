@@ -1,7 +1,10 @@
 import type { Event, EventInit } from '../../dom';
 import type { Storage } from './storage';
 
-/** @spec https://html.spec.whatwg.org/multipage/webstorage.html#storageeventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webstorage.html#storageeventinit
+ */
 export interface StorageEventInit extends Partial<StorageEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface */

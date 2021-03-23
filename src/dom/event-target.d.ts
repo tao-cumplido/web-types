@@ -1,24 +1,41 @@
 import type { AbortSignal } from '../abort';
 import type { Event } from './event';
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandlernonnull */
+// TODO: move event handler types to html
+
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandlernonnull
+ */
 export type EventHandlerNonNull<AbstractEvent extends Event = Event> = (event: AbstractEvent) => unknown;
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler
+ */
 export type EventHandler<AbstractEvent extends Event = Event> = EventHandlerNonNull<AbstractEvent> | null;
 
-/** @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition
+ */
 export type EventListener<
 	AbstractEvent extends Event = Event,
 	Handler extends EventHandlerNonNull<AbstractEvent> = EventHandlerNonNull<AbstractEvent>,
 > = Handler | { handleEvent: Handler };
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-eventlisteneroptions */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-eventlisteneroptions
+ */
 export interface EventListenerOptions {
 	capture?: boolean;
 }
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-addeventlisteneroptions */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-addeventlisteneroptions
+ */
 export interface AddEventListenerOptions extends EventListenerOptions {
 	passive?: boolean;
 	once?: boolean;

@@ -1,6 +1,9 @@
 import type { Event, EventInit } from '../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#promiserejectioneventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#promiserejectioneventinit
+ */
 export interface PromiseRejectionEventInit extends PromiseRejectionEvent.State, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/webappapis.html#promiserejectionevent */

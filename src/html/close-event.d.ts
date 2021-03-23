@@ -1,6 +1,9 @@
 import type { Event, EventInit } from '../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/web-sockets.html#closeeventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/web-sockets.html#closeeventinit
+ */
 export interface CloseEventInit extends Partial<CloseEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/web-sockets.html#the-closeevent-interface */

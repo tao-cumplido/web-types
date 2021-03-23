@@ -1,7 +1,13 @@
-/** @spec https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.1 */
+/**
+ * @idlType
+ * @spec https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.1
+ */
 export type WebGLPowerPreference = 'default' | 'low-power' | 'high-performance';
 
-/** @spec https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES */
+/**
+ * @idlType
+ * @spec https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES
+ */
 export interface WebGLContextAttributes {
 	alpha?: boolean;
 	depth?: boolean;

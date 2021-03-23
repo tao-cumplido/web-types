@@ -1,10 +1,16 @@
 import type { MutationRecord } from './mutation-record';
 import type { Node } from './node';
 
-/** @spec https://dom.spec.whatwg.org/#callbackdef-mutationcallback */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#callbackdef-mutationcallback
+ */
 export type MutationCallback = (mutations: MutationRecord.Constrained[], observer: MutationObserver) => void;
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-mutationobserverinit */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-mutationobserverinit
+ */
 export interface MutationObserverInit {
 	childList?: boolean;
 	attributes?: boolean;

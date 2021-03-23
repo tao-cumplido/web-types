@@ -2,7 +2,10 @@ import type { ValueOf } from '../../@types';
 import type { Node } from '../node';
 import type { AbstractRange } from './abstract-range';
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-staticrangeinit */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-staticrangeinit
+ */
 export interface StaticRangeInit {
 	startContainer: StaticRange.BoundaryContainerNode;
 	startOffset: number;

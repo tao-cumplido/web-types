@@ -4,11 +4,9 @@ import type { Node } from '../node';
 /** @spec https://dom.spec.whatwg.org/#interface-nodefilter */
 export type NodeFilter = NodeFilter.Interface;
 
-// ts-morph errors when this is as next-line between jsdoc and namespace
-/* eslint-disable @typescript-eslint/no-redeclare */
+// ts-morph errors when eslint-disable-next-line comment is between jsdoc and namespace
 /** @exposed Window */
-export namespace NodeFilter {
-	/* eslint-enable @typescript-eslint/no-redeclare */
+export namespace NodeFilter { // eslint-disable-line @typescript-eslint/no-redeclare
 	export interface Results {
 		readonly FILTER_ACCEPT: 1;
 		readonly FILTER_REJECT: 2;

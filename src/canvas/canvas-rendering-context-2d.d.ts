@@ -18,7 +18,10 @@ import type {
 	CanvasUserInterface,
 } from './mixins';
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasrenderingcontext2dsettings */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasrenderingcontext2dsettings
+ */
 export interface CanvasRenderingContext2DSettings {
 	alpha?: boolean;
 	desynchronized?: boolean;

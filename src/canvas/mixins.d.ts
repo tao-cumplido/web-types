@@ -23,13 +23,19 @@ import type {
 	ImageSmoothingQuality,
 } from './types';
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasstate */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasstate
+ */
 export interface CanvasState {
 	save(): void;
 	restore(): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastransform */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastransform
+ */
 export interface CanvasTransform {
 	scale(x: number, y: number): void;
 	rotate(angle: number): void;
@@ -42,19 +48,28 @@ export interface CanvasTransform {
 	resetTransform(): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvascompositing */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvascompositing
+ */
 export interface CanvasCompositing {
 	globalAlpha: number;
 	globalCompositeOperation: 'source-over' | 'copy';
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagesmoothing */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagesmoothing
+ */
 export interface CanvasImageSmoothing {
 	imageSmoothingEnabled: boolean;
 	imageSmoothingQuality: ImageSmoothingQuality;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasfillstrokestyles */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasfillstrokestyles
+ */
 export interface CanvasFillStrokeStyles {
 	strokeStyle: string | CanvasGradient | CanvasPattern;
 	fillStyle: string | CanvasGradient | CanvasPattern;
@@ -63,7 +78,10 @@ export interface CanvasFillStrokeStyles {
 	createPattern(image: CanvasImageSource, repetition: string | null): CanvasPattern | null;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasshadowstyles */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasshadowstyles
+ */
 export interface CanvasShadowStyles {
 	shadowOffsetX: number;
 	shadowOffsetY: number;
@@ -71,19 +89,28 @@ export interface CanvasShadowStyles {
 	shadowColor: string;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasfilters */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasfilters
+ */
 export interface CanvasFilters {
 	filter: string;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasrect */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasrect
+ */
 export interface CanvasRect {
 	clearRect(x: number, y: number, w: number, h: number): void;
 	fillRect(x: number, y: number, w: number, h: number): void;
 	strokeRect(x: number, y: number, w: number, h: number): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawpath */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawpath
+ */
 export interface CanvasDrawPath {
 	beginPath(): void;
 	fill(fillRule?: CanvasFillRule): void;
@@ -97,21 +124,30 @@ export interface CanvasDrawPath {
 	isPointInStroke(path: Path2D, x: number, y: number): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasuserinterface */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasuserinterface
+ */
 export interface CanvasUserInterface {
 	drawFocusIfNeeded(element: Element): void;
 	drawFocusIfNeeded(path: Path2D, element: Element): void;
 	scrollPathIntoView(path?: Path2D): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastext */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastext
+ */
 export interface CanvasText {
 	fillText(text: string, x: number, y: number, maxWidth: number): void;
 	strokeText(text: string, x: number, y: number, maxWidth: number): void;
 	measureText(text: string): TextMetrics;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawimage */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasdrawimage
+ */
 export interface CanvasDrawImage {
 	drawImage(image: CanvasImageSource, dx: number, dy: number): void;
 	drawImage(image: CanvasImageSource, dx: number, dy: number, dw: number, dh: number): void;
@@ -128,7 +164,10 @@ export interface CanvasDrawImage {
 	): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagedata */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvasimagedata
+ */
 export interface CanvasImageData {
 	createImageData(sw: number, sh: number): ImageData;
 	createImageData(imagedata: ImageData): ImageData;
@@ -145,7 +184,10 @@ export interface CanvasImageData {
 	): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaspathdrawingstyles */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaspathdrawingstyles
+ */
 export interface CanvasPathDrawingStyles {
 	lineWidth: number;
 	lineCap: CanvasLineCap;
@@ -158,7 +200,10 @@ export interface CanvasPathDrawingStyles {
 	getLineDash(): number[];
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastextdrawingstyles */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvastextdrawingstyles
+ */
 export interface CanvasTextDrawingStyles {
 	font: string;
 	textAlign: CanvasTextAlign;
@@ -166,7 +211,10 @@ export interface CanvasTextDrawingStyles {
 	direction: CanvasDirection;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaspath */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#canvaspath
+ */
 export interface CanvasPath {
 	closePath(): void;
 	moveTo(x: number, y: number): void;
@@ -188,7 +236,6 @@ export interface CanvasPath {
 	): void;
 }
 
-/** @nonIdlType */
 export interface CanvasRenderingContextHost<
 	RenderingContext2D extends CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
 > {

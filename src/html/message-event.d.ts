@@ -4,10 +4,16 @@ import type { MessagePort } from './message-port';
 import type { Serializable } from './types';
 import type { WindowProxy } from './window';
 
-/** @spec https://html.spec.whatwg.org/multipage/comms.html#messageeventsource */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/comms.html#messageeventsource
+ */
 export type MessageEventSource = WindowProxy | MessagePort | ServiceWorker;
 
-/** @spec https://html.spec.whatwg.org/multipage/comms.html#messageeventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/comms.html#messageeventinit
+ */
 export interface MessageEventInit extends Partial<MessageEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/comms.html#the-messageevent-interface */

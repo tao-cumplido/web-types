@@ -3,7 +3,10 @@ import type { Node } from '../node';
 import type { XPathExpression } from './xpath-expression';
 import type { XPathResult } from './xpath-result';
 
-/** @spec https://dom.spec.whatwg.org/#callbackdef-xpathnsresolver */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#callbackdef-xpathnsresolver
+ */
 export type XPathNSResolver = XPathNSResolver.Callback | XPathNSResolver.Interface;
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -15,7 +18,10 @@ export namespace XPathNSResolver {
 	}
 }
 
-/** @spec https://dom.spec.whatwg.org/#xpathevaluatorbase */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#xpathevaluatorbase
+ */
 export interface XPathEvaluatorBase {
 	createExpression(expression: string, resolver?: XPathNSResolver | null): XPathExpression;
 	createNSResolver(nodeResolver: Node): XPathNSResolver.Interface;

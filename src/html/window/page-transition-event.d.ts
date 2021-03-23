@@ -1,6 +1,9 @@
 import type { Event, EventInit } from '../../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#pagetransitioneventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#pagetransitioneventinit
+ */
 export interface PageTransitionEventInit extends Partial<PageTransitionEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-pagetransitionevent-interface */

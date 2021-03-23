@@ -3,7 +3,10 @@ import type { AudioTrack } from './audio-track';
 import type { TextTrack } from './text-track';
 import type { VideoTrack } from './video-track';
 
-/** @spec https://html.spec.whatwg.org/multipage/media.html#trackeventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/media.html#trackeventinit
+ */
 export interface TrackEventInit extends Partial<TrackEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#the-trackevent-interface */

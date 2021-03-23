@@ -5,7 +5,10 @@ import type { FormData } from '../../xhr';
 import type { HTMLElement, HTMLFormElement, HTMLLabelElement } from '../elements';
 import type { HTMLFormValidationUtils } from '../mixins';
 
-/** @spec https://html.spec.whatwg.org/multipage/custom-elements.html#validitystateflags */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/custom-elements.html#validitystateflags
+ */
 export interface ValidityStateFlags {
 	valueMissing?: boolean;
 	typeMismatch?: boolean;

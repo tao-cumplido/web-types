@@ -1,7 +1,10 @@
 import type { EventTarget } from '../dom';
 import type { EventModifierInit, UIEvent } from './ui-event';
 
-/** @spec https://w3c.github.io/uievents/#idl-mouseeventinit */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/uievents/#idl-mouseeventinit
+ */
 export interface MouseEventInit extends Partial<MouseEvent.State>, EventModifierInit {}
 
 /** @spec https://w3c.github.io/uievents/#idl-mouseevent */

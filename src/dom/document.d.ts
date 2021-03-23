@@ -44,7 +44,6 @@ import type { NodeFilter, NodeIterator, TreeWalker } from './traversal';
 import type { XPathEvaluatorBase } from './xpath';
 
 // TODO: use correct event interfaces https://dom.spec.whatwg.org/#dom-document-createevent
-/** @nonIdlType */
 export interface CreateEventMap {
 	beforeunloadevent: BeforeUnloadEvent;
 	compositionevent: Event;
@@ -69,15 +68,24 @@ export interface CreateEventMap {
 	uievents: Event;
 }
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-elementcreationoptions */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-elementcreationoptions
+ */
 export interface ElementCreationOptions<Is extends string = string> {
 	is?: Is;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/dom.html#documentreadystate */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/dom.html#documentreadystate
+ */
 export type DocumentReadyState = 'loading' | 'interactive' | 'complete';
 
-/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgscriptelement
+ */
 export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
 
 /**

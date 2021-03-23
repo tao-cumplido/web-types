@@ -53,10 +53,16 @@ export namespace TextTrackCueList {
 	}
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/media.html#texttrackmode */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/media.html#texttrackmode
+ */
 export type TextTrackMode = 'disabled' | 'hidden' | 'showing';
 
-/** @spec https://html.spec.whatwg.org/multipage/media.html#texttrackkind */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/media.html#texttrackkind
+ */
 export type TextTrackKind = 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#texttrack */

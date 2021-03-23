@@ -1,7 +1,10 @@
 import type { ValueOf } from '../@types';
 import type { EventTarget } from './event-target';
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-eventinit */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-eventinit
+ */
 export interface EventInit extends Partial<Event.State> {}
 
 /** @spec https://dom.spec.whatwg.org/#interface-event */

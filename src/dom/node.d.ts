@@ -6,7 +6,10 @@ import type { Element } from './element';
 import type { EventTarget } from './event-target';
 import type { ShadowRoot } from './shadow-root';
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-getrootnodeoptions */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-getrootnodeoptions
+ */
 export interface GetRootNodeOptions {
 	composed?: boolean;
 }

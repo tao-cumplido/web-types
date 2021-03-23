@@ -2,7 +2,10 @@ import type { Blob, File } from '../file';
 import type { HTMLFormElement } from '../html';
 import type { KeyValueIterable } from '../iterable';
 
-/** @spec https://xhr.spec.whatwg.org/#formdataentryvalue */
+/**
+ * @idlType
+ * @spec https://xhr.spec.whatwg.org/#formdataentryvalue
+ */
 export type FormDataEntryValue = File | string;
 
 /** @spec https://xhr.spec.whatwg.org/#formdata */

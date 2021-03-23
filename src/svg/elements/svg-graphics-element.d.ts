@@ -3,7 +3,10 @@ import type { SVGTests } from '../mixins';
 import type { SVGAnimatedTransformList } from '../svg-animated-transform-list';
 import type { SVGElement } from './svg-element';
 
-/** @spec https://svgwg.org/svg2-draft/types.html#SVGBoundingBoxOptions */
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/types.html#SVGBoundingBoxOptions
+ */
 export interface SVGBoundingBoxOptions {
 	fill?: boolean;
 	stroke?: boolean;

@@ -1,4 +1,3 @@
-/** @nonIdlType */
 export type AudioVideoKind =
 	| 'alternative'
 	| 'captions'

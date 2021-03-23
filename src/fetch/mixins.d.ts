@@ -3,7 +3,10 @@ import type { ReadableStream } from '../streams';
 import type { FormData } from '../xhr';
 import type { Json } from './types';
 
-/** @spec https://fetch.spec.whatwg.org/#body-mixin */
+/**
+ * @idlType
+ * @spec https://fetch.spec.whatwg.org/#body-mixin
+ */
 export interface Body {
 	readonly body: ReadableStream | null;
 	readonly bodyUsed: boolean;

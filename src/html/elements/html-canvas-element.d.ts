@@ -8,14 +8,20 @@ import type { Blob } from '../../file';
 import type { WebGL2RenderingContext, WebGLRenderingContext } from '../../web-gl';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#renderingcontext */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#renderingcontext
+ */
 export type RenderingContext =
 	| CanvasRenderingContext2D
 	| ImageBitmapRenderingContext
 	| WebGLRenderingContext
 	| WebGL2RenderingContext;
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#blobcallback */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#blobcallback
+ */
 export type BlobCallback = (blob: Blob | null) => void;
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#the-canvas-element */

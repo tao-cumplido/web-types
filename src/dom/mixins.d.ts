@@ -6,12 +6,16 @@ import type { SVGElement, SVGElementMap } from '../svg';
 import type { Element } from './element';
 import type { Node } from './node';
 
-/** @spec https://dom.spec.whatwg.org/#interface-nonelementparentnode */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#interface-nonelementparentnode
+ */
 export interface NonElementParentNode {
 	getElementById(elementId: string): Element | null;
 }
 
 /**
+ * @idlType
  * @spec https://dom.spec.whatwg.org/#mixin-documentorshadowroot
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-documentorshadowroot-interface
  * @spec https://drafts.csswg.org/cssom/#extensions-to-the-document-or-shadow-root-interface
@@ -21,7 +25,10 @@ export interface DocumentOrShadowRoot {
 	readonly styleSheets: StyleSheetList;
 }
 
-/** @spec https://dom.spec.whatwg.org/#interface-parentnode */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#interface-parentnode
+ */
 export interface ParentNode {
 	readonly children: HTMLCollection.LegacyUnenumerableNamedProperties;
 	readonly firstElementChild: Element | null;
@@ -58,13 +65,19 @@ export namespace ParentNode {
 	}
 }
 
-/** @spec https://dom.spec.whatwg.org/#interface-nondocumenttypechildnode */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#interface-nondocumenttypechildnode
+ */
 export interface NonDocumentTypeChildNode {
 	readonly previousElementSibling: Element | null;
 	readonly nextElementSibling: Element | null;
 }
 
-/** @spec https://dom.spec.whatwg.org/#interface-childnode */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#interface-childnode
+ */
 export interface ChildNode {
 	before(...nodes: Array<Node | string>): void;
 	after(...nodes: Array<Node | string>): void;
@@ -81,13 +94,15 @@ export namespace ChildNode {
 	}
 }
 
-/** @spec https://dom.spec.whatwg.org/#mixin-slotable */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#mixin-slotable
+ */
 export interface Slottable {
 	readonly assignedSlot: HTMLSlotElement | null;
 }
 
 /**
- * @nonIdlType
  * @spec https://dom.spec.whatwg.org/#interface-document
  * @spec https://dom.spec.whatwg.org/#interface-element
  */
@@ -127,13 +142,19 @@ export interface DocumentOrElement {
 	getElementsByClassName(classNames: string): HTMLCollection.LegacyUnenumerableNamedProperties;
 }
 
-/** @spec https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin
+ */
 export interface InnerHTML {
 	/** @legacyNullToEmptyString */
 	innerHTML: string;
 }
 
-/** @spec https://w3c.github.io/aria/#ARIAMixin */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/aria/#ARIAMixin
+ */
 export interface ARIAMixin {
 	role: string | null;
 

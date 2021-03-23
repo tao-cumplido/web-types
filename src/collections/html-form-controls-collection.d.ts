@@ -48,6 +48,7 @@ export namespace HTMLFormControlsCollection {
 	}
 }
 
+/** @spec https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#radionodelist */
 export interface RadioNodeList<Item extends Element = Element> extends RadioNodeList.Interface<Item> {}
 
 /** @exposed Window */

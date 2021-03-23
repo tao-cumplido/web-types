@@ -1,10 +1,16 @@
 import type { Event, EventInit } from '../dom';
 import type { Window } from '../html';
 
-/** @spec https://w3c.github.io/uievents/#idl-uieventinit */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/uievents/#idl-uieventinit
+ */
 export interface UIEventInit extends Partial<UIEvent.State>, EventInit {}
 
-/** @spec https://w3c.github.io/uievents/#event-modifier-initializers */
+/**
+ * @idlType
+ * @spec https://w3c.github.io/uievents/#event-modifier-initializers
+ */
 export interface EventModifierInit extends UIEventInit {
 	ctrlKey?: boolean;
 	shiftKey?: boolean;

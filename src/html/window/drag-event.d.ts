@@ -1,6 +1,7 @@
 import type { MouseEvent, MouseEventInit } from '../../ui-events';
 import type { DataTransfer } from './data-transfer';
 
+/** @idlType */
 export interface DragEventInit extends Partial<DragEvent.State>, MouseEventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/dnd.html#the-dragevent-interface */

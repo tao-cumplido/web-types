@@ -1,6 +1,9 @@
 import type { File } from '../../file';
 
-/** @spec https://html.spec.whatwg.org/multipage/dnd.html#functionstringcallback */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/dnd.html#functionstringcallback
+ */
 export type FunctionStringCallback = (data: string) => void;
 
 /** @spec https://html.spec.whatwg.org/multipage/dnd.html#the-datatransferitem-interface */

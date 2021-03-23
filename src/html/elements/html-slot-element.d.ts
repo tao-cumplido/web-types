@@ -1,7 +1,10 @@
 import type { Element, Node } from '../../dom';
 import type { HTMLElement } from './html-element';
 
-/** @spec https://html.spec.whatwg.org/multipage/scripting.html#assignednodesoptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/scripting.html#assignednodesoptions
+ */
 export interface AssignedNodesOptions {
 	flatten?: boolean;
 }

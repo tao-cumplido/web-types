@@ -13,7 +13,10 @@ import type {
 import type { Node } from './node';
 import type { ShadowRoot, ShadowRootMode } from './shadow-root';
 
-/** @spec https://dom.spec.whatwg.org/#dictdef-shadowrootinit */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#dictdef-shadowrootinit
+ */
 export interface ShadowRootInit {
 	mode: ShadowRootMode;
 	delegatesFocus?: boolean;

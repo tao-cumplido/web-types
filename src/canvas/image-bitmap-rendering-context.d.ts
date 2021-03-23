@@ -2,7 +2,10 @@ import type { HTMLCanvasElement } from '../html';
 import type { ImageBitmap } from './image-bitmap';
 import type { OffscreenCanvas } from './offscreen-canvas';
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#imagebitmaprenderingcontextsettings */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#imagebitmaprenderingcontextsettings
+ */
 export interface ImageBitmapRenderingContextSettings {
 	alpha?: boolean;
 }

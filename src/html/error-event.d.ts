@@ -1,6 +1,9 @@
 import type { Event, EventInit } from '../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#erroreventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#erroreventinit
+ */
 export interface ErrorEventInit extends Partial<ErrorEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/webappapis.html#errorevent */

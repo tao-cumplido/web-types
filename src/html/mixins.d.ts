@@ -30,7 +30,10 @@ import type {
 import type { Storage } from './window/storage';
 import type { StorageEvent } from './window/storage-event';
 
-/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/dom.html#htmlorsvgelement
+ */
 export interface HTMLOrSVGElement {
 	readonly dataset: DOMStringMap;
 	nonce: string;
@@ -42,7 +45,10 @@ export interface HTMLOrSVGElement {
 	blur(): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/interaction.html#elementcontenteditable */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/interaction.html#elementcontenteditable
+ */
 export interface ElementContentEditable {
 	readonly isContentEditable: boolean;
 	contentEditable: '' | `${boolean}` | 'inherit';
@@ -50,7 +56,10 @@ export interface ElementContentEditable {
 	inputMode: '' | 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/links.html#htmlhyperlinkelementutils */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/links.html#htmlhyperlinkelementutils
+ */
 export interface HTMLHyperlinkElementUtils {
 	readonly origin: string;
 	href: string;
@@ -65,7 +74,6 @@ export interface HTMLHyperlinkElementUtils {
 	hash: string;
 }
 
-/** @nonIdlType */
 export interface HTMLFormControlUtils {
 	formAction: string;
 	formEnctype: HTMLFormElement.Encoding;
@@ -74,7 +82,6 @@ export interface HTMLFormControlUtils {
 	formTarget: string;
 }
 
-/** @nonIdlType */
 export interface HTMLFormValidationUtils {
 	readonly willValidate: boolean;
 	readonly validity: ValidityState;
@@ -84,18 +91,15 @@ export interface HTMLFormValidationUtils {
 	reportValidity(): boolean;
 }
 
-/** @nonIdlType */
 export interface HTMLFormCustomValidationUtils extends HTMLFormValidationUtils {
 	setCustomValidity(error: string): void;
 }
 
-/** @nonIdlType */
 export interface HTMLFormInputUtils {
 	autocomplete: string;
 	required: boolean;
 }
 
-/** @nonIdlType */
 export interface HTMLFormTextUtils<Optional extends null> {
 	dirName: string;
 	maxLength: number;
@@ -115,7 +119,10 @@ export interface HTMLFormTextUtils<Optional extends null> {
 
 // TODO: add concrete events where appropriate
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#globaleventhandlers */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#globaleventhandlers
+ */
 export interface GlobalEventHandlers {
 	onabort: EventHandler;
 	onauxclick: EventHandler;
@@ -185,7 +192,10 @@ export interface GlobalEventHandlers {
 	onwheel: EventHandler;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoweventhandlers */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoweventhandlers
+ */
 export interface WindowEventHandlers {
 	onafterprint: EventHandler;
 	onbeforeprint: EventHandler;
@@ -205,7 +215,10 @@ export interface WindowEventHandlers {
 	onunload: EventHandler;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/webappapis.html#documentandelementeventhandlers */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webappapis.html#documentandelementeventhandlers
+ */
 export interface DocumentAndElementEventHandlers {
 	oncopy: EventHandler;
 	oncut: EventHandler;
@@ -213,6 +226,7 @@ export interface DocumentAndElementEventHandlers {
 }
 
 /**
+ * @idlType
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope-mixin
  * @spec https://fetch.spec.whatwg.org/#fetch-method
  */
@@ -254,7 +268,10 @@ export interface WindowOrWorkerGlobalScope extends ConsoleNamespace {
 	fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/system-state.html#client-identification */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/system-state.html#client-identification
+ */
 export interface NavigatorID {
 	readonly appCodeName: 'Mozilla';
 	readonly appName: 'Netscape';
@@ -277,62 +294,87 @@ export namespace NavigatorID {
 	}
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/system-state.html#language-preferences */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/system-state.html#language-preferences
+ */
 export interface NavigatorLanguage {
 	readonly language: string;
 	readonly languages: readonly string[];
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/system-state.html#navigator.online */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/system-state.html#navigator.online
+ */
 export interface NavigatorOnLine {
 	readonly onLine: boolean;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/system-state.html#custom-handlers */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/system-state.html#custom-handlers
+ */
 export interface NavigatorContentUtils {
 	registerProtocolHandler?(scheme: string, url: string): void;
 	unregisterProtocolHandler?(scheme: string, url: string): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/system-state.html#cookies */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/system-state.html#cookies
+ */
 export interface NavigatorCookies {
 	readonly cookieEnabled: boolean;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#animationframeprovider */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#animationframeprovider
+ */
 export interface AnimationFrameProvider {
 	requestAnimationFrame(callback: FrameRequestCallback): number;
 	cancelAnimationFrame(handle: number): void;
 }
 
-/** @nonIdlType */
 export interface MessageEventUtils {
 	onmessage: EventHandler<MessageEvent>;
 	onmessageerror: EventHandler<MessageEvent>;
 }
 
-/** @nonIdlType */
 export interface PostMessageUtils {
 	postMessage(message: Serializable, transfer: Transferable[]): void;
 	postMessage(message: Serializable, options?: PostMessageOptions): void;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/workers.html#the-abstractworker-mixin */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/workers.html#the-abstractworker-mixin
+ */
 export interface AbstractWorker {
 	onerror: EventHandler<ErrorEvent>;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/workers.html#navigator.hardwareconcurrency
+ */
 export interface NavigatorConcurrentHardware {
 	readonly hardwareConcurrency: number;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-sessionstorage-attribute */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-sessionstorage-attribute
+ */
 export interface WindowSessionStorage {
 	readonly sessionStorage: Storage.NamedProperties;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-localstorage-attribute */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/webstorage.html#the-localstorage-attribute
+ */
 export interface WindowLocalStorage {
 	readonly localStorage: Storage.NamedProperties;
 }
@@ -350,10 +392,7 @@ export interface NavigatorPlugins {
 	javaEnabled(): false;
 }
 
-/**
- * @nonIdlType
- * @spec https://console.spec.whatwg.org/#console-namespace
- */
+/** @spec https://console.spec.whatwg.org/#console-namespace */
 export interface ConsoleNamespace {
 	console: {
 		assert(condition?: boolean, ...data: unknown[]): void;

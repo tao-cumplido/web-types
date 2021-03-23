@@ -11,10 +11,16 @@ import type {
 	RequestRedirect,
 } from './types';
 
-/** @spec https://fetch.spec.whatwg.org/#requestinfo */
+/**
+ * @idlType
+ * @spec https://fetch.spec.whatwg.org/#requestinfo
+ */
 export type RequestInfo = Request | string;
 
-/** @spec https://fetch.spec.whatwg.org/#requestinit */
+/**
+ * @idlType
+ * @spec https://fetch.spec.whatwg.org/#requestinit
+ */
 export interface RequestInit {
 	method?: string;
 	headers?: HeadersInit;

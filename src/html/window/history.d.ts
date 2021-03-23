@@ -1,6 +1,9 @@
 import type { Serializable } from '../types';
 
-/** @spec https://html.spec.whatwg.org/multipage/history.html#scrollrestoration */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/history.html#scrollrestoration
+ */
 export type ScrollRestoration = 'auto' | 'manual';
 
 /** @spec https://html.spec.whatwg.org/multipage/history.html#the-history-interface */

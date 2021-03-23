@@ -1,7 +1,10 @@
 import type { WritableInherit } from '../@types';
 import type { DOMMatrixInit } from './dom-matrix';
 
-/** @spec https://drafts.fxtf.org/geometry/#dictdef-dompointinit */
+/**
+ * @idlType
+ * @spec https://drafts.fxtf.org/geometry/#dictdef-dompointinit
+ */
 export interface DOMPointInit {
 	x?: number;
 	y?: number;

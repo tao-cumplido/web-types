@@ -1,6 +1,9 @@
 import type { Event, EventInit } from '../../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#hashchangeeventinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#hashchangeeventinit
+ */
 export interface HashChangeEventInit extends Partial<HashChangeEvent.State>, EventInit {}
 
 /** @spec https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-hashchangeevent-interface */

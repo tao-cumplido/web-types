@@ -127,10 +127,6 @@ for (const sourceFile of project.getSourceFiles()) {
 for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').getExportedDeclarations()) {
 	const jsDocables = declarations.filter(Node.isJSDocableNode);
 
-	if (jsDocables.some((node) => docTags(node, 'nonIdlType').length)) {
-		continue;
-	}
-
 	const typeDeclarations = jsDocables.filter(guardsUnion(Node.isInterfaceDeclaration, Node.isTypeAliasDeclaration));
 
 	const exposedRealms = docTags(jsDocables.find(Node.isNamespaceDeclaration), 'exposed').map((tag) => {
@@ -161,11 +157,9 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 		continue;
 	}
 
-	if (!typeDeclarations.length) {
-		if (!exposedRealms.length) {
-			// eslint-disable-next-line no-console
-			console.warn(`no declarations found for '${name}'`);
-		}
+	const idlTypes = typeDeclarations.filter((type) => docTags(type, 'idlType').length);
+
+	if (!idlTypes.length) {
 		continue;
 	}
 
@@ -204,7 +198,7 @@ for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').ge
 		}
 	};
 
-	typeDeclarations.forEach(findExposures);
+	idlTypes.forEach(findExposures);
 
 	if (!new Set([...exposedTypes.values()].flatMap((set) => [...set.keys()])).has(name)) {
 		// eslint-disable-next-line no-console
@@ -224,7 +218,7 @@ for (const sourceFile of project.getSourceFiles()) {
 					'exposed',
 					'legacyWindowAlias',
 					'global',
-					'nonIdlType',
+					'idlType',
 					'legacyNullToEmptyString',
 					'globalThis',
 					'putForwards',

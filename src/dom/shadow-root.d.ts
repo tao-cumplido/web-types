@@ -3,7 +3,10 @@ import type { Element } from './element';
 import type { EventHandler } from './event-target';
 import type { DocumentOrShadowRoot, InnerHTML } from './mixins';
 
-/** @spec https://dom.spec.whatwg.org/#enumdef-shadowrootmode */
+/**
+ * @idlType
+ * @spec https://dom.spec.whatwg.org/#enumdef-shadowrootmode
+ */
 export type ShadowRootMode = 'open' | 'closed';
 
 /** @spec https://dom.spec.whatwg.org/#interface-shadowroot */

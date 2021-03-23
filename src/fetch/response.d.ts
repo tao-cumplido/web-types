@@ -2,7 +2,10 @@ import type { Headers, HeadersInit } from './headers';
 import type { Body } from './mixins';
 import type { BodyInit, ResponseType } from './types';
 
-/** @spec https://fetch.spec.whatwg.org/#responseinit */
+/**
+ * @idlType
+ * @spec https://fetch.spec.whatwg.org/#responseinit
+ */
 export interface ResponseInit {
 	status?: number;
 	statusText?: string;

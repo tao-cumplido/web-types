@@ -1,6 +1,9 @@
 import type { Document, XMLDocument } from '../../dom';
 
-/** @spec https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#domparsersupportedtype */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#domparsersupportedtype
+ */
 export type DOMParserSupportedType =
 	| 'text/html'
 	| 'text/xml'

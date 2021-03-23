@@ -16,12 +16,18 @@ import type { Location } from './location';
 import type { Navigator } from './navigator';
 import type { External } from './obsolete';
 
-/** @spec https://html.spec.whatwg.org/multipage/window-object.html#windowpostmessageoptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/window-object.html#windowpostmessageoptions
+ */
 export interface WindowPostMessageOptions extends PostMessageOptions {
 	targetOrigin?: string;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/window-object.html#the-windowproxy-exotic-object */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/window-object.html#the-windowproxy-exotic-object
+ */
 export type WindowProxy = Window;
 
 /**

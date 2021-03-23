@@ -6,20 +6,29 @@ import type { ImageBitmapRenderingContext } from './image-bitmap-rendering-conte
 import type { CanvasRenderingContextHost } from './mixins';
 import type { OffscreenCanvasRenderingContext2D } from './offscreen-canvas-rendering-context-2d';
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#offscreenrenderingcontext */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#offscreenrenderingcontext
+ */
 export type OffscreenRenderingContext =
 	| OffscreenCanvasRenderingContext2D
 	| ImageBitmapRenderingContext
 	| WebGLRenderingContext
 	| WebGL2RenderingContext;
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#imageencodeoptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#imageencodeoptions
+ */
 export interface ImageEncodeOptions {
 	type?: string;
 	quality?: number;
 }
 
-/** @spec https://html.spec.whatwg.org/multipage/canvas.html#offscreenrenderingcontextid */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/canvas.html#offscreenrenderingcontextid
+ */
 export type OffscreenRenderingContextId = '2d' | 'bitmaprenderer' | 'webgl' | 'webgl2';
 
 /** @spec https://html.spec.whatwg.org/multipage/canvas.html#the-offscreencanvas-interface */

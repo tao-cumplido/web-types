@@ -1,6 +1,9 @@
 import type { KeyValueIterable } from '../iterable';
 
-/** @spec https://fetch.spec.whatwg.org/#typedefdef-headersinit */
+/**
+ * @idlType
+ * @spec https://fetch.spec.whatwg.org/#typedefdef-headersinit
+ */
 type HeadersInit = Array<[string, string]> | Record<string, string> | KeyValueIterable<string, string>;
 
 /** @spec https://fetch.spec.whatwg.org/#headers-class */

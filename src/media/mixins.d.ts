@@ -2,7 +2,6 @@ import type { EventHandler } from '../dom';
 import type { IndexedIterable } from '../iterable';
 import type { TrackEvent } from './track-event';
 
-/** @nonIdlType */
 export interface MediaTrack<Kind extends string = string> {
 	readonly id: string;
 	readonly kind: Kind;
@@ -10,7 +9,6 @@ export interface MediaTrack<Kind extends string = string> {
 	readonly language: string;
 }
 
-/** @nonIdlType */
 export interface MediaTrackList<Track extends MediaTrack> extends IndexedIterable<Track> {
 	readonly length: number;
 

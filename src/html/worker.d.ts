@@ -2,10 +2,16 @@ import type { EventTarget } from '../dom';
 import type { RequestCredentials } from '../fetch';
 import type { AbstractWorker, MessageEventUtils, PostMessageUtils } from './mixins';
 
-/** @spec https://html.spec.whatwg.org/multipage/workers.html#workertype */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/workers.html#workertype
+ */
 export type WorkerType = 'classic' | 'module';
 
-/** @spec https://html.spec.whatwg.org/multipage/workers.html#workeroptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/workers.html#workeroptions
+ */
 export interface WorkerOptions {
 	type?: WorkerType;
 	credentials?: RequestCredentials;

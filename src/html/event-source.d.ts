@@ -2,7 +2,10 @@ import type { ValueOf } from '../@types';
 import type { EventHandler, EventTarget } from '../dom';
 import type { MessageEvent } from './message-event';
 
-/** @spec https://html.spec.whatwg.org/multipage/server-sent-events.html#eventsourceinit */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/server-sent-events.html#eventsourceinit
+ */
 export interface EventSourceInit {
 	withCredentials?: boolean;
 }

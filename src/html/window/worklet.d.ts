@@ -1,6 +1,9 @@
 import type { RequestCredentials } from '../../fetch';
 
-/** @spec https://html.spec.whatwg.org/multipage/worklets.html#workletoptions */
+/**
+ * @idlType
+ * @spec https://html.spec.whatwg.org/multipage/worklets.html#workletoptions
+ */
 export interface WorkletOptions {
 	credentials?: RequestCredentials;
 }
