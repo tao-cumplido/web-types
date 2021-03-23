@@ -1,2 +1,1 @@
-export * from './css-style-declaration';
-export * from './mixins';
+export * from './object-model';

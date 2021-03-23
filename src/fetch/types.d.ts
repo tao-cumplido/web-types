@@ -64,5 +64,5 @@ export type ReferrerPolicy =
 	| 'strict-origin-when-cross-origin'
 	| 'unsafe-url';
 
-/** @nonStandard */
+/** @nonIdlType */
 export type Json = null | number | boolean | string | Json[] | { [key: string]: Json }; // eslint-disable-line @typescript-eslint/consistent-indexed-object-style

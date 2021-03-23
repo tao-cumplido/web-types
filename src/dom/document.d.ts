@@ -44,7 +44,7 @@ import type { NodeFilter, NodeIterator, TreeWalker } from './traversal';
 import type { XPathEvaluatorBase } from './xpath';
 
 // TODO: use correct event interfaces https://dom.spec.whatwg.org/#dom-document-createevent
-/** @nonStandard */
+/** @nonIdlType */
 export interface CreateEventMap {
 	beforeunloadevent: BeforeUnloadEvent;
 	compositionevent: Event;

@@ -2,7 +2,7 @@
 
 import type * as elements from './elements';
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLElementMap {
 	// https://html.spec.whatwg.org/multipage/dom.html#htmlelement
 	applet: elements.HTMLUnknownElement;
@@ -180,13 +180,13 @@ export interface HTMLElementMap {
 	font: elements.HTMLFontElement;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface FormAssociatedCustomElementMap {}
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface AutonomousCustomElementMap extends FormAssociatedCustomElementMap {}
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface CustomizedBuiltInElementMap {}
 
 export * from './broadcast-channel';

@@ -1,5 +1,6 @@
 import type { Merge } from '../@types';
 import type { HTMLCollection, NodeList } from '../collections';
+import type { StyleSheetList } from '../css';
 import type { AutonomousCustomElementMap, HTMLElement, HTMLElementMap, HTMLSlotElement } from '../html';
 import type { SVGElement, SVGElementMap } from '../svg';
 import type { Element } from './element';
@@ -13,9 +14,11 @@ export interface NonElementParentNode {
 /**
  * @spec https://dom.spec.whatwg.org/#mixin-documentorshadowroot
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-documentorshadowroot-interface
+ * @spec https://drafts.csswg.org/cssom/#extensions-to-the-document-or-shadow-root-interface
  */
 export interface DocumentOrShadowRoot {
 	readonly activeElement: Element | null;
+	readonly styleSheets: StyleSheetList;
 }
 
 /** @spec https://dom.spec.whatwg.org/#interface-parentnode */
@@ -84,7 +87,7 @@ export interface Slottable {
 }
 
 /**
- * @nonStandard
+ * @nonIdlType
  * @spec https://dom.spec.whatwg.org/#interface-document
  * @spec https://dom.spec.whatwg.org/#interface-element
  */

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface SVGElementMap {}
 
 export * from './elements';

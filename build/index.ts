@@ -127,7 +127,7 @@ for (const sourceFile of project.getSourceFiles()) {
 for (const [name, declarations] of project.getSourceFileOrThrow('index.d.ts').getExportedDeclarations()) {
 	const jsDocables = declarations.filter(Node.isJSDocableNode);
 
-	if (jsDocables.some((node) => docTags(node, 'nonStandard').length)) {
+	if (jsDocables.some((node) => docTags(node, 'nonIdlType').length)) {
 		continue;
 	}
 
@@ -224,7 +224,7 @@ for (const sourceFile of project.getSourceFiles()) {
 					'exposed',
 					'legacyWindowAlias',
 					'global',
-					'nonStandard',
+					'nonIdlType',
 					'legacyNullToEmptyString',
 					'globalThis',
 					'putForwards',

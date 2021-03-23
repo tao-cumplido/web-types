@@ -1,8 +1,9 @@
 import type { CSSStyleDeclaration } from './css-style-declaration';
+import type { CSSStyleSheet } from './css-style-sheet';
 
 /** @spec https://drafts.csswg.org/cssom/#the-linkstyle-interface */
 export interface LinkStyle {
-	// TODO
+	readonly sheet: CSSStyleSheet | null;
 }
 
 /** @spec https://drafts.csswg.org/cssom/#the-elementcssinlinestyle-mixin */

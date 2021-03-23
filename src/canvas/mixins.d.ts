@@ -188,7 +188,7 @@ export interface CanvasPath {
 	): void;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface CanvasRenderingContextHost<
 	RenderingContext2D extends CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
 > {

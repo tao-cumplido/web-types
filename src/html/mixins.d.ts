@@ -65,7 +65,7 @@ export interface HTMLHyperlinkElementUtils {
 	hash: string;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLFormControlUtils {
 	formAction: string;
 	formEnctype: HTMLFormElement.Encoding;
@@ -74,7 +74,7 @@ export interface HTMLFormControlUtils {
 	formTarget: string;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLFormValidationUtils {
 	readonly willValidate: boolean;
 	readonly validity: ValidityState;
@@ -84,18 +84,18 @@ export interface HTMLFormValidationUtils {
 	reportValidity(): boolean;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLFormCustomValidationUtils extends HTMLFormValidationUtils {
 	setCustomValidity(error: string): void;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLFormInputUtils {
 	autocomplete: string;
 	required: boolean;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface HTMLFormTextUtils<Optional extends null> {
 	dirName: string;
 	maxLength: number;
@@ -305,13 +305,13 @@ export interface AnimationFrameProvider {
 	cancelAnimationFrame(handle: number): void;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface MessageEventUtils {
 	onmessage: EventHandler<MessageEvent>;
 	onmessageerror: EventHandler<MessageEvent>;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface PostMessageUtils {
 	postMessage(message: Serializable, transfer: Transferable[]): void;
 	postMessage(message: Serializable, options?: PostMessageOptions): void;
@@ -351,7 +351,7 @@ export interface NavigatorPlugins {
 }
 
 /**
- * @nonStandard
+ * @nonIdlType
  * @spec https://console.spec.whatwg.org/#console-namespace
  */
 export interface ConsoleNamespace {

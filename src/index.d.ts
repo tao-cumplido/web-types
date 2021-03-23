@@ -1,6 +1,7 @@
 export * from './abort';
 export * from './canvas';
 export * from './collections';
+export * from './css';
 export * from './dom';
 export * from './fetch';
 export * from './geometry';

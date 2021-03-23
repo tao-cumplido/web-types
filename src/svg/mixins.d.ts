@@ -28,7 +28,7 @@ export interface SVGFitToViewBox {
 	readonly preserveAspectRatio: SVGAnimatedPreserveAspectRatio;
 }
 
-/** @nonStandard https://svgwg.org/svg2-draft/types.html#ListInterfaces */
+/** @nonIdlType https://svgwg.org/svg2-draft/types.html#ListInterfaces */
 export interface SVGList<T> extends IndexedIterable<T> {
 	readonly length: number;
 	readonly numberOfItems: number;
@@ -42,13 +42,13 @@ export interface SVGList<T> extends IndexedIterable<T> {
 	appendItem(newItem: T): T;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface SVGAnimatedReadonly<Base, Anim = Base> {
 	readonly baseVal: Base;
 	readonly animVal: Anim;
 }
 
-/** @nonStandard */
+/** @nonIdlType */
 export interface SVGAnimatedMutable<Base, Anim = Base> extends SVGAnimatedReadonly<Base, Anim> {
 	baseVal: Base;
 }
