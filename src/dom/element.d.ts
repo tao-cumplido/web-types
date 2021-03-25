@@ -1,4 +1,5 @@
 import type { DOMTokenList, NamedNodeMap } from '../collections';
+import type { Animatable } from '../css';
 import type { Attr } from './attr';
 import type { Document } from './document';
 import type {
@@ -25,6 +26,7 @@ export interface ShadowRootInit {
 /**
  * @spec https://dom.spec.whatwg.org/#interface-element
  * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-element-interface
+ * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-element-interface
  */
 export interface Element extends Element.Interface {}
 
@@ -45,7 +47,8 @@ export namespace Element {
 			Slottable,
 			DocumentOrElement,
 			InnerHTML,
-			ARIAMixin
+			ARIAMixin,
+			Animatable
 	{
 		readonly [Symbol.unscopables]: Unscopables;
 

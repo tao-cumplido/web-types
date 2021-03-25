@@ -1,6 +1,6 @@
 import type { Merge } from '../@types';
 import type { HTMLCollection, NodeList } from '../collections';
-import type { StyleSheetList } from '../css';
+import type { Animation, StyleSheetList } from '../css';
 import type { AutonomousCustomElementMap, HTMLElement, HTMLElementMap, HTMLSlotElement } from '../html';
 import type { SVGElement, SVGElementMap } from '../svg';
 import type { Element } from './element';
@@ -19,10 +19,13 @@ export interface NonElementParentNode {
  * @spec https://dom.spec.whatwg.org/#mixin-documentorshadowroot
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-documentorshadowroot-interface
  * @spec https://drafts.csswg.org/cssom/#extensions-to-the-document-or-shadow-root-interface
+ * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-documentorshadowroot-interface-mixin
  */
 export interface DocumentOrShadowRoot {
 	readonly activeElement: Element | null;
 	readonly styleSheets: StyleSheetList;
+
+	getAnimations(): Animation[];
 }
 
 /**

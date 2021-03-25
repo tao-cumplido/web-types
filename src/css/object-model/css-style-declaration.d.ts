@@ -1,4 +1,5 @@
 import type { IndexedIterable } from '../../iterable';
+import type { CSSProperties } from '../properties';
 import type { CSSRule } from './css-rule';
 
 /** @spec https://drafts.csswg.org/cssom/#the-cssstyledeclaration-interface */
@@ -6,7 +7,7 @@ export interface CSSStyleDeclaration extends CSSStyleDeclaration.Interface {}
 
 /** @exposed Window */
 export namespace CSSStyleDeclaration {
-	export interface Prototype extends IndexedIterable<string> {
+	export interface Prototype extends IndexedIterable<string>, CSSProperties {
 		readonly length: number;
 		readonly parentRule: CSSRule | null;
 		cssText: string;

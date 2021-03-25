@@ -1,5 +1,6 @@
 import type { ImageBitmap, ImageBitmapOptions, ImageBitmapSource } from '../canvas';
 import type { DOMStringMap } from '../collections';
+import type { AnimationEvent } from '../css';
 import type { EventHandler } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
 import type { VoidFunction } from '../web-idl';
@@ -122,6 +123,7 @@ export interface HTMLFormTextUtils<Optional extends null> {
 /**
  * @idlType
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#globaleventhandlers
+ * @spec https://drafts.csswg.org/css-animations-1/#interface-globaleventhandlers
  */
 export interface GlobalEventHandlers {
 	onabort: EventHandler;
@@ -190,6 +192,10 @@ export interface GlobalEventHandlers {
 	onwebkitanimationstart: EventHandler;
 	onwebkittransitionend: EventHandler;
 	onwheel: EventHandler;
+	onanimationstart: EventHandler<AnimationEvent>;
+	onanimationiteration: EventHandler<AnimationEvent>;
+	onanimationend: EventHandler<AnimationEvent>;
+	onanimationcancel: EventHandler<AnimationEvent>;
 }
 
 /**

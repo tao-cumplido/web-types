@@ -1,7 +1,10 @@
 import type { ValueOf } from '../../@types';
 import type { CSSStyleSheet } from './css-style-sheet';
 
-/** @spec https://drafts.csswg.org/cssom/#the-cssrule-interface */
+/**
+ * @spec https://drafts.csswg.org/cssom/#the-cssrule-interface
+ * @spec https://drafts.csswg.org/css-animations-1/#interface-cssrule
+ */
 export interface CSSRule extends CSSRule.Interface {}
 
 /** @exposed Window */
@@ -13,6 +16,8 @@ export namespace CSSRule {
 		readonly MEDIA_RULE: 4;
 		readonly FONT_FACE_RULE: 5;
 		readonly PAGE_RULE: 6;
+		readonly KEYFRAMES_RULE: 7;
+		readonly KEYFRAME_RULE: 8;
 		readonly MARGIN_RULE: 9;
 		readonly NAMESPACE_RULE: 10;
 	}

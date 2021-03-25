@@ -1,5 +1,6 @@
 import type { Merge } from '../@types';
 import type { HTMLAllCollection, HTMLCollection, NodeList } from '../collections';
+import type { DocumentTimeline } from '../css';
 import type {
 	AutonomousCustomElementMap,
 	BeforeUnloadEvent,
@@ -92,6 +93,7 @@ export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
  * @spec https://dom.spec.whatwg.org/#interface-document
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-document-object
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Document-partial
+ * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-document-interface
  */
 export interface Document extends Document.Interface<Document.Type.HTML> {}
 
@@ -158,6 +160,8 @@ export namespace Document {
 		readonly currentScript: HTMLOrSVGScriptElement | null;
 
 		readonly defaultView: WindowProxy | null;
+
+		readonly timeline: DocumentTimeline;
 
 		/** @deprecated legacy alias of .characterSet */
 		readonly charset: string;
