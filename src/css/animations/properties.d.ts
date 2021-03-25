@@ -3,15 +3,15 @@
  * @spec https://drafts.csswg.org/css-animations-2/#keyframes
  */
 export interface CSSAnimationProperties {
-	animationName: string;
-	animationDuration: string;
-	animationTimingFunction: string;
-	animationIterationCount: string;
-	animationDirection: string;
-	animationPlayState: string;
-	animationDelay: string;
-	animationFillMode: string;
-	animationComposition: string;
-	animationTimeline: string;
-	animation: string;
+	'animation-name': string;
+	'animation-duration': string;
+	'animation-timing-function': string;
+	'animation-iteration-count': string;
+	'animation-direction': string;
+	'animation-play-state': string;
+	'animation-delay': string;
+	'animation-fill-mode': string;
+	'animation-composition': string;
+	'animation-timeline': string;
+	'animation': string;
 }

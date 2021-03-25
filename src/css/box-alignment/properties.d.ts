@@ -3,23 +3,23 @@ export interface CSSBoxAlignmentProperties extends CSSBoxAlignmentProperties.Ani
 
 export namespace CSSBoxAlignmentProperties {
 	export interface Animatable {
-		alignContent: string;
-		justifyContent: string;
-		placeContent: string;
-		justifySelf: string;
-		alignSelf: string;
-		placeSelf: string;
-		justifyItems: string;
-		alignItems: string;
-		placeItems: string;
-		rowGap: string;
-		columnGap: string;
-		gap: string;
+		'align-content': string;
+		'justify-content': string;
+		'place-content': string;
+		'justify-self': string;
+		'align-self': string;
+		'place-self': string;
+		'justify-items': string;
+		'align-items': string;
+		'place-items': string;
+		'row-gap': string;
+		'column-gap': string;
+		'gap': string;
 		/** @deprecated */
-		gridRowGap: string;
+		'grid-row-gap': string;
 		/** @deprecated */
-		gridColumnGap: string;
+		'grid-column-gap': string;
 		/** @deprecated */
-		gridGap: string;
+		'grid-gap': string;
 	}
 }
