@@ -7,7 +7,9 @@ export interface CSSStyleDeclaration extends CSSStyleDeclaration.Interface {}
 
 /** @exposed Window */
 export namespace CSSStyleDeclaration {
-	export interface Prototype extends IndexedIterable<string>, CSSProperties {
+	export interface Prototype
+		extends IndexedIterable<string>, CSSProperties.Dashed, CSSProperties.CamelCased, CSSProperties.PascalCased
+	{
 		readonly length: number;
 		readonly parentRule: CSSRule | null;
 		cssText: string;

@@ -69,7 +69,7 @@ export interface ComputedEffectTiming extends EffectTiming {
  * @idlType
  * @spec https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-getkeyframes
  */
-export interface ComputedKeyframe extends Required<BaseKeyframe>, Partial<CSSAnimatableProperties> {
+export interface ComputedKeyframe extends Required<BaseKeyframe>, Partial<CSSAnimatableProperties.CamelCased> {
 	computedOffset: number;
 }
 
@@ -77,7 +77,7 @@ export interface ComputedKeyframe extends Required<BaseKeyframe>, Partial<CSSAni
  * @idlType
  * @spec https://drafts.csswg.org/web-animations-1/#processing-a-keyframes-argument
  */
-export interface Keyframe extends BaseKeyframe, Partial<CSSAnimatableProperties> {}
+export interface Keyframe extends BaseKeyframe, Partial<CSSAnimatableProperties.CamelCased> {}
 
 /**
  * @idlType

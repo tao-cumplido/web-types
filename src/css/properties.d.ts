@@ -23,49 +23,50 @@ type PascalJoin<T extends unknown[]> = T extends [] ? ''
 	: T extends [string, ...infer R] ? `${Capitalize<T[0]>}${Capitalize<CamelJoin<R>>}`
 	: never;
 
-type CamelCase<T extends Record<keyof T, string>> =
-	& T
-	& {
-		[P in keyof T as CamelJoin<SplitDash<P>>]: T[P];
-	};
+type CamelCase<T extends Record<keyof T, string>> = {
+	[P in keyof T as CamelJoin<SplitDash<P>>]: T[P];
+};
 
-type PascalCase<T extends Record<keyof T, string>> =
-	& T
-	& {
-		[P in keyof T as PascalJoin<SplitDash<P>>]: T[P];
-	};
+type PascalCase<T extends Record<keyof T, string>> = {
+	[P in keyof T as PascalJoin<SplitDash<P>>]: T[P];
+};
 
-export interface CSSAnimatableProperties extends
-	PascalCase<CSSCompatibilityProperties.Animatable>,
-	CamelCase<
-		& CSSCompatibilityProperties.Animatable
-		& CSSBoxAlignmentProperties.Animatable
-		& CSSBackgroundProperties.Animatable
-		& CSSBoxProperties.Animatable
-		& CSSFragmentationProperties.Animatable
-		& CSSCascadingProperties.Animatable
-		& CSSColorProperties.Animatable
-		& CSSColorAdjustmentProperties.Animatable
-		& CSSContentProperties.Animatable
-		& CSSFlexProperties.Animatable
-	>
-{}
+export namespace CSSAnimatableProperties {
+	export interface Dashed
+		extends
+			CSSBoxAlignmentProperties.Animatable,
+			CSSBackgroundProperties.Animatable,
+			CSSBoxProperties.Animatable,
+			CSSFragmentationProperties.Animatable,
+			CSSCascadingProperties.Animatable,
+			CSSColorProperties.Animatable,
+			CSSColorAdjustmentProperties.Animatable,
+			CSSContentProperties.Animatable,
+			CSSFlexProperties.Animatable
+	{}
 
-export interface CSSProperties extends
-	PascalCase<CSSCompatibilityProperties>,
-	CamelCase<
-		& CSSCompatibilityProperties
-		& CSSBoxAlignmentProperties
-		& CSSAnimationProperties
-		& CSSBackgroundProperties
-		& CSSBoxProperties
-		& CSSFragmentationProperties
-		& CSSCascadingProperties
-		& CSSColorProperties
-		& CSSColorAdjustmentProperties
-		& CSSContainmentProperties
-		& CSSContentProperties
-		& CSSDisplayProperties
-		& CSSFlexProperties
-	>
-{}
+	export interface CamelCased extends CamelCase<Dashed> {}
+}
+
+export namespace CSSProperties {
+	export interface Dashed
+		extends
+			CSSCompatibilityProperties,
+			CSSBoxAlignmentProperties,
+			CSSAnimationProperties,
+			CSSBackgroundProperties,
+			CSSBoxProperties,
+			CSSFragmentationProperties,
+			CSSCascadingProperties,
+			CSSColorProperties,
+			CSSColorAdjustmentProperties,
+			CSSContainmentProperties,
+			CSSContentProperties,
+			CSSDisplayProperties,
+			CSSFlexProperties
+	{}
+
+	export interface CamelCased extends CamelCase<Dashed> {}
+
+	export interface PascalCased extends PascalCase<CSSCompatibilityProperties> {}
+}
