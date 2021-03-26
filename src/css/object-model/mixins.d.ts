@@ -13,7 +13,14 @@ export interface LinkStyle {
  * @idlType
  * @spec https://drafts.csswg.org/cssom/#the-elementcssinlinestyle-mixin
  */
-export interface ElementCSSInlineStyle {
+export interface ElementCSSInlineStyle { // TODO: add to MathMLElement
 	/** @putForwards cssText */
 	readonly style: CSSStyleDeclaration;
+}
+
+/** @spec https://drafts.csswg.org/cssom/#the-css.escape()-method */
+export interface CSSNamespace {
+	CSS: {
+		escape(ident: string): string;
+	};
 }

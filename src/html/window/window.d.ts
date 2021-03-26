@@ -1,3 +1,4 @@
+import type { CSSNamespace, CSSStyleDeclaration } from '../../css';
 import type { Document, Element, Event, EventTarget } from '../../dom';
 import type { IndexedIterable } from '../../iterable';
 import type {
@@ -34,6 +35,7 @@ export type WindowProxy = Window;
  * @spec https://dom.spec.whatwg.org/#interface-window-extensions
  * @spec https://html.spec.whatwg.org/multipage/window-object.html#the-window-object
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Window-partial
+ * @spec https://drafts.csswg.org/cssom/#extensions-to-the-window-interface
  */
 export interface Window extends Window.Interface {}
 
@@ -51,7 +53,8 @@ export namespace Window {
 			WindowOrWorkerGlobalScope,
 			AnimationFrameProvider,
 			WindowSessionStorage,
-			WindowLocalStorage
+			WindowLocalStorage,
+			CSSNamespace
 	{
 		/** @globalThis */
 		readonly self: WindowProxy;
@@ -96,6 +99,8 @@ export namespace Window {
 
 		postMessage(message: unknown, targetOrigin: string, transfer?: Transferable[]): void;
 		postMessage(message: unknown, options?: WindowPostMessageOptions): void;
+
+		getComputedStyle(element: Element, pseudoElement?: string): CSSStyleDeclaration;
 
 		/** @deprecated */
 		captureEvents(): void;

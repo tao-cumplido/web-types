@@ -1,5 +1,6 @@
 import type { CSSAnimationProperties } from './animations';
 import type { CSSBoxAlignmentProperties } from './box-alignment';
+import type { CSSCompatibilityProperties } from './compatibility/properties';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
 	: [T];
@@ -8,12 +9,30 @@ type CamelJoin<T extends unknown[]> = T extends [] ? ''
 	: T extends [string, ...infer R] ? `${T[0]}${Capitalize<CamelJoin<R>>}`
 	: never;
 
+type PascalJoin<T extends unknown[]> = T extends [] ? ''
+	: T extends [string, ...infer R] ? `${Capitalize<T[0]>}${Capitalize<CamelJoin<R>>}`
+	: never;
+
 type CamelCase<T extends Record<keyof T, string>> =
 	& T
 	& {
 		[P in keyof T as CamelJoin<SplitDash<P>>]: T[P];
 	};
 
-export interface CSSAnimatableProperties extends CamelCase<CSSBoxAlignmentProperties.Animatable> {}
+type PascalCase<T extends Record<keyof T, string>> =
+	& T
+	& {
+		[P in keyof T as PascalJoin<SplitDash<P>>]: T[P];
+	};
 
-export interface CSSProperties extends CamelCase<CSSBoxAlignmentProperties & CSSAnimationProperties> {}
+export interface CSSAnimatableProperties
+	extends
+		PascalCase<CSSCompatibilityProperties.Animatable>,
+		CamelCase<CSSCompatibilityProperties.Animatable & CSSBoxAlignmentProperties.Animatable>
+{}
+
+export interface CSSProperties
+	extends
+		PascalCase<CSSCompatibilityProperties>,
+		CamelCase<CSSCompatibilityProperties & CSSBoxAlignmentProperties & CSSAnimationProperties>
+{}
