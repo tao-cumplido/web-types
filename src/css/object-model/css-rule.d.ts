@@ -6,6 +6,7 @@ import type { CSSStyleSheet } from './css-style-sheet';
  * @spec https://drafts.csswg.org/css-animations-1/#interface-cssrule
  * @spec https://drafts.csswg.org/css-conditional-3/#extensions-to-cssrule-interface
  * @spec https://drafts.csswg.org/css-counter-styles-3/#extensions-to-cssrule-interface
+ * @spec https://drafts.csswg.org/css-device-adapt-1/#css-rule-interface
  */
 export interface CSSRule extends CSSRule.Interface {}
 
@@ -24,6 +25,7 @@ export namespace CSSRule {
 		readonly NAMESPACE_RULE: 10;
 		readonly COUNTER_STYLE_RULE: 11;
 		readonly SUPPORTS_RULE: 12;
+		readonly VIEWPORT_RULE: 15;
 	}
 
 	export interface Prototype extends Types {
