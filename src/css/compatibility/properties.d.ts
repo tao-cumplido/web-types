@@ -45,10 +45,32 @@ export namespace CSSCompatibilityProperties {
 		/** @deprecated */
 		'-webkit-box-shadow': string;
 		/** @deprecated */
+		'-webkit-flex': string;
+		/** @deprecated */
+		'-webkit-flex-basis': string;
+		/** @deprecated */
+		'-webkit-flex-direction': string;
+		/** @deprecated */
+		'-webkit-flex-flow': string;
+		/** @deprecated */
+		'-webkit-flex-grow': string;
+		/** @deprecated */
+		'-webkit-flex-shrink': string;
+		/** @deprecated */
+		'-webkit-flex-wrap': string;
+		/** @deprecated */
 		'-webkit-justify-content': string;
+		/** @deprecated */
+		'-webkit-order': string;
 
 		/** @deprecated */
 		'-webkit-box-align': string;
+		/** @deprecated */
+		'-webkit-box-flex': string;
+		/** @deprecated */
+		'-webkit-box-ordinal-group': string;
+		/** @deprecated */
+		'-webkit-box-orient': string;
 		/** @deprecated */
 		'-webkit-box-pack': string;
 
