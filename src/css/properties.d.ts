@@ -3,6 +3,7 @@ import type { CSSBackgroundProperties } from './backgrounds';
 import type { CSSBoxProperties } from './box';
 import type { CSSBoxAlignmentProperties } from './box-alignment';
 import type { CSSCompatibilityProperties } from './compatibility/properties';
+import type { CSSFragmentationProperties } from './fragmentation';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
 	: [T];
@@ -34,17 +35,18 @@ export interface CSSAnimatableProperties extends
 		& CSSBoxAlignmentProperties.Animatable
 		& CSSBackgroundProperties.Animatable
 		& CSSBoxProperties.Animatable
+		& CSSFragmentationProperties.Animatable
 	>
 {}
 
-export interface CSSProperties
-	extends
-		PascalCase<CSSCompatibilityProperties>,
-		CamelCase<
-			& CSSCompatibilityProperties
-			& CSSBoxAlignmentProperties
-			& CSSAnimationProperties
-			& CSSBackgroundProperties
-			& CSSBoxProperties
-		>
+export interface CSSProperties extends
+	PascalCase<CSSCompatibilityProperties>,
+	CamelCase<
+		& CSSCompatibilityProperties
+		& CSSBoxAlignmentProperties
+		& CSSAnimationProperties
+		& CSSBackgroundProperties
+		& CSSBoxProperties
+		& CSSFragmentationProperties
+	>
 {}

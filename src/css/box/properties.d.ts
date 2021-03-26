@@ -1,4 +1,7 @@
-/** @spec https://drafts.csswg.org/css-box-4/ */
+/**
+ * @spec https://drafts.csswg.org/css-box-3/
+ * @spec https://drafts.csswg.org/css-box-4/
+ */
 export interface CSSBoxProperties extends CSSBoxProperties.Animatable {}
 
 export namespace CSSBoxProperties {
