@@ -3,6 +3,8 @@ export * from './backgrounds';
 export * from './box';
 export * from './box-alignment';
 export * from './cascading';
+export * from './color';
+export * from './color-adjustment';
 export * from './compatibility';
 export * from './easing';
 export * from './fragmentation';
