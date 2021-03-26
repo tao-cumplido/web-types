@@ -6,6 +6,8 @@ import type { CSSCascadingProperties } from './cascading';
 import type { CSSColorProperties } from './color';
 import type { CSSColorAdjustmentProperties } from './color-adjustment';
 import type { CSSCompatibilityProperties } from './compatibility/properties';
+import type { CSSContainmentProperties } from './containment';
+import type { CSSContentProperties } from './content';
 import type { CSSFragmentationProperties } from './fragmentation';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
@@ -42,6 +44,7 @@ export interface CSSAnimatableProperties extends
 		& CSSCascadingProperties.Animatable
 		& CSSColorProperties.Animatable
 		& CSSColorAdjustmentProperties.Animatable
+		& CSSContentProperties.Animatable
 	>
 {}
 
@@ -57,5 +60,7 @@ export interface CSSProperties extends
 		& CSSCascadingProperties
 		& CSSColorProperties
 		& CSSColorAdjustmentProperties
+		& CSSContainmentProperties
+		& CSSContentProperties
 	>
 {}
