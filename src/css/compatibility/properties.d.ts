@@ -29,6 +29,22 @@ export namespace CSSCompatibilityProperties {
 		/** @deprecated */
 		'-webkit-align-self': string;
 		/** @deprecated */
+		'-webkit-background-origin': string;
+		/** @deprecated */
+		'-webkit-background-size': string;
+		/** @deprecated */
+		'-webkit-border-bottom-left-radius': string;
+		/** @deprecated */
+		'-webkit-border-bottom-right-radius': string;
+		/** @deprecated */
+		'-webkit-border-top-left-radius': string;
+		/** @deprecated */
+		'-webkit-border-top-right-radius': string;
+		/** @deprecated */
+		'-webkit-border-radius': string;
+		/** @deprecated */
+		'-webkit-box-shadow': string;
+		/** @deprecated */
 		'-webkit-justify-content': string;
 
 		/** @deprecated */

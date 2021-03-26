@@ -1,4 +1,5 @@
 import type { CSSAnimationProperties } from './animations';
+import type { CSSBackgroundProperties } from './backgrounds';
 import type { CSSBoxAlignmentProperties } from './box-alignment';
 import type { CSSCompatibilityProperties } from './compatibility/properties';
 
@@ -25,14 +26,15 @@ type PascalCase<T extends Record<keyof T, string>> =
 		[P in keyof T as PascalJoin<SplitDash<P>>]: T[P];
 	};
 
-export interface CSSAnimatableProperties
-	extends
-		PascalCase<CSSCompatibilityProperties.Animatable>,
-		CamelCase<CSSCompatibilityProperties.Animatable & CSSBoxAlignmentProperties.Animatable>
+export interface CSSAnimatableProperties extends
+	PascalCase<CSSCompatibilityProperties.Animatable>,
+	CamelCase<
+		CSSCompatibilityProperties.Animatable & CSSBoxAlignmentProperties.Animatable & CSSBackgroundProperties.Animatable
+	>
 {}
 
 export interface CSSProperties
 	extends
 		PascalCase<CSSCompatibilityProperties>,
-		CamelCase<CSSCompatibilityProperties & CSSBoxAlignmentProperties & CSSAnimationProperties>
+		CamelCase<CSSCompatibilityProperties & CSSBoxAlignmentProperties & CSSAnimationProperties & CSSBackgroundProperties>
 {}
