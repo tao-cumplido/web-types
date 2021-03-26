@@ -2,6 +2,7 @@ import type { CSSAnimationProperties } from './animations';
 import type { CSSBackgroundProperties } from './backgrounds';
 import type { CSSBoxProperties } from './box';
 import type { CSSBoxAlignmentProperties } from './box-alignment';
+import type { CSSCascadingProperties } from './cascading';
 import type { CSSCompatibilityProperties } from './compatibility/properties';
 import type { CSSFragmentationProperties } from './fragmentation';
 
@@ -36,6 +37,7 @@ export interface CSSAnimatableProperties extends
 		& CSSBackgroundProperties.Animatable
 		& CSSBoxProperties.Animatable
 		& CSSFragmentationProperties.Animatable
+		& CSSCascadingProperties.Animatable
 	>
 {}
 
@@ -48,5 +50,6 @@ export interface CSSProperties extends
 		& CSSBackgroundProperties
 		& CSSBoxProperties
 		& CSSFragmentationProperties
+		& CSSCascadingProperties
 	>
 {}
