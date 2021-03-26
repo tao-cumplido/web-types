@@ -9,6 +9,7 @@ export * from './compatibility';
 export * from './conditional';
 export * from './containment';
 export * from './content';
+export * from './counter-styles';
 export * from './easing';
 export * from './fragmentation';
 export * from './object-model';
