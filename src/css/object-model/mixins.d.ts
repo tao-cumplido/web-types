@@ -18,9 +18,14 @@ export interface ElementCSSInlineStyle { // TODO: add to MathMLElement
 	readonly style: CSSStyleDeclaration;
 }
 
-/** @spec https://drafts.csswg.org/cssom/#the-css.escape()-method */
+/**
+ * @spec https://drafts.csswg.org/cssom/#the-css.escape()-method
+ * @spec https://drafts.csswg.org/css-conditional-3/#the-css-namespace
+ */
 export interface CSSNamespace {
 	CSS: {
 		escape(ident: string): string;
+		supports(property: string, value: string): boolean;
+		supports(conditionText: string): boolean;
 	};
 }

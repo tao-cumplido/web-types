@@ -6,6 +6,7 @@ export * from './cascading';
 export * from './color';
 export * from './color-adjustment';
 export * from './compatibility';
+export * from './conditional';
 export * from './easing';
 export * from './fragmentation';
 export * from './object-model';
