@@ -17,6 +17,7 @@ export * from './flex';
 export * from './font-loading';
 export * from './fonts';
 export * from './fragmentation';
+export * from './grid';
 export * from './object-model';
 export * from './properties';
 export * from './types';

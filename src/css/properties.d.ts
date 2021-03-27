@@ -12,6 +12,7 @@ import type { CSSDisplayProperties } from './display';
 import type { CSSFlexProperties } from './flex';
 import type { CSSFontProperties } from './fonts';
 import type { CSSFragmentationProperties } from './fragmentation';
+import type { CSSGridProperties } from './grid';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
 	: [T];
@@ -44,7 +45,8 @@ export namespace CSSAnimatableProperties {
 			CSSColorAdjustmentProperties.Animatable,
 			CSSContentProperties.Animatable,
 			CSSFlexProperties.Animatable,
-			CSSFontProperties.Animatable
+			CSSFontProperties.Animatable,
+			CSSGridProperties.Animatable
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
@@ -66,7 +68,8 @@ export namespace CSSProperties {
 			CSSContentProperties,
 			CSSDisplayProperties,
 			CSSFlexProperties,
-			CSSFontProperties
+			CSSFontProperties,
+			CSSGridProperties
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
