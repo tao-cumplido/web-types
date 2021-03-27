@@ -1,3 +1,4 @@
+import type { FontFaceSource } from '../../css';
 import type { EventHandler, EventTarget } from '../../dom';
 import type { WindowOrWorkerGlobalScope } from '../mixins';
 import type { PromiseRejectionEvent } from '../promise-rejection-event';
@@ -11,7 +12,7 @@ export interface WorkerGlobalScope extends WorkerGlobalScope.Interface {}
 /** @exposed Worker */
 export namespace WorkerGlobalScope {
 	export interface Prototype<GlobalThis extends WorkerGlobalScope = never>
-		extends EventTarget.Prototype<GlobalThis>, WindowOrWorkerGlobalScope
+		extends EventTarget.Prototype<GlobalThis>, WindowOrWorkerGlobalScope, FontFaceSource
 	{
 		/** @globalThis */
 		readonly self: this;

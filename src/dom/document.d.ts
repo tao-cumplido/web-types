@@ -1,6 +1,6 @@
 import type { Merge } from '../@types';
 import type { HTMLAllCollection, HTMLCollection, NodeList } from '../collections';
-import type { DocumentTimeline } from '../css';
+import type { DocumentTimeline, FontFaceSource } from '../css';
 import type {
 	AutonomousCustomElementMap,
 	BeforeUnloadEvent,
@@ -124,7 +124,8 @@ export namespace Document {
 			DocumentOrElement,
 			XPathEvaluatorBase,
 			GlobalEventHandlers,
-			DocumentAndElementEventHandlers
+			DocumentAndElementEventHandlers,
+			FontFaceSource
 	{
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
