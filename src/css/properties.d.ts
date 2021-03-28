@@ -22,6 +22,12 @@ import type { CSSOverflowProperties } from './overflow';
 import type { CSSOverscrollProperties } from './overscroll';
 import type { CSSPagedMediaProperties } from './paged-media';
 import type { CSSScrollSnapProperties } from './scroll-snap';
+import type { CSSTableProperties } from './tables';
+import type { CSSTextProperties } from './text';
+import type { CSSTextDecorationProperties } from './text-decoration';
+import type { CSSTransformProperties } from './transforms';
+import type { CSSTransitionProperties } from './transitions';
+import type { CSSUserInterfaceProperties } from './user-interface';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
 	: [T];
@@ -64,7 +70,13 @@ export namespace CSSAnimatableProperties {
 			CSSOverflowProperties.Animatable,
 			CSSOverscrollProperties.Animatable,
 			CSSPagedMediaProperties.Animatable,
-			CSSScrollSnapProperties.Animatable
+			CSSScrollSnapProperties.Animatable,
+			CSSTableProperties.Animatable,
+			CSSTextProperties.Animatable,
+			CSSTextDecorationProperties.Animatable,
+			CSSTransformProperties.Animatable,
+			CSSTransitionProperties.Animatable,
+			CSSUserInterfaceProperties.Animatable
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
@@ -96,7 +108,13 @@ export namespace CSSProperties {
 			CSSOverflowProperties,
 			CSSOverscrollProperties,
 			CSSPagedMediaProperties,
-			CSSScrollSnapProperties
+			CSSScrollSnapProperties,
+			CSSTableProperties,
+			CSSTextProperties,
+			CSSTextDecorationProperties,
+			CSSTransformProperties,
+			CSSTransitionProperties,
+			CSSUserInterfaceProperties
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
