@@ -27,6 +27,7 @@ export interface ShadowRootInit {
  * @spec https://dom.spec.whatwg.org/#interface-element
  * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-element-interface
  * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-element-interface
+ * @spec https://drafts.csswg.org/css-shadow-parts-1/#idl
  */
 export interface Element extends Element.Interface {}
 
@@ -66,6 +67,9 @@ export namespace Element {
 		readonly attributes: NamedNodeMap.LegacyUnenumerableNamedProperties<this>;
 
 		readonly shadowRoot: ShadowRoot | null;
+
+		/** @putForwards value */
+		readonly part: DOMTokenList;
 
 		nodeValue: null;
 		textContent: string;
