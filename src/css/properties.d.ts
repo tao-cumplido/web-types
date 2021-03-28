@@ -13,6 +13,15 @@ import type { CSSFlexProperties } from './flex';
 import type { CSSFontProperties } from './fonts';
 import type { CSSFragmentationProperties } from './fragmentation';
 import type { CSSGridProperties } from './grid';
+import type { CSSImageProperties } from './images';
+import type { CSSInlineProperties } from './inline';
+import type { CSSListProperties } from './lists';
+import type { CSSLogicalProperties } from './logical';
+import type { CSSMultiColumnProperties } from './multi-column-layout';
+import type { CSSOverflowProperties } from './overflow';
+import type { CSSOverscrollProperties } from './overscroll';
+import type { CSSPagedMediaProperties } from './paged-media';
+import type { CSSScrollSnapProperties } from './scroll-snap';
 
 type SplitDash<T> = T extends `${infer A}-${infer B}` ? A extends '' ? [...SplitDash<B>] : [A, ...SplitDash<B>]
 	: [T];
@@ -46,7 +55,16 @@ export namespace CSSAnimatableProperties {
 			CSSContentProperties.Animatable,
 			CSSFlexProperties.Animatable,
 			CSSFontProperties.Animatable,
-			CSSGridProperties.Animatable
+			CSSGridProperties.Animatable,
+			CSSImageProperties.Animatable,
+			CSSInlineProperties.Animatable,
+			CSSListProperties.Animatable,
+			CSSLogicalProperties.Animatable,
+			CSSMultiColumnProperties.Animatable,
+			CSSOverflowProperties.Animatable,
+			CSSOverscrollProperties.Animatable,
+			CSSPagedMediaProperties.Animatable,
+			CSSScrollSnapProperties.Animatable
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
@@ -69,7 +87,16 @@ export namespace CSSProperties {
 			CSSDisplayProperties,
 			CSSFlexProperties,
 			CSSFontProperties,
-			CSSGridProperties
+			CSSGridProperties,
+			CSSImageProperties,
+			CSSInlineProperties,
+			CSSListProperties,
+			CSSLogicalProperties,
+			CSSMultiColumnProperties,
+			CSSOverflowProperties,
+			CSSOverscrollProperties,
+			CSSPagedMediaProperties,
+			CSSScrollSnapProperties
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
