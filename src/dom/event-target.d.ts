@@ -1,4 +1,5 @@
 import type { AbortSignal } from '../abort';
+import type { OnBeforeUnloadEventHandler } from '../html';
 import type { Event } from './event';
 
 // TODO: move event handler types to html
@@ -15,14 +16,18 @@ export type EventHandlerNonNull<AbstractEvent extends Event = Event> = (event: A
  */
 export type EventHandler<AbstractEvent extends Event = Event> = EventHandlerNonNull<AbstractEvent> | null;
 
+export type EventHandlerMap<EventTypes extends Record<keyof EventTypes, Event>> = {
+	[P in keyof EventTypes as `on${Lowercase<string & P>}`]: P extends 'unload' ? OnBeforeUnloadEventHandler
+		: EventHandler<EventTypes[P]>;
+};
+
 /**
  * @idlType
- * @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener - spec doesn't actually use EventHandlerNonNull definition
+ * @spec https://dom.spec.whatwg.org/#callbackdef-eventlistener
  */
 export type EventListener<
 	AbstractEvent extends Event = Event,
-	Handler extends EventHandlerNonNull<AbstractEvent> = EventHandlerNonNull<AbstractEvent>,
-> = Handler | { handleEvent: Handler };
+> = ((event: AbstractEvent) => void) | { handleEvent: ((event: AbstractEvent) => void) };
 
 /**
  * @idlType
@@ -51,34 +56,18 @@ export interface EventTarget extends EventTarget.Interface {}
  * @exposed AudioWorklet
  */
 export namespace EventTarget {
-	type ExtractEvents<T extends EventTarget> = {
-		[P in keyof T]: P extends `on${infer K}`
-			? K extends Lowercase<K>
-				? NonNullable<T[P]> extends EventHandlerNonNull<infer AbstractEvent> ? AbstractEvent extends AbstractEvent ? K
-				: never
-				: never
-			: never
-			: never;
-	}[keyof T];
-
-	type HandlerToListener<T> = NonNullable<T> extends EventHandlerNonNull<infer AbstractEvent>
-		? EventListener<AbstractEvent, NonNullable<T>>
-		: never;
-
-	// GlobalThis should only be used when the interface extending EventTarget is a global scope
-	// otherwise the add/remove event listener signatures wouldn't be correct when referenced globally
-	export interface Prototype<GlobalThis extends EventTarget = never> {
-		addEventListener<EventType extends ExtractEvents<this extends EventTarget ? this : GlobalThis>>(
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>> {
+		addEventListener<EventType extends keyof EventMap>(
 			type: EventType,
-			callback?: HandlerToListener<this[`on${EventType}`]>,
+			callback?: EventListener<EventMap[EventType]>,
 			options?: AddEventListenerOptions | boolean,
 		): void;
 
 		addEventListener(type: string, callback?: EventListener, options?: AddEventListenerOptions | boolean): void;
 
-		removeEventListener<EventType extends ExtractEvents<this extends EventTarget ? this : GlobalThis>>(
+		removeEventListener<EventType extends keyof EventMap>(
 			type: EventType,
-			callback?: HandlerToListener<this[`on${EventType}`]>,
+			callback?: EventListener<EventMap[EventType]>,
 			options?: EventListenerOptions | boolean,
 		): void;
 

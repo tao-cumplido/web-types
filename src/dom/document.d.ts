@@ -6,7 +6,10 @@ import type {
 	BeforeUnloadEvent,
 	CustomizedBuiltInElementMap,
 	DocumentAndElementEventHandlers,
+	DocumentAndElementEventTypes,
+	DocumentAndWindowEventTypes,
 	GlobalEventHandlers,
+	GlobalEventTypes,
 	HTMLAnchorElement,
 	HTMLAreaElement,
 	HTMLBodyElement,
@@ -34,7 +37,7 @@ import type { DocumentType } from './document-type';
 import type { DOMImplementation } from './dom-implementation';
 import type { Element } from './element';
 import type { Event } from './event';
-import type { EventHandler } from './event-target';
+import type { EventHandlerMap } from './event-target';
 import type { DocumentOrElement, DocumentOrShadowRoot, NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 import type { ProcessingInstruction } from './processing-instruction';
@@ -106,6 +109,10 @@ export namespace Document {
 	> extends never ? ParentNode.ElementLookup<Tag, Merge<HTMLElementMap, AutonomousCustomElementMap>, HTMLUnknownElement>
 		: ParentNode.ElementLookup<Is, CustomizedBuiltInElementMap>;
 
+	export interface EventTypes {
+		readystatechange: Event;
+	}
+
 	export enum Type {
 		HTML = 'html',
 		XML = 'xml',
@@ -117,7 +124,8 @@ export namespace Document {
 
 	export interface Prototype<T extends Type = Type.HTML>
 		extends
-			Node.Prototype,
+			Node.Prototype<GlobalEventTypes & DocumentAndElementEventTypes & DocumentAndWindowEventTypes & EventTypes>,
+			EventHandlerMap<EventTypes>,
 			NonElementParentNode,
 			DocumentOrShadowRoot,
 			ParentNode,
@@ -186,8 +194,6 @@ export namespace Document {
 		body: HTMLBodyElement | HTMLFrameSetElement | null;
 
 		designMode: 'on' | 'off';
-
-		onreadystatechange: EventHandler;
 
 		/** @deprecated */
 		fgColor: string;

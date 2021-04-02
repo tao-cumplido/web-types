@@ -1,24 +1,26 @@
 import type { ImageBitmap, ImageBitmapOptions, ImageBitmapSource } from '../canvas';
 import type { DOMStringMap } from '../collections';
 import type { AnimationEvent, TransitionEvent } from '../css';
-import type { EventHandler } from '../dom';
+import type { Event, EventHandler, EventHandlerMap } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
-import type { FocusEvent, InputEvent, MouseEvent, WheelEvent } from '../ui-events';
+import type { PointerEvent } from '../pointer-events';
+import type { FocusEvent, InputEvent, KeyboardEvent, MouseEvent, WheelEvent } from '../ui-events';
 import type { VoidFunction } from '../web-idl';
+import type { CloseEvent } from './close-event';
 import type { HTMLFormElement } from './elements';
 import type { ErrorEvent } from './error-event';
 import type { MessageEvent } from './message-event';
+import type { PromiseRejectionEvent } from './promise-rejection-event';
 import type {
 	FocusOptions,
 	FrameRequestCallback,
-	OnBeforeUnloadEventHandler,
-	OnErrorEventHandler,
 	PostMessageOptions,
 	SelectionMode,
 	Serializable,
 	Transferable,
 } from './types';
 import type {
+	BeforeUnloadEvent,
 	DragEvent,
 	FormDataEvent,
 	HashChangeEvent,
@@ -119,122 +121,143 @@ export interface HTMLFormTextUtils<Optional extends null> {
 	setSelectionRange(start: number, end: number, direction?: string): void;
 }
 
-// TODO: add concrete events where appropriate
+export interface GlobalEventHandlerTypes {
+	abort: Event;
+	auxclick: PointerEvent;
+	blur: FocusEvent;
+	cancel: Event;
+	canplay: Event;
+	canplaythrough: Event;
+	change: Event;
+	click: PointerEvent;
+	close: Event | CloseEvent;
+	contextmenu: PointerEvent;
+	cuechange: Event;
+	dblclick: MouseEvent;
+	drag: DragEvent;
+	dragend: DragEvent;
+	dragenter: DragEvent;
+	dragleave: DragEvent;
+	dragover: DragEvent;
+	dragstart: DragEvent;
+	drop: DragEvent;
+	durationchange: Event;
+	emptied: Event;
+	ended: Event;
+	error: Event;
+	focus: FocusEvent;
+	formdata: FormDataEvent;
+	input: InputEvent;
+	invalid: Event;
+	keydown: KeyboardEvent;
+	/** @deprecated */
+	keypress: KeyboardEvent;
+	keyup: KeyboardEvent;
+	load: Event;
+	loadeddata: Event;
+	loadedmetadata: Event;
+	loadstart: Event;
+	mousedown: MouseEvent;
+	mouseenter: MouseEvent;
+	mouseleave: MouseEvent;
+	mousemove: MouseEvent;
+	mouseout: MouseEvent;
+	mouseover: MouseEvent;
+	mouseup: MouseEvent;
+	pause: Event;
+	play: Event;
+	playing: Event;
+	progress: Event;
+	ratechange: Event;
+	reset: Event;
+	resize: Event;
+	scroll: Event;
+	securitypolicyviolation: Event;
+	seeked: Event;
+	seeking: Event;
+	select: Event;
+	slotchange: Event;
+	stalled: Event;
+	submit: SubmitEvent;
+	suspend: Event;
+	timeupdate: Event;
+	toggle: Event;
+	volumechange: Event;
+	waiting: Event;
+	/** @deprecated */
+	webkitAnimationEnd: AnimationEvent;
+	/** @deprecated */
+	webkitAnimationIteration: AnimationEvent;
+	/** @deprecated */
+	webkitAnimationStart: AnimationEvent;
+	/** @deprecated */
+	webkitTransitionEnd: TransitionEvent;
+	wheel: WheelEvent;
+	animationstart: AnimationEvent;
+	animationiteration: AnimationEvent;
+	animationend: AnimationEvent;
+	animationcancel: AnimationEvent;
+	transitionrun: TransitionEvent;
+	transitionstart: TransitionEvent;
+	transitionend: TransitionEvent;
+	transitioncancel: TransitionEvent;
+}
+
+export interface GlobalEventTypes extends GlobalEventHandlerTypes {
+	focusin: FocusEvent;
+	focusout: FocusEvent;
+	beforeinput: InputEvent;
+}
 
 /**
  * @idlType
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#globaleventhandlers
  * @spec https://drafts.csswg.org/css-animations-1/#interface-globaleventhandlers
  * @spec https://drafts.csswg.org/css-transitions-1/#interface-globaleventhandlers-idl
+ * @spec https://w3c.github.io/uievents/
  */
-export interface GlobalEventHandlers {
-	onabort: EventHandler;
-	onauxclick: EventHandler;
-	onblur: EventHandler<FocusEvent>;
-	oncancel: EventHandler;
-	oncanplay: EventHandler;
-	oncanplaythrough: EventHandler;
-	onchange: EventHandler;
-	onclick: EventHandler<MouseEvent>;
-	onclose: EventHandler;
-	oncontextmenu: EventHandler;
-	oncuechange: EventHandler;
-	ondblclick: EventHandler<MouseEvent>;
-	ondrag: EventHandler<DragEvent>;
-	ondragend: EventHandler<DragEvent>;
-	ondragenter: EventHandler<DragEvent>;
-	ondragleave: EventHandler<DragEvent>;
-	ondragover: EventHandler<DragEvent>;
-	ondragstart: EventHandler<DragEvent>;
-	ondrop: EventHandler<DragEvent>;
-	ondurationchange: EventHandler;
-	onemptied: EventHandler;
-	onended: EventHandler;
-	onerror: OnErrorEventHandler;
-	onfocus: EventHandler<FocusEvent>;
-	onformdata: EventHandler<FormDataEvent>;
-	oninput: EventHandler<InputEvent>;
-	oninvalid: EventHandler;
-	onkeydown: EventHandler;
-	onkeypress: EventHandler;
-	onkeyup: EventHandler;
-	onload: EventHandler;
-	onloadeddata: EventHandler;
-	onloadedmetadata: EventHandler;
-	onloadstart: EventHandler;
-	onmousedown: EventHandler<MouseEvent>;
-	onmouseenter: EventHandler<MouseEvent>;
-	onmouseleave: EventHandler<MouseEvent>;
-	onmousemove: EventHandler<MouseEvent>;
-	onmouseout: EventHandler<MouseEvent>;
-	onmouseover: EventHandler<MouseEvent>;
-	onmouseup: EventHandler<MouseEvent>;
-	onpause: EventHandler;
-	onplay: EventHandler;
-	onplaying: EventHandler;
-	onprogress: EventHandler;
-	onratechange: EventHandler;
-	onreset: EventHandler;
-	onresize: EventHandler;
-	onscroll: EventHandler;
-	onsecuritypolicyviolation: EventHandler;
-	onseeked: EventHandler;
-	onseeking: EventHandler;
-	onselect: EventHandler;
-	onslotchange: EventHandler;
-	onstalled: EventHandler;
-	onsubmit: EventHandler<SubmitEvent>;
-	onsuspend: EventHandler;
-	ontimeupdate: EventHandler;
-	ontoggle: EventHandler;
-	onvolumechange: EventHandler;
-	onwaiting: EventHandler;
-	onwebkitanimationend: EventHandler;
-	onwebkitanimationiteration: EventHandler;
-	onwebkitanimationstart: EventHandler;
-	onwebkittransitionend: EventHandler;
-	onwheel: EventHandler<WheelEvent>;
-	onanimationstart: EventHandler<AnimationEvent>;
-	onanimationiteration: EventHandler<AnimationEvent>;
-	onanimationend: EventHandler<AnimationEvent>;
-	onanimationcancel: EventHandler<AnimationEvent>;
-	ontransitionrun: EventHandler<TransitionEvent>;
-	ontransitionstart: EventHandler<TransitionEvent>;
-	ontransitionend: EventHandler<TransitionEvent>;
-	ontransitioncancel: EventHandler<TransitionEvent>;
+export interface GlobalEventHandlers extends EventHandlerMap<GlobalEventHandlerTypes> {}
+
+export interface WindowEventTypes {
+	afterprint: Event;
+	beforeprint: Event;
+	beforeunload: BeforeUnloadEvent;
+	hashchange: HashChangeEvent;
+	languagechange: Event;
+	message: MessageEvent;
+	messageerror: MessageEvent;
+	offline: Event;
+	online: Event;
+	pagehide: PageTransitionEvent;
+	pageshow: PageTransitionEvent;
+	popstate: PopStateEvent;
+	rejectionhandled: PromiseRejectionEvent;
+	storage: StorageEvent;
+	unhandledrejection: PromiseRejectionEvent;
+	unload: Event;
 }
 
 /**
  * @idlType
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#windoweventhandlers
  */
-export interface WindowEventHandlers {
-	onafterprint: EventHandler;
-	onbeforeprint: EventHandler;
-	onbeforeunload: OnBeforeUnloadEventHandler;
-	onhashchange: EventHandler<HashChangeEvent>;
-	onlanguagechange: EventHandler;
-	onmessage: EventHandler;
-	onmessageerror: EventHandler;
-	onoffline: EventHandler;
-	ononline: EventHandler;
-	onpagehide: EventHandler<PageTransitionEvent>;
-	onpageshow: EventHandler<PageTransitionEvent>;
-	onpopstate: EventHandler<PopStateEvent>;
-	onrejectionhandled: EventHandler;
-	onstorage: EventHandler<StorageEvent>;
-	onunhandledrejection: EventHandler;
-	onunload: EventHandler;
+export interface WindowEventHandlers extends EventHandlerMap<WindowEventTypes> {}
+
+export interface DocumentAndElementEventTypes {
+	copy: Event;
+	cut: Event;
+	paste: Event;
 }
 
 /**
  * @idlType
  * @spec https://html.spec.whatwg.org/multipage/webappapis.html#documentandelementeventhandlers
  */
-export interface DocumentAndElementEventHandlers {
-	oncopy: EventHandler;
-	oncut: EventHandler;
-	onpaste: EventHandler;
+export interface DocumentAndElementEventHandlers extends EventHandlerMap<DocumentAndElementEventTypes> {}
+
+export interface DocumentAndWindowEventTypes {
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	DOMContentLoaded: Event;
 }
 
 /**
@@ -349,10 +372,12 @@ export interface AnimationFrameProvider {
 	cancelAnimationFrame(handle: number): void;
 }
 
-export interface MessageEventUtils {
-	onmessage: EventHandler<MessageEvent>;
-	onmessageerror: EventHandler<MessageEvent>;
+export interface MessageEventTypes {
+	message: MessageEvent;
+	messageerror: MessageEvent;
 }
+
+export interface MessageEventHandlers extends EventHandlerMap<MessageEventTypes> {}
 
 export interface PostMessageUtils {
 	postMessage(message: Serializable, transfer: Transferable[]): void;

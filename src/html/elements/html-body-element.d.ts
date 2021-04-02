@@ -1,4 +1,5 @@
-import type { WindowEventHandlers } from '../mixins';
+import type { WindowEventHandlers, WindowEventTypes } from '../mixins';
+import type { OnErrorEventHandler } from '../types';
 import type { HTMLElement } from './html-element';
 
 /**
@@ -9,7 +10,9 @@ export interface HTMLBodyElement extends HTMLBodyElement.Interface {}
 
 /** @exposed Window */
 export namespace HTMLBodyElement {
-	export interface Prototype extends HTMLElement.Prototype, WindowEventHandlers {
+	export interface Prototype extends HTMLElement.Prototype<WindowEventTypes>, WindowEventHandlers {
+		onerror: OnErrorEventHandler;
+
 		/** @deprecated */
 		text: string;
 		/** @deprecated */

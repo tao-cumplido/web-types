@@ -1,4 +1,4 @@
-import type { EventHandler, EventTarget } from '../../dom';
+import type { EventHandlerMap, EventTarget } from '../../dom';
 import type { AnimationEffect } from './animation-effect';
 import type { AnimationPlaybackEvent } from './animation-playback-event';
 import type { AnimationTimeline } from './animation-timeline';
@@ -9,7 +9,13 @@ export interface Animation extends Animation.Interface {}
 
 /** @exposed Window */
 export namespace Animation {
-	export interface Prototype extends EventTarget.Prototype {
+	export interface EventTypes {
+		finish: AnimationPlaybackEvent;
+		cancel: AnimationPlaybackEvent;
+		remove: AnimationPlaybackEvent;
+	}
+
+	export interface Prototype extends EventTarget.Prototype<EventTypes>, EventHandlerMap<EventTypes> {
 		readonly playState: AnimationPlayState;
 		readonly replaceState: AnimationReplaceState;
 		readonly pending: boolean;
@@ -22,10 +28,6 @@ export namespace Animation {
 		startTime: number | null;
 		currentTime: number | null;
 		playbackRate: number;
-
-		onfinish: EventHandler<AnimationPlaybackEvent>;
-		oncancel: EventHandler<AnimationPlaybackEvent>;
-		onremove: EventHandler<AnimationPlaybackEvent>;
 
 		cancel(): void;
 		finish(): void;

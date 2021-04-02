@@ -8,6 +8,7 @@ export * from './geometry';
 export * from './high-resolution-time';
 export * from './html';
 export * from './media';
+export * from './pointer-events';
 export * from './service-workers';
 export * from './streams';
 export * from './svg';

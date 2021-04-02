@@ -1,4 +1,5 @@
 import type { Document } from './document';
+import type { Event } from './event';
 import type { NonElementParentNode, ParentNode } from './mixins';
 import type { Node } from './node';
 
@@ -7,7 +8,9 @@ export interface DocumentFragment extends DocumentFragment.Interface {}
 
 /** @exposed Window */
 export namespace DocumentFragment {
-	export interface Prototype extends Node.Prototype, NonElementParentNode, ParentNode {
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
+		extends Node.Prototype<EventMap>, NonElementParentNode, ParentNode
+	{
 		readonly [Symbol.unscopables]: ParentNode.Unscopables;
 
 		readonly nodeType: Node.NodeTypes['DOCUMENT_FRAGMENT_NODE'];

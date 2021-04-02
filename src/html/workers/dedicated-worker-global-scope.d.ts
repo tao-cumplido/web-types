@@ -1,4 +1,4 @@
-import type { AnimationFrameProvider, MessageEventUtils, PostMessageUtils } from '../mixins';
+import type { AnimationFrameProvider, MessageEventHandlers, MessageEventTypes, PostMessageUtils } from '../mixins';
 import type { WorkerGlobalScope } from './worker-global-scope';
 
 /** @spec https://html.spec.whatwg.org/multipage/workers.html#dedicated-workers-and-the-dedicatedworkerglobalscope-interface */
@@ -11,11 +11,7 @@ export interface DedicatedWorkerGlobalScope extends DedicatedWorkerGlobalScope.I
  */
 export namespace DedicatedWorkerGlobalScope {
 	export interface Prototype
-		extends
-			WorkerGlobalScope.Prototype<DedicatedWorkerGlobalScope>,
-			AnimationFrameProvider,
-			MessageEventUtils,
-			PostMessageUtils
+		extends WorkerGlobalScope.Prototype<MessageEventTypes>, AnimationFrameProvider, MessageEventHandlers, PostMessageUtils
 	{
 		readonly name: string;
 		close(): void;

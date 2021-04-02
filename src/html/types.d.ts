@@ -28,7 +28,7 @@ export type OnErrorEventHandlerNonNull = (
 	source?: string,
 	lineno?: number,
 	colno?: number,
-	error?: Error,
+	error?: unknown,
 ) => unknown;
 
 /**

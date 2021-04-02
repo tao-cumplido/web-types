@@ -1,4 +1,4 @@
-import type { EventHandler, EventTarget } from '../dom';
+import type { Event, EventHandlerMap, EventTarget } from '../dom';
 import type { AbstractWorker, PostMessageUtils } from '../html';
 
 /**
@@ -22,10 +22,15 @@ export interface ServiceWorker extends ServiceWorker.Interface {}
  * @secureContext
  */
 export namespace ServiceWorker {
-	export interface Prototype extends EventTarget.Prototype, PostMessageUtils, AbstractWorker {
+	export interface EventTypes {
+		statechange: Event;
+	}
+
+	export interface Prototype
+		extends EventTarget.Prototype<EventTypes>, EventHandlerMap<EventTypes>, PostMessageUtils, AbstractWorker
+	{
 		readonly scriptURL: string;
 		readonly state: ServiceWorkerState;
-		onstatechange: EventHandler;
 	}
 
 	export type Interface = Prototype & EventTarget.Interface;

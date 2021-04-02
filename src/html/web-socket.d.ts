@@ -1,5 +1,5 @@
 import type { ValueOf } from '../@types';
-import type { EventHandler, EventTarget } from '../dom';
+import type { Event, EventHandlerMap, EventTarget } from '../dom';
 import type { Blob } from '../file';
 import type { CloseEvent } from './close-event';
 import type { MessageEvent } from './message-event';
@@ -25,7 +25,14 @@ export namespace WebSocket {
 		readonly CLOSED: 3;
 	}
 
-	export interface Prototype extends EventTarget.Prototype, ReadyState {
+	export interface EventTypes {
+		open: Event;
+		error: Event;
+		close: CloseEvent;
+		message: MessageEvent;
+	}
+
+	export interface Prototype extends EventTarget.Prototype<EventTypes>, ReadyState, EventHandlerMap<EventTypes> {
 		readonly url: string;
 		readonly readyState: ValueOf<ReadyState>;
 		readonly bufferedAmount: number;
@@ -33,10 +40,6 @@ export namespace WebSocket {
 		readonly extensions: string;
 		readonly protocol: string;
 
-		onopen: EventHandler;
-		onerror: EventHandler;
-		onclose: EventHandler<CloseEvent>;
-		onmessage: EventHandler<MessageEvent>;
 		binaryType: BinaryType;
 
 		close(code?: number, reason?: string): void;

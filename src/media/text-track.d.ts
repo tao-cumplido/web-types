@@ -1,22 +1,24 @@
-import type { EventHandler, EventTarget } from '../dom';
+import type { Event, EventHandlerMap, EventTarget } from '../dom';
 import type { IndexedIterable } from '../iterable';
-import type { MediaTrack, MediaTrackList } from './mixins';
+import type { MediaTrack, MediaTrackList, MediaTrackListEvents } from './mixins';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#texttrackcue */
 export interface TextTrackCue extends TextTrackCue.Interface {}
 
 /** @exposed Window */
 export namespace TextTrackCue {
-	export interface Prototype extends EventTarget.Prototype {
+	export interface EventTypes {
+		enter: Event;
+		exit: Event;
+	}
+
+	export interface Prototype extends EventTarget.Prototype<EventTypes>, EventHandlerMap<EventTypes> {
 		readonly track: TextTrack | null;
 
 		id: string;
 		startTime: number;
 		endTime: number;
 		pauseOnExit: boolean;
-
-		onenter: EventHandler;
-		onexit: EventHandler;
 	}
 
 	export type Interface = Prototype & EventTarget.Interface;
@@ -70,15 +72,19 @@ export interface TextTrack extends TextTrack.Interface {}
 
 /** @exposed Window */
 export namespace TextTrack {
-	export interface Prototype extends EventTarget.Prototype, MediaTrack<TextTrackKind> {
+	export interface EventTypes {
+		cuechange: Event;
+	}
+
+	export interface Prototype
+		extends EventTarget.Prototype<EventTypes>, EventHandlerMap<EventTypes>, MediaTrack<TextTrackKind>
+	{
 		readonly inBandMetadataTrackDispatchType: string;
 
 		readonly cues: TextTrackCueList | null;
 		readonly activeCues: TextTrackCueList | null;
 
 		mode: TextTrackMode;
-
-		oncuechange: EventHandler;
 
 		addCue(cue: TextTrackCue): void;
 		removeCue(cue: TextTrackCue): void;
@@ -101,7 +107,7 @@ export interface TextTrackList extends TextTrackList.Interface {}
 
 /** @exposed Window */
 export namespace TextTrackList {
-	export interface Prototype extends EventTarget.Prototype, MediaTrackList<TextTrack> {}
+	export interface Prototype extends EventTarget.Prototype<MediaTrackListEvents>, MediaTrackList<TextTrack> {}
 
 	export type Interface = Prototype & EventTarget.Interface;
 

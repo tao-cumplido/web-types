@@ -1,5 +1,5 @@
 import type { ValueOf } from '../@types';
-import type { EventHandler, EventTarget } from '../dom';
+import type { Event, EventHandlerMap, EventTarget } from '../dom';
 import type { MessageEvent } from './message-event';
 
 /**
@@ -24,14 +24,16 @@ export namespace EventSource {
 		readonly CLOSED: 2;
 	}
 
-	export interface Prototype extends EventTarget.Prototype, ReadyState {
+	export interface EventTypes {
+		open: Event;
+		message: MessageEvent;
+		error: Event;
+	}
+
+	export interface Prototype extends EventTarget.Prototype<EventTypes>, ReadyState, EventHandlerMap<EventTypes> {
 		readonly url: string;
 		readonly withCredentials: boolean;
 		readonly readyState: ValueOf<ReadyState>;
-
-		onopen: EventHandler;
-		onmessage: EventHandler<MessageEvent>;
-		onerror: EventHandler;
 
 		close(): void;
 	}

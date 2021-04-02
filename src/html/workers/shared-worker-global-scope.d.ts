@@ -1,4 +1,4 @@
-import type { EventHandler } from '../../dom';
+import type { EventHandlerMap } from '../../dom';
 import type { MessageEvent } from '../message-event';
 import type { WorkerGlobalScope } from './worker-global-scope';
 
@@ -11,9 +11,12 @@ export interface SharedWorkerGlobalScope extends SharedWorkerGlobalScope.Interfa
  * @global SharedWorker
  */
 export namespace SharedWorkerGlobalScope {
-	export interface Prototype extends WorkerGlobalScope.Prototype<SharedWorkerGlobalScope> {
+	export interface EventTypes {
+		connect: MessageEvent;
+	}
+
+	export interface Prototype extends WorkerGlobalScope.Prototype<EventTypes>, EventHandlerMap<EventTypes> {
 		readonly name: string;
-		onconnect: EventHandler<MessageEvent>;
 		close(): void;
 	}
 

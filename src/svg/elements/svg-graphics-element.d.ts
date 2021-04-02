@@ -1,3 +1,4 @@
+import type { Event } from '../../dom';
 import type { DOMMatrix, DOMRect } from '../../geometry';
 import type { SVGTests } from '../mixins';
 import type { SVGAnimatedTransformList } from '../svg-animated-transform-list';
@@ -19,7 +20,9 @@ export interface SVGGraphicsElement extends SVGGraphicsElement.Interface {}
 
 /** @exposed Window */
 export namespace SVGGraphicsElement {
-	export interface Prototype extends SVGElement.Prototype, SVGTests {
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
+		extends SVGElement.Prototype<EventMap>, SVGTests
+	{
 		readonly transform: SVGAnimatedTransformList;
 
 		getBBox(options?: SVGBoundingBoxOptions): DOMRect;

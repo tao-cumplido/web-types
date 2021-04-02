@@ -1,6 +1,12 @@
 import type { ElementCSSInlineStyle } from '../../css';
-import type { Element } from '../../dom';
-import type { DocumentAndElementEventHandlers, GlobalEventHandlers, HTMLOrSVGElement } from '../../html';
+import type { Element, Event } from '../../dom';
+import type {
+	DocumentAndElementEventHandlers,
+	DocumentAndElementEventTypes,
+	GlobalEventHandlers,
+	GlobalEventTypes,
+	HTMLOrSVGElement,
+} from '../../html';
 import type { SVGElementInstance } from '../mixins';
 import type { SVGSVGElement } from './svg-svg-element';
 
@@ -9,9 +15,9 @@ export interface SVGElement extends SVGElement.Interface {}
 
 /** @exposed Window */
 export namespace SVGElement {
-	export interface Prototype
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
 		extends
-			Element.Prototype,
+			Element.Prototype<EventMap & GlobalEventTypes & DocumentAndElementEventTypes>,
 			ElementCSSInlineStyle,
 			GlobalEventHandlers,
 			DocumentAndElementEventHandlers,

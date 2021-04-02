@@ -3,6 +3,7 @@ import type { NodeList } from '../collections';
 import type { Document } from './document';
 import type { DocumentFragment } from './document-fragment';
 import type { Element } from './element';
+import type { Event } from './event';
 import type { EventTarget } from './event-target';
 import type { ShadowRoot } from './shadow-root';
 
@@ -46,7 +47,9 @@ export namespace Node {
 		readonly DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC: 0x20;
 	}
 
-	export interface Prototype extends EventTarget.Prototype, NodeTypes, DocumentPositions {
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
+		extends EventTarget.Prototype<EventMap>, NodeTypes, DocumentPositions
+	{
 		readonly nodeType: ValueOf<NodeTypes>;
 		readonly nodeName: string;
 		readonly baseURI: string;

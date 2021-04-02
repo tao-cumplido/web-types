@@ -1,5 +1,5 @@
 import type { EventTarget } from '../dom';
-import type { MessageEventUtils } from './mixins';
+import type { MessageEventHandlers, MessageEventTypes } from './mixins';
 import type { Serializable } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/web-messaging.html#broadcasting-to-other-browsing-contexts */
@@ -10,7 +10,7 @@ export interface BroadcastChannel extends BroadcastChannel.Interface {}
  * @exposed Worker
  */
 export namespace BroadcastChannel {
-	export interface Prototype extends EventTarget.Prototype, MessageEventUtils {
+	export interface Prototype extends EventTarget.Prototype<MessageEventTypes>, MessageEventHandlers {
 		readonly name: string;
 
 		postMessage(message: Serializable): void;

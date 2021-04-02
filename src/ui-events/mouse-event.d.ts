@@ -1,5 +1,6 @@
 import type { EventTarget } from '../dom';
-import type { EventModifierInit, UIEvent } from './ui-event';
+import type { BaseModifiers, EventModifierInit, GetModifierState } from './types';
+import type { UIEvent } from './ui-event';
 
 /**
  * @idlType
@@ -18,21 +19,13 @@ export namespace MouseEvent {
 		clientX: number;
 		clientY: number;
 
-		ctrlKey: boolean;
-		shiftKey: boolean;
-		altKey: boolean;
-		metaKey: boolean;
-
 		button: number;
 		buttons: number;
 
 		relatedTarget: EventTarget | null;
 	}
 
-	export interface Prototype extends Readonly<State>, UIEvent.Prototype {
-		// TODO: restrict keyArg to valid modifiers https://www.w3.org/TR/uievents-key/#keys-special
-		getModifierState(keyArg: string): boolean;
-	}
+	export interface Prototype extends Readonly<State>, Readonly<BaseModifiers>, UIEvent.Prototype, GetModifierState {}
 
 	export type Interface = Prototype & UIEvent.Interface;
 

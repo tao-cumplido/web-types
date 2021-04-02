@@ -1,5 +1,5 @@
 import type { FontFaceSource } from '../../css';
-import type { EventHandler, EventTarget } from '../../dom';
+import type { Event, EventHandlerMap, EventTarget } from '../../dom';
 import type { WindowOrWorkerGlobalScope } from '../mixins';
 import type { PromiseRejectionEvent } from '../promise-rejection-event';
 import type { OnErrorEventHandler } from '../types';
@@ -11,8 +11,21 @@ export interface WorkerGlobalScope extends WorkerGlobalScope.Interface {}
 
 /** @exposed Worker */
 export namespace WorkerGlobalScope {
-	export interface Prototype<GlobalThis extends WorkerGlobalScope = never>
-		extends EventTarget.Prototype<GlobalThis>, WindowOrWorkerGlobalScope, FontFaceSource
+	export interface EventTypes {
+		error: Event;
+		languagechange: Event;
+		offline: Event;
+		online: Event;
+		rejectionhandled: PromiseRejectionEvent;
+		unhandledrejection: PromiseRejectionEvent;
+	}
+
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
+		extends
+			EventTarget.Prototype<EventMap & EventTypes>,
+			EventHandlerMap<EventTypes>,
+			WindowOrWorkerGlobalScope,
+			FontFaceSource
 	{
 		/** @globalThis */
 		readonly self: this;
@@ -20,11 +33,6 @@ export namespace WorkerGlobalScope {
 		readonly navigator: WorkerNavigator;
 
 		onerror: OnErrorEventHandler;
-		onlanguagechange: EventHandler;
-		onoffline: EventHandler;
-		ononline: EventHandler;
-		onrejectionhandled: EventHandler<PromiseRejectionEvent>;
-		onunhandledrejection: EventHandler<PromiseRejectionEvent>;
 
 		importScripts(...urls: string[]): void;
 	}

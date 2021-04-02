@@ -1,4 +1,4 @@
-import type { EventHandler } from '../dom';
+import type { Event, EventHandlerMap } from '../dom';
 import type { IndexedIterable } from '../iterable';
 import type { TrackEvent } from './track-event';
 
@@ -9,12 +9,15 @@ export interface MediaTrack<Kind extends string = string> {
 	readonly language: string;
 }
 
-export interface MediaTrackList<Track extends MediaTrack> extends IndexedIterable<Track> {
+export interface MediaTrackListEvents {
+	change: Event;
+	addtrack: TrackEvent;
+	removetrack: TrackEvent;
+}
+
+export interface MediaTrackList<Track extends MediaTrack>
+	extends IndexedIterable<Track>, EventHandlerMap<MediaTrackListEvents>
+{
 	readonly length: number;
-
-	onchange: EventHandler;
-	onaddtrack: EventHandler<TrackEvent>;
-	onremovetrack: EventHandler<TrackEvent>;
-
 	getTrackById(id: string): Track | null;
 }

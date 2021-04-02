@@ -2,6 +2,7 @@ import type { DOMTokenList, NamedNodeMap } from '../collections';
 import type { Animatable } from '../css';
 import type { Attr } from './attr';
 import type { Document } from './document';
+import type { Event } from './event';
 import type {
 	ARIAMixin,
 	ChildNode,
@@ -39,9 +40,9 @@ export namespace Element {
 		slot: true;
 	}
 
-	export interface Prototype
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
 		extends
-			Node.Prototype,
+			Node.Prototype<EventMap>,
 			ParentNode,
 			NonDocumentTypeChildNode,
 			ChildNode,

@@ -1,6 +1,6 @@
 import type { EventTarget } from '../dom';
 import type { RequestCredentials } from '../fetch';
-import type { AbstractWorker, MessageEventUtils, PostMessageUtils } from './mixins';
+import type { AbstractWorker, MessageEventHandlers, MessageEventTypes, PostMessageUtils } from './mixins';
 
 /**
  * @idlType
@@ -27,7 +27,9 @@ export interface Worker extends Worker.Interface {}
  * @exposed SharedWorker
  */
 export namespace Worker {
-	export interface Prototype extends EventTarget.Prototype, MessageEventUtils, PostMessageUtils, AbstractWorker {
+	export interface Prototype
+		extends EventTarget.Prototype<MessageEventTypes>, MessageEventHandlers, PostMessageUtils, AbstractWorker
+	{
 		terminate(): void;
 	}
 

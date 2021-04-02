@@ -3,13 +3,16 @@ import type { Document, Element, Event, EventTarget } from '../../dom';
 import type { IndexedIterable } from '../../iterable';
 import type {
 	AnimationFrameProvider,
+	DocumentAndWindowEventTypes,
 	GlobalEventHandlers,
+	GlobalEventTypes,
 	WindowEventHandlers,
+	WindowEventTypes,
 	WindowLocalStorage,
 	WindowOrWorkerGlobalScope,
 	WindowSessionStorage,
 } from '../mixins';
-import type { PostMessageOptions, Transferable } from '../types';
+import type { OnErrorEventHandler, PostMessageOptions, Transferable } from '../types';
 import type { BarProp } from './bar-prop';
 import type { CustomElementRegistry } from './custom-element-registry';
 import type { History } from './history';
@@ -46,7 +49,7 @@ export interface Window extends Window.Interface {}
 export namespace Window {
 	export interface Prototype
 		extends
-			EventTarget.Prototype<Window>,
+			EventTarget.Prototype<GlobalEventTypes & WindowEventTypes & DocumentAndWindowEventTypes>,
 			IndexedIterable<WindowProxy>,
 			GlobalEventHandlers,
 			WindowEventHandlers,
@@ -85,6 +88,8 @@ export namespace Window {
 		status: string;
 
 		opener: unknown;
+
+		onerror: OnErrorEventHandler;
 
 		close(): void;
 		stop(): void;

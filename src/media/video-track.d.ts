@@ -1,5 +1,5 @@
 import type { EventTarget } from '../dom';
-import type { MediaTrack, MediaTrackList } from './mixins';
+import type { MediaTrack, MediaTrackList, MediaTrackListEvents } from './mixins';
 import type { AudioVideoKind } from './types';
 
 /** @spec https://html.spec.whatwg.org/multipage/media.html#videotrack */
@@ -28,7 +28,7 @@ export interface VideoTrackList extends VideoTrackList.Interface {}
 
 /** @exposed Window */
 export namespace VideoTrackList {
-	export interface Prototype extends EventTarget.Prototype, MediaTrackList<VideoTrack> {
+	export interface Prototype extends EventTarget.Prototype<MediaTrackListEvents>, MediaTrackList<VideoTrack> {
 		readonly selectedIndex: number;
 	}
 

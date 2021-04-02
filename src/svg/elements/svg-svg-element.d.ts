@@ -1,7 +1,7 @@
 import type { NodeList } from '../../collections';
 import type { Element } from '../../dom';
 import type { DOMMatrix, DOMMatrix2DInit, DOMPoint, DOMPointReadOnly, DOMRect, DOMRectReadOnly } from '../../geometry';
-import type { WindowEventHandlers } from '../../html';
+import type { WindowEventHandlers, WindowEventTypes } from '../../html';
 import type { SVGFitToViewBox } from '../mixins';
 import type { SVGAngle } from '../svg-angle';
 import type { SVGAnimatedLength } from '../svg-animated-length';
@@ -16,7 +16,9 @@ export interface SVGSVGElement extends SVGSVGElement.Interface {}
 
 /** @exposed Window */
 export namespace SVGSVGElement {
-	export interface Prototype extends SVGGraphicsElement.Prototype, SVGFitToViewBox, WindowEventHandlers {
+	export interface Prototype
+		extends SVGGraphicsElement.Prototype<WindowEventTypes>, SVGFitToViewBox, WindowEventHandlers
+	{
 		readonly x: SVGAnimatedLength;
 		readonly y: SVGAnimatedLength;
 		readonly width: SVGAnimatedLength;

@@ -1,9 +1,11 @@
 import type { ElementCSSInlineStyle } from '../../css';
-import type { Element } from '../../dom';
+import type { Element, Event } from '../../dom';
 import type {
 	DocumentAndElementEventHandlers,
+	DocumentAndElementEventTypes,
 	ElementContentEditable,
 	GlobalEventHandlers,
+	GlobalEventTypes,
 	HTMLOrSVGElement,
 } from '../mixins';
 import type { ElementInternals } from '../window';
@@ -15,9 +17,9 @@ export interface HTMLElement extends HTMLElement.Interface {}
 export namespace HTMLElement {
 	export type Directionality = '' | 'ltr' | 'rtl' | 'auto';
 
-	export interface Prototype
+	export interface Prototype<EventMap extends Record<keyof EventMap, Event> = Record<never, never>>
 		extends
-			Element.Prototype,
+			Element.Prototype<EventMap & GlobalEventTypes & DocumentAndElementEventTypes>,
 			GlobalEventHandlers,
 			DocumentAndElementEventHandlers,
 			ElementContentEditable,
