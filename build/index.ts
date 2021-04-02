@@ -39,8 +39,6 @@ function writePackage(name: string, dependencies: Record<string, string> = {}) {
 				types: 'index.d.ts',
 				dependencies,
 			},
-			null,
-			'\t',
 		),
 	);
 }
@@ -347,8 +345,6 @@ for (const [context, scope] of globalScopes) {
 				},
 				include: [`${packageName}/**/*.ts`],
 			},
-			null,
-			'\t',
 		),
 	);
 }
@@ -362,7 +358,5 @@ fs.writeFileSync(
 				return { path: `tsconfig.${name}.json` };
 			}),
 		},
-		null,
-		'\t',
 	),
 );
