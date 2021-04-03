@@ -1,14 +1,20 @@
 import type { ValueOf } from '../@types';
+import type { Window } from '../html';
 import type { BaseModifiers, EventModifierInit, GetModifierState } from './types';
 import type { UIEvent } from './ui-event';
 
 /**
  * @idlType
  * @spec https://w3c.github.io/uievents/#dictdef-keyboardeventinit
+ * @spec https://w3c.github.io/uievents/#legacy-dictionary-KeyboardEventInit
  */
 export interface KeyboardEventInit extends Partial<KeyboardEvent.State>, EventModifierInit {}
 
-/** @spec https://w3c.github.io/uievents/#idl-keyboardevent */
+/**
+ * @spec https://w3c.github.io/uievents/#idl-keyboardevent
+ * @spec https://w3c.github.io/uievents/#idl-interface-KeyboardEvent-initializers
+ * @spec https://w3c.github.io/uievents/#legacy-interface-KeyboardEvent
+ */
 export interface KeyboardEvent extends KeyboardEvent.Interface {}
 
 /** @exposed Window */
@@ -26,11 +32,29 @@ export namespace KeyboardEvent {
 		location: ValueOf<KeyLocation>;
 		repeat: boolean;
 		isComposing: boolean;
+		/** @deprecated */
+		charCode: number;
+		/** @deprecated */
+		keyCode: number;
 	}
 
 	export interface Prototype
 		extends Readonly<State>, Readonly<BaseModifiers>, KeyLocation, UIEvent.Prototype, GetModifierState
-	{}
+	{
+		/** @deprecated */
+		initKeyboardEvent(
+			type: string,
+			bubbles?: boolean,
+			cancelable?: boolean,
+			view?: Window | null,
+			key?: string,
+			location?: ValueOf<KeyLocation>,
+			ctrlKey?: boolean,
+			altKey?: boolean,
+			shiftKey?: boolean,
+			metaKey?: boolean,
+		): void;
+	}
 
 	export type Interface = Prototype & UIEvent.Interface;
 

@@ -4,7 +4,7 @@ import type { AnimationEvent, TransitionEvent } from '../css';
 import type { Event, EventHandler, EventHandlerMap } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
 import type { PointerEvent } from '../pointer-events';
-import type { FocusEvent, InputEvent, KeyboardEvent, MouseEvent, WheelEvent } from '../ui-events';
+import type { CompositionEvent, FocusEvent, InputEvent, KeyboardEvent, MouseEvent, WheelEvent } from '../ui-events';
 import type { VoidFunction } from '../web-idl';
 import type { CloseEvent } from './close-event';
 import type { HTMLFormElement } from './elements';
@@ -207,6 +207,9 @@ export interface GlobalEventTypes extends GlobalEventHandlerTypes {
 	focusin: FocusEvent;
 	focusout: FocusEvent;
 	beforeinput: InputEvent;
+	compositionstart: CompositionEvent;
+	compositionupdate: CompositionEvent;
+	compositionend: CompositionEvent;
 }
 
 /**

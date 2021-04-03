@@ -1,3 +1,4 @@
+export * from './composition-event';
 export * from './focus-event';
 export * from './input-event';
 export * from './keyboard-event';
