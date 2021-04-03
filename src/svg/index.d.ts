@@ -10,6 +10,9 @@ export interface SVGElementMap {
 	title: elements.SVGTitleElement;
 	desc: elements.SVGDescElement;
 	metadata: elements.SVGMetadataElement;
+
+	// https://svgwg.org/svg2-draft/styling.html
+	style: elements.SVGStyleElement;
 }
 
 export * from './elements';

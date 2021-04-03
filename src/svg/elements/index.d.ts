@@ -7,6 +7,7 @@ export * from './svg-graphics-element';
 export * from './svg-image-element';
 export * from './svg-metadata-element';
 export * from './svg-script-element';
+export * from './svg-style-element';
 export * from './svg-svg-element';
 export * from './svg-switch-element';
 export * from './svg-symbol-element';
