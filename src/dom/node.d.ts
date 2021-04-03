@@ -103,7 +103,6 @@ export namespace Node {
 	}
 }
 
-/** @nonIdlType */
 export namespace LeafNode {
 	export interface Prototype extends Node.Prototype {
 		readonly ownerDocument: Document.NamedProperties;
