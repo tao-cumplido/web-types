@@ -27,7 +27,7 @@ import type {
 	Location,
 	WindowProxy,
 } from '../html';
-import type { SVGElement, SVGElementMap, SVGScriptElement } from '../svg';
+import type { SVGElement, SVGElementMap, SVGScriptElement, SVGSVGElement } from '../svg';
 import type { Attr } from './attr';
 import type { CDATASection } from './cdata-section';
 import type { Comment } from './comment';
@@ -97,6 +97,7 @@ export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
  * @spec https://html.spec.whatwg.org/multipage/dom.html#the-document-object
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Document-partial
  * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-document-interface
+ * @spec https://svgwg.org/svg2-draft/struct.html#InterfaceDocumentExtensions
  */
 export interface Document extends Document.Interface<Document.Type.HTML> {}
 
@@ -171,6 +172,8 @@ export namespace Document {
 		readonly defaultView: WindowProxy | null;
 
 		readonly timeline: DocumentTimeline;
+
+		readonly rootElement: SVGSVGElement | null;
 
 		/** @deprecated legacy alias of .characterSet */
 		readonly charset: string;

@@ -1,10 +1,20 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-
-/** @nonIdlType */
-export interface SVGElementMap {}
+import type * as elements from './elements';
+export interface SVGElementMap {
+	// https://svgwg.org/svg2-draft/struct.html
+	svg: elements.SVGSVGElement;
+	g: elements.SVGGElement;
+	defs: elements.SVGDefsElement;
+	symbol: elements.SVGSymbolElement;
+	use: elements.SVGUseElement;
+	switch: elements.SVGSwitchElement;
+	title: elements.SVGTitleElement;
+	desc: elements.SVGDescElement;
+	metadata: elements.SVGMetadataElement;
+}
 
 export * from './elements';
 export * from './mixins';
+export * from './shadow-animation';
 export * from './svg-angle';
 export * from './svg-animated-angle';
 export * from './svg-animated-boolean';
@@ -27,3 +37,4 @@ export * from './svg-string-list';
 export * from './svg-transform';
 export * from './svg-transform-list';
 export * from './svg-unit-types';
+export * from './svg-use-element-shadow-root';
