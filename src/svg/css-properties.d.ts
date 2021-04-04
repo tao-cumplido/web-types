@@ -2,6 +2,7 @@
  * @spec https://svgwg.org/svg2-draft/geometry.html
  * @spec https://svgwg.org/svg2-draft/coords.html#VectorEffects
  * @spec https://svgwg.org/svg2-draft/paths.html#TheDProperty
+ * @spec https://svgwg.org/svg2-draft/text.html
  */
 export interface SVGCSSProperties extends SVGCSSProperties.Animatable {}
 
@@ -16,5 +17,8 @@ export namespace SVGCSSProperties {
 		'y': string;
 		'vector-effect': string;
 		'd': string;
+		'inline-size': string;
+		'shape-subtract': string;
+		'text-anchor': string;
 	}
 }

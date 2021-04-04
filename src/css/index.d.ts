@@ -29,6 +29,7 @@ export * from './overscroll';
 export * from './paged-media';
 export * from './properties';
 export * from './scroll-snap';
+export * from './shapes';
 export * from './tables';
 export * from './text';
 export * from './text-decoration';

@@ -24,6 +24,11 @@ export interface SVGElementMap {
 	line: elements.SVGLineElement;
 	polyline: elements.SVGPolylineElement;
 	polygon: elements.SVGPolygonElement;
+
+	// https://svgwg.org/svg2-draft/text.html
+	text: elements.SVGTextElement;
+	tspan: elements.SVGTSpanElement;
+	textPath: elements.SVGTextPathElement;
 }
 
 export * from './css-properties';

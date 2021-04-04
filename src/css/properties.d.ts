@@ -23,6 +23,7 @@ import type { CSSOverflowProperties } from './overflow';
 import type { CSSOverscrollProperties } from './overscroll';
 import type { CSSPagedMediaProperties } from './paged-media';
 import type { CSSScrollSnapProperties } from './scroll-snap';
+import type { CSSShapeProperties } from './shapes';
 import type { CSSTableProperties } from './tables';
 import type { CSSTextProperties } from './text';
 import type { CSSTextDecorationProperties } from './text-decoration';
@@ -78,6 +79,7 @@ export namespace CSSAnimatableProperties {
 			CSSTransformProperties.Animatable,
 			CSSTransitionProperties.Animatable,
 			CSSUserInterfaceProperties.Animatable,
+			CSSShapeProperties.Animatable,
 			SVGCSSProperties.Animatable
 	{}
 
@@ -117,6 +119,7 @@ export namespace CSSProperties {
 			CSSTransformProperties,
 			CSSTransitionProperties,
 			CSSUserInterfaceProperties,
+			CSSShapeProperties,
 			SVGCSSProperties
 	{}
 
