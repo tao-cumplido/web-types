@@ -1,3 +1,4 @@
+export * from './svg-a-element';
 export * from './svg-circle-element';
 export * from './svg-defs-element';
 export * from './svg-desc-element';
@@ -32,3 +33,4 @@ export * from './svg-text-positioning-element';
 export * from './svg-title-element';
 export * from './svg-tspan-element';
 export * from './svg-use-element';
+export * from './svg-view-element';

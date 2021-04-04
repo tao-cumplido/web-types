@@ -4,6 +4,7 @@
  * @spec https://svgwg.org/svg2-draft/paths.html#TheDProperty
  * @spec https://svgwg.org/svg2-draft/text.html
  * @spec https://svgwg.org/svg2-draft/painting.html
+ * @spec https://svgwg.org/svg2-draft/interact.html#PointerEventsProp
  */
 export interface SVGCSSProperties extends SVGCSSProperties.Animatable {}
 
@@ -41,5 +42,6 @@ export namespace SVGCSSProperties {
 		'shape-rendering': string;
 		'text-rendering': string;
 		'image-rendering': string;
+		'pointer-events': string;
 	}
 }

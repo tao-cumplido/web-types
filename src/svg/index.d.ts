@@ -1,4 +1,5 @@
 import type * as elements from './elements';
+
 export interface SVGElementMap {
 	// https://svgwg.org/svg2-draft/struct.html
 	svg: elements.SVGSVGElement;
@@ -42,6 +43,13 @@ export interface SVGElementMap {
 	radialGradient: elements.SVGRadialGradientElement;
 	stop: elements.SVGStopElement;
 	pattern: elements.SVGPatternElement;
+
+	// https://svgwg.org/svg2-draft/interact.html
+	script: elements.SVGScriptElement;
+
+	// https://svgwg.org/svg2-draft/linking.html
+	a: elements.SVGAElement;
+	view: elements.SVGViewElement;
 }
 
 export * from './css-properties';
