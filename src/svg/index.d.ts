@@ -36,6 +36,12 @@ export interface SVGElementMap {
 
 	// https://svgwg.org/svg2-draft/painting.html
 	marker: elements.SVGMarkerElement;
+
+	// https://svgwg.org/svg2-draft/pservers.html
+	linearGradient: elements.SVGLinearGradientElement;
+	radialGradient: elements.SVGRadialGradientElement;
+	stop: elements.SVGStopElement;
+	pattern: elements.SVGPatternElement;
 }
 
 export * from './css-properties';
