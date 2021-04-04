@@ -3,6 +3,7 @@ import type { SVGElement, SVGUseElement } from './elements';
 import type { SVGAnimatedPreserveAspectRatio } from './svg-animated-preserve-aspect-ratio';
 import type { SVGAnimatedRect } from './svg-animated-rect';
 import type { SVGAnimatedString } from './svg-animated-string';
+import type { SVGPointList } from './svg-point-list';
 import type { SVGStringList } from './svg-string-list';
 
 /** @spec https://svgwg.org/svg2-draft/types.html#ListInterfaces */
@@ -59,4 +60,13 @@ export interface SVGURIReference {
 export interface SVGElementInstance {
 	readonly correspondingElement: SVGElement | null;
 	readonly correspondingUseElement: SVGUseElement | null;
+}
+
+/**
+ * @idlType
+ * @spec https://svgwg.org/svg2-draft/shapes.html#InterfaceSVGAnimatedPoints
+ */
+export interface SVGAnimatedPoints {
+	readonly points: SVGPointList;
+	readonly animatedPoints: SVGPointList;
 }

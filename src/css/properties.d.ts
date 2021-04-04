@@ -1,3 +1,4 @@
+import type { SVGCSSProperties } from '../svg';
 import type { CSSAnimationProperties } from './animations';
 import type { CSSBackgroundProperties } from './backgrounds';
 import type { CSSBoxProperties } from './box';
@@ -76,7 +77,8 @@ export namespace CSSAnimatableProperties {
 			CSSTextDecorationProperties.Animatable,
 			CSSTransformProperties.Animatable,
 			CSSTransitionProperties.Animatable,
-			CSSUserInterfaceProperties.Animatable
+			CSSUserInterfaceProperties.Animatable,
+			SVGCSSProperties.Animatable
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}
@@ -114,7 +116,8 @@ export namespace CSSProperties {
 			CSSTextDecorationProperties,
 			CSSTransformProperties,
 			CSSTransitionProperties,
-			CSSUserInterfaceProperties
+			CSSUserInterfaceProperties,
+			SVGCSSProperties
 	{}
 
 	export interface CamelCased extends CamelCase<Dashed> {}

@@ -13,8 +13,20 @@ export interface SVGElementMap {
 
 	// https://svgwg.org/svg2-draft/styling.html
 	style: elements.SVGStyleElement;
+
+	// https://svgwg.org/svg2-draft/paths.html
+	path: elements.SVGPathElement;
+
+	// https://svgwg.org/svg2-draft/shapes.html
+	rect: elements.SVGRectElement;
+	circle: elements.SVGCircleElement;
+	ellipse: elements.SVGEllipseElement;
+	line: elements.SVGLineElement;
+	polyline: elements.SVGPolylineElement;
+	polygon: elements.SVGPolygonElement;
 }
 
+export * from './css-properties';
 export * from './elements';
 export * from './mixins';
 export * from './shadow-animation';
@@ -35,6 +47,7 @@ export * from './svg-length';
 export * from './svg-length-list';
 export * from './svg-number';
 export * from './svg-number-list';
+export * from './svg-point-list';
 export * from './svg-preserve-aspect-ratio';
 export * from './svg-string-list';
 export * from './svg-transform';
