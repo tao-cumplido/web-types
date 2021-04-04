@@ -29,6 +29,10 @@ export interface SVGElementMap {
 	text: elements.SVGTextElement;
 	tspan: elements.SVGTSpanElement;
 	textPath: elements.SVGTextPathElement;
+
+	// https://svgwg.org/svg2-draft/embedded.html
+	image: elements.SVGImageElement;
+	foreignObject: elements.SVGForeignObjectElement;
 }
 
 export * from './css-properties';

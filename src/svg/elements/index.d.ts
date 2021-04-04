@@ -3,6 +3,7 @@ export * from './svg-defs-element';
 export * from './svg-desc-element';
 export * from './svg-element';
 export * from './svg-ellipse-element';
+export * from './svg-foreign-object-element';
 export * from './svg-g-element';
 export * from './svg-geometry-element';
 export * from './svg-graphics-element';

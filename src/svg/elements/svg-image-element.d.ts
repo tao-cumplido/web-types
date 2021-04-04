@@ -14,7 +14,7 @@ export namespace SVGImageElement {
 		readonly y: SVGAnimatedLength;
 		readonly width: SVGAnimatedLength;
 		readonly height: SVGAnimatedLength;
-		readonly preserveAspectRation: SVGPreserveAspectRatio;
+		readonly preserveAspectRatio: SVGPreserveAspectRatio;
 
 		crossOrigin: CORSSettingsAttribute | null;
 	}
