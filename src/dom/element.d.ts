@@ -1,5 +1,5 @@
 import type { DOMTokenList, NamedNodeMap } from '../collections';
-import type { Animatable, ClientRectUtils, ScrollUtils } from '../css';
+import type { Animatable, ClientRectUtils, ScrollIntoViewOptions, ScrollUtils } from '../css';
 import type { Attr } from './attr';
 import type { Document } from './document';
 import type { Event } from './event';
@@ -120,6 +120,8 @@ export namespace Element {
 		matches(selectors: string): boolean;
 
 		insertAdjacentHTML(position: InsertPosition, text: string): void;
+
+		scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
 
 		/** @deprecated legacy alias of .matches */
 		webkitMatchesSelector(selectors: string): boolean;
