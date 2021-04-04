@@ -33,6 +33,9 @@ export interface SVGElementMap {
 	// https://svgwg.org/svg2-draft/embedded.html
 	image: elements.SVGImageElement;
 	foreignObject: elements.SVGForeignObjectElement;
+
+	// https://svgwg.org/svg2-draft/painting.html
+	marker: elements.SVGMarkerElement;
 }
 
 export * from './css-properties';

@@ -9,6 +9,7 @@ export * from './svg-geometry-element';
 export * from './svg-graphics-element';
 export * from './svg-image-element';
 export * from './svg-line-element';
+export * from './svg-marker-element';
 export * from './svg-metadata-element';
 export * from './svg-path-element';
 export * from './svg-polygon-element';
