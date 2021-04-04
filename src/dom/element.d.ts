@@ -1,5 +1,5 @@
 import type { DOMTokenList, NamedNodeMap } from '../collections';
-import type { Animatable } from '../css';
+import type { Animatable, ClientRectUtils, ScrollUtils } from '../css';
 import type { Attr } from './attr';
 import type { Document } from './document';
 import type { Event } from './event';
@@ -29,6 +29,7 @@ export interface ShadowRootInit {
  * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-element-interface
  * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-element-interface
  * @spec https://drafts.csswg.org/css-shadow-parts-1/#idl
+ * @spec https://drafts.csswg.org/cssom-view-1/#extension-to-the-element-interface
  */
 export interface Element extends Element.Interface {}
 
@@ -50,7 +51,9 @@ export namespace Element {
 			DocumentOrElement,
 			InnerHTML,
 			ARIAMixin,
-			Animatable
+			Animatable,
+			ClientRectUtils,
+			ScrollUtils
 	{
 		readonly [Symbol.unscopables]: Unscopables;
 
@@ -72,6 +75,13 @@ export namespace Element {
 		/** @putForwards value */
 		readonly part: DOMTokenList;
 
+		readonly scrollWidth: number;
+		readonly scrollHeight: number;
+		readonly clientTop: number;
+		readonly clientLeft: number;
+		readonly clientWidth: number;
+		readonly clientHeight: number;
+
 		nodeValue: null;
 		textContent: string;
 
@@ -81,6 +91,9 @@ export namespace Element {
 
 		/** @legacyNullToEmptyString */
 		outerHTML: string;
+
+		scrollTop: number;
+		scrollLeft: number;
 
 		hasAttributes(): boolean;
 		getAttributeNames(): string[];

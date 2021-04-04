@@ -5,6 +5,7 @@ import type { HTMLElement } from './html-element';
 /**
  * @spec https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#HTMLImageElement-partial
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-htmlimageelement-interface
  */
 export interface HTMLImageElement extends HTMLImageElement.Interface {}
 
@@ -15,6 +16,9 @@ export namespace HTMLImageElement {
 		readonly naturalHeight: number;
 		readonly complete: boolean;
 		readonly currentSrc: string;
+
+		readonly x: number;
+		readonly y: number;
 
 		alt: string;
 		src: string;

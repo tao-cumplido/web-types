@@ -1,4 +1,5 @@
 import type { ValueOf } from '../../@types';
+import type { ClientRectUtils } from '../../css';
 import type { DocumentFragment } from '../document-fragment';
 import type { ChildNode } from '../mixins';
 import type { Node } from '../node';
@@ -7,12 +8,13 @@ import type { AbstractRange } from './abstract-range';
 /**
  * @spec https://dom.spec.whatwg.org/#interface-range
  * @spec https://w3c.github.io/DOM-Parsing/#extensions-to-the-range-interface
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-range-interface
  */
 export interface Range extends Range.Interface {}
 
 /** @exposed Window */
 export namespace Range {
-	interface BoundaryNode extends Node {
+	interface BoundaryNode extends Node, ClientRectUtils {
 		readonly nodeType: ValueOf<Omit<Node.NodeTypes, 'DOCUMENT_TYPE_NODE'>>;
 	}
 

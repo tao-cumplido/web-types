@@ -10,7 +10,10 @@ import type {
 } from '../mixins';
 import type { ElementInternals } from '../window';
 
-/** @spec https://html.spec.whatwg.org/multipage/dom.html#htmlelement */
+/**
+ * @spec https://html.spec.whatwg.org/multipage/dom.html#htmlelement
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-htmlelement-interface
+ */
 export interface HTMLElement extends HTMLElement.Interface {}
 
 /** @exposed Window */
@@ -27,6 +30,12 @@ export namespace HTMLElement {
 			ElementCSSInlineStyle
 	{
 		readonly accessKeyLabel: string;
+
+		readonly offsetParent: Element | null;
+		readonly offsetTop: number;
+		readonly offsetLeft: number;
+		readonly offsetWidth: number;
+		readonly offsetHeight: number;
 
 		title: string;
 		lang: string;

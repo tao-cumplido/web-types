@@ -12,6 +12,7 @@ export interface MouseEventInit extends Partial<MouseEvent.State>, EventModifier
 /**
  * @spec https://w3c.github.io/uievents/#idl-mouseevent
  * @spec https://w3c.github.io/uievents/#idl-interface-MouseEvent-initializers
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-mouseevent-interface
  */
 export interface MouseEvent extends MouseEvent.Interface {}
 
@@ -30,6 +31,13 @@ export namespace MouseEvent {
 	}
 
 	export interface Prototype extends Readonly<State>, Readonly<BaseModifiers>, UIEvent.Prototype, GetModifierState {
+		readonly pageX: number;
+		readonly pageY: number;
+		readonly x: number;
+		readonly y: number;
+		readonly offsetX: number;
+		readonly offsetY: number;
+
 		/** @deprecated */
 		initMouseEvent(
 			type: string,

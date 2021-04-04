@@ -1,3 +1,4 @@
+export * from './caret-position';
 export * from './css-grouping-rule';
 export * from './css-import-rule';
 export * from './css-margin-rule';
@@ -9,6 +10,11 @@ export * from './css-style-declaration';
 export * from './css-style-rule';
 export * from './css-style-sheet';
 export * from './media-list';
+export * from './media-query-list';
+export * from './media-query-list-event';
 export * from './mixins';
+export * from './properties';
+export * from './screen';
 export * from './style-sheet';
 export * from './style-sheet-list';
+export * from './types';

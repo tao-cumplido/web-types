@@ -1,5 +1,7 @@
+import type { DOMRect, DOMRectList } from '../../geometry';
 import type { CSSStyleDeclaration } from './css-style-declaration';
 import type { CSSStyleSheet } from './css-style-sheet';
+import type { ScrollToOptions } from './types';
 
 /**
  * @idlType
@@ -28,4 +30,18 @@ export interface CSSNamespace {
 		supports(property: string, value: string): boolean;
 		supports(conditionText: string): boolean;
 	};
+}
+
+export interface ScrollUtils {
+	scroll(options?: ScrollToOptions): void;
+	scroll(x: number, y: number): void;
+	scrollTo(options?: ScrollToOptions): void;
+	scrollTo(x: number, y: number): void;
+	scrollBy(options?: ScrollToOptions): void;
+	scrollBy(x: number, y: number): void;
+}
+
+export interface ClientRectUtils {
+	getClientRects(): DOMRectList;
+	getBoundingClientRect(): DOMRect;
 }

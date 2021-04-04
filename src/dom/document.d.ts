@@ -1,6 +1,6 @@
 import type { Merge } from '../@types';
 import type { HTMLAllCollection, HTMLCollection, NodeList } from '../collections';
-import type { DocumentTimeline, FontFaceSource } from '../css';
+import type { CaretPosition, DocumentTimeline, FontFaceSource } from '../css';
 import type {
 	AutonomousCustomElementMap,
 	BeforeUnloadEvent,
@@ -98,6 +98,7 @@ export type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Document-partial
  * @spec https://drafts.csswg.org/web-animations-1/#extensions-to-the-document-interface
  * @spec https://svgwg.org/svg2-draft/struct.html#InterfaceDocumentExtensions
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-document-interface
  */
 export interface Document extends Document.Interface<Document.Type.HTML> {}
 
@@ -174,6 +175,8 @@ export namespace Document {
 		readonly timeline: DocumentTimeline;
 
 		readonly rootElement: SVGSVGElement | null;
+
+		readonly scrollingElement: Element | null;
 
 		/** @deprecated legacy alias of .characterSet */
 		readonly charset: string;
@@ -288,6 +291,10 @@ export namespace Document {
 		queryCommandState(commandId: string): boolean;
 		queryCommandSupported(commandId: string): boolean;
 		queryCommandValue(commandId: string): string;
+
+		elementFromPoint(x: number, y: number): Element | null;
+		elementsFromPoint(x: number, y: number): Element[];
+		caretPositionFromPoint(x: number, y: number): CaretPosition | null;
 
 		/** @deprecated */
 		clear(): void;

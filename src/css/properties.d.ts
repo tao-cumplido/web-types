@@ -19,6 +19,7 @@ import type { CSSInlineProperties } from './inline';
 import type { CSSListProperties } from './lists';
 import type { CSSLogicalProperties } from './logical';
 import type { CSSMultiColumnProperties } from './multi-column-layout';
+import type { CSSObjectModelProperties } from './object-model';
 import type { CSSOverflowProperties } from './overflow';
 import type { CSSOverscrollProperties } from './overscroll';
 import type { CSSPagedMediaProperties } from './paged-media';
@@ -120,6 +121,7 @@ export namespace CSSProperties {
 			CSSTransitionProperties,
 			CSSUserInterfaceProperties,
 			CSSShapeProperties,
+			CSSObjectModelProperties,
 			SVGCSSProperties
 	{}
 

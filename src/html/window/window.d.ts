@@ -1,4 +1,4 @@
-import type { CSSNamespace, CSSStyleDeclaration } from '../../css';
+import type { CSSNamespace, CSSStyleDeclaration, MediaQueryList, Screen, ScrollUtils } from '../../css';
 import type { Document, Element, Event, EventTarget } from '../../dom';
 import type { IndexedIterable } from '../../iterable';
 import type {
@@ -39,6 +39,7 @@ export type WindowProxy = Window;
  * @spec https://html.spec.whatwg.org/multipage/window-object.html#the-window-object
  * @spec https://html.spec.whatwg.org/multipage/obsolete.html#Window-partial
  * @spec https://drafts.csswg.org/cssom/#extensions-to-the-window-interface
+ * @spec https://drafts.csswg.org/cssom-view-1/#extensions-to-the-window-interface
  */
 export interface Window extends Window.Interface {}
 
@@ -57,7 +58,8 @@ export namespace Window {
 			AnimationFrameProvider,
 			WindowSessionStorage,
 			WindowLocalStorage,
-			CSSNamespace
+			CSSNamespace,
+			ScrollUtils
 	{
 		/** @globalThis */
 		readonly self: WindowProxy;
@@ -78,6 +80,21 @@ export namespace Window {
 
 		readonly navigator: Navigator;
 		readonly originAgentCluster: boolean;
+
+		readonly screen: Screen;
+		readonly innerWidth: number;
+		readonly innerHeight: number;
+		readonly scrollX: number;
+		readonly pageXOffset: number;
+		readonly scrollY: number;
+		readonly pageYOffset: number;
+		readonly screenX: number;
+		readonly screenLeft: number;
+		readonly screenY: number;
+		readonly screenTop: number;
+		readonly outerWidth: number;
+		readonly outerHeight: number;
+		readonly devicePixelRatio: number;
 
 		/** @deprecated */
 		readonly event?: Event;
@@ -106,6 +123,13 @@ export namespace Window {
 		postMessage(message: unknown, options?: WindowPostMessageOptions): void;
 
 		getComputedStyle(element: Element, pseudoElement?: string): CSSStyleDeclaration;
+
+		matchMedia(query: string): MediaQueryList;
+
+		moveTo(x: number, y: number): void;
+		moveBy(x: number, y: number): void;
+		resizeTo(width: number, height: number): void;
+		resizeBy(x: number, y: number): void;
 
 		/** @deprecated */
 		captureEvents(): void;
