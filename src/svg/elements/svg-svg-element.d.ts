@@ -8,14 +8,43 @@ import type { SVGAnimatedLength } from '../svg-animated-length';
 import type { SVGLength } from '../svg-length';
 import type { SVGNumber } from '../svg-number';
 import type { SVGTransform } from '../svg-transform';
+import type { SVGCircleElement } from './svg-circle-element';
 import type { SVGElement } from './svg-element';
+import type { SVGEllipseElement } from './svg-ellipse-element';
+import type { SVGForeignObjectElement } from './svg-foreign-object-element';
 import type { SVGGraphicsElement } from './svg-graphics-element';
+import type { SVGImageElement } from './svg-image-element';
+import type { SVGLineElement } from './svg-line-element';
+import type { SVGPathElement } from './svg-path-element';
+import type { SVGPolygonElement } from './svg-polygon-element';
+import type { SVGPolylineElement } from './svg-polyline-element';
+import type { SVGRectElement } from './svg-rect-element';
+import type { SVGTextElement } from './svg-text-element';
+import type { SVGTextPathElement } from './svg-text-path-element';
+import type { SVGTSpanElement } from './svg-tspan-element';
+import type { SVGUseElement } from './svg-use-element';
 
 /** @spec https://svgwg.org/svg2-draft/struct.html#InterfaceSVGSVGElement */
 export interface SVGSVGElement extends SVGSVGElement.Interface {}
 
 /** @exposed Window */
 export namespace SVGSVGElement {
+	// not to be confused with SVGGraphicsElement https://svgwg.org/svg2-draft/struct.html#TermGraphicsElement
+	type GraphicsElement =
+		| SVGCircleElement
+		| SVGEllipseElement
+		| SVGForeignObjectElement
+		| SVGImageElement
+		| SVGLineElement
+		| SVGPathElement
+		| SVGPolygonElement
+		| SVGPolylineElement
+		| SVGRectElement
+		| SVGTextElement
+		| SVGTextPathElement
+		| SVGTSpanElement
+		| SVGUseElement;
+
 	export interface Prototype
 		extends SVGGraphicsElement.Prototype<WindowEventTypes>, SVGFitToViewBox, WindowEventHandlers
 	{
@@ -28,9 +57,8 @@ export namespace SVGSVGElement {
 
 		currentScale: number;
 
-		// TODO: restrict node lists to defined elements https://svgwg.org/svg2-draft/struct.html#TermGraphicsElement
-		getIntersectionList(rect: DOMRectReadOnly, referenceElement: SVGElement | null): NodeList<SVGGraphicsElement>;
-		getEnclosureList(rect: DOMRectReadOnly, referenceElement: SVGElement | null): NodeList<SVGGraphicsElement>;
+		getIntersectionList(rect: DOMRectReadOnly, referenceElement: SVGElement | null): NodeList<GraphicsElement>;
+		getEnclosureList(rect: DOMRectReadOnly, referenceElement: SVGElement | null): NodeList<GraphicsElement>;
 		checkIntersection(element: SVGElement, rect: DOMRectReadOnly): boolean;
 		checkEnclosure(element: SVGElement, rect: DOMRectReadOnly): boolean;
 
