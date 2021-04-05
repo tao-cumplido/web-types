@@ -6,7 +6,6 @@ export namespace CSSTableProperties {
 		'table-layout': string;
 		'border-collapse': string;
 		'border-spacing': string;
-		'caption-side': string;
 		'empty-cells': string;
 	}
 }

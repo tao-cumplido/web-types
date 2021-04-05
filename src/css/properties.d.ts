@@ -51,9 +51,18 @@ type PascalCase<T extends Record<keyof T, string>> = {
 	[P in keyof T as PascalJoin<SplitDash<P>>]: T[P];
 };
 
+// these are only defined in CSS2
+export interface CSS2Properties {
+	// https://drafts.csswg.org/css2/#z-index
+	'z-index': string;
+	// https://drafts.csswg.org/css2/#visibility
+	'visibility': string;
+}
+
 export namespace CSSAnimatableProperties {
 	export interface Dashed
 		extends
+			CSS2Properties,
 			CSSBoxAlignmentProperties.Animatable,
 			CSSBackgroundProperties.Animatable,
 			CSSBoxProperties.Animatable,
@@ -90,6 +99,7 @@ export namespace CSSAnimatableProperties {
 export namespace CSSProperties {
 	export interface Dashed
 		extends
+			CSS2Properties,
 			CSSCompatibilityProperties,
 			CSSBoxAlignmentProperties,
 			CSSAnimationProperties,
