@@ -12,6 +12,7 @@ export * from './pointer-events';
 export * from './service-workers';
 export * from './streams';
 export * from './svg';
+export * from './touch-events';
 export * from './ui-events';
 export * from './url';
 export * from './web-gl';

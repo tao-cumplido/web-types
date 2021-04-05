@@ -4,6 +4,7 @@ import type { AnimationEvent, TransitionEvent } from '../css';
 import type { Event, EventHandler, EventHandlerMap } from '../dom';
 import type { RequestInfo, RequestInit, Response } from '../fetch';
 import type { PointerEvent } from '../pointer-events';
+import type { TouchEvent } from '../touch-events';
 import type { CompositionEvent, FocusEvent, InputEvent, KeyboardEvent, MouseEvent, WheelEvent } from '../ui-events';
 import type { VoidFunction } from '../web-idl';
 import type { CloseEvent } from './close-event';
@@ -201,6 +202,10 @@ export interface GlobalEventHandlerTypes {
 	transitionstart: TransitionEvent;
 	transitionend: TransitionEvent;
 	transitioncancel: TransitionEvent;
+	touchstart: TouchEvent;
+	touchend: TouchEvent;
+	touchmove: TouchEvent;
+	touchcanvel: TouchEvent;
 }
 
 export interface GlobalEventTypes extends GlobalEventHandlerTypes {
@@ -218,6 +223,7 @@ export interface GlobalEventTypes extends GlobalEventHandlerTypes {
  * @spec https://drafts.csswg.org/css-animations-1/#interface-globaleventhandlers
  * @spec https://drafts.csswg.org/css-transitions-1/#interface-globaleventhandlers-idl
  * @spec https://w3c.github.io/uievents/
+ * @spec https://w3c.github.io/touch-events/#extensions-to-the-globaleventhandlers-mixin
  */
 export interface GlobalEventHandlers extends EventHandlerMap<GlobalEventHandlerTypes> {}
 
