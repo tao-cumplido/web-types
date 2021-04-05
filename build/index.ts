@@ -311,6 +311,7 @@ for (const [context, scope] of globalScopes) {
 		},
 	);
 
+	// TODO: make readonly properties const
 	const globalProperties = scope.globalProperties.map((name) =>
 		`var ${name}: web.${scope.name}['${name}'] & typeof globalThis;`
 	);

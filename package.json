@@ -1,13 +1,13 @@
 {
 	"name": "web-types",
-	"version": "0.0.1-alpha.8",
+	"version": "0.0.1-alpha.10",
 	"author": "Tao Cumplido",
 	"license": "ISC",
 	"private": "true",
 	"workspaces": {
 		"packages": [
 			"packages/*",
-			"test"
+			"jsdom"
 		]
 	},
 	"volta": {
@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"lint": "eslint **/*.{js,ts}",
-		"build": "rimraf packages && ts-node -P tsconfig.build.json ./build && dprint fmt packages/**/*.ts"
+		"build": "rimraf packages && ts-node -P tsconfig.build.json ./build && dprint fmt packages/**/*.{ts,json}"
 	},
 	"devDependencies": {
 		"@types/node": "14.14.25",
